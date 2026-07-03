@@ -1,0 +1,11 @@
+Project ID: dhrbzffzfthactgsqvay 
+
+anon public: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRocmJ6ZmZ6ZnRoYWN0Z3NxdmF5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI1Mzc2MjQsImV4cCI6MjA3ODExMzYyNH0.vXZJQJH-qhkXmVQHg7bKQhe1QOl03uz5znk5THceTqo 
+
+service_role: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRocmJ6ZmZ6ZnRoYWN0Z3NxdmF5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MjUzNzYyNCwiZXhwIjoyMDc4MTEzNjI0fQ.CwOgXjQE5_EG7Xm2oLvy0swamcdVeNwOmR8r-FgPgXo 
+
+Legacy JWT secret: kL55ok3kniv4e++vGA0rjxRP3e2w9hS+Vjt4B7WRIPmmwQmznvsdMgtn9CNGOAVYnqcNwSWNvbyzHetbuGVjbA== 
+
+URL: https://dhrbzffzfthactgsqvay.supabase.co 
+
+DATABASE_URL: postgresql://postgres:hLdaZoip5JMYG2oy@db.dhrbzffzfthactgsqvay.supabase.co:5432/postgres
