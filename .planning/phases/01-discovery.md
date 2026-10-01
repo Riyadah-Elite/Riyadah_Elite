@@ -29,8 +29,8 @@ Implement the Game Testing Discovery and Tournament Discovery pages based on the
 6. **Verification:** Ensure the pages render correctly, match the Stitch design, and display the required empty states since the DB is empty.
 
 ## Status
-- [ ] Prisma schema updated
-- [ ] Backend API implemented
-- [ ] Game Discovery UI implemented
-- [ ] Tournament Discovery UI implemented
-- [ ] Verification passed
+- [x] Prisma schema updated
+- [x] Backend API implemented
+- [x] Game Discovery UI implemented
+- [x] Tournament Discovery UI implemented
+- [x] Verification passed
