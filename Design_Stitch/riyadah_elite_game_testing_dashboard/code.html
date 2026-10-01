@@ -1,0 +1,873 @@
+<!DOCTYPE html><html class="dark h-full bg-[#050A30]" lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Riyadah Elite - Game Testing Dashboard</title>
+<!-- Google Fonts: Space Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              deep: '#050A30',
+              surface: '#0a0f35',
+              card: '#0d133a',
+              cardHover: '#13183d',
+              border: '#1d2556',
+              primary: '#233DFF',
+              cyan: '#5CB6F9',
+              lightBlue: '#CAE8FF',
+              bright: '#F7FBFF',
+            }
+          },
+          boxShadow: {
+            'glow-primary': '0 0 20px -3px rgba(35, 61, 255, 0.45)',
+            'glow-cyan': '0 0 15px -2px rgba(92, 182, 249, 0.35)',
+            'glow-sm': '0 0 10px rgba(35, 61, 255, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles for Scrollbars and Fine Accents -->
+<style data-purpose="custom-scrollbars">
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050A30;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1d2556;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #233DFF;
+    }
+  </style>
+<style data-purpose="glow-animations">
+    @keyframes subtle-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.98); }
+    }
+    .status-pulse {
+      animation: subtle-pulse 2.5s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="h-full bg-[#050A30] text-[#CAE8FF] font-sans antialiased selection:bg-[#233DFF] selection:text-white flex overflow-hidden">
+<!-- BEGIN: Sidebar -->
+<aside class="hidden md:flex md:w-64 flex-col shrink-0 border-r border-[#1d2556] bg-[#070D38] justify-between z-30 select-none">
+<!-- Top Brand & Navigation -->
+<div class="flex flex-col">
+<!-- Logo Header -->
+<div class="h-20 flex items-center gap-3 px-6 border-b border-[#1d2556]/60">
+<img alt="Riyadah Elite" class="w-9 h-9 rounded-full ring-2 ring-[#5CB6F9]/30 shadow-glow-cyan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXdRTC4_o6v2CeHKdWsBtYkhyh5GOkJ7GmG3UJYTwXZG8QsToxAde-I5udRZVxtvoN-6xl4rE-Xpz4cOn5YR3DHy02igTsOGNZ6Y2mC_lU9ylZIDXhklqBmVvU_NOJpXBAXDi9_VKIpmyHyNeQznwxyzIz1F-dR9bv1hF1_T8iMfPQshaWC6cGJwIh_3_jrxb-U5bH5yF2h1be64TQW_i3xCatDmmEGKt8t6gJ-MmGGVeTdjt4qn8">
+<span class="text-white font-bold tracking-wider text-lg uppercase font-sans">RIYADAH <span class="text-[#5CB6F9]">ELITE</span></span>
+</div>
+<!-- Nav Links -->
+<nav class="p-4 space-y-1.5" data-purpose="main-navigation">
+<!-- Overview (Inactive) -->
+<a class="flex items-center gap-3.5 px-4 py-3 text-sm font-medium rounded-xl text-slate-400 hover:text-white hover:bg-[#0d133a] transition-all" href="#">
+<svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Overview</span>
+</a>
+<!-- Game Testing (ACTIVE) -->
+<a class="flex items-center justify-between px-4 py-3 text-sm font-semibold rounded-xl bg-[#233DFF] text-white shadow-glow-primary transition-all" href="#">
+<div class="flex items-center gap-3.5">
+<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Game Testing</span>
+</div>
+
+</a>
+<!-- Tournaments (Inactive) -->
+<a class="flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl text-slate-400 hover:text-white hover:bg-[#0d133a] transition-all" href="#">
+<div class="flex items-center gap-3.5">
+<svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Tournaments</span>
+</div>
+
+</a>
+<div class="my-3 border-t border-[#1d2556]/60"></div>
+<!-- Profile -->
+
+<!-- Settings -->
+
+</nav>
+</div>
+<!-- User Account Strip (Bottom) -->
+<div class="p-4 border-t border-[#1d2556]/60 bg-[#050A30]/50" data-purpose="user-profile-strip">
+<div class="flex items-center justify-between p-2 rounded-xl bg-[#0d133a]/80 border border-[#1d2556]/50">
+<div class="flex items-center gap-3 min-w-0">
+<img alt="Alex Morgan" class="w-10 h-10 rounded-lg object-cover ring-1 ring-[#5CB6F9]/40 shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBg-HgkEMc9sAR9t5ts1769pKKF02iScVNnbEWSCoMdZ-BBVBpjsOoWZEHbO_5SbHYZ9SbpfYIlCol-h5AZ-iklaCqcdVuEPTw1oQ9F7ksaiXPvOkKJYPhe83xKkXOaV1WMmejOeMaz7jR6aQPXS57MY6WGhQysqqGs94UwY1hZUAd14b4htH-PnillMYhG0PoeyAVqNAfneTtH55Ttv298vMARPLxQrWoYkT0p513rKR1BNV6KNRM">
+<div class="truncate">
+<div class="text-sm font-semibold text-white truncate leading-tight">Alex Morgan</div>
+<div class="text-xs text-slate-400 truncate">@alexplayer</div>
+</div>
+</div>
+<button class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800/60 transition" title="Logout">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: Main App Container -->
+<div class="flex-1 flex flex-col h-full overflow-hidden bg-[#050A30]">
+<!-- Top Header -->
+<header class="h-20 shrink-0 border-b border-[#1d2556] bg-[#080E39]/80 backdrop-blur-md px-6 md:px-8 flex items-center justify-between z-20">
+<!-- Title / Breadcrumb context -->
+<div class="flex items-center gap-3">
+<!-- Mobile Logo Icon -->
+<img alt="Riyadah Elite" class="md:hidden w-8 h-8 rounded-full ring-1 ring-[#5CB6F9]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeBtR4wCBv8VcWPiRPbrQUEWW-cA758LZ0FXU95VheBSm_n-OXZRGurgqFq6TXyIj9AxTziPfxokzmLPCZ_XVYH8D_RAkrGoP07Q-W6Q3t7AMaR4yJp3NfeW3TUzKeZjscnSngCGhMMkfxmxdYc3mi99J_-ywZxnulRLpTV2C_dfPQIunLlx_wD0V_weZsugDtL2Piub3aQguUn2CvdeLP3UBgnpdAJYW_Uo3HYWLm2spFQoV3JoA">
+<div>
+<h1 class="text-lg md:text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            GAME TESTING
+            <span class="inline-flex md:hidden text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-[#233DFF]/30 text-[#5CB6F9] border border-[#233DFF]/40">Active</span>
+</h1>
+<p class="hidden sm:block text-xs text-slate-400">Manage your game testing activities, applications and completed tests.</p>
+</div>
+</div>
+<!-- Search & User Utilities -->
+<div class="flex items-center gap-3 md:gap-4">
+<!-- Quick Search Bar -->
+<div class="relative hidden sm:block w-72">
+<input class="w-full bg-[#0d133a] text-xs text-white placeholder-slate-400 border border-[#1d2556] rounded-xl pl-9 pr-3 py-2.5 focus:outline-none focus:border-[#5CB6F9] focus:ring-1 focus:ring-[#5CB6F9] transition" placeholder="Search tests, builds, developers... ⌘K" type="text">
+<svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Notification Bell -->
+<button class="relative p-2.5 rounded-xl bg-[#0d133a] border border-[#1d2556] text-slate-300 hover:text-white hover:border-[#5CB6F9]/40 transition">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#5CB6F9] shadow-glow-cyan"></span>
+</button>
+<!-- Top Avatar -->
+<div class="flex items-center gap-2 pl-2 border-l border-[#1d2556]">
+<img alt="Alex Morgan" class="w-9 h-9 rounded-full object-cover ring-2 ring-[#233DFF]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrQodNvZ2OOmoWtlUBPj9uop1dgSAQAgwICAgl_4_UOkvzDgr4sViFiOoFx88nWH9T7c0segsO-UVkuyxapiTCCWxnZ8ecTdimYzYaoaEZEeIUmvr51jbN3QpjyL3zoj5NdYQZTVgF1GWQHNaPrqX_4jntikDXbrs_4Idg1Kmp85_kdFeqlp7wIXIUvrsjfcXtrPMjoKzLUW35wLsaCHdcfAO98pAWvwmr_36oAz-uSi1b2ZgGjIc">
+</div>
+</div>
+</header>
+<!-- Scrollable Main Dashboard Canvas -->
+<main class="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-8" id="dashboard-scroll-area">
+<!-- BEGIN: Page Action Sub-Header -->
+<section class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#0a0f35] p-5 sm:p-6 rounded-2xl border border-[#1d2556]" data-purpose="sub-header">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">GAME TESTING</h2>
+<span class="text-xs px-2.5 py-0.5 rounded-full bg-[#233DFF]/20 text-[#5CB6F9] border border-[#233DFF]/40 font-semibold tracking-wide uppercase">Private QA Hub</span>
+</div>
+<p class="text-sm text-slate-400 mt-1">Track your active tests, applications and testing history.</p>
+</div>
+<div class="flex items-center gap-3">
+<!-- Toggle button for reviewer to inspect empty states -->
+<button class="px-3.5 py-2 text-xs font-semibold rounded-xl bg-[#0d133a] border border-[#1d2556] text-[#CAE8FF] hover:border-[#5CB6F9] transition flex items-center gap-2" id="toggle-empty-states-btn" onclick="toggleEmptyStatesView()" type="button">
+<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+<span id="toggle-state-text" class="">View Empty States Demo</span>
+</button>
+<!-- Browse Games CTA -->
+<a class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl text-white bg-gradient-to-r from-[#233DFF]/80 to-[#233DFF] hover:from-[#233DFF] hover:to-[#5CB6F9] border border-[#5CB6F9]/30 shadow-glow-primary transition" href="#">
+<span class="">Browse Games</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</div>
+</section>
+<!-- END: Page Action Sub-Header -->
+<!-- PRIMARY CONTENT CONTAINER (Allows toggling with empty states) -->
+<div class="space-y-8" id="standard-content-view">
+<!-- BEGIN: Section 1 - Testing Summary (4 Metric Cards) -->
+<section data-purpose="metrics-summary">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Metric 1: Active Tests -->
+<div class="bg-[#0d133a] border border-[#1d2556] rounded-2xl p-5 hover:border-[#233DFF]/60 transition relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 w-20 h-20 bg-[#233DFF]/10 rounded-full blur-xl group-hover:bg-[#233DFF]/20 transition"></div>
+<div class="flex items-center justify-between text-slate-400 mb-2">
+<span class="text-xs font-bold tracking-wider uppercase text-slate-300">Active Tests</span>
+<span class="w-8 h-8 rounded-lg bg-[#233DFF]/20 text-[#5CB6F9] flex items-center justify-center border border-[#233DFF]/30">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+</div>
+<div class="text-3xl font-extrabold text-white tracking-tight">3</div>
+<div class="flex items-center gap-1.5 mt-2 text-xs text-[#5CB6F9]">
+<span class="w-2 h-2 rounded-full bg-[#5CB6F9] status-pulse"></span>
+<span class="">Currently testing</span>
+</div>
+</div>
+<!-- Metric 2: Applications -->
+<div class="bg-[#0d133a] border border-[#1d2556] rounded-2xl p-5 hover:border-[#233DFF]/60 transition relative overflow-hidden group">
+<div class="flex items-center justify-between text-slate-400 mb-2">
+<span class="text-xs font-bold tracking-wider uppercase text-slate-300">Applications</span>
+<span class="w-8 h-8 rounded-lg bg-[#131b4a] text-slate-300 flex items-center justify-center border border-[#1d2556]">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+</div>
+<div class="text-3xl font-extrabold text-white tracking-tight">5</div>
+<div class="flex items-center gap-1.5 mt-2 text-xs text-amber-300">
+<span class="w-2 h-2 rounded-full bg-amber-400"></span>
+<span class="">Under review</span>
+</div>
+</div>
+<!-- Metric 3: Completed -->
+<div class="bg-[#0d133a] border border-[#1d2556] rounded-2xl p-5 hover:border-[#233DFF]/60 transition relative overflow-hidden group">
+<div class="flex items-center justify-between text-slate-400 mb-2">
+<span class="text-xs font-bold tracking-wider uppercase text-slate-300">Completed</span>
+<span class="w-8 h-8 rounded-lg bg-[#131b4a] text-emerald-400 flex items-center justify-center border border-[#1d2556]">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+</div>
+<div class="text-3xl font-extrabold text-white tracking-tight">12</div>
+<div class="flex items-center gap-1.5 mt-2 text-xs text-emerald-400">
+<span class="">Tests completed</span>
+</div>
+</div>
+<!-- Metric 4: Feedback Submitted -->
+<div class="bg-[#0d133a] border border-[#1d2556] rounded-2xl p-5 hover:border-[#233DFF]/60 transition relative overflow-hidden group">
+<div class="flex items-center justify-between text-slate-400 mb-2">
+<span class="text-xs font-bold tracking-wider uppercase text-slate-300">Feedback Submitted</span>
+<span class="w-8 h-8 rounded-lg bg-[#131b4a] text-[#5CB6F9] flex items-center justify-center border border-[#1d2556]">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+</div>
+<div class="text-3xl font-extrabold text-white tracking-tight">47</div>
+<div class="flex items-center gap-1.5 mt-2 text-xs text-slate-400">
+<span class="">Total telemetry &amp; QA logs</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Section 1 -->
+<!-- BEGIN: Section 2 - Active Game Testing (Primary Grid) -->
+<section class="space-y-4" data-purpose="active-games-section">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="text-lg font-bold text-white tracking-wide flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#233DFF] inline-block shadow-glow-primary"></span>
+                ACTIVE GAME TESTING
+              </h3>
+<p class="text-xs text-slate-400">Continue your current testing activities and telemetry pipelines.</p>
+</div>
+<span class="text-xs text-slate-400 font-mono hidden sm:inline">3 builds provisioned</span>
+</div>
+<!-- 3-Card Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1: Shadow Protocol -->
+<div class="bg-[#0d133a] border border-[#1d2556] rounded-2xl overflow-hidden flex flex-col hover:border-[#233DFF] hover:shadow-glow-sm transition-all duration-300">
+<!-- Thumbnail Banner -->
+<div class="relative h-44 w-full overflow-hidden bg-slate-900">
+<img alt="Shadow Protocol" class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPu3SxhTDvowtqGgdRp_SQnxNthOqtj5TJmjLUZe0N1-Gi3Se-Eq5EXdymHEute8TCsmgENb5nWQl3adbM4buclrU5keIJIYG0rrplhQ5aVKcwhW5nQJ9qjY8ntiW_GAn5D_eGYrB4cnumAjW8mBmmQg7FTj-HyiEpsuZGbhQCu5xY4OvexB2w8J7cotDUZtQCA4FJIbAETqcpkSxLRZMOyFLD0r2BhyBPv17xK9qIB0v7aTfMD08">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0d133a] via-transparent to-black/40"></div>
+<!-- Status Badges -->
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-white border border-white/10 font-bold">PC Build v0.8.4</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="text-[11px] font-semibold uppercase px-2.5 py-0.5 rounded-full bg-[#233DFF] text-white shadow-glow-primary tracking-wide">ACTIVE</span>
+</div>
+</div>
+<!-- Content Body -->
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-[#5CB6F9] uppercase tracking-wider">Example Studios</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-[#1d2556] text-slate-300 font-mono">BETA TEST</span>
+</div>
+<h4 class="text-lg font-bold text-white mt-1">Shadow Protocol</h4>
+<!-- Progress Bar Container -->
+<div class="mt-4">
+<div class="flex items-center justify-between text-xs mb-1.5 font-medium">
+<span class="text-slate-400">Testing Progress</span>
+<span class="text-[#5CB6F9] font-mono font-bold">72%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-[#131b4a] overflow-hidden">
+<div class="h-full bg-gradient-to-r from-[#233DFF] to-[#5CB6F9] rounded-full shadow-glow-cyan" style="width: 72%;"></div>
+</div>
+</div>
+<!-- Next Task & Deadline -->
+<div class="mt-4 space-y-2 text-xs">
+<div class="flex items-start gap-2 text-slate-300 bg-[#070D38]/60 p-2.5 rounded-xl border border-[#1d2556]/60">
+<svg class="w-4 h-4 text-[#5CB6F9] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="line-clamp-2 leading-relaxed">Complete Gameplay Session #3: District Extraction telemetry</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-400 pt-1">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">September 15, 2026 <strong class="text-amber-300 font-normal">(4 days left)</strong></span>
+</div>
+</div>
+</div>
+<!-- Card Actions -->
+<div class="pt-2 flex items-center gap-2">
+<button class="flex-1 py-2.5 px-3 rounded-xl bg-[#233DFF] hover:bg-[#1c32db] text-white text-xs font-bold uppercase tracking-wider shadow-glow-primary transition">
+                    Continue Testing
+                  </button>
+<button class="py-2.5 px-3 rounded-xl bg-[#0a0f35] hover:bg-[#13183d] text-slate-300 hover:text-white border border-[#1d2556] text-xs font-medium transition">
+                    View Details
+                  </button>
+</div>
+</div>
+</div>
+<!-- Card 2: Neon Frontier -->
+<div class="bg-[#0d133a] border border-[#1d2556] rounded-2xl overflow-hidden flex flex-col hover:border-[#233DFF] hover:shadow-glow-sm transition-all duration-300">
+<!-- Thumbnail Banner -->
+<div class="relative h-44 w-full overflow-hidden bg-slate-900">
+<img alt="Neon Frontier" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLRnp1d8Gm3MZFU2tI7FvCvU_sETyXMxlVcTpVI9iuH79g0RY__8RMeIX41bNMr_xD-Vrsc90ySqZstbFvLL38a4ESoOqXN_hWbOPie5A3rl4eIp26CZ4t3Usdtbt8bgtoqsY95uiGVbRQNXJxjwJgso6_xd9py0H3XjSt_lVZ1PDaMVBbev0cnr5W7slnXlsF4A3n0SMUzQOjeDgNJhVQr9kdE2piFoOr1zKxUAUqBdHurTddSe8">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0d133a] via-transparent to-black/40"></div>
+<!-- Status Badges -->
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-white border border-white/10 font-bold">Build Alpha 1.2</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="text-[11px] font-semibold uppercase px-2.5 py-0.5 rounded-full bg-[#233DFF] text-white shadow-glow-primary tracking-wide">ACTIVE</span>
+</div>
+</div>
+<!-- Content Body -->
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-[#5CB6F9] uppercase tracking-wider">Nova Interactive</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-[#1d2556] text-slate-300 font-mono">ALPHA TEST</span>
+</div>
+<h4 class="text-lg font-bold text-white mt-1">Neon Frontier</h4>
+<!-- Progress Bar Container -->
+<div class="mt-4">
+<div class="flex items-center justify-between text-xs mb-1.5 font-medium">
+<span class="text-slate-400">Testing Progress</span>
+<span class="text-[#5CB6F9] font-mono font-bold">45%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-[#131b4a] overflow-hidden">
+<div class="h-full bg-gradient-to-r from-[#233DFF] to-[#5CB6F9] rounded-full" style="width: 45%;"></div>
+</div>
+</div>
+<!-- Next Task & Deadline -->
+<div class="mt-4 space-y-2 text-xs">
+<div class="flex items-start gap-2 text-slate-300 bg-[#070D38]/60 p-2.5 rounded-xl border border-[#1d2556]/60">
+<svg class="w-4 h-4 text-[#5CB6F9] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="line-clamp-2 leading-relaxed">Complete multiplayer stress test &amp; extraction flight</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-400 pt-1">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">September 18, 2026 <strong class="text-slate-300 font-normal">(7 days left)</strong></span>
+</div>
+</div>
+</div>
+<!-- Card Actions -->
+<div class="pt-2 flex items-center gap-2">
+<button class="flex-1 py-2.5 px-3 rounded-xl bg-[#233DFF] hover:bg-[#1c32db] text-white text-xs font-bold uppercase tracking-wider shadow-glow-primary transition">
+                    Continue Testing
+                  </button>
+<button class="py-2.5 px-3 rounded-xl bg-[#0a0f35] hover:bg-[#13183d] text-slate-300 hover:text-white border border-[#1d2556] text-xs font-medium transition">
+                    View Details
+                  </button>
+</div>
+</div>
+</div>
+<!-- Card 3: Project Velocity / Cyber Drift -->
+<div class="bg-[#0d133a] border border-[#1d2556] rounded-2xl overflow-hidden flex flex-col hover:border-[#233DFF] hover:shadow-glow-sm transition-all duration-300">
+<!-- Thumbnail Banner -->
+<div class="relative h-44 w-full overflow-hidden bg-slate-900">
+<img alt="Project Velocity" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbJO1Wz9LURTfzE17Fr8ZadGiH0gxKPf3MxIo1aaNRtysOeT2ecgBOLx_hZlwXdraYtq8DRw_de5AoyQpvpQAln8A4Mn6xjirpQ8XU0qhelSj_cmj-RictoV3YhmWLxOcbinzWhwqt7svRMt5GU4QXKnlS3e5fhcZiFToSrXIvDrEAzEpGz2eBtpWX9pBt56G4m7Xcoj2IEM4bsR0YKHt5DiAyY5tp7v-HiEbBAEqvvOlWXitrwhQ">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0d133a] via-transparent to-black/40"></div>
+<!-- Status Badges -->
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-white border border-white/10 font-bold">Closed Beta v2.1</span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="text-[11px] font-semibold uppercase px-2.5 py-0.5 rounded-full bg-[#233DFF] text-white shadow-glow-primary tracking-wide">ACTIVE</span>
+</div>
+</div>
+<!-- Content Body -->
+<div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-[#5CB6F9] uppercase tracking-wider">Pixel Forge</span>
+<span class="text-[10px] px-2 py-0.5 rounded bg-[#1d2556] text-slate-300 font-mono">BETA TEST</span>
+</div>
+<h4 class="text-lg font-bold text-white mt-1">Project Velocity</h4>
+<!-- Progress Bar Container -->
+<div class="mt-4">
+<div class="flex items-center justify-between text-xs mb-1.5 font-medium">
+<span class="text-slate-400">Testing Progress</span>
+<span class="text-[#5CB6F9] font-mono font-bold">28%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-[#131b4a] overflow-hidden">
+<div class="h-full bg-gradient-to-r from-[#233DFF] to-[#5CB6F9] rounded-full" style="width: 28%;"></div>
+</div>
+</div>
+<!-- Next Task & Deadline -->
+<div class="mt-4 space-y-2 text-xs">
+<div class="flex items-start gap-2 text-slate-300 bg-[#070D38]/60 p-2.5 rounded-xl border border-[#1d2556]/60">
+<svg class="w-4 h-4 text-[#5CB6F9] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="line-clamp-2 leading-relaxed">Submit high-speed telemetry &amp; handling feedback</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-400 pt-1">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">September 20, 2026 <strong class="text-slate-300 font-normal">(9 days left)</strong></span>
+</div>
+</div>
+</div>
+<!-- Card Actions -->
+<div class="pt-2 flex items-center gap-2">
+<button class="flex-1 py-2.5 px-3 rounded-xl bg-[#233DFF] hover:bg-[#1c32db] text-white text-xs font-bold uppercase tracking-wider shadow-glow-primary transition">
+                    Continue Testing
+                  </button>
+<button class="py-2.5 px-3 rounded-xl bg-[#0a0f35] hover:bg-[#13183d] text-slate-300 hover:text-white border border-[#1d2556] text-xs font-medium transition">
+                    View Details
+                  </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Section 2 -->
+<!-- BEGIN: Two-Column Section (Applications & History vs Deadlines & Activity) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- LEFT COLUMN: ~65% (8 Cols in 12-col grid) -->
+<div class="lg:col-span-8 space-y-8">
+<!-- SECTION 3: My Applications Table -->
+<section class="bg-[#0a0f35] rounded-2xl border border-[#1d2556] p-5 sm:p-6" data-purpose="testing-applications">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-[#1d2556]/70">
+<div>
+<h3 class="text-base font-bold text-white flex items-center gap-2">
+<svg class="w-4 h-4 text-[#5CB6F9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                    My Applications
+                  </h3>
+<p class="text-xs text-slate-400">Track review states of submitted playtest invitations.</p>
+</div>
+<span class="text-xs font-medium px-2.5 py-1 rounded-full bg-[#131b4a] text-[#5CB6F9] border border-[#1d2556] self-start sm:self-auto">
+                  3 Pending Review • 1 Accepted
+                </span>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto -mx-5 sm:mx-0">
+<table class="w-full text-left text-xs min-w-[550px]">
+<thead>
+<tr class="text-slate-400 border-b border-[#1d2556]/60 font-mono text-[11px] uppercase">
+<th class="py-3 px-4 font-semibold">Game</th>
+<th class="py-3 px-3 font-semibold">Developer</th>
+<th class="py-3 px-3 font-semibold">Type</th>
+<th class="py-3 px-3 font-semibold">Date</th>
+<th class="py-3 px-3 font-semibold">Status</th>
+<th class="py-3 px-4 font-semibold text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#1d2556]/40 text-slate-300">
+<!-- Row 1: Cyber Drift -->
+<tr class="hover:bg-[#0d133a] transition">
+<td class="py-3.5 px-4 flex items-center gap-2.5 font-medium text-white">
+<img alt="Cyber Drift" class="w-7 h-7 rounded-lg object-cover ring-1 ring-white/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm50CQ06ZuDI7K9ibws1HTjXJtSKbcM0VvP41lWkx-toajv-jiiuiWdFb0XNdvxY4WYGghI14c1ib2R0yVHjbHEhzpwWOQSG-RN4mmuPCJmTgDgit4-0XucNWpPzfn8En6V9XRWQwIib0JNudzzAKtPB0cZuj_DrcFUa3pKXj33FzsAk7eJLHUBTRFK5wx7fMVCF1tsnluhPDoOYG2JlQUbubDXhyTnXMnFjZyha2VE-k_GBIlGjA">
+<span class="">Cyber Drift</span>
+</td>
+<td class="py-3.5 px-3 text-slate-400">Nova Games</td>
+<td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded bg-[#131b4a] text-slate-300 font-mono text-[10px]">Alpha</span></td>
+<td class="py-3.5 px-3 font-mono text-slate-400">Sep 4, 2026</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20 text-[11px] font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                          UNDER REVIEW
+                        </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-[#0d133a] hover:bg-[#13183d] text-slate-300 border border-[#1d2556] hover:text-white transition">
+                          View Application
+                        </button>
+</td>
+</tr>
+<!-- Row 2: Starfall -->
+<tr class="hover:bg-[#0d133a] transition bg-[#233DFF]/5">
+<td class="py-3.5 px-4 flex items-center gap-2.5 font-medium text-white">
+<div class="w-7 h-7 rounded-lg bg-[#233DFF]/20 text-[#5CB6F9] flex items-center justify-center font-bold text-xs ring-1 ring-[#5CB6F9]/30">SF</div>
+<span class="">Starfall</span>
+</td>
+<td class="py-3.5 px-3 text-slate-400">Orbit Studio</td>
+<td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded bg-[#131b4a] text-[#5CB6F9] font-mono text-[10px]">Beta</span></td>
+<td class="py-3.5 px-3 font-mono text-slate-400">Sep 2, 2026</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 status-pulse"></span>
+                          ACCEPTED
+                        </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-3 py-1 text-[11px] font-bold rounded-lg bg-[#233DFF] hover:bg-[#1c32db] text-white shadow-glow-primary transition">
+                          START TEST
+                        </button>
+</td>
+</tr>
+<!-- Row 3: Void Runner -->
+<tr class="hover:bg-[#0d133a] transition">
+<td class="py-3.5 px-4 flex items-center gap-2.5 font-medium text-white">
+<div class="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-bold text-xs">VR</div>
+<span class="">Void Runner</span>
+</td>
+<td class="py-3.5 px-3 text-slate-400">Indie Forge</td>
+<td class="py-3.5 px-3"><span class="px-2 py-0.5 rounded bg-[#131b4a] text-slate-300 font-mono text-[10px]">Beta</span></td>
+<td class="py-3.5 px-3 font-mono text-slate-400">Aug 29, 2026</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20 text-[11px] font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                          UNDER REVIEW
+                        </span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="px-2.5 py-1 text-[11px] font-medium rounded-lg bg-[#0d133a] hover:bg-[#13183d] text-slate-300 border border-[#1d2556] hover:text-white transition">
+                          View Application
+                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- SECTION 4: Completed Tests -->
+<section class="bg-[#0a0f35] rounded-2xl border border-[#1d2556] p-5 sm:p-6" data-purpose="completed-tests">
+<div class="flex items-center justify-between mb-4 pb-3 border-b border-[#1d2556]/70">
+<div>
+<h3 class="text-base font-bold text-white flex items-center gap-2">
+<svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                    Completed Tests
+                  </h3>
+<p class="text-xs text-slate-400">Verified audit results, telemetry credits and awarded bounties.</p>
+</div>
+<span class="text-xs font-mono text-slate-400">12 completed</span>
+</div>
+<!-- List of completed tests -->
+<div class="space-y-3">
+<!-- Completed Card 1: Neon Strike -->
+<div class="bg-[#0d133a] border border-[#1d2556] rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-emerald-500/40 transition">
+<div class="flex items-center gap-3.5">
+<img alt="Neon Strike" class="w-12 h-12 rounded-xl object-cover ring-1 ring-white/10 shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhZKzljc224rZMX4wnojc_E2weomcz4uoHJ7gPs55fgt0g-osWPQLBMSXbEcBCv-tr_nV2h99lAdAaRHRMGgp6a1O4Yq2sLLWNzvauZCRi1H38Hj1wHQzp8dQV6EU2gow15fu0Qfe1-CZ885BydJNDPYRODVKyoxJ4LXLVX1L8YV0BfvoH2vjUwSDjfHKe5rXS-I9c-Mwi0ScJsEaeF4XIhIRFmpjXclZ13f5CKJvYDVR8BJCcmG8">
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-bold text-white text-sm">Neon Strike</h4>
+<span class="text-[10px] px-2 py-0.2 rounded bg-emerald-500/10 text-emerald-400 font-mono border border-emerald-500/20">VERIFIED</span>
+</div>
+<div class="text-xs text-slate-400 mt-0.5">Pixel Forge • Completed Aug 28, 2026</div>
+<div class="flex items-center gap-2 mt-1.5 text-xs text-emerald-300">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">6 Bug Logs Verified &amp; +150 Tester XP Awarded</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+<span class="text-xs font-mono text-slate-400 hidden sm:inline">Score: 98/100</span>
+<button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-[#0a0f35] hover:bg-[#13183d] text-slate-200 border border-[#1d2556] hover:border-[#5CB6F9] transition">
+                      View Results
+                    </button>
+</div>
+</div>
+<!-- Completed Card 2: Dark Circuit -->
+<div class="bg-[#0d133a] border border-[#1d2556] rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-emerald-500/40 transition">
+<div class="flex items-center gap-3.5">
+<div class="w-12 h-12 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center font-bold text-sm ring-1 ring-white/10 shrink-0">
+                      DC
+                    </div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-bold text-white text-sm">Dark Circuit</h4>
+<span class="text-[10px] px-2 py-0.2 rounded bg-emerald-500/10 text-emerald-400 font-mono border border-emerald-500/20">COMPLETED</span>
+</div>
+<div class="text-xs text-slate-400 mt-0.5">Rogue Labs • Completed Aug 20, 2026</div>
+<div class="flex items-center gap-2 mt-1.5 text-xs text-slate-300">
+<svg class="w-3.5 h-3.5 text-[#5CB6F9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="">Telemetry Session Recorded (Reliability 96/100)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+<span class="text-xs font-mono text-slate-400 hidden sm:inline">Score: 96/100</span>
+<button class="px-3 py-1.5 text-xs font-medium rounded-lg bg-[#0a0f35] hover:bg-[#13183d] text-slate-200 border border-[#1d2556] hover:border-[#5CB6F9] transition">
+                      View Results
+                    </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN: ~35% (4 Cols in 12-col grid) -->
+<div class="lg:col-span-4 space-y-8">
+<!-- SECTION 6: Upcoming Deadlines -->
+<section class="bg-[#0a0f35] rounded-2xl border border-[#1d2556] p-5 sm:p-6" data-purpose="upcoming-deadlines">
+<div class="flex items-center justify-between mb-4 pb-3 border-b border-[#1d2556]/70">
+<h3 class="text-base font-bold text-white flex items-center gap-2">
+<svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  Upcoming Deadlines
+                </h3>
+<span class="text-[11px] font-mono text-amber-300 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">3 Pending</span>
+</div>
+<!-- Deadline Timeline Items -->
+<div class="space-y-3.5">
+<!-- Deadline 1 -->
+<div class="p-3 rounded-xl bg-[#0d133a] border border-[#1d2556] relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-[#233DFF]"></div>
+<div class="flex items-center justify-between">
+<h5 class="text-xs font-bold text-white">Shadow Protocol</h5>
+<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#233DFF]/20 text-[#5CB6F9] border border-[#233DFF]/40 font-semibold">
+                      3 days left
+                    </span>
+</div>
+<p class="text-xs text-slate-300 mt-1">Gameplay Session #3 District telemetry</p>
+<div class="text-[11px] text-slate-400 font-mono mt-2 flex items-center gap-1.5">
+<svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                    Due Sep 15, 2026 • 23:59 AST
+                  </div>
+</div>
+<!-- Deadline 2 -->
+<div class="p-3 rounded-xl bg-[#0d133a] border border-[#1d2556] relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-[#5CB6F9]"></div>
+<div class="flex items-center justify-between">
+<h5 class="text-xs font-bold text-white">Neon Frontier</h5>
+<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#131b4a] text-slate-300 border border-[#1d2556]">
+                      6 days left
+                    </span>
+</div>
+<p class="text-xs text-slate-300 mt-1">Multiplayer Stress Test</p>
+<div class="text-[11px] text-slate-400 font-mono mt-2 flex items-center gap-1.5">
+<svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                    Due Sep 18, 2026 • 18:00 AST
+                  </div>
+</div>
+<!-- Deadline 3 -->
+<div class="p-3 rounded-xl bg-[#0d133a] border border-[#1d2556] relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-slate-600"></div>
+<div class="flex items-center justify-between">
+<h5 class="text-xs font-bold text-white">Project Velocity</h5>
+<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#131b4a] text-slate-300 border border-[#1d2556]">
+                      8 days left
+                    </span>
+</div>
+<p class="text-xs text-slate-300 mt-1">Telemetry &amp; Handling Log</p>
+<div class="text-[11px] text-slate-400 font-mono mt-2 flex items-center gap-1.5">
+<svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                    Due Sep 20, 2026 • 20:00 AST
+                  </div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: Testing Activity & Progress Efficiency -->
+<section class="bg-[#0a0f35] rounded-2xl border border-[#1d2556] p-5 sm:p-6" data-purpose="testing-activity-metrics">
+<div class="flex items-center justify-between mb-4 pb-3 border-b border-[#1d2556]/70">
+<h3 class="text-base font-bold text-white flex items-center gap-2">
+<svg class="w-4 h-4 text-[#5CB6F9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  Testing Activity
+                </h3>
+<span class="text-[11px] font-mono text-[#5CB6F9]">All-Time</span>
+</div>
+<!-- Quick Metrics Grid -->
+<div class="grid grid-cols-2 gap-2 text-center mb-6">
+<div class="bg-[#0d133a] p-2.5 rounded-xl border border-[#1d2556]/60">
+<div class="text-lg font-bold text-white font-mono">15</div>
+<div class="text-[10px] uppercase text-slate-400 tracking-wider">Total Tests</div>
+</div>
+<div class="bg-[#0d133a] p-2.5 rounded-xl border border-[#1d2556]/60">
+<div class="text-lg font-bold text-emerald-400 font-mono">12</div>
+<div class="text-[10px] uppercase text-slate-400 tracking-wider">Completed</div>
+</div>
+<div class="bg-[#0d133a] p-2.5 rounded-xl border border-[#1d2556]/60">
+<div class="text-lg font-bold text-[#5CB6F9] font-mono">3</div>
+<div class="text-[10px] uppercase text-slate-400 tracking-wider">Active</div>
+</div>
+<div class="bg-[#0d133a] p-2.5 rounded-xl border border-[#1d2556]/60">
+<div class="text-lg font-bold text-white font-mono">80%</div>
+<div class="text-[10px] uppercase text-slate-400 tracking-wider">Success Rate</div>
+</div>
+</div>
+<!-- SVG Completion Efficiency Ring & Status -->
+<div class="bg-[#0d133a] border border-[#1d2556] rounded-xl p-4 flex items-center gap-4">
+<!-- Circular Radial Ring -->
+<div class="relative w-16 h-16 shrink-0 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+<!-- Background circle -->
+<path class="text-[#131b4a]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<!-- Progress circle (80%) -->
+<path class="text-[#233DFF]" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="80, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<span class="absolute text-xs font-bold font-mono text-white">80%</span>
+</div>
+<div class="min-w-0">
+<div class="text-xs font-bold text-white">Tier 1 Elite QA Status</div>
+<div class="text-[11px] text-slate-400 mt-0.5">94% developer acceptance rating on submitted bugs.</div>
+<div class="mt-2 flex items-center gap-1.5 text-[10px] font-mono text-emerald-400">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    Priority Dispatch Enabled
+                  </div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- END: Two-Column Section -->
+</div>
+<!-- END: Standard Content View -->
+<!-- BEGIN: Section 7 - Empty States View (Toggleable Interactive Preview) -->
+<section class="hidden space-y-8" data-purpose="empty-states-demo" id="empty-states-view">
+<div class="p-4 rounded-xl bg-[#233DFF]/10 border border-[#233DFF]/30 text-xs text-[#CAE8FF] flex items-center justify-between">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-[#5CB6F9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class=""><strong>EMPTY STATES PREVIEW:</strong> Demonstrating realistic empty states as required for edge conditions.</span>
+</div>
+<button class="underline font-semibold hover:text-white" onclick="toggleEmptyStatesView()">Switch Back</button>
+</div>
+<!-- 1: NO ACTIVE GAME TESTS -->
+<div class="bg-[#0a0f35] border-2 border-dashed border-[#1d2556] rounded-2xl p-10 text-center flex flex-col items-center justify-center">
+<div class="w-16 h-16 rounded-2xl bg-[#0d133a] border border-[#1d2556] flex items-center justify-center text-[#5CB6F9] mb-4 shadow-glow-cyan/20">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<h4 class="text-base font-bold text-white">NO ACTIVE GAME TESTS</h4>
+<p class="text-xs text-slate-400 max-w-sm mt-1 mb-5">You are not currently testing any games. Explore our directory of upcoming pre-release alpha and beta builds.</p>
+<a class="px-5 py-2.5 text-xs font-bold rounded-xl bg-[#233DFF] text-white shadow-glow-primary hover:bg-[#1c32db] transition inline-flex items-center gap-2 uppercase tracking-wide" href="#">
+<span class="">Browse Available Games</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- 2: NO APPLICATIONS YET -->
+<div class="bg-[#0a0f35] border-2 border-dashed border-[#1d2556] rounded-2xl p-8 text-center flex flex-col items-center justify-center">
+<div class="w-12 h-12 rounded-xl bg-[#0d133a] border border-[#1d2556] flex items-center justify-center text-amber-400 mb-3">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<h4 class="text-sm font-bold text-white">NO APPLICATIONS YET</h4>
+<p class="text-xs text-slate-400 max-w-xs mt-1 mb-4">Apply to a game testing opportunity to get started and build your tester reputation.</p>
+<a class="px-4 py-2 text-xs font-semibold rounded-xl bg-[#0d133a] hover:bg-[#13183d] text-white border border-[#1d2556] hover:border-[#5CB6F9] transition" href="#">
+              Explore Games →
+            </a>
+</div>
+<!-- 3: NO COMPLETED TESTS -->
+<div class="bg-[#0a0f35] border-2 border-dashed border-[#1d2556] rounded-2xl p-8 text-center flex flex-col items-center justify-center">
+<div class="w-12 h-12 rounded-xl bg-[#0d133a] border border-[#1d2556] flex items-center justify-center text-slate-500 mb-3">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<h4 class="text-sm font-bold text-white">NO COMPLETED TESTS</h4>
+<p class="text-xs text-slate-400 max-w-xs mt-1">Your completed game tests, audit feedback reports and bounty payouts will appear here.</p>
+</div>
+</div>
+</section>
+<!-- END: Section 7 -->
+</main>
+</div>
+<!-- END: Main App Container -->
+<!-- BEGIN: Mobile Bottom Bar (Active Screen Navigation) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-[#070D38] border-t border-[#1d2556] flex items-center justify-around px-4 z-40" data-purpose="mobile-nav">
+<!-- Home -->
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px]">Overview</span>
+</a>
+<!-- Game Testing (ACTIVE) -->
+<a class="flex flex-col items-center gap-1 text-[#5CB6F9]" href="#">
+<svg class="w-5 h-5 text-[#233DFF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] font-bold text-white">Testing</span>
+</a>
+<!-- Tournaments -->
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px]">Tourneys</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-white" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px]">Profile</span>
+</a>
+</div>
+<!-- END: Mobile Bottom Bar -->
+<!-- Script for Interactive Reviewer State Toggle -->
+<script data-purpose="toggle-empty-states">
+    function toggleEmptyStatesView() {
+      const standardView = document.getElementById('standard-content-view');
+      const emptyView = document.getElementById('empty-states-view');
+      const stateText = document.getElementById('toggle-state-text');
+
+      if (emptyView.classList.contains('hidden')) {
+        emptyView.classList.remove('hidden');
+        standardView.classList.add('hidden');
+        stateText.innerText = 'Show Filled Active State';
+      } else {
+        emptyView.classList.add('hidden');
+        standardView.classList.remove('hidden');
+        stateText.innerText = 'View Empty States Demo';
+      }
+    }
+  </script>
+
+
+
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

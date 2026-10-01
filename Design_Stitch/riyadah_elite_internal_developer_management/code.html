@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { colors: { 'primary': '#bcc2ff', 'on-secondary': '#003351', 'on-primary-fixed': '#000a64', 'on-tertiary-fixed': '#001e2e', 'primary-fixed': '#dfe0ff', 'secondary-container': '#3698d9', 'error-container': '#93000a', 'inverse-on-surface': '#282d53', 'secondary-fixed': '#cce5ff', 'primary-fixed-dim': '#bcc2ff', 'surface-variant': '#2c3258', 'on-primary-fixed-variant': '#0022da', 'on-secondary-fixed-variant': '#004b73', 'on-primary': '#00169d', 'on-background': '#dfe0ff', 'on-error': '#690005', 'surface-dim': '#0a0f35', 'surface-container-lowest': '#050930', 'tertiary-fixed-dim': '#adcae1', 'tertiary-container': '#446073', 'on-surface': '#dfe0ff', 'on-tertiary-container': '#bcdaf1', 'on-secondary-fixed': '#001e31', 'on-secondary-container': '#002c47', 'on-surface-variant': '#c5c5da', 'surface-container-low': '#13183d', 'outline': '#8f8fa3', 'on-primary-container': '#d0d3ff', 'surface-tint': '#bcc2ff', 'inverse-surface': '#dfe0ff', 'secondary': '#92ccff', 'tertiary': '#adcae1', 'on-error-container': '#ffdad6', 'on-tertiary-fixed-variant': '#2d4a5c', 'background': '#0a0f35', 'surface-container-high': '#21274c', 'surface': '#0a0f35', 'inverse-primary': '#2640ff', 'surface-bright': '#31365d', 'primary-container': '#233dff', 'on-tertiary': '#153345', 'secondary-fixed-dim': '#92ccff', 'surface-container': '#171c41', 'tertiary-fixed': '#c8e6fd', 'outline-variant': '#444557', 'surface-container-highest': '#2c3258', 'error': '#ffb4ab' }, borderRadius: { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, spacing: { 'space-2xl': '3rem', 'space-3xl': '4.5rem', 'space-xs': '0.5rem', 'space-md': '1rem', 'space-2xs': '0.25rem', 'space-xl': '2rem', 'gutter': '1.5rem', 'space-sm': '0.75rem', 'container-max': '1280px', 'space-lg': '1.5rem' }, fontFamily: { 'body-md': ['Plus Jakarta Sans'], 'label-sm': ['Space Grotesk'], 'display-lg-mobile': ['Space Grotesk'], 'headline-sm': ['Space Grotesk'], 'body-lg': ['Plus Jakarta Sans'], 'body-sm': ['Plus Jakarta Sans'], 'label-lg': ['Space Grotesk'], 'headline-lg': ['Space Grotesk'], 'headline-xl-mobile': ['Space Grotesk'], 'display-lg': ['Space Grotesk'], 'headline-xl': ['Space Grotesk'] }, fontSize: { 'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }], 'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.08em', fontWeight: '700' }], 'display-lg-mobile': ['38px', { lineHeight: '44px', letterSpacing: '-0.02em', fontWeight: '700' }], 'headline-sm': ['22px', { lineHeight: '30px', fontWeight: '600' }], 'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }], 'body-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }], 'label-lg': ['14px', { lineHeight: '18px', letterSpacing: '0.04em', fontWeight: '600' }], 'headline-lg': ['32px', { lineHeight: '40px', letterSpacing: '-0.01em', fontWeight: '600' }], 'headline-xl-mobile': ['28px', { lineHeight: '36px', letterSpacing: '-0.01em', fontWeight: '700' }], 'display-lg': ['64px', { lineHeight: '72px', letterSpacing: '-0.03em', fontWeight: '700' }], 'headline-xl': ['44px', { lineHeight: '52px', letterSpacing: '-0.02em', fontWeight: '700' }] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="flex flex-col"><div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-low"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface font-bold leading-none">RIYADAH ELITE</span><span class="font-label-sm text-label-sm text-secondary uppercase mt-1 tracking-wider">DEV OPERATIONS • INTERNAL OPS LVL 2</span></div></div><div class="px-space-md py-space-sm"><span class="font-label-sm text-label-sm text-outline uppercase px-space-sm">OVERVIEW</span><nav class="mt-space-xs space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_24px_rgba(35,61,255,0.4)]"><a aria-current="page" class="flex items-center justify-between px-space-sm py-space-xs rounded-lg transition-all bg-primary-container text-on-primary-container font-semibold shadow-[0_0_24px_rgba(35,61,255,0.4)]" data-path="overview" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-label-lg text-label-lg">Overview</span></div></a></nav></div><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-outline uppercase px-space-sm">DEVELOPERS</span><nav class="mt-space-xs space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_24px_rgba(35,61,255,0.4)]"><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="developers-directory" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">group</span><span class="font-label-lg text-label-lg">Developers</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="verification-queue" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified_user</span><span class="font-label-lg text-label-lg">Verification</span></div><span class="bg-surface-container-high text-secondary px-2 py-0.5 rounded-full font-label-sm text-label-sm">8 pending</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="games-catalog" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">sports_esports</span><span class="font-label-lg text-label-lg">Games</span></div><span class="bg-surface-container-high text-primary px-2 py-0.5 rounded-full font-label-sm text-label-sm">14 review</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="testing-campaigns" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">science</span><span class="font-label-lg text-label-lg">Testing Campaigns</span></div><span class="bg-surface-container-high text-secondary px-2 py-0.5 rounded-full font-label-sm text-label-sm">24 active</span></a></nav></div><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-outline uppercase px-space-sm">REVIEW</span><nav class="mt-space-xs space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_24px_rgba(35,61,255,0.4)]"><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="game-rights-ip" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">gavel</span><span class="font-label-lg text-label-lg">Game Rights &amp; IP</span></div><span class="bg-surface-container-high text-error px-2 py-0.5 rounded-full font-label-sm text-label-sm">3</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="developer-reports" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">flag</span><span class="font-label-lg text-label-lg">Developer Reports</span></div><span class="bg-surface-container-high text-error px-2 py-0.5 rounded-full font-label-sm text-label-sm">2</span></a></nav></div></div><div class="p-space-md m-space-md rounded-xl bg-surface-container-low flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.2)]"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#92ccff]"></span><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface font-semibold">DEV OPS SEC-NODE #03</span><span class="font-label-sm text-label-sm text-outline">(8ms) • ME-East Node #2</span></div></div><span class="material-symbols-outlined text-secondary text-[18px]">dns</span></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl z-40 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.25)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline"><span class="hover:text-on-surface transition-colors cursor-pointer">ADMIN ROOT</span><span>/</span><span class="hover:text-on-surface transition-colors cursor-pointer">DEV OPERATIONS</span><span>/</span><span class="text-secondary font-semibold">DEVELOPER MANAGEMENT</span></div><div class="h-4 w-px bg-surface-variant hidden xl:block"></div><div class="hidden xl:flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-full"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-surface-variant">Services 100% Operational • ME-East Hub</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden md:flex items-center"><span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">search</span><input class="w-80 bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm font-body-sm pl-9 pr-14 py-2 rounded-lg focus:outline-none focus:bg-surface-container-high focus:text-on-surface" placeholder="Search developers, studios, games, CR #" type="text"/><kbd class="absolute right-2.5 px-1.5 py-0.5 text-[10px] font-label-sm font-bold bg-surface-container-highest text-secondary rounded">⌘K</kbd></div><div class="flex items-center gap-2"><button class="flex items-center gap-1.5 bg-primary-container text-on-primary-container px-3.5 py-2 rounded-lg font-label-lg text-label-lg font-semibold hover:bg-surface-bright hover:text-on-surface transition-all shadow-[0_0_16px_rgba(35,61,255,0.35)]"><span class="material-symbols-outlined text-[18px]">add</span><span>Verify Developer</span></button><button class="flex items-center gap-1.5 bg-surface-container-low text-secondary px-3 py-2 rounded-lg font-label-lg text-label-lg font-medium hover:bg-surface-container-high hover:text-on-surface transition-all"><span class="material-symbols-outlined text-[18px]">pending_actions</span><span>Review Queue (11)</span></button></div><div class="h-6 w-px bg-surface-variant"></div><button class="relative p-2 rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 bg-error text-on-error rounded-full flex items-center justify-center text-[10px] font-bold font-label-sm leading-none">4</span></button><div class="flex items-center gap-3 pl-2"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-lg text-label-lg text-on-surface font-semibold">Tariq Al-Badr</span><span class="font-label-sm text-label-sm text-secondary">Lead Developer Manager • Ops Level 2</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-20 flex-1 bg-surface w-full"><div class="flex flex-col w-full">
+<!-- Subtle atmospheric glow backdrop -->
+<div class="relative w-full px-space-lg py-space-xl overflow-hidden">
+<!-- Ambient glowing nodes -->
+<div class="absolute -top-32 left-1/4 w-96 h-96 bg-primary-container/20 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute top-48 right-10 w-80 h-80 bg-secondary/15 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- 1. PAGE HEADER & PRIMARY ACTIONS -->
+<div class="relative z-10 flex flex-col xl:flex-row xl:items-end justify-between gap-space-lg pb-space-lg border-b border-outline-variant/30">
+<div class="flex flex-col gap-space-xs max-w-4xl">
+<div class="flex items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/30 text-secondary font-label-sm text-label-sm tracking-wider uppercase shadow-[0_0_12px_rgba(35,61,255,0.3)]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            OPERATIONAL AUTHORITY LEVEL 2 • DEV OPERATIONS CONSOLE
+          </span>
+<span class="text-outline font-label-sm text-label-sm">NODE: SA-RUH-CLUSTER-09</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">
+          Developer Ecosystem &amp; Game Testing Operations
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl leading-relaxed">
+          Oversee registered game studios, independent creators, submitted builds, IP rights clearance, and active playtesting campaigns across Saudi Arabia and the GCC.
+        </p>
+</div>
+<!-- Action Group -->
+<div class="flex flex-wrap items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-all shadow-[0_2px_10px_rgba(0,0,0,0.3)] font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-[18px] text-secondary">download</span>
+<span>Export Developer Ledger (.CSV)</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container-low text-error hover:bg-surface-container-high transition-all shadow-[0_2px_10px_rgba(0,0,0,0.3)] font-label-lg text-label-lg">
+<span class="material-symbols-outlined text-[18px] text-error">warning</span>
+<span>Quick Rights Triage (3)</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold shadow-[0_4px_24px_rgba(35,61,255,0.5)] hover:shadow-[0_4px_30px_rgba(35,61,255,0.7)] hover:scale-[1.02] active:scale-[0.99] transition-all">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span>+ Provision Developer Onboarding</span>
+</button>
+</div>
+</div>
+<!-- 2. HIGH DENSITY KPI TILES (8 Cards) -->
+<div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-8 gap-3 pt-space-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-low/70 backdrop-blur-md p-3.5 rounded-xl flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.25)] hover:bg-surface-container-high/60 transition-colors">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Total Devs</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">groups</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface leading-tight">412</div>
+<div class="font-label-sm text-[10px] text-secondary mt-1 leading-normal">↑ 18.2% MoM • 64 Studios, 218 Solo, 130 Teams</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-low/70 backdrop-blur-md p-3.5 rounded-xl flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.25)] hover:bg-surface-container-high/60 transition-colors">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Verified Devs</span>
+<span class="material-symbols-outlined text-[18px] text-primary">verified</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-sm text-headline-sm font-bold text-primary leading-tight">364</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant mt-1 leading-normal">88.3% verification rate</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-low/70 backdrop-blur-md p-3.5 rounded-xl flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.25)] hover:bg-surface-container-high/60 transition-colors">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Pending Verify</span>
+<span class="material-symbols-outlined text-[18px] text-secondary-fixed">hourglass_top</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-sm text-headline-sm font-bold text-secondary-fixed leading-tight">18</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant mt-1 leading-normal">8 Commercial CR • 10 Identity</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-low/70 backdrop-blur-md p-3.5 rounded-xl flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.25)] hover:bg-surface-container-high/60 transition-colors">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Games Submitted</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">sports_esports</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface leading-tight">128</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant mt-1 leading-normal">14 QA Sandbox builds</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-low/70 backdrop-blur-md p-3.5 rounded-xl flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.25)] hover:bg-surface-container-high/60 transition-colors">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Live Testing</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">science</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-sm text-headline-sm font-bold text-secondary leading-tight">24</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant mt-1 leading-normal">4,210 Concurrent playtesters</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container-low/70 backdrop-blur-md p-3.5 rounded-xl flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.25)] hover:bg-surface-container-high/60 transition-colors">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Campaign Review</span>
+<span class="material-symbols-outlined text-[18px] text-primary">fact_check</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface leading-tight">7</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant mt-1 leading-normal">Awaiting SLA quota verification</div>
+</div>
+</div>
+<!-- Card 7 -->
+<div class="bg-surface-container-low/70 backdrop-blur-md p-3.5 rounded-xl flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.25)] hover:bg-surface-container-high/60 transition-colors">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Reported Devs</span>
+<span class="material-symbols-outlined text-[18px] text-error">flag</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-sm text-headline-sm font-bold text-error leading-tight">5</div>
+<div class="font-label-sm text-[10px] text-error/80 mt-1 leading-normal">2 Escrow disputes • 3 IP claims</div>
+</div>
+</div>
+<!-- Card 8 -->
+<div class="bg-surface-container-low/70 backdrop-blur-md p-3.5 rounded-xl flex flex-col justify-between shadow-[0_2px_12px_rgba(0,0,0,0.25)] hover:bg-surface-container-high/60 transition-colors">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Games Awaiting</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">gavel</span>
+</div>
+<div class="mt-2">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface leading-tight">14</div>
+<div class="font-label-sm text-[10px] text-on-surface-variant mt-1 leading-normal">Build integrity &amp; rights triage</div>
+</div>
+</div>
+</div>
+<!-- 3. FILTER & SEARCH TOOLBAR -->
+<div class="mt-space-lg p-space-md rounded-2xl bg-surface-container-low/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.25)] flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Search bar -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full bg-surface-container text-on-surface placeholder:text-outline text-body-sm font-body-sm pl-11 pr-4 py-2.5 rounded-xl focus:outline-none focus:bg-surface-container-high focus:shadow-[0_0_12px_rgba(146,204,255,0.25)] transition-all" placeholder="Search studio name, developer ID, commercial registry #, or game title..." type="text"/>
+</div>
+<!-- Filter Dropdowns & Batch Controls -->
+<div class="flex flex-wrap items-center gap-2.5">
+<div class="relative">
+<select class="appearance-none bg-surface-container text-on-surface text-label-lg font-label-lg pl-3 pr-8 py-2 rounded-lg cursor-pointer hover:bg-surface-container-high focus:outline-none">
+<option>All Types (Solo, Student, Studio, Company, Publisher)</option>
+<option>Game Studios (Commercial)</option>
+<option>Independent Solo Creators</option>
+<option>University &amp; Student Labs</option>
+<option>Enterprise Publishers</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container text-on-surface text-label-lg font-label-lg pl-3 pr-8 py-2 rounded-lg cursor-pointer hover:bg-surface-container-high focus:outline-none">
+<option>All Risk Profiles</option>
+<option>Clean / High Trust</option>
+<option>Under Active Audit</option>
+<option>Flagged &amp; Restricted</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-surface-container text-on-surface text-label-lg font-label-lg pl-3 pr-8 py-2 rounded-lg cursor-pointer hover:bg-surface-container-high focus:outline-none">
+<option>Sort: Most Recent Activity</option>
+<option>Sort: Highest Tester Volume</option>
+<option>Sort: Critical Verification Oldest</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+<div class="h-6 w-px bg-surface-variant mx-1 hidden sm:block"></div>
+<button class="px-3 py-2 rounded-lg bg-surface-container text-outline hover:text-on-surface hover:bg-surface-container-high text-label-lg font-label-lg transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+<span>Batch Compliance Notice</span>
+</button>
+<button class="px-3 py-2 rounded-lg bg-surface-container text-outline hover:text-on-surface hover:bg-surface-container-high text-label-lg font-label-lg transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">checklist</span>
+<span>Export Selected</span>
+</button>
+</div>
+</div>
+<!-- Status Tabs -->
+<div class="flex flex-wrap items-center gap-2 pt-1 border-t border-surface-variant/40">
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-semibold shadow-[0_0_16px_rgba(35,61,255,0.4)] flex items-center gap-2">
+<span>All Developers</span>
+<span class="bg-surface-container-lowest/50 text-secondary px-1.5 py-0.5 rounded-full text-[10px]">412</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors flex items-center gap-2">
+<span>Verified</span>
+<span class="bg-surface-container-lowest/50 text-outline px-1.5 py-0.5 rounded-full text-[10px]">364</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors flex items-center gap-2">
+<span>Pending</span>
+<span class="bg-surface-container-lowest/50 text-secondary-fixed px-1.5 py-0.5 rounded-full text-[10px]">18</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors flex items-center gap-2">
+<span>Under Review</span>
+<span class="bg-surface-container-lowest/50 text-secondary px-1.5 py-0.5 rounded-full text-[10px]">21</span>
+</button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors flex items-center gap-2">
+<span>Suspended</span>
+<span class="bg-error/20 text-error px-1.5 py-0.5 rounded-full text-[10px] font-bold">9</span>
+</button>
+</div>
+</div>
+<!-- 4. MAIN DUAL-PANEL LAYOUT (65% / 35%) -->
+<div class="mt-space-lg grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN (65% ~ 8 cols) -->
+<div class="xl:col-span-8 flex flex-col gap-space-lg min-w-0">
+<!-- SECTION A: DEVELOPER DIRECTORY TABLE -->
+<div class="bg-surface-container-low/70 backdrop-blur-xl rounded-2xl p-space-md shadow-[0_4px_24px_rgba(0,0,0,0.3)]">
+<div class="flex items-center justify-between mb-space-md px-1">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_8px_#233dff]"></span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Registered Developer Ecosystem</h2>
+<span class="text-outline font-label-sm text-label-sm ml-2 font-normal">Displaying 6 of 412 entries</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2.5 py-1 rounded-md">Live Telemetry Synchronized</span>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-outline font-label-sm text-label-sm uppercase tracking-wider bg-surface-container-lowest/40 rounded-lg">
+<th class="py-3 px-3">Developer / Studio</th>
+<th class="py-3 px-3">Type</th>
+<th class="py-3 px-3">Verification</th>
+<th class="py-3 px-3">Catalog</th>
+<th class="py-3 px-3">Live Testing</th>
+<th class="py-3 px-3">Status</th>
+<th class="py-3 px-3">Joined</th>
+<th class="py-3 px-3 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant/30 font-body-sm text-body-sm">
+<!-- Row 1: Ironclad Interactive -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center font-headline-sm font-bold text-primary">I</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-[15px] font-bold text-on-surface group-hover:text-secondary transition-colors">Ironclad Interactive</span>
+<span class="text-outline text-[12px] font-label-sm">@Ironclad_SA • CR #1010-9824</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-[11px]">Studio / Co.</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+                      Verified (L2)
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-on-surface">3 Games</td>
+<td class="py-3.5 px-3">
+<span class="text-secondary font-label-sm text-label-sm">2 Live</span>
+<span class="text-outline text-[11px] block">1,240 Testers</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container text-secondary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                    </span>
+</td>
+<td class="py-3.5 px-3 text-outline text-[12px]">Jan 12, 2026</td>
+<td class="py-3.5 px-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface hover:bg-surface-bright text-label-sm font-label-sm">View</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high text-secondary hover:bg-secondary hover:text-on-secondary text-label-sm font-label-sm">Manage</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Neom Cyber Studios -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center font-headline-sm font-bold text-secondary">N</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-[15px] font-bold text-on-surface group-hover:text-secondary transition-colors">Neom Cyber Studios</span>
+<span class="text-outline text-[12px] font-label-sm">@NeomCyber • CR #1010-4412</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-[11px]">Publisher</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+                      Verified (L3)
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-on-surface">5 Games</td>
+<td class="py-3.5 px-3">
+<span class="text-secondary font-label-sm text-label-sm">4 Live</span>
+<span class="text-outline text-[11px] block">1,850 Testers</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container text-secondary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                    </span>
+</td>
+<td class="py-3.5 px-3 text-outline text-[12px]">Dec 04, 2025</td>
+<td class="py-3.5 px-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface hover:bg-surface-bright text-label-sm font-label-sm">View</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high text-secondary hover:bg-secondary hover:text-on-secondary text-label-sm font-label-sm">Manage</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Apex Forge Studios [FOCUSED ROW] -->
+<tr class="bg-primary-container/15 shadow-[inset_0_0_20px_rgba(35,61,255,0.2)] transition-colors">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center font-headline-sm font-bold shadow-[0_0_12px_rgba(35,61,255,0.6)]">A</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-[15px] font-bold text-on-surface">Apex Forge Studios</span>
+<span class="px-1.5 py-0.2 bg-primary text-on-primary font-label-sm text-[9px] rounded font-bold uppercase tracking-wider">Inspecting</span>
+</div>
+<span class="text-secondary text-[12px] font-label-sm">@ApexForge • UUID #DEV-8821</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-[11px]">Studio</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 text-secondary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px] text-secondary">pending</span>
+                      Pending Review
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-secondary">1 Game (Cyber Strike)</td>
+<td class="py-3.5 px-3">
+<span class="text-secondary font-label-sm text-label-sm">1 Reviewing</span>
+<span class="text-outline text-[11px] block">Wave 3 Queued</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary text-[11px] font-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span> Under Review
+                    </span>
+</td>
+<td class="py-3.5 px-3 text-outline text-[12px]">Feb 10, 2026</td>
+<td class="py-3.5 px-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-primary-container text-on-primary-container hover:bg-surface-bright text-label-sm font-label-sm font-bold shadow-[0_0_10px_rgba(35,61,255,0.4)]">Review Rights</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface hover:bg-surface-variant text-label-sm font-label-sm">Inspect</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Fahad Al-Subaie -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center font-headline-sm font-bold text-on-surface-variant">F</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-[15px] font-bold text-on-surface group-hover:text-secondary transition-colors">Fahad Al-Subaie</span>
+<span class="text-outline text-[12px] font-label-sm">@FahadIndie • ID SA-IND-091</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-[11px]">Solo Dev</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">badge</span>
+                      Identity Verified
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-on-surface">2 Games</td>
+<td class="py-3.5 px-3">
+<span class="text-outline font-label-sm text-label-sm">1 Completed</span>
+<span class="text-outline text-[11px] block">0 Active</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container text-secondary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                    </span>
+</td>
+<td class="py-3.5 px-3 text-outline text-[12px]">Jan 28, 2026</td>
+<td class="py-3.5 px-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface hover:bg-surface-bright text-label-sm font-label-sm">View</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high text-secondary hover:bg-secondary hover:text-on-secondary text-label-sm font-label-sm">Manage</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: King Saud Univ Game Lab -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-surface-container-high flex items-center justify-center font-headline-sm font-bold text-secondary">K</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-[15px] font-bold text-on-surface group-hover:text-secondary transition-colors">King Saud Univ Game Lab</span>
+<span class="text-outline text-[12px] font-label-sm">@KSU_Devs • EDU-R-229</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-[11px]">Student Team</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">school</span>
+                      Academic Verified
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-on-surface">1 Game (Desert Rally VR)</td>
+<td class="py-3.5 px-3">
+<span class="text-secondary font-label-sm text-label-sm">1 Live</span>
+<span class="text-outline text-[11px] block">240 Testers</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container text-secondary text-[11px] font-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                    </span>
+</td>
+<td class="py-3.5 px-3 text-outline text-[12px]">Feb 02, 2026</td>
+<td class="py-3.5 px-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface hover:bg-surface-bright text-label-sm font-label-sm">View</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high text-secondary hover:bg-secondary hover:text-on-secondary text-label-sm font-label-sm">Manage</button>
+</div>
+</td>
+</tr>
+<!-- Row 6: Shadow Syndicate Games -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-lg bg-error-container/40 flex items-center justify-center font-headline-sm font-bold text-error">S</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-[15px] font-bold text-error group-hover:text-error-container transition-colors">Shadow Syndicate Games</span>
+<span class="text-outline text-[12px] font-label-sm">@ShadowSyn • UUID #DEV-3012</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-[11px]">Solo Dev</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">gpp_bad</span>
+                      Flagged (Unverified)
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-semibold text-on-surface">1 Game</td>
+<td class="py-3.5 px-3">
+<span class="text-outline font-label-sm text-label-sm">0 Live</span>
+<span class="text-outline text-[11px] block">Suspended</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error-container/30 text-error text-[11px] font-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Suspended (IP Dispute)
+                    </span>
+</td>
+<td class="py-3.5 px-3 text-outline text-[12px]">Feb 14, 2026</td>
+<td class="py-3.5 px-3 text-right">
+<div class="inline-flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-error-container/30 text-error hover:bg-error-container hover:text-on-error-container text-label-sm font-label-sm font-bold">View Case</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-high text-on-surface-variant hover:text-on-surface text-label-sm font-label-sm">Audit</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- SECTION B: ACTIVE TESTING CAMPAIGNS LEDGER -->
+<div class="bg-surface-container-low/70 backdrop-blur-xl rounded-2xl p-space-md shadow-[0_4px_24px_rgba(0,0,0,0.3)]">
+<div class="flex items-center justify-between mb-space-md px-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">troubleshoot</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Active Telemetry &amp; Game Testing Ledger</h2>
+<span class="bg-surface-container text-secondary font-label-sm text-[11px] px-2 py-0.5 rounded-full">3 Live Playtest Waves</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Real-Time Concurrent Quota</span>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<!-- Campaign 1: Cyber Strike Wave 3 -->
+<div class="p-space-md rounded-xl bg-surface-container/60 hover:bg-surface-container transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
+<div class="flex flex-col gap-1 max-w-md">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-[10px] uppercase font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span> Active Live Wave
+                  </span>
+<span class="text-outline text-label-sm font-label-sm">Wave ID #W-088</span>
+</div>
+<h3 class="font-headline-sm text-[17px] font-bold text-on-surface mt-1">Cyber Strike Wave 3</h3>
+<span class="text-outline text-[13px] font-body-sm">Apex Forge Studios • Unreal Engine 5.4 Netcode Sandbox</span>
+<div class="flex items-center gap-3 mt-2 text-[12px] font-label-sm">
+<span class="text-secondary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[15px]">payments</span>
+                    $15 / Completed Telemetry Report
+                  </span>
+<span class="text-outline">• Non-gambling milestone stipend</span>
+</div>
+</div>
+<!-- Quota & Actions -->
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-lg">
+<div class="flex flex-col gap-1 w-44">
+<div class="flex justify-between font-label-sm text-[11px] text-on-surface">
+<span>Testers Deployed</span>
+<span class="font-bold text-secondary">1,240 / 1,500</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 82%;"></div>
+</div>
+<span class="text-outline text-[10px] font-label-sm">Started: Feb 14, 2026 • 82% Cap</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3.5 py-2 rounded-lg bg-surface-container-high hover:bg-surface-bright text-secondary text-label-lg font-label-lg flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+<span>Monitor Telemetry</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-error-container/50 hover:text-error text-outline transition-colors" title="Pause Wave">
+<span class="material-symbols-outlined text-[18px]">pause</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Campaign 2: Desert Protocol Alpha -->
+<div class="p-space-md rounded-xl bg-surface-container/60 hover:bg-surface-container transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
+<div class="flex flex-col gap-1 max-w-md">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-[10px] uppercase font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active Live Wave
+                  </span>
+<span class="text-outline text-label-sm font-label-sm">Wave ID #W-074</span>
+</div>
+<h3 class="font-headline-sm text-[17px] font-bold text-on-surface mt-1">Desert Protocol Alpha</h3>
+<span class="text-outline text-[13px] font-body-sm">Ironclad Interactive • Low Latency ME-East Ping Test</span>
+<div class="flex items-center gap-3 mt-2 text-[12px] font-label-sm">
+<span class="text-secondary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[15px]">bug_report</span>
+                    $20 / Verified Bug Bounty
+                  </span>
+<span class="text-outline">• Funded Escrow Account</span>
+</div>
+</div>
+<!-- Quota & Actions -->
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-lg">
+<div class="flex flex-col gap-1 w-44">
+<div class="flex justify-between font-label-sm text-[11px] text-on-surface">
+<span>Testers Deployed</span>
+<span class="font-bold text-secondary">850 / 1,000</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 85%;"></div>
+</div>
+<span class="text-outline text-[10px] font-label-sm">Started: Feb 11, 2026 • 85% Cap</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3.5 py-2 rounded-lg bg-surface-container-high hover:bg-surface-bright text-secondary text-label-lg font-label-lg flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+<span>Monitor Telemetry</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-error-container/50 hover:text-error text-outline transition-colors" title="Pause Wave">
+<span class="material-symbols-outlined text-[18px]">pause</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Campaign 3: Neon Strike Tactical Beta -->
+<div class="p-space-md rounded-xl bg-surface-container/60 hover:bg-surface-container transition-all flex flex-col md:flex-row md:items-center justify-between gap-space-md shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
+<div class="flex flex-col gap-1 max-w-md">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-[10px] uppercase font-bold">
+                    Active
+                  </span>
+<span class="text-outline text-label-sm font-label-sm">Wave ID #W-061</span>
+</div>
+<h3 class="font-headline-sm text-[17px] font-bold text-on-surface mt-1">Neon Strike Tactical Beta</h3>
+<span class="text-outline text-[13px] font-body-sm">Neom Cyber Studios • Competitive 5v5 Frame Rate &amp; Tick-rate Stability</span>
+<div class="flex items-center gap-3 mt-2 text-[12px] font-label-sm">
+<span class="text-primary flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[15px]">card_giftcard</span>
+                    Digital Game License + Studio Merch
+                  </span>
+<span class="text-outline">• Non-monetary tier</span>
+</div>
+</div>
+<!-- Quota & Actions -->
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-lg">
+<div class="flex flex-col gap-1 w-44">
+<div class="flex justify-between font-label-sm text-[11px] text-on-surface">
+<span>Testers Deployed</span>
+<span class="font-bold text-primary">2,120 / 2,500</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 84%;"></div>
+</div>
+<span class="text-outline text-[10px] font-label-sm">Started: Jan 30, 2026 • 84% Cap</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3.5 py-2 rounded-lg bg-surface-container-high hover:bg-surface-bright text-secondary text-label-lg font-label-lg flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+<span>Monitor Telemetry</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-error-container/50 hover:text-error text-outline transition-colors" title="Pause Wave">
+<span class="material-symbols-outlined text-[18px]">pause</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (35% ~ 4 cols) -->
+<div class="xl:col-span-4 flex flex-col gap-space-lg">
+<!-- PANEL 1: GAME RIGHTS & OWNERSHIP REVIEW DRAWER (Contextual for Apex Forge) -->
+<div class="bg-surface-container-low/90 backdrop-blur-xl rounded-2xl p-space-md shadow-[0_0_32px_rgba(35,61,255,0.2)] flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-3 border-b border-surface-variant/40">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[22px]">policy</span>
+<div>
+<h3 class="font-headline-sm text-[16px] font-bold text-on-surface">Game Rights Review</h3>
+<span class="text-outline font-label-sm text-[11px]">Cyber Strike v0.9.4 • Build #9021</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-container/40 text-secondary text-label-sm text-[10px] font-bold uppercase">Triage Slot #1</span>
+</div>
+<!-- Studio Metadata -->
+<div class="p-3 rounded-xl bg-surface-container flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-outline font-label-sm text-[11px] uppercase">Applicant Entity</span>
+<span class="font-headline-sm text-[15px] font-bold text-on-surface">Apex Forge Studios</span>
+<span class="text-secondary font-label-sm text-[11px]">UUID #DEV-8821 • Riyadh, KSA</span>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">
+              AFS
+            </div>
+</div>
+<!-- Rights Declarations & Artifacts -->
+<div class="flex flex-col gap-2.5">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Submitted Artifacts &amp; Verification</span>
+<!-- Artifact 1 -->
+<div class="p-2.5 rounded-lg bg-surface-container/60 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">code</span>
+                  Proprietary Source Code
+                </span>
+<span class="text-secondary font-label-sm text-[11px] font-bold">Verified</span>
+</div>
+<p class="font-body-sm text-[12px] text-outline">
+                Self-Attested + SHA256 Build Fingerprint: <code class="text-primary font-mono text-[10px]">8a4f...91c2</code>
+</p>
+</div>
+<!-- Artifact 2 -->
+<div class="p-2.5 rounded-lg bg-surface-container/60 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+                  Commercial Asset Licensing
+                </span>
+<span class="text-primary font-label-sm text-[11px] font-bold">Clean</span>
+</div>
+<p class="font-body-sm text-[12px] text-outline">
+                Unreal Marketplace Enterprise License #UE-9921 attached &amp; validated.
+              </p>
+</div>
+<!-- Artifact 3 -->
+<div class="p-2.5 rounded-lg bg-surface-container/60 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">audio_file</span>
+                  Audio &amp; OST Royalties
+                </span>
+<span class="text-secondary font-label-sm text-[11px] font-bold">Signed</span>
+</div>
+<p class="font-body-sm text-[12px] text-outline">
+                Signed Royalty-Free Soundtrack Agreement (Doc #AUD-204).
+              </p>
+</div>
+<!-- Artifact 4 -->
+<div class="p-2.5 rounded-lg bg-surface-container/60 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">fingerprint</span>
+                  Third-Party IP Fingerprint
+                </span>
+<span class="text-primary font-label-sm text-[11px] font-bold">0 Matches</span>
+</div>
+<p class="font-body-sm text-[12px] text-outline">
+                Zero collision matches against platform copyright registry.
+              </p>
+</div>
+</div>
+<!-- Operational Decision Actions -->
+<div class="flex flex-col gap-2 pt-2">
+<button class="w-full py-2.5 px-4 rounded-xl bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold shadow-[0_4px_20px_rgba(35,61,255,0.4)] hover:shadow-[0_4px_28px_rgba(35,61,255,0.6)] hover:bg-surface-bright transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Approve Game Rights</span>
+</button>
+<button class="w-full py-2 px-4 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">help_outline</span>
+<span>Request More Information</span>
+</button>
+<div class="grid grid-cols-2 gap-2 mt-1">
+<button class="py-2 px-3 rounded-lg bg-surface-container text-error hover:bg-error-container/30 font-label-sm text-label-sm font-semibold transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+<span>Reject</span>
+</button>
+<button class="py-2 px-3 rounded-lg bg-surface-container text-secondary font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<span>Escalate Legal</span>
+</button>
+</div>
+</div>
+</div>
+<!-- PANEL 2: RECENT DEVELOPER REPORTS & DISPUTES -->
+<div class="bg-surface-container-low/70 backdrop-blur-xl rounded-2xl p-space-md shadow-[0_4px_24px_rgba(0,0,0,0.3)] flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[20px]">report</span>
+<h3 class="font-headline-sm text-[16px] font-bold text-on-surface">Reports &amp; Disputes</h3>
+</div>
+<span class="text-error font-label-sm text-[11px] bg-error-container/30 px-2 py-0.5 rounded-full font-bold">2 Open Cases</span>
+</div>
+<!-- Dispute Cards List -->
+<div class="flex flex-col gap-3">
+<!-- Alert Card 1 -->
+<div class="p-3 rounded-xl bg-surface-container/70 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] text-error font-bold tracking-wider">#REP-DEV-108: IP Asset Ownership Claim</span>
+<span class="material-symbols-outlined text-error text-[16px]">flag</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface leading-normal">
+                Submitted by <span class="font-bold text-secondary">Shadow Protocol Studios</span> against Cyber Strike alleging character armor 3D mesh resemblance.
+              </p>
+<div class="flex items-center justify-between text-[11px] text-outline pt-1">
+<span>Status: <span class="text-secondary font-semibold">Under Triage</span></span>
+<span>Assignee: Tariq Al-Badr</span>
+</div>
+<div class="flex items-center gap-2 pt-1 border-t border-surface-variant/30">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-[11px]">Review Mesh Diff</button>
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-variant text-outline font-label-sm text-[11px]">Dismiss Claim</button>
+</div>
+</div>
+<!-- Alert Card 2 -->
+<div class="p-3 rounded-xl bg-surface-container/70 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] text-secondary font-bold tracking-wider">#REP-DEV-102: Tester Bounty Payout</span>
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface leading-normal">
+                Tester telemetry report completed on wave completion milestone. Escrow release confirmed.
+              </p>
+<div class="flex items-center justify-between text-[11px] text-outline pt-1">
+<span>Status: <span class="text-primary font-semibold">Resolved</span></span>
+<span>Escrow Released ($45.00)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. INSTITUTIONAL ZERO-GAMBLING POLICY FOOTER BANNER -->
+<div class="mt-space-2xl p-space-lg rounded-2xl bg-surface-container-low/90 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.3)] flex flex-col md:flex-row items-start md:items-center gap-space-md">
+<div class="p-3 rounded-xl bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]">verified_user</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-label-sm text-label-sm font-bold text-secondary uppercase tracking-wider">
+            RIYADAH ELITE GAME TESTING &amp; DEVELOPER CHARTER
+          </span>
+<span class="text-outline font-label-sm text-label-sm">• REGULATION #KSA-GSA-094</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-5xl leading-relaxed">
+          Developer compensation, tester rewards, and bug bounties are strictly task-based milestone stipends funded by verified game studios or Riyadah Elite. Gambling, betting, wagering, and player-funded stakes are permanently prohibited across all testing campaigns and developer tools.
+        </p>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

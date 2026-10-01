@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary-fixed": "#cce5ff", "inverse-primary": "#2640ff", "surface-bright": "#31365d", "tertiary-container": "#446073", "on-surface-variant": "#c5c5da", "on-tertiary-fixed": "#001e2e", "on-primary-fixed": "#000a64", "surface-dim": "#0a0f35", "background": "#0a0f35", "error-container": "#93000a", "surface-variant": "#2c3258", "surface": "#0a0f35", "surface-container": "#171c41", "primary": "#bcc2ff", "tertiary-fixed-dim": "#adcae1", "surface-container-high": "#21274c", "outline": "#8f8fa3", "on-tertiary": "#153345", "primary-container": "#233dff", "error": "#ffb4ab", "tertiary-fixed": "#c8e6fd", "surface-container-low": "#13183d", "on-surface": "#dfe0ff", "on-error": "#690005", "on-secondary-fixed": "#001e31", "on-secondary": "#003351", "inverse-on-surface": "#282d53", "on-background": "#dfe0ff", "on-primary": "#00169d", "tertiary": "#adcae1", "on-tertiary-container": "#bcdaf1", "on-primary-container": "#d0d3ff", "secondary-container": "#3698d9", "on-secondary-container": "#002c47", "inverse-surface": "#dfe0ff", "primary-fixed-dim": "#bcc2ff", "on-tertiary-fixed-variant": "#2d4a5c", "surface-container-highest": "#2c3258", "on-primary-fixed-variant": "#0022da", "outline-variant": "#444557", "surface-tint": "#bcc2ff", "surface-container-lowest": "#050930", "secondary-fixed-dim": "#92ccff", "on-error-container": "#ffdad6", "primary-fixed": "#dfe0ff", "on-secondary-fixed-variant": "#004b73", "secondary": "#92ccff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "2rem", "space-2xl": "3rem", "space-2xs": "0.25rem", "space-sm": "0.75rem", "gutter": "1.5rem", "space-xs": "0.5rem", "space-md": "1rem", "space-3xl": "4.5rem", "container-max": "1280px", "space-lg": "1.5rem" }, "fontFamily": { "label-sm": ["Space Grotesk"], "headline-lg": ["Space Grotesk"], "headline-xl": ["Space Grotesk"], "body-md": ["Plus Jakarta Sans"], "display-lg": ["Space Grotesk"], "display-lg-mobile": ["Space Grotesk"], "label-lg": ["Space Grotesk"], "headline-xl-mobile": ["Space Grotesk"], "headline-sm": ["Space Grotesk"], "body-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"] }, "fontSize": { "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-xl": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "display-lg-mobile": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-sm": ["22px", { "lineHeight": "30px", "fontWeight": "600" }], "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }] } } } };</script></head><body class="bg-surface-container-lowest font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-low/90 backdrop-blur-xl z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="p-space-lg flex flex-col gap-space-xs"><div class="flex items-center gap-space-sm"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-tight">Riyadah</span><span class="font-label-sm text-label-sm text-secondary -mt-1 tracking-widest">ELITE FOUNDER</span></div></div><div class="mt-space-xs inline-flex items-center gap-space-xs px-space-xs py-space-2xs rounded-lg bg-surface-container-high/80"><span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#92ccff] animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary uppercase">Internal Root / Founder</span></div></div><div class="flex-1 overflow-y-auto px-space-md py-space-xs"><nav class="flex flex-col gap-space-md" data-active-classes="bg-primary-container text-on-primary-container font-label-lg shadow-[0_4px_20px_rgba(35,61,255,0.45)]"><div class="flex flex-col gap-space-2xs"><span class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Overview</span><a aria-current="page" class="flex items-center justify-between px-space-sm py-space-xs rounded-lg transition-all group bg-primary-container text-on-primary-container font-label-lg shadow-[0_4px_20px_rgba(35,61,255,0.45)]" data-path="admin-overview" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">dashboard</span><span class="font-label-lg text-label-lg">Admin Overview</span></div></a></div><div class="flex flex-col gap-space-2xs"><span class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Management</span><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="user-management" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">group</span><span class="font-label-lg text-label-lg">User Management</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="operations" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">hub</span><span class="font-label-lg text-label-lg">Operations</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="trust-safety" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">verified_user</span><span class="font-label-lg text-label-lg">Trust &amp; Safety</span></div><span class="px-space-xs py-0.5 rounded-full bg-error-container text-error font-label-sm text-label-sm shadow-[0_0_10px_rgba(255,180,171,0.2)]">3</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="verification" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">fact_check</span><span class="font-label-lg text-label-lg">Verification</span></div><span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm">14</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="finance" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">account_balance</span><span class="font-label-lg text-label-lg">Finance</span></div><span class="px-space-xs py-0.5 rounded-full bg-secondary-container/30 text-secondary-fixed font-label-sm text-label-sm">2</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="content" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">article</span><span class="font-label-lg text-label-lg">Content</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="support" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">support_agent</span><span class="font-label-lg text-label-lg">Support</span></div></a></div><div class="flex flex-col gap-space-2xs"><span class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">Staff &amp; Governance</span><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="staff-management" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">badge</span><span class="font-label-lg text-label-lg">Staff Management</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="roles-permissions" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">security</span><span class="font-label-lg text-label-lg">Roles &amp; Permissions</span></div></a></div><div class="flex flex-col gap-space-2xs"><span class="px-space-sm font-label-sm text-label-sm text-outline uppercase tracking-wider">System</span><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="platform-settings" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">settings</span><span class="font-label-lg text-label-lg">Platform Settings</span></div></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="audit-logs" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-outline group-hover:text-on-surface">receipt_long</span><span class="font-label-lg text-label-lg">Audit Logs</span></div></a></div></nav></div><div class="p-space-md mx-space-sm mb-space-sm rounded-lg bg-surface-container-lowest/80 border border-outline-variant/30 flex flex-col gap-space-2xs"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-secondary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed"></span>ME-EAST HYPERNODE</span><span class="font-label-sm text-label-sm text-on-surface-variant">8ms</span></div><div class="text-[10px] font-mono text-outline leading-tight">SECURITY ENCLAVE ACTIVE</div><div class="text-[9px] font-mono text-outline-variant truncate pt-0.5">SHA256: 9f82...a74b root-ok</div></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/80 backdrop-blur-xl z-40 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider"><span class="hover:text-on-surface transition-colors cursor-pointer">Admin Root</span><span>/</span><span class="hover:text-on-surface transition-colors cursor-pointer">Platform Control</span><span>/</span><span class="text-primary">Founder Overview</span></div><div class="h-4 w-px bg-outline-variant"></div><div class="flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-high/60"><span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#92ccff]"></span><span class="font-label-sm text-label-sm text-on-surface">Services 100% Operational</span><span class="text-outline font-label-sm text-label-sm">•</span><span class="font-label-sm text-label-sm text-on-surface-variant">0 Breaches</span></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center"><div class="flex items-center gap-space-xs bg-surface-container-high/80 rounded-lg px-space-sm py-1.5 text-outline-variant w-72"><span class="material-symbols-outlined text-outline text-[18px]">search</span><input class="bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface placeholder:text-outline w-full" placeholder="Search users, games, hosts, tx..." type="text"/><span class="font-label-sm text-label-sm text-outline-variant bg-surface-container-lowest/80 px-1.5 py-0.5 rounded">⌘K</span></div></div><div class="flex items-center gap-space-xs px-space-xs py-1 rounded-lg bg-surface-container-high/50"><span class="font-label-sm text-label-sm text-outline px-space-xs">LOCKDOWN</span><button class="w-8 h-4 bg-surface-container-lowest rounded-full relative p-0.5 transition-colors" type="button"><span class="w-3 h-3 bg-outline rounded-full block transform translate-x-0 transition-transform"></span></button></div><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-container-high transition-colors" type="button"><span class="material-symbols-outlined">notifications</span><span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"></span></button><div class="h-6 w-px bg-outline-variant"></div><div class="flex items-center gap-space-sm pl-space-xs"><div class="flex flex-col items-end leading-tight"><span class="font-label-lg text-label-lg text-on-surface">Fahad Al-Saud</span><span class="font-label-sm text-label-sm text-secondary">Founder &amp; Super Admin</span></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-secondary/50" src="https://lh3.googleusercontent.com/aida/AEtjO1XffjxbUkp_vcVYXM41xTA9DGO4J03lcSxp3F3vJrcqcWjv_Tcud-UPk483vdV3oczeMZ3Va2XCbGb6j21vgfPWfnIGc24CN-aEX9t5gxOIMhskmmfRFY7A5uDHhpDPxOicSGy1F3zYRYC0jAL46fMx5TGXdyGAk8IFYt71Qb6PzmeLXloNeV7Xvmbz5fVv6P9aVCKmlgrf4LwUFPfJ7sQ3Ic0wGouvONQhdyHlkdGyLz-LtGtM2d4-aA"/></div></div></header><main class="w-full pt-16 bg-surface-container-lowest flex-1"><div class="flex flex-col w-full px-space-lg py-space-xl gap-space-2xl max-w-container-max mx-auto">
+<!-- 1. EXECUTIVE HEADER -->
+<section class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-lg">
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary uppercase tracking-widest">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#92ccff]"></span>
+        Root Command Authorization Level 5
+      </div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Founder Command Center</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+        Platform-wide operations, real-time security vectors, high-risk operational approvals, and zero-gambling ecosystem telemetry.
+      </p>
+</div>
+<!-- Quick Actions Bar -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="relative group">
+<button class="px-space-md py-2.5 rounded-lg bg-error-container/40 hover:bg-error-container/80 text-error font-label-lg text-label-lg flex items-center gap-space-xs transition-all shadow-[0_0_16px_rgba(147,0,10,0.35)] active:scale-95" id="btn-freeze-trigger" type="button">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span>Emergency Freeze</span>
+</button>
+<!-- Confirmation Tooltip -->
+<div class="absolute right-0 top-full mt-2 w-64 p-space-sm rounded-lg bg-surface-container-highest/95 backdrop-blur-xl text-on-surface shadow-2xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all z-30 flex flex-col gap-1.5">
+<div class="flex items-center gap-1.5 text-error font-label-sm text-label-sm uppercase">
+<span class="material-symbols-outlined text-[14px]">gavel</span> Founder Lockdown
+          </div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight">Immediately pauses match matchmaking, escrow payouts, and token claims across all nodes.</p>
+</div>
+</div>
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-secondary-fixed font-label-lg text-label-lg flex items-center gap-space-xs transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Export Compliance Audit</span>
+</button>
+<button class="px-space-md py-2.5 rounded-lg bg-primary-container hover:bg-primary-container/90 text-on-primary font-label-lg text-label-lg flex items-center gap-space-xs transition-all shadow-[0_4px_20px_rgba(35,61,255,0.45)] active:scale-95" type="button">
+<span class="material-symbols-outlined text-[18px]">quick_reference_all</span>
+<span>Quick Review Queue</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-lowest/40 text-on-primary-container font-label-sm text-label-sm font-bold">18</span>
+</button>
+</div>
+</section>
+<!-- 2. TOP CRITICAL ALERTS BANNER (FOUNDER ATTENTION REQUIRED) -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-error animate-pulse text-[20px]">crisis_alert</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Urgent Founder Interventions Required</h2>
+<span class="px-space-xs py-0.5 rounded-full bg-error-container text-error font-label-sm text-label-sm font-bold">3 Action Items</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">SLA Expiry: &lt; 4 Hours</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md">
+<!-- Alert 1: Red Glow Escrow Freeze -->
+<div class="p-space-lg rounded-xl bg-surface-container-low/80 backdrop-blur-xl relative flex flex-col justify-between gap-space-md shadow-[0_0_24px_rgba(147,0,10,0.25)] hover:shadow-[0_0_32px_rgba(147,0,10,0.4)] transition-all">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 rounded-full bg-error-container text-error font-label-sm text-label-sm font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+              Critical • Escrow Lock
+            </span>
+<span class="font-label-sm text-label-sm text-outline">#VAL-2026-902</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface pt-1">Unauthorized Roster Substitution</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Host flagged illegal sub in $1,200 sponsored grand final match. Escrow auto-locked prior to pool dispatch.
+          </p>
+</div>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-1.5 px-space-xs rounded-lg bg-error-container text-error hover:bg-error-container/80 font-label-sm text-label-sm text-center transition-colors" type="button">
+            Telemetry &amp; Escrow
+          </button>
+<button class="py-1.5 px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm transition-colors" type="button">
+            Override
+          </button>
+</div>
+</div>
+<!-- Alert 2: Amber Game Rights Dispute -->
+<div class="p-space-lg rounded-xl bg-surface-container-low/80 backdrop-blur-xl relative flex flex-col justify-between gap-space-md shadow-[0_0_20px_rgba(173,202,225,0.12)] hover:shadow-[0_0_28px_rgba(173,202,225,0.2)] transition-all">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container/30 text-secondary-fixed font-label-sm text-label-sm font-bold uppercase tracking-wider">
+              High • IP Conflict
+            </span>
+<span class="font-label-sm text-label-sm text-outline">Build #402</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface pt-1">Copyright Claim: 'Cyber Horizon'</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Rival studio submitted verified notarized copyright assertion for engine assets in active playtest sandbox.
+          </p>
+</div>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-1.5 px-space-xs rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary-fixed font-label-sm text-label-sm text-center transition-colors" type="button">
+            Review Proof &amp; Takedown
+          </button>
+<button class="py-1.5 px-space-sm rounded-lg bg-surface-container text-outline hover:text-on-surface font-label-sm text-label-sm transition-colors" type="button">
+            Notify Dev
+          </button>
+</div>
+</div>
+<!-- Alert 3: Staff Force-Ban Audit -->
+<div class="p-space-lg rounded-xl bg-surface-container-low/80 backdrop-blur-xl relative flex flex-col justify-between gap-space-md shadow-[0_0_20px_rgba(35,61,255,0.2)] hover:shadow-[0_0_28px_rgba(35,61,255,0.35)] transition-all">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 rounded-full bg-primary-container/30 text-primary font-label-sm text-label-sm font-bold uppercase tracking-wider">
+              High • Privilege Elevation
+            </span>
+<span class="font-label-sm text-label-sm text-outline">Time Remaining: 3h 12m</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface pt-1">Senior Mod Invoked Force-Ban</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Tier-2 Verified Host flagged and banned immediately under protocol #9. Root Founder confirmation required.
+          </p>
+</div>
+<div class="flex items-center gap-space-xs pt-space-xs">
+<button class="flex-1 py-1.5 px-space-xs rounded-lg bg-primary-container text-on-primary hover:bg-primary-container/90 font-label-sm text-label-sm text-center transition-colors shadow-sm" type="button">
+            Review Audit &amp; Approve
+          </button>
+<button class="py-1.5 px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-error font-label-sm text-label-sm transition-colors" type="button">
+            Revoke
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. EXECUTIVE PLATFORM KPIS (4x3 Grid with Sparklines & Telemetry) -->
+<section class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">query_stats</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Ecosystem Matrix &amp; Infrastructure</h2>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
+<span>Refresh: 5s</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed animate-pulse"></span>
+<span class="text-secondary font-mono">LIVE_STREAM_OK</span>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm">
+<!-- Metric 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Total Gamers</span>
+<span class="material-symbols-outlined text-[18px]">groups</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface">142,850</span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center">↑ 12.4% MoM</span>
+</div>
+<!-- Sparkline -->
+<div class="w-full h-7">
+<svg class="w-full h-full text-secondary" fill="none" preserveaspectratio="none" viewbox="0 0 100 24">
+<path d="M0 18 L15 15 L30 19 L45 10 L60 12 L75 4 L90 7 L100 2" stroke="currentColor" stroke-linecap="round" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Registered Studios</span>
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface">412</span>
+<span class="font-label-sm text-label-sm text-primary">18 in review</span>
+</div>
+<div class="w-full h-7">
+<svg class="w-full h-full text-primary" fill="none" preserveaspectratio="none" viewbox="0 0 100 24">
+<path d="M0 16 L20 18 L40 12 L60 14 L80 6 L100 5" stroke="currentColor" stroke-linecap="round" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Verified Hosts</span>
+<span class="material-symbols-outlined text-[18px]">military_tech</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface">89</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed">6 Tier-3 Ent</span>
+</div>
+<div class="w-full h-7">
+<svg class="w-full h-full text-secondary-fixed" fill="none" preserveaspectratio="none" viewbox="0 0 100 24">
+<path d="M0 20 L25 15 L50 16 L75 8 L100 6" stroke="currentColor" stroke-linecap="round" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Game Catalog</span>
+<span class="material-symbols-outlined text-[18px]">sports_esports</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface">128</span>
+<span class="font-label-sm text-label-sm text-tertiary">14 QA Sandbox</span>
+</div>
+<div class="w-full h-7">
+<svg class="w-full h-full text-tertiary" fill="none" preserveaspectratio="none" viewbox="0 0 100 24">
+<path d="M0 14 L20 14 L40 10 L60 8 L80 12 L100 4" stroke="currentColor" stroke-linecap="round" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<!-- Metric 5 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Active Testing Waves</span>
+<span class="material-symbols-outlined text-[18px]">science</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface">24 Live</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">4,210 Concurrent</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5 mt-2">
+<div class="bg-secondary h-1.5 rounded-full" style="width: 78%"></div>
+</div>
+</div>
+<!-- Metric 6 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Tournaments Live</span>
+<span class="material-symbols-outlined text-[18px]">trophy</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface">16</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2 Finals Today</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-1.5 mt-2">
+<div class="bg-primary-container h-1.5 rounded-full" style="width: 62%"></div>
+</div>
+</div>
+<!-- Metric 7 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Pending Verifications</span>
+<span class="material-symbols-outlined text-[18px]">badge</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface">14</span>
+<span class="font-label-sm text-label-sm text-tertiary">8 Tax • 6 Host ID</span>
+</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-outline">Manual Review Needed</span>
+</div>
+</div>
+<!-- Metric 8 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Safety Reports</span>
+<span class="material-symbols-outlined text-[18px]">report_problem</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-error">9 Open</span>
+<span class="font-label-sm text-label-sm text-outline">3 Cheat • 4 Tox</span>
+</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-sm text-label-sm text-error">Queue clear rate 94%</span>
+</div>
+</div>
+<!-- Metric 9 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Open Match Disputes</span>
+<span class="material-symbols-outlined text-[18px]">balance</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface">4</span>
+<span class="font-label-sm text-label-sm text-error">1 Critical Escrow</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline truncate pt-1">3 Map Veto Inquiries</span>
+</div>
+<!-- Metric 10 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Pending Studio Payouts</span>
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-secondary-fixed">$48,250</span>
+<span class="font-label-sm text-label-sm text-secondary">Zero-Gambling</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline truncate pt-1">100% Sponsor &amp; Host Funded</span>
+</div>
+<!-- Metric 11 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Regional Latency (Netcode)</span>
+<span class="material-symbols-outlined text-[18px]">speed</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-secondary">11.8 ms</span>
+<span class="font-label-sm text-label-sm text-outline">RUH / JED / DXB</span>
+</div>
+<div class="flex items-center gap-1.5 pt-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Jitter: ±0.4ms</span>
+</div>
+</div>
+<!-- Metric 12 -->
+<div class="p-space-md rounded-lg bg-surface-container-low/70 flex flex-col justify-between gap-space-xs shadow-sm">
+<div class="flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm uppercase">Anti-Cheat Vanguard</span>
+<span class="material-symbols-outlined text-[18px]">shield</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-on-surface">99.94%</span>
+<span class="font-label-sm text-label-sm text-secondary">Optimal</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline truncate pt-1">0 Corrupted Memory Injections</span>
+</div>
+</div>
+</section>
+<!-- 4. TWO-COLUMN OPERATIONAL COCKPIT -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- LEFT COLUMN (approx 60% -> 7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-xl">
+<!-- Section A: Pending Founder Reviews & Approvals -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">fact_check</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Pending Founder Authorizations</h3>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-primary-container/20 text-primary font-label-sm text-label-sm">High-Risk Gate</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Item 1: Studio Verification -->
+<div class="p-space-md rounded-xl bg-surface-container-low/90 backdrop-blur-md flex flex-col gap-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">apartment</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface">Ironclad Interactive</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-outline text-[10px] font-mono">CR #1010-9824</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Game Submission: <span class="text-secondary-fixed">Desert Protocol</span> (Unreal Engine 5.4 Sandbox)</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container/20 text-secondary-fixed font-label-sm text-label-sm whitespace-nowrap">Tax ID Pending</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs pt-space-2xs">
+<button class="px-space-sm py-1.5 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm hover:bg-primary-container/90 transition-colors shadow-sm" type="button">
+                Approve Studio
+              </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest font-label-sm text-label-sm transition-colors" type="button">
+                Request GCC Tax Cert
+              </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container text-error hover:bg-error-container/20 font-label-sm text-label-sm transition-colors" type="button">
+                Reject
+              </button>
+</div>
+</div>
+<!-- Item 2: Enterprise Host Tier 3 Elevation -->
+<div class="p-space-md rounded-xl bg-surface-container-low/90 backdrop-blur-md flex flex-col gap-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">workspace_premium</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface">Saudi Collegiate Esports League</span>
+<span class="px-1.5 py-0.2 rounded bg-primary-container/30 text-primary text-[10px] font-mono">TIER-3 APPLICANT</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Requesting 512-Slot Double Elimination Bracket Capacity &amp; Sponsored Escrow Authority</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm whitespace-nowrap">Identity Verified</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs pt-space-2xs">
+<button class="px-space-sm py-1.5 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm hover:bg-primary-container/90 transition-colors shadow-sm" type="button">
+                Elevate to Tier 3
+              </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest font-label-sm text-label-sm transition-colors" type="button">
+                View Host Audit Record
+              </button>
+</div>
+</div>
+<!-- Item 3: Studio Payout Disbursement -->
+<div class="p-space-md rounded-xl bg-surface-container-low/90 backdrop-blur-md flex flex-col gap-space-sm shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary-fixed">
+<span class="material-symbols-outlined text-[24px]">account_balance_wallet</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface">Neom Cyber Studios</span>
+<span class="font-mono text-[12px] text-secondary font-bold">$14,500 USD</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Disbursement for Alpha Playtest Phase 2 (5,000 Milestone Quota Met • Escrow Passed)</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container/20 text-secondary-fixed font-label-sm text-label-sm whitespace-nowrap">Escrow Cleared</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs pt-space-2xs">
+<button class="px-space-sm py-1.5 rounded-lg bg-secondary-container text-on-secondary-container font-label-sm text-label-sm hover:bg-secondary-container/80 transition-colors font-bold shadow-sm" type="button">
+                Release Payout
+              </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container-highest font-label-sm text-label-sm transition-colors" type="button">
+                Hold for Review
+              </button>
+<span class="font-label-sm text-label-sm text-outline self-center ml-2">Compliant with KSA-GSA-094</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section B: Live Platform Ecosystem Activity -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">hub</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Live Platform Pulse</h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary uppercase font-mono">Telemetry Streams Online</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Active Tournaments Pulse -->
+<div class="p-space-md rounded-xl bg-surface-container-low/70 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                Active Brackets
+              </span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">16 Live Matches</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<!-- Tournament 1 -->
+<div class="p-space-xs rounded-lg bg-surface-container/70 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface truncate">Riyadah Community Valorant Cup</span>
+<span class="px-1.5 py-0.2 rounded bg-primary-container/30 text-primary font-label-sm text-[10px]">SEMI-FINALS</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>32/32 Slots Full</span>
+<span class="text-secondary font-mono">12ms ME-East</span>
+</div>
+</div>
+<!-- Tournament 2 -->
+<div class="p-space-xs rounded-lg bg-surface-container/70 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface truncate">GCC Rocket League Clash</span>
+<span class="px-1.5 py-0.2 rounded bg-secondary-container/30 text-secondary-fixed font-label-sm text-[10px]">ROUND OF 16</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>64 Players Active</span>
+<span class="text-secondary font-mono">9ms Dubai Pod</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Testing Campaigns Pulse -->
+<div class="p-space-md rounded-xl bg-surface-container-low/70 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                Live Testing Waves
+              </span>
+<span class="font-label-sm text-label-sm text-primary font-mono">24 Campaigns</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<!-- Campaign 1 -->
+<div class="p-space-xs rounded-lg bg-surface-container/70 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface truncate">Shadow Protocol v0.8.4</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-secondary font-label-sm text-[10px]">STABLE</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>520 Active Testers</span>
+<span class="text-secondary-fixed font-mono">98.2% Crash-Free</span>
+</div>
+</div>
+<!-- Campaign 2 -->
+<div class="p-space-xs rounded-lg bg-surface-container/70 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface truncate">Cyber Drift Beta</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-tertiary font-label-sm text-[10px]">STRESS TEST</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>310 Testers</span>
+<span class="text-error font-mono">14 Reports Logged</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (approx 40% -> 5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-xl">
+<!-- Section C: Platform Security & Recent Staff Audit Log -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">encrypted</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Staff Governance Stream</h3>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase font-mono">Enclave OK</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low/90 backdrop-blur-md flex flex-col gap-space-md shadow-sm">
+<div class="flex flex-col gap-space-sm font-mono text-[12px]">
+<!-- Audit Entry 1 -->
+<div class="flex flex-col gap-1 pb-space-xs">
+<div class="flex items-center justify-between text-outline">
+<span class="text-secondary">10:42:15 AM</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface-variant text-[10px]">SHA: e7f2...a91c</span>
+</div>
+<p class="text-on-surface leading-snug">
+                SuperMod <span class="text-primary font-bold">@Nasser_Ops</span> updated anti-cheat heuristic node #03.
+              </p>
+</div>
+<!-- Audit Entry 2 -->
+<div class="flex flex-col gap-1 pb-space-xs">
+<div class="flex items-center justify-between text-outline">
+<span class="text-secondary">10:15:02 AM</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface-variant text-[10px]">SHA: 4bc9...11d8</span>
+</div>
+<p class="text-on-surface leading-snug">
+                Finance Officer <span class="text-secondary-fixed font-bold">@Reem_K</span> reconciled Host Escrow <span class="text-on-surface font-semibold">#ESC-881</span> ($500 USD).
+              </p>
+</div>
+<!-- Audit Entry 3 -->
+<div class="flex flex-col gap-1 pb-space-xs">
+<div class="flex items-center justify-between text-outline">
+<span class="text-secondary">09:58:30 AM</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-on-surface-variant text-[10px]">SHA: d3a1...7f04</span>
+</div>
+<p class="text-on-surface leading-snug">
+                Lead QA <span class="text-tertiary font-bold">@Zaid_Dev</span> approved sandbox build for <span class="text-secondary-fixed">'Neon Strike'</span>.
+              </p>
+</div>
+<!-- Audit Entry 4 -->
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between text-outline">
+<span class="text-secondary">09:12:04 AM</span>
+<span class="px-1.5 py-0.2 rounded bg-primary-container/30 text-primary text-[10px]">YUBIKEY-5C-PASS</span>
+</div>
+<p class="text-on-surface leading-snug">
+                Founder <span class="text-secondary font-bold">@Fahad_Root</span> session authenticated via Hardware Key from Riyadh HQ.
+              </p>
+</div>
+</div>
+<a class="flex items-center justify-center gap-space-xs py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-secondary-fixed font-label-sm text-label-sm transition-colors" href="#">
+<span>View Complete Immutable Audit Log</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Section D: Founder Quick Actions & Restricted Tools -->
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">admin_panel_settings</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Restricted Founder Tools</h3>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]">lock</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<!-- Tile 1 -->
+<a class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group flex flex-col justify-between gap-space-sm shadow-sm" href="#">
+<div class="flex items-center justify-between text-outline group-hover:text-primary">
+<span class="material-symbols-outlined text-[24px]">manage_accounts</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Manage Platform Roles</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Super-Admin, Staff, Referees</span>
+</div>
+</a>
+<!-- Tile 2 -->
+<a class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group flex flex-col justify-between gap-space-sm shadow-sm" href="#">
+<div class="flex items-center justify-between text-outline group-hover:text-error">
+<span class="material-symbols-outlined text-[24px]">toggle_on</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Emergency Feature Flags</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tournaments, Testing, Payouts</span>
+</div>
+</a>
+<!-- Tile 3 -->
+<a class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group flex flex-col justify-between gap-space-sm shadow-sm" href="#">
+<div class="flex items-center justify-between text-outline group-hover:text-secondary">
+<span class="material-symbols-outlined text-[24px]">database</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-high text-secondary font-mono text-[10px]">99.999%</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Database Read-Replica</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Live Shards &amp; Multi-Region Sync</span>
+</div>
+</a>
+<!-- Tile 4 -->
+<a class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all group flex flex-col justify-between gap-space-sm shadow-sm" href="#">
+<div class="flex items-center justify-between text-outline group-hover:text-secondary-fixed">
+<span class="material-symbols-outlined text-[24px]">policy</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Compliance Audit Ledger</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Saudi KSA-GSA-094 Protocol</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. COMPLIANCE & GOVERNANCE FOOTER NOTE -->
+<footer class="mt-space-lg p-space-md rounded-xl bg-surface-container-lowest/90 border border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-space-md text-center sm:text-left">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface tracking-wider uppercase font-mono">
+          RIYADAH ELITE ENTERPRISE ROOT CONSOLE • STRICT ZERO-GAMBLING POLICY ENFORCED
+        </span>
+<span class="font-body-sm text-body-sm text-outline text-[12px]">
+          All prizes are Host-funded or Sponsor-sponsored. Authorized Founder access only. IP and audit trail immutably recorded.
+        </span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0 font-mono text-[11px] text-outline">
+<span>SEC-LEVEL: ALPHA-0</span>
+<span>•</span>
+<span class="text-secondary">ENCRYPTED HSM</span>
+</div>
+</footer>
+</div>
+<script>
+  (function() {
+    // Quick micro-interaction for Emergency Freeze button
+    const freezeBtn = document.getElementById('btn-freeze-trigger');
+    if (freezeBtn) {
+      freezeBtn.addEventListener('click', function() {
+        const confirmed = confirm("ATTENTION FOUNDER: Invoking Platform Emergency Freeze will halt all live tournaments, active escrow, and testing pipelines across Riyadh, Jeddah, and Dubai nodes. Do you want to proceed to the confirmation enclave?");
+        if (confirmed) {
+          alert("Platform lock sequence initialized. Please verify Hardware Token OTP.");
+        }
+      });
+    }
+  })();
+</script></main></div></body></html>

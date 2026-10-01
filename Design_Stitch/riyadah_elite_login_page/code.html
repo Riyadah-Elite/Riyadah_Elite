@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="en" class="h-full" style=""><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riyadah Elite - Login</title>
+  <!-- Google Fonts & Tailwind CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              navy: '#050A30',
+              deep: '#03071e',
+              surface: '#070D38',
+              surfaceLow: '#0D1445',
+              surfaceBorder: '#1A2460',
+              electric: '#233DFF',
+              electricHover: '#1B31D6',
+              primary: '#5CB6F9',
+              lightSky: '#CAE8FF',
+              softWhite: '#F7FBFF',
+              success: '#10B981',
+              error: '#EF4444',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Tech grid background */
+    .tech-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(92, 182, 249, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(92, 182, 249, 0.05) 1px, transparent 1px);
+    }
+    .radar-pulse {
+      box-shadow: 0 0 0 0 rgba(35, 61, 255, 0.4);
+      animation: pulse-ring 3s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(35, 61, 255, 0.5); }
+      70% { box-shadow: 0 0 0 35px rgba(35, 61, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(35, 61, 255, 0); }
+    }
+    /* Glow highlights */
+    .glow-electric {
+      box-shadow: 0 0 25px -5px rgba(35, 61, 255, 0.45);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 20px -3px rgba(92, 182, 249, 0.3);
+    }
+  </style>
+</head>
+<body class="h-full bg-brand-navy text-brand-softWhite font-sans antialiased overflow-x-hidden selection:bg-brand-electric selection:text-white">
+
+  <!-- Main Container: Split Desktop, Single-Column Mobile -->
+  <div class="min-h-full flex flex-col lg:flex-row">
+
+    <!-- ======================================================== -->
+    <!-- LEFT SIDE: CINEMATIC BRAND & ECOSYSTEM EXPERIENCE (DESKTOP) -->
+    <!-- ======================================================== -->
+    <div class="relative lg:w-[48%] xl:w-[50%] bg-[#060C33] border-b lg:border-b-0 lg:border-r border-[#151F52] flex flex-col justify-between p-6 sm:p-8 lg:p-12 xl:p-16 overflow-hidden tech-grid">
+      <!-- Radial ambient glows -->
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-electric/15 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-brand-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Top Header Brand / Status -->
+      <div class="relative z-10 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3.5 group">
+          <div class="w-10 h-10 rounded-xl bg-[#0F174A] border border-[#23337A] p-1 flex items-center justify-center shadow-lg group-hover:border-brand-primary transition-all duration-300">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRLjCkxTUKEPSd635VorR4FkS7_w95zvDfUblGGQIf2DVSa9QKDfLSoqY5-n0rEHz4D094SAvHZGC30RRyHb6ln0208n3RKMmApjZ0iV-84DqovDYPCGiVfL6MYzH7iLY9nELSKiV3qn_iryPeybrw10WP9nPQyF_MZDvdB9AD6kmTSNDKkaJpc8gxRxJYwk_LRyfwJJGyaLhG4NPKv3M4Bs3FW9VlniJB1jgS1doqjmk5kpeN3653HR1k7WiCzY--" alt="Riyadah Elite" class="w-full h-full object-contain drop-shadow">
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-base font-bold tracking-wider text-white">RIYADAH ELITE</span>
+              <span class="w-2 h-2 rounded-full bg-brand-primary animate-ping"></span>
+            </div>
+            <p class="text-[10px] font-mono tracking-widest text-[#7C8CB8] uppercase">Competitive Esports &amp; Playtesting</p>
+          </div>
+        </a>
+
+        <!-- Network Status Pill -->
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0D1645]/80 border border-[#1E2B6D] text-xs font-mono text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          
+        </div>
+      </div>
+
+      <!-- Center Cinematic Interactive Hologram Hub (Visible on large screens) -->
+      <div class="relative z-10 my-8 lg:my-auto flex flex-col items-center justify-center">
+        <!-- Concentric Orbital Radar Rings -->
+        <div class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 flex items-center justify-center">
+          <div class="absolute inset-0 rounded-full border border-[#1A2666]/60"></div>
+          <div class="absolute inset-6 rounded-full border border-[#223588]/40 border-dashed"></div>
+          <div class="absolute inset-16 rounded-full border border-brand-primary/20"></div>
+
+          <!-- Central Identity Box with tactical corners -->
+          
+        <div class="relative z-10 w-28 h-28 sm:w-32 sm:h-32 rounded-full p-2 flex items-center justify-center bg-[#09103D]/90 border border-brand-primary/40 shadow-lg glow-electric"><div class="absolute -top-1 -left-1 w-3.5 h-3.5 border-t-2 border-l-2 border-brand-primary"></div><div class="absolute -top-1 -right-1 w-3.5 h-3.5 border-t-2 border-r-2 border-brand-primary"></div><div class="absolute -bottom-1 -left-1 w-3.5 h-3.5 border-b-2 border-l-2 border-brand-primary"></div><div class="absolute -bottom-1 -right-1 w-3.5 h-3.5 border-b-2 border-r-2 border-brand-primary"></div><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLbJqiHjaez5oo5ARCrQaXdi8XRESJGqlRRdmmMfO1DXqZ4-BbdeTVqyWy92RA--wXaiKdMb8GZ9IGE3ed80BInFtev62Rd7u70yaWUPCZsun0g5xSRAQCRonFriTKDbOjNEVmwOSOl934t_Qd5aAWrK0qKjyCTrMhJXs7cUHNBBcBibhHtovDIUPD1zjYlGUNMUFGD8_6PT5-Hnu1zQlGWg5sk6HkXtOppqymM8klQsqC19KvD7AA6QuntfDuCPV4" alt="Riyadah Elite Logo" class="w-full h-full object-contain rounded-full drop-shadow"></div></div>
+
+        <!-- Floating Live Platform Telemetry Cards (Matching Sign Up) -->
+        <div class="w-full max-w-sm space-y-3 mt-6">
+          <!-- Card 1: Game Testing -->
+          <div class="p-3.5 rounded-xl bg-[#09103D]/90 border border-[#1C296B] flex items-center justify-between hover:border-brand-primary/60 transition-all duration-300">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-blue-950/80 border border-blue-600/40 flex items-center justify-center text-brand-primary">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-white">Cyber Strike Beta 0.8</p>
+                <p class="text-[11px] font-mono text-[#7888B8]">1,248 Verified Testers Active</p>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 uppercase tracking-wide">LIVE RUN</span>
+          </div>
+
+          <!-- Card 2: Tournament Escrow -->
+          <div class="p-3.5 rounded-xl bg-[#09103D]/90 border border-[#1C296B] flex items-center justify-between hover:border-brand-primary/60 transition-all duration-300">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-amber-950/80 border border-amber-500/40 flex items-center justify-center text-amber-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-white">Apex Valorant Masters Cup</p>
+                <p class="text-[11px] font-mono text-[#7888B8]">₹25,000 Smart Escrow Locked</p>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-blue-500/10 text-brand-primary border border-blue-500/30 uppercase tracking-wide">FINAL BRACKET</span>
+          </div>
+
+          <!-- Card 3: Reputation Pass -->
+          <div class="p-3.5 rounded-xl bg-[#09103D]/90 border border-[#1C296B] flex items-center justify-between hover:border-brand-primary/60 transition-all duration-300">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-indigo-950/80 border border-indigo-500/40 flex items-center justify-center text-indigo-300">
+                <span class="text-[10px] font-mono font-bold">REP</span>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-white">Player Reputation Pass</p>
+                <p class="text-[11px] font-mono text-[#7888B8]">Tier 1 Verified Access • 92/100</p>
+              </div>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 uppercase tracking-wide">VERIFIED</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Brand Ethos Anchor -->
+      <div class="relative z-10 pt-6 border-t border-[#152157]">
+        <h3 class="text-sm font-bold tracking-wider text-white uppercase">PLAY. TEST. COMPETE.</h3>
+        <p class="text-xs text-[#7F8FB8] mt-1 max-w-sm">
+          The unified ecosystem for elite gamers, visionary game studios, and esports tournament organizers.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- ======================================================== -->
+    <!-- RIGHT SIDE: DISTRACTION-FREE LOGIN EXPERIENCE -->
+    <!-- ======================================================== -->
+    <div class="relative lg:w-[52%] xl:w-[50%] flex flex-col justify-between p-6 sm:p-10 lg:p-12 xl:p-16 bg-[#040826]">
+      
+      <!-- Top Bar: Back to platform button -->
+      <div class="flex items-center justify-between mb-8 lg:mb-0">
+        <!-- Mobile Logo (shown only on small screens when left banner is minimal) -->
+        <div class="flex lg:hidden items-center gap-2.5">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGFnZlIx08taGbUEkVDzFX3ROSCZMtxfnPmr5UsloDgHfhrr7NUYsg6wB-ZnfjGi5OsaJ7ufgMEOB4C_NK2CQvq0tsz-plkGCsK2fBXuoTQdSYcseTLbXIHnF_HJ34BflVq4ZONPVV_NkGK2Iki84wCHvIapSp6_GlOWs-81g4bo0URU2svCML9kp1MHNBae8vCUvFpxu-6e7EIW_SzZGKvKrQkZhMTVNP4t4-JmqeXjUm-vFtI-jdEHTBx1jQ22MX" alt="Riyadah Elite" class="w-7 h-7 object-contain">
+          <span class="text-sm font-bold tracking-wider text-white">RIYADAH ELITE</span>
+        </div>
+
+        <a href="#" class="ml-auto inline-flex items-center gap-2 text-xs font-mono text-[#7888B8] hover:text-brand-primary transition-colors py-1 px-3 rounded-lg hover:bg-[#0D1540]">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+          <span class="">Back to platform</span>
+        </a>
+      </div>
+
+      <!-- Form Center Area -->
+      <div class="w-full max-w-[440px] mx-auto my-auto py-4">
+
+        <!-- Flow State Preview Bar (Interactive demonstration for QA & Developer handoff) -->
+        
+
+        <!-- Header Category Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0D174A] border border-[#1E2B6D] text-[11px] font-mono text-brand-primary mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse"></span>
+          <span class="">SECURE ACCESS PORTAL</span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">Welcome Back</h1>
+        <p class="text-sm text-[#8796C0] mb-7 leading-relaxed">
+          Enter your credentials to access your tournaments, teams, and test lab.
+        </p>
+
+        <!-- Global Alert Banner (Hidden in default state, shown on error) -->
+        <div id="error-banner" class="hidden mb-6 p-3.5 rounded-xl bg-red-950/40 border border-red-500/40 flex items-start gap-3 text-xs text-red-200 animate-fadeIn">
+          <svg class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+          <div>
+            <p class="font-semibold text-red-300">Authentication Failed</p>
+            <p class="text-red-300/80 text-[11px] mt-0.5">Email or password is incorrect. Please try again.</p>
+          </div>
+        </div>
+
+        <!-- Form Element -->
+        <form id="login-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+          
+          <!-- FIELD 1: EMAIL ADDRESS -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label for="email" class="text-xs font-mono font-semibold tracking-wider text-[#98A8D4] uppercase">
+                EMAIL ADDRESS
+              </label>
+              <span id="email-error-text" class="hidden text-[11px] font-mono text-red-400">Please enter a valid email</span>
+            </div>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#566591]">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path></svg>
+              </div>
+              <input type="email" id="email" name="email" value="tester.pro@riyadahelite.com" placeholder="Enter your email address" class="w-full h-12 pl-10 pr-4 rounded-xl bg-[#090F3B] border border-[#1A2560] text-sm text-white placeholder-[#4E5D88] focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-all duration-200" required="">
+            </div>
+          </div>
+
+          <!-- FIELD 2: PASSWORD -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label for="password" class="text-xs font-mono font-semibold tracking-wider text-[#98A8D4] uppercase">
+                PASSWORD
+              </label>
+              <a href="#" class="text-xs text-brand-primary hover:text-white transition-colors">
+                Forgot password?
+              </a>
+            </div>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#566591]">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              </div>
+              <input type="password" id="password" name="password" value="••••••••••••••••" placeholder="Enter your password" class="w-full h-12 pl-10 pr-11 rounded-xl bg-[#090F3B] border border-[#1A2560] text-sm text-white placeholder-[#4E5D88] focus:outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary transition-all duration-200" required="">
+              <!-- Password Visibility Toggle -->
+              <button type="button" onclick="togglePasswordVisibility()" id="pw-toggle-btn" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-[#5C6E9E] hover:text-brand-primary transition-colors focus:outline-none" title="Toggle password visibility">
+                <svg id="eye-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                <svg id="eye-off-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18"></path></svg>
+              </button>
+            </div>
+            <span id="password-error-text" class="hidden text-[11px] font-mono text-red-400 mt-1 block">Password is required</span>
+          </div>
+
+          <!-- Remember Me & Security Status -->
+          <div class="flex items-center justify-between pt-1 text-xs">
+            <label class="flex items-center gap-2 cursor-pointer text-[#8394C0] hover:text-white select-none">
+              <input type="checkbox" checked="" class="w-4 h-4 rounded bg-[#090F3B] border-[#1E2B6D] text-brand-electric focus:ring-0 focus:ring-offset-0 cursor-pointer accent-[#233DFF]">
+              <span class="">Remember this terminal</span>
+            </label>
+            <div class="flex items-center gap-1.5 text-[11px] font-mono text-[#5E71A1]">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              
+            </div>
+          </div>
+
+          <!-- PRIMARY ACTION: LOGIN BUTTON -->
+          <div class="pt-2">
+            <button type="submit" id="submit-button" class="w-full h-12 rounded-xl bg-brand-electric hover:bg-brand-electricHover text-white font-semibold text-sm tracking-wide flex items-center justify-center gap-2 glow-electric transition-all duration-200 active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed">
+              <span id="btn-text" class="">LOG IN</span>
+              <svg id="btn-icon" class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              <!-- Spinner Icon (hidden by default) -->
+              <svg id="btn-spinner" class="w-4 h-4 animate-spin hidden" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <!-- SECONDARY NAVIGATION: SIGN UP LINK -->
+        <div class="mt-8 text-center">
+          <p class="text-sm text-[#8796C0]">
+            Don't have an account? 
+            <a href="#" class="font-semibold text-brand-primary hover:text-white transition-colors ml-1 inline-flex items-center gap-1">
+              Create an account <span aria-hidden="true" class="">→</span>
+            </a>
+          </p>
+        </div>
+
+        <!-- Security Badge Footer in Card -->
+        
+
+      </div>
+
+      <!-- Legal Bottom Links -->
+      <div class="relative z-10 pt-6 border-t border-[#121B4F] flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#556794] gap-2">
+        <span class="">© 2026 Riyadah Elite Esports &amp; Telemetry Systems.</span>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-brand-primary transition-colors">Privacy</a>
+          <a href="#" class="hover:text-brand-primary transition-colors">Security</a>
+          <a href="#" class="hover:text-brand-primary transition-colors">Support</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Interactive JavaScript for UI States (Show/Hide Password, Error State Simulation) -->
+  <script>
+    let isPasswordVisible = false;
+
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById('password');
+      const eyeIcon = document.getElementById('eye-icon');
+      const eyeOffIcon = document.getElementById('eye-off-icon');
+
+      isPasswordVisible = !isPasswordVisible;
+
+      if (isPasswordVisible) {
+        passwordInput.type = 'text';
+        passwordInput.value = 'RiyadahP@ss2026!';
+        eyeIcon.classList.add('hidden');
+        eyeOffIcon.classList.remove('hidden');
+      } else {
+        passwordInput.type = 'password';
+        passwordInput.value = '••••••••••••••••';
+        eyeIcon.classList.remove('hidden');
+        eyeOffIcon.classList.add('hidden');
+      }
+    }
+
+    function setFormState(state) {
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const errorBanner = document.getElementById('error-banner');
+      const emailErrorText = document.getElementById('email-error-text');
+      const passwordErrorText = document.getElementById('password-error-text');
+      const submitBtn = document.getElementById('submit-button');
+      const btnText = document.getElementById('btn-text');
+      const btnIcon = document.getElementById('btn-icon');
+      const btnSpinner = document.getElementById('btn-spinner');
+
+      // Update state switcher buttons style
+      ['default', 'error', 'loading'].forEach(s => {
+        const btn = document.getElementById(`btn-state-${s}`);
+        if (s === state) {
+          btn.className = 'px-2 py-0.5 rounded text-white bg-brand-electric font-semibold';
+        } else {
+          btn.className = 'px-2 py-0.5 rounded text-[#7E8EB8] hover:text-white';
+        }
+      });
+
+      if (state === 'error') {
+        errorBanner.classList.remove('hidden');
+        emailInput.classList.add('border-red-500', 'bg-red-950/20');
+        passwordInput.classList.add('border-red-500', 'bg-red-950/20');
+        emailErrorText.classList.remove('hidden');
+        passwordErrorText.classList.remove('hidden');
+        submitBtn.disabled = false;
+        btnText.textContent = 'LOG IN';
+        btnIcon.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+      } else if (state === 'loading') {
+        errorBanner.classList.add('hidden');
+        emailInput.classList.remove('border-red-500', 'bg-red-950/20');
+        passwordInput.classList.remove('border-red-500', 'bg-red-950/20');
+        emailErrorText.classList.add('hidden');
+        passwordErrorText.classList.add('hidden');
+        submitBtn.disabled = true;
+        btnText.textContent = 'AUTHENTICATING...';
+        btnIcon.classList.add('hidden');
+        btnSpinner.classList.remove('hidden');
+      } else {
+        // default
+        errorBanner.classList.add('hidden');
+        emailInput.classList.remove('border-red-500', 'bg-red-950/20');
+        passwordInput.classList.remove('border-red-500', 'bg-red-950/20');
+        emailErrorText.classList.add('hidden');
+        passwordErrorText.classList.add('hidden');
+        submitBtn.disabled = false;
+        btnText.textContent = 'LOG IN';
+        btnIcon.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+      }
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      setFormState('loading');
+      setTimeout(() => {
+        setFormState('default');
+      }, 1500);
+    }
+  </script>
+
+
+
+
+</body></html>
