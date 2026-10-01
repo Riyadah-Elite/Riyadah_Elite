@@ -64,6 +64,7 @@ cp .env.example .env
 ```
 
 Ensure `DATABASE_URL` points to your PostgreSQL instance:
+
 ```env
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/riyadah_elite?schema=public"
 ```
@@ -74,7 +75,7 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/riyadah_elite?schema
 npm run prisma:generate
 ```
 
-*Note: If PostgreSQL is running locally, apply migrations with `npm run prisma:migrate`.*
+_Note: If PostgreSQL is running locally, apply migrations with `npm run prisma:migrate`._
 
 ---
 
