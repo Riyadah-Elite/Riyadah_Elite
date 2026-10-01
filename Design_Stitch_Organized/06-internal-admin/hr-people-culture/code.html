@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-primary-container": "#d0d3ff",
+          "secondary-container": "#3698d9",
+          "outline-variant": "#444557",
+          "primary": "#bcc2ff",
+          "on-primary": "#00169d",
+          "surface-container-highest": "#2c3258",
+          "error": "#ffb4ab",
+          "on-secondary-fixed-variant": "#004b73",
+          "background": "#0a0f35",
+          "on-primary-fixed-variant": "#0022da",
+          "primary-fixed": "#dfe0ff",
+          "secondary-fixed-dim": "#92ccff",
+          "on-tertiary-fixed": "#001e2e",
+          "outline": "#8f8fa3",
+          "tertiary": "#adcae1",
+          "surface-container-low": "#13183d",
+          "on-tertiary-container": "#bcdaf1",
+          "inverse-on-surface": "#282d53",
+          "on-secondary-fixed": "#001e31",
+          "on-secondary": "#003351",
+          "on-error": "#690005",
+          "surface": "#0a0f35",
+          "surface-container-lowest": "#050930",
+          "on-error-container": "#ffdad6",
+          "secondary": "#92ccff",
+          "on-surface-variant": "#c5c5da",
+          "primary-container": "#233dff",
+          "inverse-primary": "#2640ff",
+          "primary-fixed-dim": "#bcc2ff",
+          "surface-dim": "#0a0f35",
+          "secondary-fixed": "#cce5ff",
+          "on-secondary-container": "#002c47",
+          "surface-container-high": "#21274c",
+          "surface-bright": "#31365d",
+          "inverse-surface": "#dfe0ff",
+          "error-container": "#93000a",
+          "on-tertiary": "#153345",
+          "on-background": "#dfe0ff",
+          "on-surface": "#dfe0ff",
+          "surface-variant": "#2c3258",
+          "on-primary-fixed": "#000a64",
+          "tertiary-fixed-dim": "#adcae1",
+          "surface-tint": "#bcc2ff",
+          "surface-container": "#171c41",
+          "tertiary-container": "#446073",
+          "on-tertiary-fixed-variant": "#2d4a5c",
+          "tertiary-fixed": "#c8e6fd"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-3xl": "4.5rem",
+          "space-md": "1rem",
+          "space-2xs": "0.25rem",
+          "container-max": "1280px",
+          "space-xl": "2rem",
+          "space-xs": "0.5rem",
+          "gutter": "1.5rem",
+          "space-lg": "1.5rem",
+          "space-2xl": "3rem",
+          "space-sm": "0.75rem"
+        },
+        "fontFamily": {
+          "headline-lg": [
+            "Space Grotesk"
+          ],
+          "body-lg": [
+            "Plus Jakarta Sans"
+          ],
+          "display-lg-mobile": [
+            "Space Grotesk"
+          ],
+          "display-lg": [
+            "Space Grotesk"
+          ],
+          "headline-xl": [
+            "Space Grotesk"
+          ],
+          "headline-xl-mobile": [
+            "Space Grotesk"
+          ],
+          "label-sm": [
+            "Space Grotesk"
+          ],
+          "body-md": [
+            "Plus Jakarta Sans"
+          ],
+          "body-sm": [
+            "Plus Jakarta Sans"
+          ],
+          "headline-sm": [
+            "Space Grotesk"
+          ],
+          "label-lg": [
+            "Space Grotesk"
+          ]
+        },
+        "fontSize": {
+          "headline-lg": [
+            "32px",
+            {
+              "lineHeight": "40px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "18px",
+            {
+              "lineHeight": "28px",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg-mobile": [
+            "38px",
+            {
+              "lineHeight": "44px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "display-lg": [
+            "64px",
+            {
+              "lineHeight": "72px",
+              "letterSpacing": "-0.03em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-xl": [
+            "44px",
+            {
+              "lineHeight": "52px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-xl-mobile": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "700"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.08em",
+              "fontWeight": "700"
+            }
+          ],
+          "body-md": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "fontWeight": "400"
+            }
+          ],
+          "body-sm": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-sm": [
+            "22px",
+            {
+              "lineHeight": "30px",
+              "fontWeight": "600"
+            }
+          ],
+          "label-lg": [
+            "14px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.04em",
+              "fontWeight": "600"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest/90 backdrop-blur-2xl z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col flex-1 min-h-0"><div class="px-space-lg pt-space-lg pb-space-md flex items-center gap-space-sm bg-surface-container-low/40"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"/><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-on-surface truncate leading-tight">Riyadah Elite</span><span class="font-label-sm text-label-sm text-secondary tracking-wider uppercase truncate">People &amp; Culture / HR Portal</span></div></div><div class="flex-1 overflow-y-auto px-space-md py-space-sm space-y-space-md"><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm text-outline tracking-wider uppercase">Overview</div><nav class="space-y-space-2xs" data-active-classes="bg-primary-container text-on-primary font-headline-sm shadow-[0_0_20px_rgba(35,61,255,0.45)]"><a aria-current="page" class="group flex items-center justify-between px-space-sm py-space-xs rounded-xl transition-all duration-200 bg-primary-container text-on-primary font-headline-sm shadow-[0_0_20px_rgba(35,61,255,0.45)]" data-path="hr-overview" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">dashboard</span><span class="font-label-lg text-label-lg">HR Overview</span></div><span class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_8px_#5cb6f9]"></span></a></nav></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm text-outline tracking-wider uppercase">Staff</div><nav class="space-y-space-2xs" data-active-classes="bg-primary-container text-on-primary font-headline-sm shadow-[0_0_20px_rgba(35,61,255,0.45)]"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200" data-path="staff-directory" href="#"><span class="material-symbols-outlined text-base">badge</span><span class="font-label-lg text-label-lg">Staff Directory</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200" data-path="departments" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">corporate_fare</span><span class="font-label-lg text-label-lg">Departments</span></div><span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">11</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200" data-path="roles-and-permissions" href="#"><span class="material-symbols-outlined text-base">shield_person</span><span class="font-label-lg text-label-lg">Roles &amp; Permissions</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200" data-path="staff-activity" href="#"><span class="material-symbols-outlined text-base">monitoring</span><span class="font-label-lg text-label-lg">Staff Activity</span></a></nav></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm text-outline tracking-wider uppercase">Internal</div><nav class="space-y-space-2xs" data-active-classes="bg-primary-container text-on-primary font-headline-sm shadow-[0_0_20px_rgba(35,61,255,0.45)]"><a class="flex items-center justify-between px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200" data-path="staff-requests" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-base">pending_actions</span><span class="font-label-lg text-label-lg">Staff Requests</span></div><span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold">5</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all duration-200" data-path="announcements" href="#"><span class="material-symbols-outlined text-base">campaign</span><span class="font-label-lg text-label-lg">Announcements</span></a></nav></div></div></div><div class="p-space-md space-y-space-sm bg-surface-container-lowest/95"><div class="p-space-sm rounded-xl bg-surface-container-low/70 flex flex-col gap-space-2xs shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_6px_#5cb6f9]"></span><span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Enclave Status</span></div><p class="font-label-sm text-label-sm text-on-surface-variant leading-relaxed">LEVEL 3 HR ENCLAVE • ME-East Node #1 • Identity &amp; Access Isolated</p></div><div class="text-center px-space-2xs"><p class="font-label-sm text-label-sm text-outline leading-tight uppercase">Strict Internal HR Compliance • Sensitive Data Isolated • Founder Access Protected</p></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/80 backdrop-blur-xl z-40 px-space-lg flex items-center justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md min-w-0"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"/><nav class="hidden lg:flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase"><span class="hover:text-on-surface transition-colors">HR Portal</span><span class="text-outline">/</span><span class="hover:text-on-surface transition-colors">Internal Staff</span><span class="text-outline">/</span><span class="text-secondary font-bold">Directory &amp; Roles</span></nav><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-primary-container/20 text-primary"><span class="material-symbols-outlined text-sm">security</span><span class="font-label-sm text-label-sm tracking-wider uppercase">HR PRIVILEGE LEVEL 3 - INTERNAL PEOPLE OPS</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden md:block w-72 lg:w-96"><span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-outline text-base">search</span><input class="w-full pl-9 pr-space-sm py-1.5 rounded-xl bg-surface-container-low/60 text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-high transition-all" placeholder="Search staff by name, ID (#EMP-), department, role..." type="text"/></div><div class="hidden 2xl:flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span><span>Staff Directory Synced • Enclave Secure</span></div><div class="flex items-center gap-space-sm"><button aria-label="Notifications" class="relative p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-xl">notifications</span><span class="absolute top-1.5 right-1.5 w-4 h-4 rounded-full bg-secondary text-on-secondary font-label-sm text-[9px] flex items-center justify-center font-bold">3</span></button><div class="flex items-center gap-space-sm pl-space-2xs"><div class="text-right hidden sm:block"><div class="font-headline-sm text-sm text-on-surface font-semibold leading-tight">Sara Al-Ghamdi</div><div class="font-label-sm text-label-sm text-on-surface-variant">HR Director • Level 3</div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_0_10px_rgba(92,182,249,0.3)]" src="https://lh3.googleusercontent.com/aida/AEtjO1XffjxbUkp_vcVYXM41xTA9DGO4J03lcSxp3F3vJrcqcWjv_Tcud-UPk483vdV3oczeMZ3Va2XCbGb6j21vgfPWfnIGc24CN-aEX9t5gxOIMhskmmfRFY7A5uDHhpDPxOicSGy1F3zYRYC0jAL46fMx5TGXdyGAk8IFYt71Qb6PzmeLXloNeV7Xvmbz5fVv6P9aVCKmlgrf4LwUFPfJ7sQ3Ic0wGouvONQhdyHlkdGyLz-LtGtM2d4-aA"/></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Interactive & Notification Script -->
+<script>
+    function selectStaff(name, id, role, dept, joined, avatarUrl) {
+      document.getElementById('inspector-name').innerText = name;
+      document.getElementById('inspector-id').innerText = id;
+      document.getElementById('inspector-role').innerText = role;
+      document.getElementById('inspector-dept').innerText = dept;
+      document.getElementById('inspector-joined').innerText = joined;
+      if(avatarUrl) {
+        document.getElementById('inspector-avatar').src = avatarUrl;
+      }
+      const notify = document.getElementById('telemetry-toast');
+      notify.classList.remove('opacity-0', 'translate-y-2');
+      notify.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        notify.classList.remove('opacity-100', 'translate-y-0');
+        notify.classList.add('opacity-0', 'translate-y-2');
+      }, 2200);
+    }
+
+    function filterDirectory(type) {
+      const rows = document.querySelectorAll('.staff-row');
+      rows.forEach(row => {
+        if(type === 'all') {
+          row.style.display = '';
+        } else {
+          const status = row.getAttribute('data-status');
+          row.style.display = (status === type) ? '' : 'none';
+        }
+      });
+      const btns = document.querySelectorAll('.filter-tab');
+      btns.forEach(b => {
+        b.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-[0_0_12px_rgba(35,61,255,0.4)]');
+        b.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high');
+      });
+      event.currentTarget.classList.add('bg-primary-container', 'text-on-primary', 'shadow-[0_0_12px_rgba(35,61,255,0.4)]');
+      event.currentTarget.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+    }
+  </script>
+<!-- Notification Toast -->
+<div class="fixed bottom-6 right-6 z-50 flex items-center gap-space-sm px-space-md py-space-sm rounded-xl bg-surface-container-highest/95 text-secondary shadow-[0_0_24px_rgba(35,61,255,0.35)] opacity-0 translate-y-2 transition-all duration-300 pointer-events-none" id="telemetry-toast">
+<span class="material-symbols-outlined text-sm">security_update_good</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Personnel Telemetry Inspector Updated</span>
+</div>
+<div class="px-space-lg lg:px-space-xl py-space-lg space-y-space-xl">
+<!-- 1. PAGE HERO / TOP COMMAND HEADER -->
+<header class="relative overflow-hidden rounded-2xl bg-surface-container-lowest/80 p-space-lg lg:p-space-xl shadow-xl">
+<!-- Glow ambient background element -->
+<div class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-primary-container/15 blur-3xl pointer-events-none"></div>
+<div class="absolute left-1/3 bottom-0 w-80 h-32 rounded-full bg-secondary-container/10 blur-2xl pointer-events-none"></div>
+<div class="relative flex flex-col xl:flex-row xl:items-center justify-between gap-space-lg">
+<div class="space-y-space-xs max-w-3xl">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-primary-container/20 text-secondary text-xs">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#5cb6f9] animate-pulse"></span>
+<span class="font-label-sm text-label-sm tracking-widest uppercase font-bold">INTERNAL ACCESS LEVEL 3 • PEOPLE OPERATIONS CONSOLE</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight leading-none">
+            HR Management &amp; People Operations
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Oversee Riyadah Elite team members, departmental structures, role access tiers, and internal personnel requests across the platform ecosystem with cryptographic identity assurance.
+          </p>
+</div>
+<!-- Quick Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg shadow-[0_4px_20px_rgba(35,61,255,0.45)] hover:scale-[1.02] transition-transform duration-200" type="button">
+<span class="material-symbols-outlined text-lg">person_add</span>
+<span>+ Onboard New Staff</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-xl bg-surface-container-high/70 text-secondary font-label-lg text-label-lg hover:bg-surface-container-highest transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-lg">fact_check</span>
+<span>Review Requests</span>
+<span class="px-space-2xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[11px] font-bold">5</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-xl bg-surface-container-low/80 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-lg">file_download</span>
+<span class="font-label-lg text-label-lg">Export Report</span>
+</button>
+</div>
+</div>
+</header>
+<!-- 2. HR OVERVIEW KPIS (6 Cards Grid) -->
+<section class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-space-md">
+<!-- KPI 1 -->
+<div class="relative group p-space-md rounded-2xl bg-surface-container-lowest/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Total Staff</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">groups</span>
+</div>
+</div>
+<div class="mt-space-sm space-y-space-2xs">
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold">148</div>
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-secondary">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+<span>+12 this quarter</span>
+</div>
+<span class="block font-label-sm text-[10px] text-outline truncate">100% contracts verified</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="relative group p-space-md rounded-2xl bg-surface-container-lowest/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Active Staff</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary-fixed">
+<span class="material-symbols-outlined text-lg">verified_user</span>
+</div>
+</div>
+<div class="mt-space-sm space-y-space-2xs">
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold flex items-center gap-2">
+            136
+            <span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#5cb6f9] inline-block"></span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Live telemetry shift</div>
+<span class="block font-label-sm text-[10px] text-outline truncate">91.8% online concurrency</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="relative group p-space-md rounded-2xl bg-surface-container-lowest/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Pending Onboard</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-lg">how_to_reg</span>
+</div>
+</div>
+<div class="mt-space-sm space-y-space-2xs">
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold">7</div>
+<div class="font-label-sm text-label-sm text-tertiary truncate">3 in check / 4 HW token</div>
+<span class="block font-label-sm text-[10px] text-outline truncate">Average SLA: 48h setup</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="relative group p-space-md rounded-2xl bg-surface-container-lowest/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Inactive / Leave</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-outline">
+<span class="material-symbols-outlined text-lg">event_busy</span>
+</div>
+</div>
+<div class="mt-space-sm space-y-space-2xs">
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold">5</div>
+<div class="font-label-sm text-label-sm text-outline-variant">Medical &amp; Sabbatical</div>
+<span class="block font-label-sm text-[10px] text-outline truncate">Access locked in enclave</span>
+</div>
+</div>
+<!-- KPI 5 -->
+<div class="relative group p-space-md rounded-2xl bg-surface-container-lowest/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Departments</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">hub</span>
+</div>
+</div>
+<div class="mt-space-sm space-y-space-2xs">
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold">11</div>
+<div class="font-label-sm text-label-sm text-primary">100% Leads assigned</div>
+<span class="block font-label-sm text-[10px] text-outline truncate">Cross-functional matrix</span>
+</div>
+</div>
+<!-- KPI 6 -->
+<div class="relative group p-space-md rounded-2xl bg-surface-container-lowest/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Role Requests</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-lg">lock_clock</span>
+</div>
+</div>
+<div class="mt-space-sm space-y-space-2xs">
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold flex items-center gap-2">
+            5
+            <span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-error-container text-on-error-container uppercase">Critical</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant truncate">2 Founder / 3 HR Ops</div>
+<span class="block font-label-sm text-[10px] text-outline truncate">Pending signature</span>
+</div>
+</div>
+</section>
+<!-- 3. QUICK ACCESS & RECENT ACTIONS TOOLBAR -->
+<div class="flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-md p-space-md rounded-2xl bg-surface-container-lowest/90 shadow-md">
+<!-- Search & Filters -->
+<div class="flex flex-wrap items-center gap-space-sm flex-1">
+<div class="relative w-full sm:w-80">
+<span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-outline text-base">search</span>
+<input class="w-full pl-9 pr-12 py-2 rounded-xl bg-surface-container-low text-on-surface placeholder:text-outline font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-high transition-all" placeholder="Search staff by name, ID (#EMP-), role..." type="text"/>
+<kbd class="absolute right-space-sm top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container-highest text-outline font-label-sm text-[10px]">⌘K</kbd>
+</div>
+<!-- Quick filter pills -->
+<div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-xl">
+<button class="filter-tab px-space-sm py-1.5 rounded-lg font-label-sm text-label-sm bg-primary-container text-on-primary shadow-[0_0_12px_rgba(35,61,255,0.4)] transition-all" onclick="filterDirectory('all')">
+            All Staff (148)
+          </button>
+<button class="filter-tab px-space-sm py-1.5 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high transition-all" onclick="filterDirectory('active')">
+            Active (136)
+          </button>
+<button class="filter-tab px-space-sm py-1.5 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high transition-all" onclick="filterDirectory('pending')">
+            Pending (7)
+          </button>
+<button class="filter-tab px-space-sm py-1.5 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high transition-all" onclick="filterDirectory('suspended')">
+            Suspended (0)
+          </button>
+<button class="filter-tab px-space-sm py-1.5 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high transition-all" onclick="filterDirectory('inactive')">
+            Inactive (5)
+          </button>
+</div>
+</div>
+<!-- Department pill dropdown / quick filter -->
+<div class="flex items-center gap-space-xs shrink-0 overflow-x-auto pb-1 xl:pb-0">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider hidden lg:inline">Dept:</span>
+<select class="px-space-sm py-2 rounded-xl bg-surface-container-low text-on-surface font-label-sm text-label-sm focus:outline-none focus:bg-surface-container-high transition-colors cursor-pointer">
+<option value="">All Departments (11)</option>
+<option value="admin">Administration (3)</option>
+<option value="hr">HR &amp; People (4)</option>
+<option value="user">User Management (18)</option>
+<option value="dev">Developer Management (14)</option>
+<option value="tournament">Tournament Management (22)</option>
+<option value="trust">Trust &amp; Safety (26)</option>
+<option value="verif">Verification (12)</option>
+<option value="support">Support (24)</option>
+<option value="finance">Finance &amp; Escrow (8)</option>
+<option value="content">Content &amp; Games (9)</option>
+<option value="ops">Operations (8)</option>
+</select>
+<button class="px-space-sm py-2 rounded-xl bg-surface-container-high text-on-surface font-label-sm text-label-sm hover:bg-surface-container-highest transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">tune</span>
+<span>Attributes</span>
+</button>
+</div>
+</div>
+<!-- 4. MAIN CONTENT AREA: TWO-COLUMN / GRID LAYOUT -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN (Approx 65% / 8 Columns on XL): STAFF DIRECTORY TABLE -->
+<div class="xl:col-span-8 flex flex-col space-y-space-md">
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest/90 shadow-xl overflow-hidden">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md gap-space-sm">
+<div>
+<div class="flex items-center gap-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Internal Staff Directory</h2>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-sm text-[11px] font-semibold">148 Personnel</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Live telemetry sync across Riyadh ME-East identity nodes.</p>
+</div>
+<!-- Table pagination / meta summary -->
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-outline">
+<span>Showing 1-7 of 148</span>
+<div class="flex items-center">
+<button class="p-1 rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest disabled:opacity-40" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-1 rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest ml-1">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto -mx-space-lg px-space-lg">
+<table class="w-full text-left font-body-sm text-body-sm min-w-[760px]">
+<thead>
+<tr class="bg-surface-container-low/50 text-outline font-label-sm text-[11px] uppercase tracking-wider">
+<th class="py-3 px-3 rounded-l-xl">Staff Member</th>
+<th class="py-3 px-3">ID</th>
+<th class="py-3 px-3">Department</th>
+<th class="py-3 px-3">Authority / Role Tier</th>
+<th class="py-3 px-3">Status</th>
+<th class="py-3 px-3">Joined</th>
+<th class="py-3 px-3">Active</th>
+<th class="py-3 px-3 rounded-r-xl text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 space-y-1 text-on-surface">
+<!-- Row 1: Faisal Al-Otaibi -->
+<tr class="staff-row group hover:bg-surface-container-high/40 transition-colors cursor-pointer" data-status="active" onclick="selectStaff('Faisal Al-Otaibi', '#EMP-1082', 'Senior Trust &amp; Safety Lead • L3', 'Trust &amp; Safety', 'Feb 10, 2026', 'placeholder')">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-space-sm">
+<img class="w-9 h-9 rounded-full object-cover shadow-[0_0_8px_rgba(35,61,255,0.3)]" data-alt="Portrait of Faisal Al-Otaibi, professional Saudi tech manager wearing glasses in a deep oceanic gaming office with electric blue rim lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvkLzbsBIk83gjFak7BytdZhYR_WR6o-R7IBYSRXyM0jDBRw-bvqSD4GmhzASWA2Y66RIVcHVt8Gre1evFRn6_asySR90aZGkoUT5s9EugYhxTOF6FZg4Cu_133M9i0nwGVpEvIr6aK5snJ84jGMG4b6O83S6zXAj7oyFs-duK1s9mstFatsoUiMqQ2XjYmonMDN3jjzB4h7MosxUvVaR-lXai46V4odn6Vt2MpKfVKLZWh4GWntQ"/>
+<div class="min-w-0">
+<div class="font-headline-sm text-sm text-on-surface font-semibold truncate group-hover:text-secondary transition-colors">Faisal Al-Otaibi</div>
+<div class="font-label-sm text-[11px] text-outline truncate">f.otaibi@riyadahelite.com</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 font-mono font-label-sm text-secondary">#EMP-1082</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary font-label-sm text-[11px]">Trust &amp; Safety</span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>Anti-Cheat Lead • L3</span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_6px_#5cb6f9]"></span> Active
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-outline">Feb 10, 2026</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-secondary-fixed">12m ago</td>
+<td class="py-3.5 px-3 text-right">
+<button class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-base">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Fahad Al-Saud (Founder - Locked) -->
+<tr class="staff-row group hover:bg-surface-container-high/40 transition-colors cursor-pointer" data-status="active" onclick="selectStaff('Fahad Al-Saud', '#EMP-1001', 'Founder &amp; Executive Admin • L5 [LOCKED]', 'Administration', 'Aug 01, 2025', 'placeholder')">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-space-sm">
+<img class="w-9 h-9 rounded-full object-cover shadow-[0_0_10px_rgba(202,232,255,0.4)]" data-alt="Executive portrait of young Saudi founder in modern tech attire against a dark sapphire cybersecurity server dashboard backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCstVz6Qs6hE2lnc2Q4730axx_qsOWTntrXTII3s99R3XrKKz3epTJ1eMI9HF3NxOE_R6FGiUibQM9XXDRK010xTx4u4XqRC1oHGyyuLBmBv-TBnFh7d7xvC5NHY2pKVcVNbexkKWt2Ul0QT7GpW8VkgVu2I7jphNabNMc20BZjXW2LjwxOqkrmWFOalp9F_GBDDpHatbEmGGR9q1dRFsLahky03q0D4nJCTzuJ_0bJChrJ1qIVL6A"/>
+<div class="min-w-0">
+<div class="font-headline-sm text-sm text-on-surface font-semibold truncate flex items-center gap-1 group-hover:text-primary transition-colors">
+                          Fahad Al-Saud
+                          <span class="material-symbols-outlined text-xs text-primary" title="Immutable Root">verified</span>
+</div>
+<div class="font-label-sm text-[11px] text-outline truncate">founder@riyadahelite.com</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 font-mono font-label-sm text-primary">#EMP-1001</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full bg-primary-container/20 text-primary font-label-sm text-[11px]">Administration</span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs">
+<span class="px-2 py-0.5 rounded bg-primary-container/30 text-on-primary-container font-label-sm text-[10px] font-bold tracking-wider">FOUNDER • L5 [LOCKED]</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-container/20 text-primary font-label-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Protected
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-outline">Aug 01, 2025</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-secondary-fixed">Just now</td>
+<td class="py-3.5 px-3 text-right">
+<span class="material-symbols-outlined text-outline text-base" title="Immutable Root Role">lock</span>
+</td>
+</tr>
+<!-- Row 3: Reem Al-Kadi -->
+<tr class="staff-row group hover:bg-surface-container-high/40 transition-colors cursor-pointer" data-status="active" onclick="selectStaff('Reem Al-Kadi', '#EMP-1045', 'Escrow Controller • L3', 'Finance &amp; Escrow', 'Nov 12, 2025', 'placeholder')">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-secondary font-headline-sm text-xs font-bold shadow-[0_0_8px_rgba(92,182,249,0.2)]">
+                        RA
+                      </div>
+<div class="min-w-0">
+<div class="font-headline-sm text-sm text-on-surface font-semibold truncate group-hover:text-secondary transition-colors">Reem Al-Kadi</div>
+<div class="font-label-sm text-[11px] text-outline truncate">r.kadi@riyadahelite.com</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 font-mono font-label-sm text-secondary">#EMP-1045</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary font-label-sm text-[11px]">Finance</span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-on-surface-variant">Escrow Controller • L3</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_6px_#5cb6f9]"></span> Active
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-outline">Nov 12, 2025</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-secondary-fixed">2h ago</td>
+<td class="py-3.5 px-3 text-right">
+<button class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-base">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Omar Al-Ghamdi -->
+<tr class="staff-row group hover:bg-surface-container-high/40 transition-colors cursor-pointer" data-status="active" onclick="selectStaff('Omar Al-Ghamdi', '#EMP-1012', 'Tournament Arbiter Lead • L2', 'Tournament Management', 'Jan 15, 2026', 'placeholder')">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-tertiary font-headline-sm text-xs font-bold shadow-[0_0_8px_rgba(92,182,249,0.2)]">
+                        OA
+                      </div>
+<div class="min-w-0">
+<div class="font-headline-sm text-sm text-on-surface font-semibold truncate group-hover:text-secondary transition-colors">Omar Al-Ghamdi</div>
+<div class="font-label-sm text-[11px] text-outline truncate">o.ghamdi@riyadahelite.com</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 font-mono font-label-sm text-secondary">#EMP-1012</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary font-label-sm text-[11px]">Tournaments</span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-on-surface-variant">Tournament Arbiter • L2</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_6px_#5cb6f9]"></span> Active
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-outline">Jan 15, 2026</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-secondary-fixed">Just now</td>
+<td class="py-3.5 px-3 text-right">
+<button class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-base">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 5: Layla Mansour -->
+<tr class="staff-row group hover:bg-surface-container-high/40 transition-colors cursor-pointer" data-status="pending" onclick="selectStaff('Layla Mansour', '#EMP-1045', 'Host Verification Specialist • L2', 'Verification', 'Dec 05, 2025', 'placeholder')">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-space-sm">
+<img class="w-9 h-9 rounded-full object-cover shadow-[0_0_8px_rgba(35,61,255,0.2)]" data-alt="Portrait of Layla Mansour, smart young female Saudi operations engineer working on telemetry systems, soft studio cyan illumination." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeR1MsKXKDsxEMav24LTWW3OpybtmuyGlCq99NokGqYJ7ss2mLfP7rLQ8yxzXPgkZuSelmXYN1qiSfuqEyFGCB0QlfVmgcs99c4NTR40zglSVzq8adPxVidjI4C-Lq9i_9Om03PWz4GxNRzdhqYyq4MugzuKIHSYoWqdk5X_H7KlkWZHRmBxrYffSP2k7mFABHFYncwnmHr1lmB1pUx2cvlucK4yLuqRU0r9JlFCNA8eaULFaYtmE"/>
+<div class="min-w-0">
+<div class="font-headline-sm text-sm text-on-surface font-semibold truncate group-hover:text-secondary transition-colors">Layla Mansour</div>
+<div class="font-label-sm text-[11px] text-outline truncate">l.mansour@riyadahelite.com</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 font-mono font-label-sm text-secondary">#EMP-1090</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary font-label-sm text-[11px]">Verification</span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-on-surface-variant">Host Verification • L2</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary font-label-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Pending Elevation
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-outline">Dec 05, 2025</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-outline">1h ago</td>
+<td class="py-3.5 px-3 text-right">
+<button class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-base">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 6: Zaid Al-Harbi -->
+<tr class="staff-row group hover:bg-surface-container-high/40 transition-colors cursor-pointer" data-status="active" onclick="selectStaff('Zaid Al-Harbi', '#EMP-1102', 'Junior QA Automation • L1', 'Developer Management', 'Mar 02, 2026', 'placeholder')">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-surface-container-high flex items-center justify-center text-secondary font-headline-sm text-xs font-bold shadow-[0_0_8px_rgba(92,182,249,0.2)]">
+                        ZH
+                      </div>
+<div class="min-w-0">
+<div class="font-headline-sm text-sm text-on-surface font-semibold truncate group-hover:text-secondary transition-colors">Zaid Al-Harbi</div>
+<div class="font-label-sm text-[11px] text-outline truncate">z.harbi@riyadahelite.com</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 font-mono font-label-sm text-secondary">#EMP-1102</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary font-label-sm text-[11px]">Dev Management</span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-on-surface-variant">Junior QA • L1</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-outline">Mar 02, 2026</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-outline">3d ago</td>
+<td class="py-3.5 px-3 text-right">
+<button class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-base">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 7: Nasser Al-Husseini (Co-Founder - Protected) -->
+<tr class="staff-row group hover:bg-surface-container-high/40 transition-colors cursor-pointer" data-status="active" onclick="selectStaff('Nasser Al-Husseini', '#EMP-1002', 'Co-Founder &amp; CTO • L4 [PROTECTED]', 'Administration', 'Aug 01, 2025', 'placeholder')">
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-primary-container/40 flex items-center justify-center text-on-primary-container font-headline-sm text-xs font-bold shadow-[0_0_8px_rgba(35,61,255,0.4)]">
+                        NH
+                      </div>
+<div class="min-w-0">
+<div class="font-headline-sm text-sm text-on-surface font-semibold truncate flex items-center gap-1 group-hover:text-primary transition-colors">
+                          Nasser Al-Husseini
+                          <span class="material-symbols-outlined text-xs text-secondary" title="Co-Founder Node">verified_user</span>
+</div>
+<div class="font-label-sm text-[11px] text-outline truncate">nasser@riyadahelite.com</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 font-mono font-label-sm text-primary">#EMP-1002</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full bg-primary-container/20 text-primary font-label-sm text-[11px]">Administration</span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-secondary-fixed font-label-sm text-[10px] font-bold tracking-wider">CO-FOUNDER • L4 [PROTECTED]</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                    </span>
+</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-outline">Aug 01, 2025</td>
+<td class="py-3.5 px-3 font-label-sm text-xs text-secondary-fixed">45m ago</td>
+<td class="py-3.5 px-3 text-right">
+<span class="material-symbols-outlined text-outline text-base" title="Protected Authority Tier">lock</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Note on protected roles -->
+<div class="mt-space-md p-space-sm rounded-xl bg-surface-container-low/60 flex items-center gap-space-sm text-outline">
+<span class="material-symbols-outlined text-sm text-secondary">admin_panel_settings</span>
+<p class="font-label-sm text-label-sm">
+<span class="text-on-surface font-semibold">Protected Root Authority Policy:</span> Founder (Level 5) and Co-Founder (Level 4) roles are strictly read-only and cannot be altered or suspended by HR personnel. Elevated actions require cryptographic multi-signature authentication.
+            </p>
+</div>
+</div>
+<!-- Telemetry & Distribution Insights Sub-panel -->
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest/90 shadow-xl space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Staff Headcount Velocity &amp; Tier Spread</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Active personnel distribution across platform security authority tiers.</p>
+</div>
+<span class="font-label-sm text-label-sm text-secondary tracking-wider uppercase">Q1 2026 AUDIT</span>
+</div>
+<!-- Distribution Visualization (Micro Chart) -->
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-space-sm">
+<div class="p-space-sm rounded-xl bg-surface-container-low/80 flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Tier 1 • Basic</span>
+<div class="mt-space-xs flex items-baseline justify-between">
+<span class="font-headline-sm text-lg text-on-surface font-bold">54</span>
+<span class="font-label-sm text-xs text-on-surface-variant">36.5%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-space-2xs overflow-hidden">
+<div class="bg-outline h-full w-[36%]"></div>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low/80 flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase">Tier 2 • Ops</span>
+<div class="mt-space-xs flex items-baseline justify-between">
+<span class="font-headline-sm text-lg text-on-surface font-bold">62</span>
+<span class="font-label-sm text-xs text-secondary">41.8%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-space-2xs overflow-hidden">
+<div class="bg-secondary h-full w-[42%]"></div>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low/80 flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-primary uppercase">Tier 3 • Lead</span>
+<div class="mt-space-xs flex items-baseline justify-between">
+<span class="font-headline-sm text-lg text-on-surface font-bold">28</span>
+<span class="font-label-sm text-xs text-primary">18.9%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-space-2xs overflow-hidden">
+<div class="bg-primary-container h-full w-[19%]"></div>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low/80 flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-tertiary uppercase">Tier 4 • Co-Found</span>
+<div class="mt-space-xs flex items-baseline justify-between">
+<span class="font-headline-sm text-lg text-on-surface font-bold">3</span>
+<span class="font-label-sm text-xs text-tertiary">2.0%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-space-2xs overflow-hidden">
+<div class="bg-tertiary h-full w-[8%]"></div>
+</div>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-low/80 flex flex-col justify-between">
+<span class="font-label-sm text-label-sm text-primary-fixed uppercase">Tier 5 • Root</span>
+<div class="mt-space-xs flex items-baseline justify-between">
+<span class="font-headline-sm text-lg text-on-surface font-bold">1</span>
+<span class="font-label-sm text-xs text-primary-fixed">0.8%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-space-2xs overflow-hidden">
+<div class="bg-primary-fixed h-full w-[5%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (Approx 35% / 4 Columns on XL): PROFILE INSPECTOR & INTERNAL REQUESTS -->
+<div class="xl:col-span-4 flex flex-col space-y-space-md">
+<!-- A. FEATURED / SELECTED STAFF PROFILE DRAWER -->
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest/90 shadow-xl space-y-space-md relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-secondary-container/10 blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-semibold">Staff Profile Telemetry</span>
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container/20 text-secondary font-label-sm text-[10px] font-bold">ENCLAVE VERIFIED</span>
+</div>
+<!-- Staff Header Info -->
+<div class="flex items-start gap-space-md pt-space-xs">
+<img class="w-16 h-16 rounded-2xl object-cover shadow-[0_0_14px_rgba(92,182,249,0.3)] shrink-0" data-alt="Faisal Al-Otaibi headshot in modern gaming cybersecurity room with high contrast blue highlights." id="inspector-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRI1-AjX_sP5me3xvasGujxKBg6X7GGN6vw9b81VIyqoaq3oPUiZElf_sGeIWYwAaQSR43iJpgLdEra4G4myMIZKpa646sy74C9AqJlCrvef2ICgIX90FUqFcdQ35bH0YQNzrswtrctKlJGEDmFliNrbpxLr5OGm9SA11xxtlTsTyf85G1-4T3L3GSPqRINmLcBm1gQ_DNGyNECRWqp8h6D-1PpAXG31ry4PWZxhavdO35VBrJwO8"/>
+<div class="min-w-0">
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate font-bold" id="inspector-name">Faisal Al-Otaibi</h3>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-mono font-label-sm text-secondary" id="inspector-id">#EMP-1082</span>
+<span class="text-outline">•</span>
+<span class="font-label-sm text-xs text-on-surface-variant" id="inspector-dept">Trust &amp; Safety</span>
+</div>
+<p class="font-label-sm text-label-sm text-primary font-semibold mt-1" id="inspector-role">Senior Anti-Cheat Supervisor • L3</p>
+</div>
+</div>
+<!-- Quick Metrics Row -->
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<div class="p-space-xs rounded-xl bg-surface-container-low/70">
+<div class="font-label-sm text-[10px] uppercase text-outline">Account Status</div>
+<div class="font-label-sm text-xs text-secondary font-bold flex items-center gap-1 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active • Node #1
+              </div>
+</div>
+<div class="p-space-xs rounded-xl bg-surface-container-low/70">
+<div class="font-label-sm text-[10px] uppercase text-outline">Joined Date</div>
+<div class="font-label-sm text-xs text-on-surface font-medium mt-0.5" id="inspector-joined">Feb 10, 2026</div>
+</div>
+</div>
+<!-- Assigned Permissions Section -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Active Permissions</span>
+<span class="font-label-sm text-[10px] text-secondary">4 Scopes</span>
+</div>
+<div class="space-y-1.5">
+<div class="flex items-center justify-between px-space-sm py-1.5 rounded-lg bg-surface-container-high/60 text-xs">
+<span class="text-on-surface">Vanguard Telemetry Read / Write</span>
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+</div>
+<div class="flex items-center justify-between px-space-sm py-1.5 rounded-lg bg-surface-container-high/60 text-xs">
+<span class="text-on-surface">Player Conduct Ban (Up to 30 Days)</span>
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+</div>
+<div class="flex items-center justify-between px-space-sm py-1.5 rounded-lg bg-surface-container-high/60 text-xs">
+<span class="text-on-surface">Match Replay Telemetry Scraping</span>
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+</div>
+<div class="flex items-center justify-between px-space-sm py-1.5 rounded-lg bg-surface-container-high/60 text-xs">
+<span class="text-on-surface">Escrow Lock Recommendation</span>
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Restricted Scopes (Lockout indicator) -->
+<div class="p-space-sm rounded-xl bg-surface-container-low/80 space-y-space-2xs">
+<div class="flex items-center gap-1.5 text-error">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Restricted Scopes (Founder Auth)</span>
+</div>
+<p class="font-label-sm text-[11px] text-outline leading-tight">
+              Permanent Moderator Revocation, Tournament Vault Access, and Studio Asset Seizure are locked to Level 4/5.
+            </p>
+</div>
+<!-- Recent Activity Feed -->
+<div class="space-y-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Recent Security Activity</span>
+<div class="space-y-2 text-xs">
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary mt-1.5 shrink-0"></span>
+<div>
+<p class="text-on-surface font-medium">Approved Vanguard heuristics update #03</p>
+<span class="text-outline text-[10px]">45m ago • Automated check passed</span>
+</div>
+</div>
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-outline mt-1.5 shrink-0"></span>
+<div>
+<p class="text-on-surface font-medium">Issued 7-day tactical scrim mute to Player #9821</p>
+<span class="text-outline text-[10px]">3h ago • Griefing infraction</span>
+</div>
+</div>
+<div class="flex items-start gap-2 text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-fixed mt-1.5 shrink-0"></span>
+<div>
+<p class="text-on-surface font-medium">Logged in via Riyadh ME-East Hardware Token</p>
+<span class="text-outline text-[10px]">Today 09:15 • 2FA FIDO2 validated</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-space-xs pt-space-sm">
+<button class="px-space-sm py-2 rounded-xl bg-surface-container-high text-on-surface hover:bg-surface-container-highest font-label-sm text-label-sm transition-colors text-center" type="button">
+              Edit Record
+            </button>
+<button class="px-space-sm py-2 rounded-xl bg-primary-container text-on-primary hover:scale-[1.02] font-label-sm text-label-sm transition-transform shadow-[0_2px_12px_rgba(35,61,255,0.4)] text-center" type="button">
+              Adjust Scopes
+            </button>
+</div>
+</div>
+<!-- B. PENDING INTERNAL REQUESTS & ONBOARDING QUEUE -->
+<div class="p-space-lg rounded-2xl bg-surface-container-lowest/90 shadow-xl space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-lg">pending_actions</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Personnel Requests</h3>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[11px] font-bold">5 Actionable</span>
+</div>
+<!-- Queue List -->
+<div class="space-y-space-sm">
+<!-- Request 1: Escrow Elevation (Locked) -->
+<div class="p-space-sm rounded-xl bg-surface-container-low/70 space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-error-container text-on-error-container uppercase font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">lock</span> Requires Founder Auth
+                </span>
+<span class="font-label-sm text-[10px] text-outline">18m ago</span>
+</div>
+<p class="font-body-sm text-xs text-on-surface">
+<span class="font-semibold text-secondary">Layla Mansour (#EMP-1045)</span> requested Tier-3 Host Escrow Release Scope.
+              </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-sm text-[10px] text-outline">Escrow Release &gt; 50,000 SAR</span>
+<button class="px-space-xs py-1 rounded bg-surface-container-highest text-outline font-label-sm text-[11px] cursor-not-allowed flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">lock</span> Escalated
+                </button>
+</div>
+</div>
+<!-- Request 2: Onboarding Approval -->
+<div class="p-space-sm rounded-xl bg-surface-container-low/70 space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-secondary-container/20 text-secondary uppercase font-bold">
+                  Onboarding Step 3
+                </span>
+<span class="font-label-sm text-[10px] text-outline">1h ago</span>
+</div>
+<p class="font-body-sm text-xs text-on-surface">
+<span class="font-semibold text-secondary">Khalid Bin Talal</span> → Developer Relations Specialist.
+              </p>
+<div class="flex items-center gap-space-xs pt-1">
+<button class="flex-1 py-1 rounded bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-sm text-[11px] transition-colors text-center">
+                  Review Docs
+                </button>
+<button class="flex-1 py-1 rounded bg-primary-container text-on-primary font-label-sm text-[11px] hover:scale-[1.02] transition-transform text-center shadow-[0_0_8px_rgba(35,61,255,0.4)]">
+                  Approve
+                </button>
+</div>
+</div>
+<!-- Request 3: Role Change -->
+<div class="p-space-sm rounded-xl bg-surface-container-low/70 space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-tertiary uppercase font-bold">
+                  Internal Promotion
+                </span>
+<span class="font-label-sm text-[10px] text-outline">3h ago</span>
+</div>
+<p class="font-body-sm text-xs text-on-surface">
+<span class="font-semibold text-secondary">Zaid Al-Harbi</span> → Junior QA to Lead Automation Engineer.
+              </p>
+<div class="flex items-center justify-end gap-space-xs pt-1">
+<button class="px-space-sm py-1 rounded bg-primary-container text-on-primary font-label-sm text-[11px] hover:scale-[1.02] transition-transform">
+                  Confirm Promotion
+                </button>
+</div>
+</div>
+<!-- Request 4: Hardware Key Re-issue -->
+<div class="p-space-sm rounded-xl bg-surface-container-low/70 space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant uppercase font-bold">
+                  HW Token Re-issue
+                </span>
+<span class="font-label-sm text-[10px] text-outline">Yesterday</span>
+</div>
+<p class="font-body-sm text-xs text-on-surface">
+<span class="font-semibold text-secondary">Reem Al-Kadi</span> (Finance) requested spare YubiKey 5Ci token.
+              </p>
+<div class="flex items-center justify-end gap-space-xs pt-1">
+<button class="px-space-sm py-1 rounded bg-surface-container-high text-secondary hover:bg-surface-container-highest font-label-sm text-[11px] transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">vpn_key</span> Dispatch Token
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. DEPARTMENTAL ECOSYSTEM & ROLES SCOPE SUMMARY (Bottom 11 Cards) -->
+<section class="space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Departmental Ecosystem (11 Divisions)</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Hierarchical structure, operational head counts, and active headcount requisitions.</p>
+</div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#5cb6f9]"></span>
+<span>100% Lead Operational Coverage</span>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-space-sm">
+<!-- Dept 1 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-xl">shield</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-bold">L4/L5</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">Administration</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">3 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Fahad Al-Saud</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-outline-variant flex items-center justify-between">
+<span>Reqs: 0 open</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Dept 2 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary text-xl">badge</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary font-bold">L3</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">HR &amp; People</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">4 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Sara Al-Ghamdi</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-secondary flex items-center justify-between">
+<span>Reqs: +1 open</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Dept 3 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-tertiary text-xl">group</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-tertiary font-bold">L2/L3</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">User Management</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">18 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Tariq Al-Badr</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-outline-variant flex items-center justify-between">
+<span>Reqs: +2 in QA</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Dept 4 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary-fixed text-xl">code</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary-fixed font-bold">L3</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">Developer Mgmt</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">14 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Waleed Al-Mutairi</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-outline-variant flex items-center justify-between">
+<span>Reqs: 1 in pipeline</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Dept 5 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-xl">sports_esports</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-bold">L2/L3</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">Tournaments</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">22 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Omar Al-Ghamdi</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-secondary flex items-center justify-between">
+<span>Reqs: +3 arbiters</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Dept 6 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary text-xl">gavel</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary font-bold">L3</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">Trust &amp; Safety</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">26 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Faisal Al-Otaibi</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-outline-variant flex items-center justify-between">
+<span>Reqs: Full shift</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Dept 7 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-tertiary text-xl">fingerprint</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-tertiary font-bold">L2</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">Verification</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">12 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Mona Al-Khatib</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-outline-variant flex items-center justify-between">
+<span>Reqs: 0 open</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Dept 8 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary-fixed text-xl">headset_mic</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary-fixed font-bold">L1/L2</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">Support</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">24 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Huda Al-Dosari</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-outline-variant flex items-center justify-between">
+<span>Reqs: 24/7 on shift</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Dept 9 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-primary text-xl">account_balance_wallet</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-primary font-bold">L3</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">Finance &amp; Escrow</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">8 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Reem Al-Kadi</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-outline-variant flex items-center justify-between">
+<span>Reqs: Escrow audited</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Dept 10 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-tertiary text-xl">palette</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-tertiary font-bold">L2</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">Content &amp; Games</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">9 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Basil Qasim</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-outline-variant flex items-center justify-between">
+<span>Reqs: Studio sync</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Dept 11 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md hover:bg-surface-container-low/70 transition-colors flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary text-xl">settings_system_daydream</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary font-bold">L2/L3</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold truncate">Operations</h4>
+<div class="font-label-sm text-xs text-secondary font-bold">8 Personnel</div>
+<p class="font-label-sm text-[10px] text-outline truncate">Lead: Sami Al-Shammari</p>
+</div>
+<div class="mt-space-xs pt-space-xs font-label-sm text-[10px] text-outline-variant flex items-center justify-between">
+<span>Reqs: Node ME-East 1</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</div>
+<!-- Extra Tile: Requisition Overview CTA -->
+<div class="p-space-md rounded-2xl bg-primary-container/20 shadow-md flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="material-symbols-outlined text-secondary text-xl">add_circle</span>
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-primary-container text-on-primary font-bold">ACTIVE</span>
+</div>
+<div class="mt-space-sm space-y-0.5">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold">New Department</h4>
+<p class="font-label-sm text-xs text-on-surface-variant">Request structural expansion</p>
+</div>
+<button class="mt-space-xs pt-space-xs font-label-sm text-[11px] text-secondary hover:underline flex items-center gap-1">
+<span>Launch requisition</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 6. ROLES & PERMISSION GOVERNANCE BANNER -->
+<footer class="p-space-md rounded-2xl bg-surface-container-lowest/80 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-sm max-w-4xl">
+<span class="material-symbols-outlined text-secondary text-2xl shrink-0 mt-0.5">lock</span>
+<div class="space-y-1">
+<h4 class="font-headline-sm text-sm text-on-surface font-semibold uppercase tracking-wider">
+            Riyadah Elite HR People Operations Enclave • Role Authority Framework
+          </h4>
+<p class="font-body-sm text-body-sm text-outline leading-relaxed">
+            Role authority tiers are strictly enforced. HR personnel have administrative authority over Level 1–3 internal staff. Modification of Executive Root (Level 5 Founder) and Operational Root (Level 4 Co-Founder) roles is cryptographically restricted and requires immutable Founder enclave signatures.
+          </p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0 self-end md:self-center">
+<span class="font-mono font-label-sm text-[11px] text-outline">SEC-ENCLAVE-2026-Q1</span>
+<span class="px-space-xs py-1 rounded bg-surface-container-high text-secondary font-label-sm text-[10px] font-bold">
+          COMPLIANT
+        </span>
+</div>
+</footer>
+</div>
+</div></main></div></body></html>

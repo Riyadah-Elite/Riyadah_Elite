@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: 'class', theme: { extend: { 'colors': { 'secondary-fixed-dim': '#92ccff', 'error': '#ffb4ab', 'surface-container-low': '#13183d', 'on-error': '#690005', 'on-tertiary-container': '#bcdaf1', 'on-tertiary': '#153345', 'surface-bright': '#31365d', 'secondary': '#92ccff', 'on-tertiary-fixed-variant': '#2d4a5c', 'secondary-fixed': '#cce5ff', 'error-container': '#93000a', 'secondary-container': '#3698d9', 'outline': '#8f8fa3', 'surface-container-high': '#21274c', 'on-primary': '#00169d', 'primary-container': '#233dff', 'surface-variant': '#2c3258', 'tertiary-fixed': '#c8e6fd', 'on-primary-fixed-variant': '#0022da', 'on-secondary-fixed': '#001e31', 'primary-fixed': '#dfe0ff', 'tertiary-container': '#446073', 'surface-container': '#171c41', 'surface-dim': '#0a0f35', 'inverse-primary': '#2640ff', 'on-surface-variant': '#c5c5da', 'background': '#0a0f35', 'surface-container-highest': '#2c3258', 'surface': '#0a0f35', 'on-primary-container': '#d0d3ff', 'surface-container-lowest': '#050930', 'on-secondary': '#003351', 'primary': '#bcc2ff', 'on-secondary-fixed-variant': '#004b73', 'on-surface': '#dfe0ff', 'tertiary': '#adcae1', 'on-primary-fixed': '#000a64', 'tertiary-fixed-dim': '#adcae1', 'on-error-container': '#ffdad6', 'surface-tint': '#bcc2ff', 'inverse-on-surface': '#282d53', 'outline-variant': '#444557', 'on-background': '#dfe0ff', 'primary-fixed-dim': '#bcc2ff', 'on-secondary-container': '#002c47', 'inverse-surface': '#dfe0ff', 'on-tertiary-fixed': '#001e2e' }, 'borderRadius': { 'DEFAULT': '0.25rem', 'lg': '0.5rem', 'xl': '0.75rem', 'full': '9999px' }, 'spacing': { 'space-sm': '0.75rem', 'space-3xl': '4.5rem', 'space-2xl': '3rem', 'space-2xs': '0.25rem', 'gutter': '1.5rem', 'space-lg': '1.5rem', 'space-xs': '0.5rem', 'container-max': '1280px', 'space-xl': '2rem', 'space-md': '1rem' }, 'fontFamily': { 'display-lg-mobile': ['Space Grotesk'], 'display-lg': ['Space Grotesk'], 'body-md': ['Plus Jakarta Sans'], 'body-sm': ['Plus Jakarta Sans'], 'label-sm': ['Space Grotesk'], 'headline-lg': ['Space Grotesk'], 'headline-xl': ['Space Grotesk'], 'body-lg': ['Plus Jakarta Sans'], 'label-lg': ['Space Grotesk'], 'headline-xl-mobile': ['Space Grotesk'], 'headline-sm': ['Space Grotesk'] }, 'fontSize': { 'display-lg-mobile': ['38px', { 'lineHeight': '44px', 'letterSpacing': '-0.02em', 'fontWeight': '700' }], 'display-lg': ['64px', { 'lineHeight': '72px', 'letterSpacing': '-0.03em', 'fontWeight': '700' }], 'body-md': ['16px', { 'lineHeight': '24px', 'fontWeight': '400' }], 'body-sm': ['14px', { 'lineHeight': '20px', 'fontWeight': '400' }], 'label-sm': ['11px', { 'lineHeight': '14px', 'letterSpacing': '0.08em', 'fontWeight': '700' }], 'headline-lg': ['32px', { 'lineHeight': '40px', 'letterSpacing': '-0.01em', 'fontWeight': '600' }], 'headline-xl': ['44px', { 'lineHeight': '52px', 'letterSpacing': '-0.02em', 'fontWeight': '700' }], 'body-lg': ['18px', { 'lineHeight': '28px', 'fontWeight': '400' }], 'label-lg': ['14px', { 'lineHeight': '18px', 'letterSpacing': '0.04em', 'fontWeight': '600' }], 'headline-xl-mobile': ['28px', { 'lineHeight': '36px', 'letterSpacing': '-0.01em', 'fontWeight': '700' }], 'headline-sm': ['22px', { 'lineHeight': '30px', 'fontWeight': '600' }] } } } };</script></head><body class="bg-background font-body-sm text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/95 backdrop-blur-xl z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col flex-1 overflow-y-auto"><div class="h-20 px-space-lg flex items-center bg-surface-container-low/40"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase">Operations Enclave</span><span class="font-label-lg text-label-lg text-on-surface font-semibold tracking-wider uppercase">Content Ops • Level 2 Editorial</span></div></div><div class="px-space-md py-space-sm"><div class="px-space-sm py-space-xs rounded bg-surface-container-high/40 flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[16px]">verified_user</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Ops Level 2 Discovery Desk</span></div></div><div class="px-space-md py-space-xs"><div class="px-space-sm pt-space-xs pb-space-2xs"><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Overview</span></div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-lg shadow-[0_0_20px_rgba(35,61,255,0.4)]"><a aria-current="page" class="flex items-center justify-between px-space-sm py-2 transition-all group bg-primary-container text-on-primary-container font-bold rounded-lg shadow-[0_0_20px_rgba(35,61,255,0.4)]" data-path="overview" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">space_dashboard</span><span class="font-label-lg text-label-lg font-medium">Command Center</span></div><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-bold">Active</span></a></nav></div><div class="px-space-md py-space-xs"><div class="px-space-sm pt-space-xs pb-space-2xs"><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Content Registry</span></div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-lg"><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="homepage-hero-curation" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">web</span><span class="font-label-lg text-label-lg font-medium">Homepage Curation</span></div></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="games-featured-tags" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">sports_esports</span><span class="font-label-lg text-label-lg font-medium">Games &amp; Tags</span></div><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-secondary-fixed font-semibold">8 Active</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="tournaments-discovery" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">trophy</span><span class="font-label-lg text-label-lg font-medium">Tournaments Showcase</span></div><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-secondary-fixed font-semibold">6 Live</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="announcements" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">campaign</span><span class="font-label-lg text-label-lg font-medium">Announcements</span></div><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-secondary-fixed font-semibold">3 Sched</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="faqs-knowledge-base" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">quiz</span><span class="font-label-lg text-label-lg font-medium">FAQs &amp; Knowledge</span></div></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="categories-taxonomy" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">category</span><span class="font-label-lg text-label-lg font-medium">Taxonomy &amp; Tags</span></div></a></nav></div><div class="px-space-md py-space-xs"><div class="px-space-sm pt-space-xs pb-space-2xs"><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Publishing Pipeline</span></div><nav class="space-y-1" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded-lg"><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="drafts" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">edit_document</span><span class="font-label-lg text-label-lg font-medium">Drafts</span></div><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-semibold">7</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="scheduled" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">schedule</span><span class="font-label-lg text-label-lg font-medium">Scheduled</span></div><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-semibold">4</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="published" href="#"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span><span class="font-label-lg text-label-lg font-medium">Published</span></div><span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-semibold">42</span></a></nav></div></div><div class="p-space-md bg-surface-container-lowest/80 space-y-space-xs"><div class="p-space-sm rounded-lg bg-surface-container-low/70"><div class="flex items-center gap-space-xs text-secondary mb-1"><span class="material-symbols-outlined text-[15px]">dns</span><span class="font-label-sm text-label-sm uppercase tracking-wider">Node Telemetry</span></div><p class="font-label-sm text-label-sm text-on-surface-variant">CMS-NODE #08 (8ms) • Cloudflare CDN Synced • Public Discovery Scope Only</p></div><div class="p-space-sm rounded-lg bg-surface-container-high/40"><div class="flex items-center gap-space-xs text-outline mb-0.5"><span class="material-symbols-outlined text-[14px]">shield_lock</span><span class="font-label-sm text-label-sm uppercase tracking-wider">Security Isolation</span></div><p class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Restricted enclave: Isolated from finance ledger, source code, and player sanction modules.</p></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-20 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="w-full h-full px-space-lg flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md min-w-0"><div class="flex items-center gap-space-sm shrink-0"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"/><div class="h-5 w-px bg-surface-container-high"></div><span class="font-label-lg text-label-lg text-on-surface tracking-wider font-bold uppercase hidden xl:inline">Riyadah Elite</span></div><div class="flex items-center gap-space-xs truncate text-outline font-label-sm text-label-sm uppercase tracking-wider"><span class="text-on-surface-variant hidden lg:inline">ADMIN ROOT</span><span class="material-symbols-outlined text-[14px] hidden lg:inline">chevron_right</span><span class="text-on-surface-variant hidden md:inline">CONTENT OPERATIONS</span><span class="material-symbols-outlined text-[14px] hidden md:inline">chevron_right</span><span class="text-secondary font-semibold">CMS COMMAND CENTER</span></div><div class="hidden 2xl:flex items-center gap-space-xs px-3 py-1 rounded-full bg-surface-container-high/70"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">PUBLIC CMS MESH • EDGE CDN REPLICATION ACTIVE (RUH-EDGE-01)</span></div></div><div class="flex items-center gap-space-md shrink-0"><div class="relative hidden sm:block w-48 md:w-64"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span><input class="w-full bg-surface-container-low/70 text-on-surface font-body-sm text-body-sm pl-9 pr-10 py-1.5 rounded-lg outline-none focus:ring-1 focus:ring-secondary placeholder-outline" placeholder="Search CMS entities..." type="text"/><kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant uppercase">⌘K</kbd></div><a class="hidden md:inline-flex items-center gap-space-2xs px-3 py-2 rounded-lg bg-surface-container-high text-on-surface hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg font-medium transition-all" data-path="preview-portal" href="#"><span class="material-symbols-outlined text-[18px] text-secondary">open_in_new</span><span>Preview Portal</span></a><a class="inline-flex items-center gap-space-2xs px-4 py-2 rounded-lg bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary font-label-lg text-label-lg font-bold shadow-[0_4px_20px_rgba(35,61,255,0.4)] transition-all" data-path="create-content" href="#"><span class="material-symbols-outlined text-[18px]">add</span><span>+ Create New Content</span></a><div class="h-8 w-px bg-surface-container-high hidden sm:block"></div><div class="flex items-center gap-space-sm pl-space-2xs"><div class="flex flex-col text-right hidden xl:flex"><span class="font-label-lg text-label-lg text-on-surface font-semibold leading-tight">Zaid Al-Harthy</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Lead Content &amp; Editorial • Level 2 CMS</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-20 px-space-gutter bg-surface min-h-screen"><div class="flex flex-col w-full text-on-surface">
+<div class="space-y-space-xl pb-space-3xl">
+<!-- 1. TOP HERO / OVERVIEW BANNER -->
+<section class="relative rounded-2xl p-space-xl overflow-hidden bg-surface-container-low shadow-xl">
+<div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-primary-container/20 blur-3xl pointer-events-none"></div>
+<div class="absolute right-1/3 bottom-0 w-64 h-64 rounded-full bg-secondary-container/15 blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col xl:flex-row xl:items-center justify-between gap-space-lg">
+<div class="max-w-3xl space-y-space-xs">
+<div class="flex items-center gap-space-xs text-secondary">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Operations Desk • Level 2 Editorial Node</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">
+            Public Experience &amp; Discovery CMS Command Center
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Curate public-facing hero carousels, featured game testing titles, sanctioned tournament spotlights, global platform announcements, and public taxonomy across Riyadah Elite.
+          </p>
+<div class="pt-space-2xs flex flex-wrap items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high/80">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="w-2 h-2 rounded-full bg-secondary -ml-3.5"></span>
+<span class="text-on-surface">Last CDN Invalidation: 4m ago</span>
+</div>
+<span class="text-outline">•</span>
+<span class="text-secondary-fixed">Cache Hit Ratio: 99.8%</span>
+<span class="text-outline">•</span>
+<span class="text-on-surface-variant">Edge Node: RUH-DC1 (KSA Riyadh)</span>
+</div>
+</div>
+<!-- Control Action Bar -->
+<div class="flex flex-wrap items-center gap-space-sm self-start xl:self-center">
+<button class="flex items-center gap-space-2xs px-3.5 py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary-fixed font-label-lg text-label-lg transition-all shadow-sm active:scale-95" id="purgeCacheBtn">
+<span class="material-symbols-outlined text-[18px] text-secondary">bolt</span>
+<span>Purge Edge Cache (RUH-DC1)</span>
+</button>
+<a class="flex items-center gap-space-2xs px-3.5 py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-[18px] text-secondary">visibility</span>
+<span>Preview Live Homepage</span>
+</a>
+<div class="relative group">
+<button class="flex items-center gap-space-2xs px-4 py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg font-bold shadow-[0_4px_20px_rgba(35,61,255,0.45)] transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Create New Item</span>
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+</button>
+<div class="hidden group-hover:flex group-focus-within:flex flex-col absolute right-0 top-full mt-1.5 w-60 py-2 rounded-xl bg-surface-container-highest/95 backdrop-blur-xl shadow-2xl z-50">
+<a class="flex items-center gap-2 px-4 py-2 text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-secondary text-[18px]">campaign</span> Announcement
+              </a>
+<a class="flex items-center gap-2 px-4 py-2 text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-secondary text-[18px]">sports_esports</span> Featured Game Title
+              </a>
+<a class="flex items-center gap-2 px-4 py-2 text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-secondary text-[18px]">trophy</span> Tournament Spotlight
+              </a>
+<a class="flex items-center gap-2 px-4 py-2 text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg" href="#">
+<span class="material-symbols-outlined text-secondary text-[18px]">quiz</span> FAQ Article
+              </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. KEY CMS METRICS ROW (6 KPIs in Cards) -->
+<section class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low/90 flex flex-col justify-between shadow-md">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Published Items</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">58</div>
+<div class="font-label-sm text-label-sm text-secondary-fixed mt-1 flex items-center gap-1">
+<span class="text-secondary font-bold">+6</span> this week • 100% Synced
+          </div>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low/90 flex flex-col justify-between shadow-md">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Drafts in Review</span>
+<span class="material-symbols-outlined text-[18px] text-tertiary">edit_note</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">7</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">2 pending editorial check</div>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low/90 flex flex-col justify-between shadow-md">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Scheduled</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">schedule</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">4</div>
+<div class="font-label-sm text-label-sm text-secondary-fixed-dim mt-1 truncate">Patch Note @ 20:00 AST</div>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low/90 flex flex-col justify-between shadow-md">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Featured Games</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">sports_esports</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">6 / 8</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant mt-1">2 public slots available</div>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low/90 flex flex-col justify-between shadow-md">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Tournaments</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">military_tech</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">4</div>
+<div class="font-label-sm text-label-sm text-secondary mt-1">Arbiter Sanctioned</div>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low/90 flex flex-col justify-between shadow-md">
+<div class="flex items-center justify-between text-on-surface-variant mb-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Knowledge Base</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">help</span>
+</div>
+<div>
+<div class="font-headline-lg text-headline-lg text-on-surface font-bold leading-tight">24</div>
+<div class="font-label-sm text-label-sm text-secondary-fixed mt-1">98.4% Helpful rating</div>
+</div>
+</div>
+</section>
+<!-- 3. MAIN WORKSPACE (Dual Column / Multi-Section Grid) -->
+<div class="grid grid-cols-1 2xl:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT & CENTER (8 of 12 columns on 2xl) -->
+<div class="2xl:col-span-8 flex flex-col space-y-space-lg min-w-0">
+<!-- Navigation Tabs -->
+<div class="flex items-center justify-between gap-space-sm p-1.5 rounded-xl bg-surface-container-low/90 overflow-x-auto">
+<div class="flex items-center gap-1 min-w-max">
+<button class="px-4 py-2 rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg font-bold shadow-[0_0_16px_rgba(35,61,255,0.4)]">
+              All Content (58)
+            </button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg transition-colors">
+              Homepage &amp; Hero Slots
+            </button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg transition-colors">
+              Featured Games (6)
+            </button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg transition-colors">
+              Featured Tournaments (4)
+            </button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg transition-colors">
+              Announcements (8)
+            </button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg transition-colors">
+              FAQs &amp; Taxonomy
+            </button>
+</div>
+<div class="hidden md:flex items-center gap-1.5 px-3 py-1 rounded bg-surface-container-high text-outline text-label-sm font-label-sm shrink-0">
+<span class="material-symbols-outlined text-[14px]">tune</span>
+<span>View: Discovery Dense</span>
+</div>
+</div>
+<!-- HOMEPAGE HERO & FEATURED SLOTS MANAGER -->
+<section class="p-space-lg rounded-2xl bg-surface-container-low/80 space-y-space-md shadow-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Homepage Reel &amp; Hero Slot Sequencer</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Active pinned order displayed on the public landing page hero carousel.</p>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary font-label-sm text-label-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span>Quick Add to Homepage Reel</span>
+</button>
+</div>
+<!-- Hero Slot Cards Reel -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Slot 1 -->
+<div class="rounded-xl bg-surface-container p-space-md flex flex-col justify-between relative overflow-hidden group shadow-md hover:shadow-xl transition-all">
+<div class="absolute inset-0 opacity-15 bg-cover bg-center pointer-events-none" data-alt="Cyber esports tournament stage with glowing holographic banners and packed stadium arena in electric blue and cyan atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcRgqWNIWplAvjnwnoRt-wWedFJdNpQNwopavOAFSruaJ8JFp_MvsUeW5iforxK3uwHqvoHEbYMX0XpI9QvXGn4gC13m3tHvGqdhgfyovGLTW8fFVoR8WiwuMiMEJy6a66O9yzryQ9NEvVBtioj_b_EFx125_p0qfHvxjpKPY4pRe86RwwL0xDhtHFeJ5ftIYvoIQgzYci8gGK-h8SqtDlRlAjYr_0aoPqHws5JPH3ryp168IVFpc')"></div>
+<div class="relative z-10 flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-bold">SLOT 01 • HERO</span>
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>LIVE</span>
+</div>
+</div>
+<div class="relative z-10 space-y-space-2xs my-auto">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Sanctioned Tournament</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface leading-snug">Valorant Community Cup S4 - Regional Finals</h3>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-1">
+<span>CTA: 'Register Now'</span>
+<span class="text-secondary-fixed">14,280 clicks</span>
+</div>
+</div>
+<div class="relative z-10 flex items-center justify-between pt-space-sm mt-space-sm bg-surface-container-high/40 -mx-space-md -mb-space-md px-space-md py-2">
+<span class="font-label-sm text-label-sm text-outline font-mono">Priority: #1</span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" title="Edit Slot"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" title="Move Down"><span class="material-symbols-outlined text-[16px]">arrow_downward</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-colors" title="Unpin"><span class="material-symbols-outlined text-[16px]">keep_off</span></button>
+</div>
+</div>
+</div>
+<!-- Slot 2 -->
+<div class="rounded-xl bg-surface-container p-space-md flex flex-col justify-between relative overflow-hidden group shadow-md hover:shadow-xl transition-all">
+<div class="absolute inset-0 opacity-20 bg-cover bg-center pointer-events-none" data-alt="Tactical stealth operative soldier in high tech armor holding illuminated energy rifle kneeling in a dark rainy cyberpunk neon city." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCt2PHtVe7M051Tji41fp88G71EHvHpKO-_arWON_jndl-r3VV12y9G99JuO-g469f73n5cVscd1UBdppaw8F2u9BuwLenNiTGbsKsOIvEIef1LXD4rmprJFRTlwvLM7ac-ISSQytVXW7q8ufNssSGJ3IbeJJAbKsm_l9F7PA6VJbasZuFKx0xMO3SyudUJyORIXLtCZsP6aUzryooUSEQQkUhRRmBti7_aG4kxbFX51T4NqCNGWXI')"></div>
+<div class="relative z-10 flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary font-label-sm text-label-sm font-bold">SLOT 02 • SLIDER</span>
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>LIVE</span>
+</div>
+</div>
+<div class="relative z-10 space-y-space-2xs my-auto">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Game Playtest Bounty</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface leading-snug">Cyber Strike: Tactical Stealth Wave 3 Closed Beta</h3>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-1">
+<span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-secondary-fixed text-[10px]">Earn 450 SAR Bounty</span>
+<span class="text-secondary-fixed">9,840 clicks</span>
+</div>
+</div>
+<div class="relative z-10 flex items-center justify-between pt-space-sm mt-space-sm bg-surface-container-high/40 -mx-space-md -mb-space-md px-space-md py-2">
+<span class="font-label-sm text-label-sm text-outline font-mono">Priority: #2</span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" title="Move Up"><span class="material-symbols-outlined text-[16px]">arrow_upward</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" title="Edit Slot"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" title="Move Down"><span class="material-symbols-outlined text-[16px]">arrow_downward</span></button>
+</div>
+</div>
+</div>
+<!-- Slot 3 -->
+<div class="rounded-xl bg-surface-container p-space-md flex flex-col justify-between relative overflow-hidden group shadow-md hover:shadow-xl transition-all">
+<div class="absolute inset-0 opacity-15 bg-cover bg-center pointer-events-none" data-alt="Futuristic glowing neon race car drifting around a wet urban turn with brilliant cyan light trails under rainy skyscrapers." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCREJ72hBrzGEAY_nQW0zJK3ooLy5ctdHhxh9lKRoVynB2C2Y4gKAcJxEjundXZRaLC0olGfm2qNAVPqY6qalXUqh51ipcDDIkREgLa3dI6eZBnOPnKnQsJxiag-J3sJLO8_xDSEV8XaNp5tH_lYkkjJqseGQNQD0KprUA_8cO0xe8NXcM9xobk7L9uRn8Ozn8NO-JNQiJzjQr91oexoFfjOcCvtYgP76DvwDoOc5x0ek9Uw7IWjhQ')"></div>
+<div class="relative z-10 flex items-center justify-between mb-space-sm">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold">SLOT 03 • PROMO</span>
+<div class="flex items-center gap-1 text-tertiary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">event</span>
+<span>Sep 23</span>
+</div>
+</div>
+<div class="relative z-10 space-y-space-2xs my-auto">
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">Kingdom Major Event</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface leading-snug">Saudi National Day Esports Championship 2025</h3>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm pt-1">
+<span>Target: All Regions</span>
+<span class="text-tertiary-fixed font-mono">Queued</span>
+</div>
+</div>
+<div class="relative z-10 flex items-center justify-between pt-space-sm mt-space-sm bg-surface-container-high/40 -mx-space-md -mb-space-md px-space-md py-2">
+<span class="font-label-sm text-label-sm text-outline font-mono">Priority: #3</span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" title="Move Up"><span class="material-symbols-outlined text-[16px]">arrow_upward</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-colors" title="Edit Slot"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-secondary transition-colors" title="Publish Now"><span class="material-symbols-outlined text-[16px]">publish</span></button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CONTENT DISCOVERY LEDGER & WORKSPACE TABLE -->
+<section class="p-space-lg rounded-2xl bg-surface-container-low/80 space-y-space-md shadow-lg">
+<!-- Search and Filter Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-xs">
+<div class="relative flex-1 max-w-lg">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full bg-surface-container text-on-surface font-body-sm text-body-sm pl-9 pr-4 py-2 rounded-lg outline-none focus:ring-2 focus:ring-secondary placeholder-outline transition-all" placeholder="Search titles, tags, content IDs, authors..." type="text"/>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs">
+<div class="flex items-center gap-1 bg-surface-container px-2 py-1.5 rounded-lg text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">category</span>
+<select class="bg-transparent text-on-surface outline-none cursor-pointer">
+<option value="all">Type: All Assets</option>
+<option value="announcement">Announcements</option>
+<option value="games">Featured Games</option>
+<option value="tournaments">Tournaments</option>
+<option value="faqs">FAQs</option>
+</select>
+</div>
+<div class="flex items-center gap-1 bg-surface-container px-2 py-1.5 rounded-lg text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">toggle_on</span>
+<select class="bg-transparent text-on-surface outline-none cursor-pointer">
+<option value="all">Status: All</option>
+<option value="published">Published</option>
+<option value="scheduled">Scheduled</option>
+<option value="draft">Draft</option>
+<option value="archived">Archived</option>
+</select>
+</div>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" title="Export Ledger">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+</button>
+</div>
+</div>
+<!-- The Table -->
+<div class="overflow-x-auto rounded-xl bg-surface-container/60 shadow-inner">
+<table class="w-full text-left font-body-sm text-body-sm whitespace-nowrap">
+<thead>
+<tr class="bg-surface-container-high/70 text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-md">Content Asset &amp; Metadata</th>
+<th class="py-3 px-space-md">Type / Scope</th>
+<th class="py-3 px-space-md">Curator / Target</th>
+<th class="py-3 px-space-md">Live Status</th>
+<th class="py-3 px-space-md">Publish Schedule</th>
+<th class="py-3 px-space-md text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high/30">
+<!-- Row 1: Platform Announcement -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[18px]">campaign</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate max-w-sm">Season 4 Competitive Netcode &amp; Vanguard Integrity Upgrade</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">ID: #ANN-2025-049 • Hero Placement</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary-fixed font-label-sm text-label-sm font-semibold">Platform Announce</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-on-surface">Zaid Al-Harthy</span>
+<span class="text-outline">Audience: All Players</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-container/30 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      PUBLISHED
+                    </span>
+</td>
+<td class="py-3.5 px-space-md font-label-sm text-label-sm text-on-surface-variant">
+<div>Live: Sep 18, 2025</div>
+<div class="text-outline">Exp: Oct 30, 2025</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="inline-flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-secondary-container hover:text-on-secondary font-label-sm text-label-sm text-secondary-fixed transition-colors">Edit</button>
+<button class="p-1 rounded text-outline hover:text-error hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">visibility_off</span></button>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Featured Game 1 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-8 rounded-lg overflow-hidden bg-cover bg-center shrink-0" data-alt="Tactical sci-fi combat operator in dark cyberpunk armor holding illuminated tech assault weapon." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDNg2xL4pTBa_jhkR5eF0JwEaVppyfamVvJksZDq2oZIFshua1wWXHv8W9eyJm6Z3iGT78g0Q867ib--PDglrNCed2RlLfX394i2LwYH_Fl9-E3oVUqmFEXqgSIpzfnVUyuW5SjqxUL3FcLzzRY4ra5QuQuE5Sz-CeKNjnq5dTZMowSDr0Gb7NkH7d5c-VWI32Y1VnXD7GUMcQcHamh6AMS5Rlsd01egWBkerv2FknUeJjkieHswt8')"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate max-w-sm">Cyber Strike [PC] - Tactical Stealth Operator</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">ID: #GAME-CST-03 • Build: v0.9.4b</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container/30 text-secondary-fixed font-label-sm text-label-sm font-semibold">Tactical FPS</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-secondary font-semibold">★ Featured Hero</span>
+<span class="text-outline">Public Grid Slot #2</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-container/30 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      PUBLISHED
+                    </span>
+</td>
+<td class="py-3.5 px-space-md font-label-sm text-label-sm text-on-surface-variant">
+<div>Permanent Spotlight</div>
+<div class="text-outline">Active Testing Pool</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="inline-flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-secondary-container hover:text-on-secondary font-label-sm text-label-sm text-secondary-fixed transition-colors">Edit</button>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">swap_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Featured Game 2 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-8 rounded-lg overflow-hidden bg-cover bg-center shrink-0" data-alt="High tech aerodynamic cyber supercar drifting around wet rain street in futuristic metropolis with vibrant neon reflections." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAEFEbVkR_qiY-oXjdY6k38cwtbmsnjd7-thysSeWjeebWQzllo4pvPqbWUcuAR0Wk3-z7hkyYNudEjg6F2lNEp_eZKd18ZqlvuEyDQBKi0mfy0rdEUTBgusYQaXptKx8G11mW77XcW4nlCCEfXOmcHsxB13WGlY8VTFtgsPChoEiVnNTqSAFNrUCuUUGClCEElJg0YO9IaIpjqmBvoH2d3MzeW3X5oNCNimEIXz4mukQursfK45Ok')"></div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate max-w-sm">Cyber Drift: 2049 [PC / Crossplay]</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">ID: #GAME-CD-2049 • Studio: Kinetig</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary-fixed font-label-sm text-label-sm font-semibold">Racing Sim</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-on-surface">Featured Grid</span>
+<span class="text-outline">Public Hub Slot #3</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-container/30 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      PUBLISHED
+                    </span>
+</td>
+<td class="py-3.5 px-space-md font-label-sm text-label-sm text-on-surface-variant">
+<div>Live: Sep 12, 2025</div>
+<div class="text-outline">Seasonal Rotation</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="inline-flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-secondary-container hover:text-on-secondary font-label-sm text-label-sm text-secondary-fixed transition-colors">Edit</button>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">swap_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Tournament Spotlight -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-secondary-container/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[18px]">trophy</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate max-w-sm">Valorant Community Cup S4</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed font-mono">Host: Saudi Collegiate League • $10,000 USD Sanctioned</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">Tournament Spotlight</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-on-surface">Hero Slot #1</span>
+<span class="text-outline">Sponsor-Funded Only</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-container/30 text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                      PUBLISHED
+                    </span>
+</td>
+<td class="py-3.5 px-space-md font-label-sm text-label-sm text-on-surface-variant">
+<div>Ends: Sep 28, 2025</div>
+<div class="text-outline">Bracket Live</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="inline-flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-secondary-container hover:text-on-secondary font-label-sm text-label-sm text-secondary-fixed transition-colors">Edit</button>
+<button class="p-1 rounded text-outline hover:text-error hover:bg-surface-container-high transition-colors" title="Unfeature"><span class="material-symbols-outlined text-[16px]">bookmark_remove</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Scheduled Event Announcement -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary text-[18px]">event_note</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate max-w-sm">Kingdom Esports Festival 2025: Team Qualifier Rules</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">ID: #ANN-2025-052</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary-fixed font-label-sm text-label-sm font-semibold">Event Guidelines</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-on-surface">Target: Registered Hosts</span>
+<span class="text-outline">Ops Desk Review OK</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-highest text-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                      SCHEDULED
+                    </span>
+</td>
+<td class="py-3.5 px-space-md font-label-sm text-label-sm text-secondary-fixed">
+<div>Sep 24 @ 09:00 AST</div>
+<div class="text-outline">Auto-Publish Armed</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="inline-flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-surface-container-highest font-label-sm text-label-sm text-on-surface transition-colors">Reschedule</button>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 6: Pinned FAQ Item -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate max-w-sm">Are real-money betting or player wagering pools allowed?</span>
+<span class="font-label-sm text-label-sm text-secondary font-mono">Pinned Policy FAQ • Strict Zero-Wagering</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">Fair Play &amp; Legal</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-on-surface">Public Knowledge Base</span>
+<span class="text-outline">All Visitors &amp; Players</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-container/30 text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[14px]">push_pin</span>
+                      PUBLISHED
+                    </span>
+</td>
+<td class="py-3.5 px-space-md font-label-sm text-label-sm text-on-surface-variant">
+<div>Permanent Notice</div>
+<div class="text-outline">Verified Standard</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="inline-flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="px-2.5 py-1 rounded bg-surface-container-high hover:bg-secondary-container hover:text-on-secondary font-label-sm text-label-sm text-secondary-fixed transition-colors">Edit</button>
+<button class="p-1 rounded text-outline hover:text-error hover:bg-surface-container-high transition-colors" title="Archive"><span class="material-symbols-outlined text-[16px]">archive</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 7: Draft -->
+<tr class="hover:bg-surface-container-high/50 transition-colors group">
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-outline text-[18px]">article</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg font-bold text-on-surface truncate max-w-sm">Studio Onboarding Guide: Preparing Game Builds for Closed Beta</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">ID: #DOC-STU-011 • 2,400 words</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">Dev Help Doc</span>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex flex-col font-label-sm text-label-sm">
+<span class="text-on-surface">Zaid Al-Harthy</span>
+<span class="text-outline">Pending Review</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-high text-outline font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                      DRAFT
+                    </span>
+</td>
+<td class="py-3.5 px-space-md font-label-sm text-label-sm text-on-surface-variant">
+<div>Not Scheduled</div>
+<div class="text-outline">Unpublished</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<div class="inline-flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
+<button class="px-2.5 py-1 rounded bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary font-label-sm text-label-sm font-bold transition-colors">Publish</button>
+<button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination / Ledger Footer -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm pt-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span>Showing 7 of 58 curated public content records</span>
+<div class="flex items-center gap-1">
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high text-outline hover:text-on-surface transition-colors" disabled="">Prev</button>
+<button class="px-3 py-1 rounded bg-primary-container text-on-primary-container font-bold">1</button>
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">2</button>
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">3</button>
+<span class="px-1 text-outline">...</span>
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">8</button>
+<button class="px-3 py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">Next</button>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT RAIL: INSPECTOR & CONTENT EDITOR DRAWER (4 of 12 columns on 2xl) -->
+<aside class="2xl:col-span-4 flex flex-col space-y-space-lg w-full">
+<!-- ACTIVE CONTENT INSPECTOR & QUICK PUBLISHER -->
+<div class="rounded-2xl p-space-lg bg-surface-container-low/95 shadow-xl space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Live Content Inspector</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-mono text-[11px]">#ANN-2025-049</span>
+</div>
+<!-- Active Title & Scope -->
+<div class="space-y-space-xs">
+<label class="block font-label-sm text-label-sm text-outline uppercase tracking-wider">Item Headline / Title</label>
+<input class="w-full bg-surface-container text-on-surface font-headline-sm text-[16px] font-bold px-3 py-2 rounded-lg outline-none focus:ring-2 focus:ring-secondary transition-all" type="text" value="Season 4 Competitive Netcode &amp; Vanguard Integrity Upgrade"/>
+</div>
+<!-- Category / Scope Dropdown -->
+<div class="space-y-space-xs">
+<label class="block font-label-sm text-label-sm text-outline uppercase tracking-wider">Editorial Category / Scope</label>
+<div class="relative">
+<select class="w-full bg-surface-container text-on-surface font-body-sm text-body-sm px-3 py-2 rounded-lg outline-none focus:ring-2 focus:ring-secondary cursor-pointer appearance-none">
+<option selected="">Platform Updates &amp; Integrity</option>
+<option>Tournament Sanctioning &amp; Brackets</option>
+<option>Playtesting Bounty Releases</option>
+<option>Kingdom Community News</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Live Status Telemetry Indicator -->
+<div class="p-space-sm rounded-xl bg-surface-container flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Live on Edge CDN</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary-fixed font-mono">Edge TTL: 3600s</span>
+</div>
+<!-- Visual Asset Preview & Replace -->
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Hero Visual Banner (16:9)</label>
+<button class="font-label-sm text-label-sm text-secondary hover:underline">Replace Media</button>
+</div>
+<div class="relative rounded-xl overflow-hidden h-36 bg-cover bg-center shadow-inner group" data-alt="High quality cinematic futuristic esports arena stage filled with intense electric blue laser lights and energetic crowd spectators." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcglgV6uQ2hi2Q9IkNmBPybrAT9ihuwAETgwimGxEFEwR9rEaxjCCB4eQA5bJyXB_6kwZ8Qz5gOxfuv8ekH9ETgS85LUUW2Zr604oSlXhn1FpEm0KeVH1RzzyeBzn43ajSfrW8hTkZVVpZqPlhnY96wdQPrk8ystfneebtgOTXDA_F2Fh7xffmicEZRE3KOn8Th7s4IHJmHYCaHwVfizP9U8_gzRtulFu_mNshBSWszUI-jx9ORfQ')">
+<div class="absolute inset-0 bg-surface-container-lowest/40 group-hover:bg-surface-container-lowest/20 transition-colors flex items-center justify-center">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high/90 text-on-surface font-label-sm text-label-sm flex items-center gap-1 shadow-md hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-[16px]">cloud_upload</span>
+<span>Change 1920x1080 Asset</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Promotional Copy Excerpt -->
+<div class="space-y-space-xs">
+<label class="block font-label-sm text-label-sm text-outline uppercase tracking-wider">Discovery Excerpt / Meta Description</label>
+<textarea class="w-full bg-surface-container text-on-surface font-body-sm text-body-sm p-3 rounded-lg outline-none focus:ring-2 focus:ring-secondary resize-none" rows="3">We have deployed dedicated low-latency netcode relays across Riyadh and Jeddah enclaves with enhanced Vanguard kernel telemetry to ensure competitive fairness.</textarea>
+</div>
+<!-- Schedule & Expiration Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs">
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-wider block">Publish Date (AST)</label>
+<div class="flex items-center gap-1 bg-surface-container px-2.5 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-[16px] text-secondary">calendar_today</span>
+<input class="bg-transparent text-on-surface font-label-sm text-label-sm outline-none w-full font-mono" type="text" value="2025-09-18 14:00"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-wider block">Expiration (Optional)</label>
+<div class="flex items-center gap-1 bg-surface-container px-2.5 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-[16px] text-outline">timer_off</span>
+<input class="bg-transparent text-on-surface font-label-sm text-label-sm outline-none w-full font-mono" type="text" value="2025-10-30 23:59"/>
+</div>
+</div>
+</div>
+<!-- Audience Targeting Checkboxes -->
+<div class="space-y-space-2xs pt-1">
+<label class="block font-label-sm text-label-sm text-outline uppercase tracking-wider mb-1">Public Display Placements</label>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container cursor-pointer hover:bg-surface-container-high transition-colors">
+<input checked="" class="rounded accent-primary-container w-4 h-4" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Homepage Hero</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container cursor-pointer hover:bg-surface-container-high transition-colors">
+<input checked="" class="rounded accent-primary-container w-4 h-4" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Notification Tray</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container cursor-pointer hover:bg-surface-container-high transition-colors">
+<input class="rounded accent-primary-container w-4 h-4" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Developer Portal</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container cursor-pointer hover:bg-surface-container-high transition-colors">
+<input checked="" class="rounded accent-primary-container w-4 h-4" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Community Hub</span>
+</label>
+</div>
+</div>
+<!-- Inspector Action Buttons -->
+<div class="pt-space-xs space-y-space-xs">
+<button class="w-full py-2.5 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-label-lg text-label-lg font-bold shadow-[0_4px_20px_rgba(35,61,255,0.45)] transition-all flex items-center justify-center gap-2 active:scale-98">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+<span>Update &amp; Publish Live</span>
+</button>
+<div class="grid grid-cols-3 gap-2">
+<button class="py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors">
+                Save Draft
+              </button>
+<button class="py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-secondary-fixed font-label-sm text-label-sm transition-colors">
+                Preview Modal
+              </button>
+<button class="py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-tertiary-fixed font-label-sm text-label-sm transition-colors">
+                Schedule...
+              </button>
+</div>
+<div class="pt-1 text-center">
+<button class="text-error hover:underline font-label-sm text-label-sm transition-all inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">delete</span>
+<span>Unpublish &amp; Move to Archive</span>
+</button>
+</div>
+</div>
+</div>
+<!-- PUBLIC TAXONOMY & CATEGORIES MINI-PANEL -->
+<div class="rounded-2xl p-space-lg bg-surface-container-low/95 shadow-xl space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-secondary">label</span>
+<h3 class="font-label-lg text-label-lg font-bold text-on-surface">Discovery Taxonomy Tags</h3>
+</div>
+<button class="text-secondary hover:text-secondary-fixed font-label-sm text-label-sm font-semibold">+ Add Tag</button>
+</div>
+<!-- Game Categories Tags -->
+<div class="space-y-space-2xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block">Game Genre Taxonomy</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-1 cursor-pointer">
+                Tactical Shooter <span class="text-secondary font-bold text-[10px]">14</span>
+</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-1 cursor-pointer">
+                Battle Royale <span class="text-secondary font-bold text-[10px]">8</span>
+</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-1 cursor-pointer">
+                Sim Racing <span class="text-secondary font-bold text-[10px]">6</span>
+</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-1 cursor-pointer">
+                Fighting <span class="text-secondary font-bold text-[10px]">12</span>
+</span>
+<span class="px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-1 cursor-pointer">
+                Cyber Sci-Fi <span class="text-secondary font-bold text-[10px]">9</span>
+</span>
+</div>
+</div>
+<!-- Tournament Formats -->
+<div class="space-y-space-2xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block">Tournament Bracket Formats</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded bg-surface-container text-secondary-fixed font-label-sm text-label-sm">Single Elimination</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-secondary-fixed font-label-sm text-label-sm">Double Elimination</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-secondary-fixed font-label-sm text-label-sm">Swiss Bracket</span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-secondary-fixed font-label-sm text-label-sm">Round Robin</span>
+</div>
+</div>
+<!-- Platform Discovery Badges -->
+<div class="space-y-space-2xs">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block">Editorial Curated Badges</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm font-semibold">#ZeroWagering</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary-fixed font-label-sm text-label-sm font-semibold">#VerifiedHost</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary-fixed font-label-sm text-label-sm font-semibold">#PlaytestBounty</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary-fixed font-label-sm text-label-sm font-semibold">#DirectPayout</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary-fixed font-label-sm text-label-sm font-semibold">#KSAEsports</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- BOTTOM SECTION: EDITORIAL GOVERNANCE & ACCESS ISOLATION POLICY -->
+<section class="rounded-2xl p-space-lg bg-surface-container-low/60 shadow-lg space-y-space-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<div class="p-1.5 rounded-lg bg-surface-container-high text-secondary">
+<span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-bold uppercase tracking-wider">Editorial Governance &amp; Security Isolation Policy</h3>
+<span class="font-label-sm text-label-sm text-secondary-fixed">Enclave Clearance: Content Ops Level 2 • Discovery Desk Scope</span>
+</div>
+</div>
+<div class="px-3 py-1 rounded bg-surface-container-high font-mono text-[11px] text-secondary font-semibold">
+          CMS REVISION HASH: #CMS-PUB-8812-RUH • STRICT ZERO-GAMBLING POLICY APPLIED
+        </div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+<strong>CMS Operational Scope Notice:</strong> Content Managers have exclusive publishing rights for public-facing discovery, editorial copy, game spotlights, and informational assets. Permissions are cryptographically isolated from sensitive financial payouts, user personal data (PII), developer source code repositories, and anti-cheat arbitration desks. All published revisions are logged with user timestamp to the ME-East editorial audit trail.
+      </p>
+<div class="pt-space-xs flex flex-wrap items-center gap-space-lg text-outline font-label-sm text-label-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">lock</span>
+<span>Zero-Access to Payout Wallets</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">gavel</span>
+<span>Zero-Wagering Compliance Active</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">history_edu</span>
+<span>Audit Log: Immutably Replicated to S3 Riyadh Vault</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<script>
+  (function() {
+    const purgeBtn = document.getElementById('purgeCacheBtn');
+    if (purgeBtn) {
+      purgeBtn.addEventListener('click', function() {
+        const origHtml = purgeBtn.innerHTML;
+        purgeBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-secondary animate-spin">refresh</span><span>Purging RUH-DC1...</span>';
+        purgeBtn.classList.add('opacity-75');
+        setTimeout(() => {
+          purgeBtn.innerHTML = '<span class="material-symbols-outlined text-[18px] text-secondary">done_all</span><span>Edge Purged (100%)</span>';
+          setTimeout(() => {
+            purgeBtn.innerHTML = origHtml;
+            purgeBtn.classList.remove('opacity-75');
+          }, 2400);
+        }, 1200);
+      });
+    }
+  })();
+</script></main></div></body></html>

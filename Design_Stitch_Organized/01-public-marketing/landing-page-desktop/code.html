@@ -1,0 +1,991 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "background": "#0a0f35", "on-secondary-container": "#002c47", "on-surface-variant": "#c5c5da", "outline": "#8f8fa3", "on-primary-container": "#d0d3ff", "on-tertiary-fixed-variant": "#2d4a5c", "surface-tint": "#bcc2ff", "on-primary": "#00169d", "inverse-surface": "#dfe0ff", "primary-fixed-dim": "#bcc2ff", "inverse-on-surface": "#282d53", "tertiary-container": "#446073", "tertiary-fixed": "#c8e6fd", "error-container": "#93000a", "on-error-container": "#ffdad6", "surface-variant": "#2c3258", "primary-fixed": "#dfe0ff", "surface-container-highest": "#2c3258", "surface-container-low": "#13183d", "inverse-primary": "#2640ff", "surface-bright": "#31365d", "on-secondary": "#003351", "tertiary": "#adcae1", "surface-container": "#171c41", "on-secondary-fixed": "#001e31", "on-tertiary-fixed": "#001e2e", "primary": "#bcc2ff", "secondary-fixed-dim": "#92ccff", "primary-container": "#233dff", "on-primary-fixed": "#000a64", "on-error": "#690005", "surface-container-lowest": "#050930", "outline-variant": "#444557", "on-background": "#dfe0ff", "surface-container-high": "#21274c", "surface-dim": "#0a0f35", "tertiary-fixed-dim": "#adcae1", "on-surface": "#dfe0ff", "error": "#ffb4ab", "on-secondary-fixed-variant": "#004b73", "secondary-container": "#3698d9", "secondary": "#92ccff", "secondary-fixed": "#cce5ff", "surface": "#0a0f35", "on-primary-fixed-variant": "#0022da", "on-tertiary-container": "#bcdaf1", "on-tertiary": "#153345" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter": "1.5rem", "space-lg": "1.5rem", "space-3xl": "4.5rem", "space-sm": "0.75rem", "space-2xl": "3rem", "space-xs": "0.5rem", "space-xl": "2rem", "space-2xs": "0.25rem", "space-md": "1rem", "container-max": "1280px" }, "fontFamily": { "label-lg": [ "Space Grotesk" ], "body-lg": [ "Plus Jakarta Sans" ], "headline-sm": [ "Space Grotesk" ], "label-sm": [ "Space Grotesk" ], "body-md": [ "Plus Jakarta Sans" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-lg": [ "Space Grotesk" ], "display-lg": [ "Space Grotesk" ], "headline-xl": [ "Space Grotesk" ], "headline-xl-mobile": [ "Space Grotesk" ], "display-lg-mobile": [ "Space Grotesk" ] }, "fontSize": { "label-lg": [ "14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "400" } ], "headline-sm": [ "22px", { "lineHeight": "30px", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "display-lg": [ "64px", { "lineHeight": "72px", "letterSpacing": "-0.03em", "fontWeight": "700" } ], "headline-xl": [ "44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "display-lg-mobile": [ "38px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface min-h-screen selection:bg-primary selection:text-on-primary"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.25)]"><div class="h-20 max-w-[1380px] mx-auto px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md flex-shrink-0"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"><span class="font-headline-sm text-headline-sm uppercase tracking-wider text-on-surface">RIYADAH ELITE</span></div><nav class="hidden lg:flex items-center gap-space-xl" data-active-classes="text-primary font-bold"><a aria-current="page" class="transition-colors text-primary font-bold" data-path="games" href="#">Games</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="tournaments" href="#">Tournaments</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="how-it-works" href="#">How It Works</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors" data-path="for-developers" href="#">For Developers</a></nav><div class="flex items-center gap-space-md flex-shrink-0"><a class="hidden sm:inline-flex items-center justify-center font-label-lg text-label-lg px-space-md py-space-xs text-on-surface-variant hover:text-on-surface transition-colors" data-path="login" href="#">Log In</a><a class="inline-flex items-center justify-center font-label-lg text-label-lg px-space-lg py-space-xs rounded bg-primary-container text-on-primary hover:brightness-110 shadow-[0_4px_20px_rgba(35,61,255,0.5)] transition-all" data-path="signup" href="#">[ Get Started ]</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full text-on-surface">
+<!-- SECTION 1: CINEMATIC DESKTOP HERO -->
+<section class="relative w-full overflow-hidden bg-[#CAE8FF] text-on-secondary-container py-space-3xl px-gutter">
+<!-- Atmospheric Radial Glows & Grid Layer -->
+<div class="absolute inset-0 pointer-events-none opacity-30 bg-[radial-gradient(#233DFF_1px,transparent_1px)] [background-size:24px_24px]"></div>
+<div class="absolute -top-40 -left-20 w-[600px] h-[600px] rounded-full bg-secondary-container/40 blur-[130px] pointer-events-none"></div>
+<div class="absolute top-1/3 -right-20 w-[550px] h-[550px] rounded-full bg-primary-container/20 blur-[120px] pointer-events-none"></div>
+<div class="relative max-w-[1380px] mx-auto grid grid-cols-12 gap-space-xl items-center">
+<!-- Left Column (~46% / 5.5 cols) -->
+<div class="col-span-12 lg:col-span-6 xl:col-span-5 flex flex-col gap-space-md z-10">
+<!-- Top Pill -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-2xs rounded-full bg-surface-container-lowest/10 w-fit backdrop-blur-md shadow-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-ping"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-container font-bold">THE TWO-SIDED GAMING PLATFORM</span>
+</div>
+<!-- Giant Headline -->
+<h1 class="font-display-lg text-[72px] xl:text-[80px] leading-[1.05] tracking-tight text-[#050A30] font-bold">
+          PLAY. TEST.<br>
+<span class="bg-gradient-to-r from-primary-container via-secondary-container to-inverse-primary bg-clip-text text-transparent drop-shadow-sm">COMPETE.</span>
+</h1>
+<!-- Supporting Subhead -->
+<p class="font-headline-sm text-headline-sm text-[#050A30] font-semibold">
+          One platform for gamers, game developers, and tournament communities.
+        </p>
+<!-- Body -->
+<p class="font-body-lg text-body-lg text-on-secondary-container/90 max-w-xl">
+          Discover upcoming games, help developers build better experiences, and compete in tournaments hosted by communities around the world.
+        </p>
+<!-- Dual CTA Buttons -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="px-space-xl py-space-md rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-[0_8px_30px_rgba(35,61,255,0.4)] hover:brightness-110 hover:scale-[1.02] transition-all flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-[20px]">explore</span>
+            Explore Games
+          </a>
+<a class="px-space-xl py-space-md rounded-lg bg-surface/5 backdrop-blur-md text-primary-container font-label-lg text-label-lg font-bold shadow-md hover:bg-primary-container hover:text-on-primary transition-all flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-[20px]">emoji_events</span>
+            Find Tournaments
+          </a>
+</div>
+<!-- Sub-links -->
+<div class="flex flex-wrap items-center gap-space-lg pt-space-2xs text-[#050A30]/80 font-label-sm text-label-sm">
+<a class="hover:text-primary-container flex items-center gap-1 transition-colors" href="#developers">
+            Are you a developer? Test your game <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+<a class="hover:text-primary-container flex items-center gap-1 transition-colors" href="#tournaments">
+            Want to host? Create a tournament <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Right Column (~54% / 6.5 cols) Product Visualization -->
+<div class="col-span-12 lg:col-span-6 xl:col-span-7 relative flex items-center justify-center min-h-[580px]">
+<!-- Tech HUD Backplate & Controller Geometry -->
+<div class="absolute inset-4 rounded-3xl bg-gradient-to-br from-surface-container-high/90 to-surface-container-lowest/95 backdrop-blur-2xl p-space-lg shadow-2xl overflow-hidden flex flex-col justify-between">
+<!-- Ambient Grid in HUD -->
+<div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#233DFF_1px,transparent_1px),linear-gradient(to_bottom,#233DFF_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+<!-- HUD Top bar -->
+<div class="relative flex items-center justify-between z-10 text-on-surface-variant">
+<div class="flex items-center gap-space-sm">
+<img alt="Logo" class="w-7 h-7 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrBAWstKQgIFAOTfiqHkXlcQUwJ89oWVMkzp9bgciMYj4IgCTOi2b7DxQ73w3tBm1Rcsehu_zpbK5MM7XJf_mA30J7Td-l2VVpMN4zl9JE2fw_TXvm4f_6OFZ7sJ0zls8gCSpB_ICrbTCRBZlMFiweop2u5wo-e4kg3PwnLrKkoOwE_JR7vMOPoWS18LQmhXRmsb5fF7rIy46Wi5KHvKMMsGjg-IczF4kZJchd7GCWQD39EwJq3OG8H2MRP9dZWlk5">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Riyadah Hub Node [ME-EAST-01]</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1 text-secondary bg-surface-container-lowest/60 px-space-sm py-1 rounded-full text-xs">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-semibold">24ms Ping Check OK</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">tune</span>
+</div>
+</div>
+<!-- Controller geometry watermark -->
+<div class="absolute right-6 bottom-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[280px] text-primary">sports_esports</span>
+</div>
+<!-- HUD Bottom live status ticker -->
+<div class="relative z-10 flex items-center justify-between text-xs text-on-surface-variant pt-space-sm">
+<div class="flex items-center gap-space-md">
+<span class="flex items-center gap-1 font-label-sm"><span class="material-symbols-outlined text-xs text-primary">speed</span> Engine Tick: 128Hz</span>
+<span class="flex items-center gap-1 font-label-sm"><span class="material-symbols-outlined text-xs text-secondary">shield</span> Anti-Tamper: Active</span>
+</div>
+<span class="font-label-sm text-label-sm tracking-wider uppercase text-primary font-semibold">Live Telemetry Sync</span>
+</div>
+</div>
+<!-- Floating Glass Card 1: Game Testing (Cyber Strike) -->
+<div class="absolute -top-4 left-2 xl:-left-6 w-[340px] xl:w-[370px] rounded-2xl bg-surface-container-high/90 backdrop-blur-xl p-space-md shadow-[0_16px_40px_rgba(0,0,0,0.4)] hover:translate-y-[-4px] transition-transform z-20">
+<div class="flex items-start justify-between mb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-11 h-11 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary-container font-headline-sm font-bold">
+                CS
+              </div>
+<div>
+<h4 class="font-headline-sm text-[17px] text-on-surface font-bold leading-tight">Cyber Strike: Reborn</h4>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="px-2 py-0.5 rounded text-[10px] bg-primary-container/30 text-primary-fixed font-semibold font-label-sm uppercase">Open Beta</span>
+<span class="px-2 py-0.5 rounded text-[10px] bg-surface-container-highest text-on-surface-variant font-label-sm uppercase">v0.8 PC</span>
+</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-sm">verified</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs py-space-xs my-space-xs bg-surface-container-lowest/50 rounded-lg px-space-sm">
+<div>
+<span class="text-[11px] text-on-surface-variant font-label-sm block">Active Testers</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">1,248</span>
+</div>
+<div>
+<span class="text-[11px] text-on-surface-variant font-label-sm block">Bug Reports</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">387</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-primary-container flex items-center justify-center text-[10px] font-bold text-on-primary">RX</div>
+<div class="w-7 h-7 rounded-full bg-secondary flex items-center justify-center text-[10px] font-bold text-on-secondary">KD</div>
+<div class="w-7 h-7 rounded-full bg-tertiary flex items-center justify-center text-[10px] font-bold text-on-tertiary">VN</div>
+</div>
+<a class="px-space-md py-1.5 rounded bg-primary-container text-on-primary font-label-sm text-label-sm uppercase font-bold hover:brightness-110 transition-all flex items-center gap-1" href="#">
+              Start Testing
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Floating Glass Card 2: Tournament (Valorant Community Cup) -->
+<div class="absolute -bottom-6 right-2 xl:-right-4 w-[350px] xl:w-[380px] rounded-2xl bg-surface-container-low/95 backdrop-blur-xl p-space-md shadow-[0_20px_45px_rgba(0,0,0,0.5)] hover:translate-y-[-4px] transition-transform z-30">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-2.5 py-0.5 rounded-full text-[10px] bg-secondary-container/20 text-secondary font-bold font-label-sm uppercase tracking-wider flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Registration Open
+            </span>
+<span class="text-xs font-label-sm text-tertiary">Bracket #1480</span>
+</div>
+<h4 class="font-headline-sm text-[18px] text-on-surface font-bold mb-space-xs">Valorant Community Cup</h4>
+<div class="grid grid-cols-3 gap-space-2xs py-space-xs mb-space-sm bg-surface-container-lowest/60 rounded-lg text-center">
+<div class="p-1">
+<div class="text-[10px] text-on-surface-variant font-label-sm uppercase">Prize Pool</div>
+<div class="text-primary font-bold font-label-lg">₹25,000</div>
+</div>
+<div class="p-1">
+<div class="text-[10px] text-on-surface-variant font-label-sm uppercase">Teams</div>
+<div class="text-on-surface font-bold font-label-lg">32 / 32</div>
+</div>
+<div class="p-1">
+<div class="text-[10px] text-on-surface-variant font-label-sm uppercase">Players</div>
+<div class="text-on-surface font-bold font-label-lg">128</div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm text-secondary">schedule</span>
+<span>Starts Tonight 20:00 IST</span>
+</div>
+<a class="px-space-md py-1.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase font-bold hover:brightness-110 transition-all flex items-center gap-1" href="#">
+              Join Tournament
+              <span class="material-symbols-outlined text-sm">sports_esports</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: TWO CORE PRODUCTS (Side-by-side 50/50 Desktop Grid) -->
+<section class="w-full py-space-3xl px-gutter bg-surface-container-lowest">
+<div class="max-w-[1380px] mx-auto flex flex-col gap-space-2xl">
+<!-- Section Header -->
+<div class="text-center max-w-2xl mx-auto">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-fixed-dim font-bold">DUAL ECOSYSTEM</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-space-2xs uppercase">ONE PLATFORM. TWO WAYS TO GET IN THE GAME.</h2>
+</div>
+<!-- 50/50 Cards Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-xl">
+<!-- Card 1: 🧪 TEST GAMES -->
+<div class="group relative rounded-2xl bg-surface-container-high/70 backdrop-blur-xl p-space-xl shadow-xl hover:shadow-[0_0_35px_rgba(35,61,255,0.25)] transition-all flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[28px]">science</span>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-highest text-primary font-label-sm text-label-sm uppercase tracking-wider font-semibold">Developers &amp; Testers</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">TEST GAMES</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">
+                Shape pre-release titles before launch. Test gameplay, surface critical crash data, and communicate directly with development studios.
+              </p>
+</div>
+<!-- Mini SaaS preview snippet -->
+<div class="rounded-xl bg-surface-container-lowest/80 p-space-md space-y-space-xs">
+<div class="flex items-center justify-between text-xs text-on-surface-variant font-label-sm">
+<span>Active Campaign Pipeline</span>
+<span class="text-secondary">48 Builds Running</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full w-[78%]"></div>
+</div>
+<div class="flex justify-between text-[11px] text-on-surface-variant/80">
+<span>Telemetry Ingestion: Normal</span>
+<span>Crash Rate: 1.2%</span>
+</div>
+</div>
+<!-- Checklist -->
+<ul class="space-y-space-xs pt-space-xs text-on-surface font-body-sm text-body-sm">
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Discover upcoming pre-release games</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Join targeted alpha and beta testing campaigns</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Play early builds and stress-test game loops</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Report bugs with reproducible steps &amp; telemetry</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Share actionable feedback directly to studio leads</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-lg">
+<a class="inline-flex items-center gap-space-xs font-label-lg text-label-lg text-secondary hover:text-primary transition-colors font-bold" href="#">
+              Explore Games <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 2: 🏆 PLAY TOURNAMENTS -->
+<div class="group relative rounded-2xl bg-surface-container-high/70 backdrop-blur-xl p-space-xl shadow-xl hover:shadow-[0_0_35px_rgba(92,182,249,0.25)] transition-all flex flex-col justify-between">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]">trophy</span>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm uppercase tracking-wider font-semibold">Competitive Esports</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">PLAY TOURNAMENTS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">
+                Automated brackets, verified match reporting, and secure payouts. Compete in community showdowns or organize high-stakes cups.
+              </p>
+</div>
+<!-- Mini Bracket preview snippet -->
+<div class="rounded-xl bg-surface-container-lowest/80 p-space-md flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-8 h-8 rounded bg-primary-container/30 flex items-center justify-center font-bold text-xs">A</span>
+<span class="font-label-sm text-label-sm text-on-surface">Cloud9 Acad</span>
+<span class="text-secondary font-bold font-label-sm">2</span>
+</div>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant px-2 py-1 bg-surface-container-highest rounded">Finals</span>
+<div class="flex items-center gap-space-sm">
+<span class="text-on-surface-variant font-bold font-label-sm">1</span>
+<span class="font-label-sm text-label-sm text-on-surface">Sentinels Jr</span>
+<span class="w-8 h-8 rounded bg-surface-container flex items-center justify-center font-bold text-xs">S</span>
+</div>
+</div>
+<!-- Checklist -->
+<ul class="space-y-space-xs pt-space-xs text-on-surface font-body-sm text-body-sm">
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Discover open esports &amp; casual tournaments daily</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Join individual or squad competitions seamlessly</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Create or join verified gaming teams with team rosters</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Play scheduled matches with automated bracket advancing</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span>Track personal stats, match wins, and claim platform prize pools</span>
+</li>
+</ul>
+</div>
+<div class="pt-space-lg">
+<a class="inline-flex items-center gap-space-xs font-label-lg text-label-lg text-secondary hover:text-primary transition-colors font-bold" href="#">
+              Find Tournaments <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: HOW RIYADAH ELITE WORKS (Horizontal Connected Timeline) -->
+<section class="w-full py-space-3xl px-gutter bg-surface-container-low relative">
+<div class="max-w-[1380px] mx-auto flex flex-col gap-space-2xl">
+<div class="text-center max-w-2xl mx-auto">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">SIMPLE 4-STEP LOOP</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-space-2xs uppercase">HOW RIYADAH ELITE WORKS</h2>
+</div>
+<!-- 4 Connected Steps -->
+<div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg pt-space-md">
+<!-- Interconnected Glowing Blue Line -->
+<div class="hidden lg:block absolute top-[68px] left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-primary-container via-secondary to-primary-container shadow-[0_0_12px_rgba(92,182,249,0.8)] z-0"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center text-center group">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest shadow-lg flex items-center justify-center text-primary font-headline-sm font-bold mb-space-md group-hover:scale-110 transition-transform">
+            01
+          </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs">DISCOVER</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+            Find pre-release builds or open community tournaments tailored to your platform.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center text-center group">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest shadow-lg flex items-center justify-center text-secondary font-headline-sm font-bold mb-space-md group-hover:scale-110 transition-transform">
+            02
+          </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs">JOIN</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+            Apply to active testing campaigns or register your team into open brackets in seconds.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center text-center group">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest shadow-lg flex items-center justify-center text-primary-container font-headline-sm font-bold mb-space-md group-hover:scale-110 transition-transform">
+            03
+          </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs">PLAY</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+            Test builds, file structured bug reports, or play tournament rounds with real-time match tracking.
+          </p>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 flex flex-col items-center text-center group">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest shadow-lg flex items-center justify-center text-secondary font-headline-sm font-bold mb-space-md group-hover:scale-110 transition-transform">
+            04
+          </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface uppercase mb-space-xs">BUILD</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+            Build your verified gaming reputation, unlock tester milestones, and earn your place on leaderboards.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: GAME TESTING SHOWCASE (Two-Column Interactive Dashboard) -->
+<section class="w-full py-space-3xl px-gutter bg-surface">
+<div class="max-w-[1380px] mx-auto grid grid-cols-12 gap-space-xl items-center">
+<!-- Left Column (58% / 7 cols): Realistic SaaS Game Testing Dashboard Mockup -->
+<div class="col-span-12 lg:col-span-7 rounded-2xl bg-surface-container-high/80 backdrop-blur-xl p-space-lg shadow-2xl space-y-space-md">
+<!-- Header -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-bold text-lg">
+              CSR
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Cyber Strike: Reborn</h3>
+<span class="px-2 py-0.5 rounded text-[11px] bg-secondary-container/20 text-secondary font-bold">PC Exclusive</span>
+</div>
+<span class="text-xs text-on-surface-variant font-label-sm">Build v0.8.4-rc2 • Unreal Engine 5.3</span>
+</div>
+</div>
+<span class="px-space-md py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold">
+            Status: Active Sprint
+          </span>
+</div>
+<!-- Live Testing Metrics -->
+<div class="grid grid-cols-3 gap-space-sm">
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/70">
+<span class="text-xs text-on-surface-variant font-label-sm block">Testers Active</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">1,248</span>
+<span class="text-[11px] text-primary flex items-center gap-0.5 mt-1">+142 this week</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/70">
+<span class="text-xs text-on-surface-variant font-label-sm block">Feedback Reports</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold">387</span>
+<span class="text-[11px] text-secondary flex items-center gap-0.5 mt-1">94% resolution</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/70">
+<span class="text-xs text-on-surface-variant font-label-sm block">Crash-free Rate</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">98.4%</span>
+<span class="text-[11px] text-secondary flex items-center gap-0.5 mt-1">Target: &gt;97.5%</span>
+</div>
+</div>
+<!-- Active Focus Areas -->
+<div class="space-y-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Active Testing Focus Areas</span>
+<div class="flex flex-wrap gap-space-xs">
+<span class="px-space-sm py-1 rounded-lg bg-primary-container/20 text-primary-fixed text-xs font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Gameplay Balance
+            </span>
+<span class="px-space-sm py-1 rounded-lg bg-secondary-container/20 text-secondary text-xs font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Multiplayer Netcode
+            </span>
+<span class="px-space-sm py-1 rounded-lg bg-tertiary-container/30 text-tertiary text-xs font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> GPU Performance
+            </span>
+<span class="px-space-sm py-1 rounded-lg bg-surface-container text-on-surface-variant text-xs font-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> WASD Controls &amp; Sensitivity
+            </span>
+</div>
+</div>
+<!-- Inline Telemetry Graphic -->
+<div class="rounded-xl bg-surface-container-lowest/90 p-space-sm space-y-space-xs">
+<div class="flex items-center justify-between text-xs text-on-surface-variant font-label-sm">
+<span>Client FPS Telemetry Distribution (Avg 142 FPS)</span>
+<span class="text-secondary font-semibold">Tick Latency: 16ms</span>
+</div>
+<div class="flex items-end gap-1.5 h-14 pt-2">
+<div class="w-1/12 bg-primary-container/30 h-[20%] rounded-t"></div>
+<div class="w-1/12 bg-primary-container/40 h-[35%] rounded-t"></div>
+<div class="w-1/12 bg-primary-container/50 h-[50%] rounded-t"></div>
+<div class="w-1/12 bg-primary-container/70 h-[75%] rounded-t"></div>
+<div class="w-1/12 bg-secondary h-[95%] rounded-t shadow-[0_0_8px_rgba(92,182,249,0.5)]"></div>
+<div class="w-1/12 bg-primary-container h-[85%] rounded-t"></div>
+<div class="w-1/12 bg-primary-container/70 h-[60%] rounded-t"></div>
+<div class="w-1/12 bg-primary-container/50 h-[45%] rounded-t"></div>
+<div class="w-1/12 bg-primary-container/40 h-[30%] rounded-t"></div>
+<div class="w-1/12 bg-primary-container/30 h-[15%] rounded-t"></div>
+<div class="w-1/12 bg-primary-container/20 h-[10%] rounded-t"></div>
+<div class="w-1/12 bg-primary-container/10 h-[5%] rounded-t"></div>
+</div>
+</div>
+<!-- CTA Inside Mockup -->
+<div class="pt-space-xs flex items-center justify-between">
+<span class="text-xs text-on-surface-variant font-label-sm">NDA Status: Standard Playtest Agreement</span>
+<button class="px-space-lg py-2 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-bold hover:brightness-110 shadow-md flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">download</span>
+            Join Testing Campaign
+          </button>
+</div>
+</div>
+<!-- Right Column (42% / 5 cols): Narrative + Feature Blocks -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">PILLAR ONE | GAME TESTING</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface uppercase font-bold">PLAY GAMES BEFORE THE WORLD DOES.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Developers need real players. Your feedback can directly shape the next great game release. Jump into restricted playtests and test with impact.
+        </p>
+<!-- 4 Feature Blocks -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded-xl bg-surface-container-high/60 backdrop-blur-md">
+<div class="flex items-center gap-space-xs mb-1 text-on-surface font-label-lg font-bold">
+<span class="material-symbols-outlined text-secondary text-[20px]">bug_report</span>
+              Report Bugs
+            </div>
+<p class="text-xs text-on-surface-variant">Log repro steps, attach telemetry, and tag crash logs directly to studio JIRA pipelines.</p>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-high/60 backdrop-blur-md">
+<div class="flex items-center gap-space-xs mb-1 text-on-surface font-label-lg font-bold">
+<span class="material-symbols-outlined text-primary text-[20px]">forum</span>
+              Give Feedback
+            </div>
+<p class="text-xs text-on-surface-variant">Voice your impressions on weapon balance, progression curves, and game feel.</p>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-high/60 backdrop-blur-md">
+<div class="flex items-center gap-space-xs mb-1 text-on-surface font-label-lg font-bold">
+<span class="material-symbols-outlined text-secondary text-[20px]">star_rate</span>
+              Rate Experience
+            </div>
+<p class="text-xs text-on-surface-variant">Grade performance, frame pacing, and fun factor to refine pre-launch polish.</p>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-high/60 backdrop-blur-md">
+<div class="flex items-center gap-space-xs mb-1 text-on-surface font-label-lg font-bold">
+<span class="material-symbols-outlined text-primary text-[20px]">sports_esports</span>
+              Play Early Builds
+            </div>
+<p class="text-xs text-on-surface-variant">Access closed alphas, private betas, and exclusive builds months ahead of launch.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: DEVELOPER B2B SECTION (Deep Navy #050A30 Full-Width Container) -->
+<section class="w-full py-space-3xl px-gutter bg-[#050A30] relative overflow-hidden" id="developers">
+<!-- Subtle Grid & Radial Glow -->
+<div class="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,#233DFF_1px,transparent_1px),linear-gradient(to_bottom,#233DFF_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary-container/15 blur-[140px] pointer-events-none"></div>
+<div class="relative max-w-[1380px] mx-auto flex flex-col gap-space-2xl z-10">
+<!-- Header -->
+<div class="text-center max-w-3xl mx-auto">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">FOR GAME DEVELOPERS &amp; STUDIOS</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-space-2xs uppercase">
+          BUILDING A GAME? <span class="text-secondary">Get Real Players Testing It.</span>
+</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+          Replace noisy public discord betas with structured telemetry pipelines, vetted gamer demographics, and organized feedback loops.
+        </p>
+</div>
+<!-- Horizontal 4-step Pipeline -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="p-space-lg rounded-2xl bg-surface-container-high/50 backdrop-blur-md flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-widest block mb-space-xs">STEP 01</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Create Testing Campaign</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Define target hardware tiers, geographic regions, and gameplay focus goals.</p>
+</div>
+<span class="material-symbols-outlined text-primary-container text-3xl mt-space-md">tune</span>
+</div>
+<div class="p-space-lg rounded-2xl bg-surface-container-high/50 backdrop-blur-md flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-widest block mb-space-xs">STEP 02</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Find Verified Players</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Riyadah matches verified playtesters filtered by genre experience and hardware specs.</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-3xl mt-space-md">group_add</span>
+</div>
+<div class="p-space-lg rounded-2xl bg-surface-container-high/50 backdrop-blur-md flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-widest block mb-space-xs">STEP 03</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Collect Structured Telemetry</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Receive automated crash logs, video repro captures, and standardized bug tickets.</p>
+</div>
+<span class="material-symbols-outlined text-primary text-3xl mt-space-md">query_stats</span>
+</div>
+<div class="p-space-lg rounded-2xl bg-surface-container-high/50 backdrop-blur-md flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-widest block mb-space-xs">STEP 04</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Polish Before Launch</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Benchmark gameplay iterations, validate netcode resilience, and launch with confidence.</p>
+</div>
+<span class="material-symbols-outlined text-secondary-container text-3xl mt-space-md">rocket_launch</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center justify-center gap-space-md pt-space-xs">
+<a class="px-space-xl py-space-md rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-[0_4px_24px_rgba(35,61,255,0.4)] hover:brightness-110 transition-all flex items-center gap-2" href="#">
+          Start Testing Your Game <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</a>
+<a class="px-space-xl py-space-md rounded-lg bg-surface-container-high text-secondary font-label-lg text-label-lg font-bold hover:bg-surface-container-highest transition-all flex items-center gap-2" href="#">
+          Learn More About Developer Tools <span class="material-symbols-outlined text-lg">terminal</span>
+</a>
+</div>
+</div>
+</section>
+<!-- SECTION 6: TOURNAMENT SHOWCASE (Two-Column Bracket Layout) -->
+<section class="w-full py-space-3xl px-gutter bg-surface-container-low" id="tournaments">
+<div class="max-w-[1380px] mx-auto grid grid-cols-12 gap-space-xl items-center">
+<!-- Left Column (42% / 5 cols) -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-space-md">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">PILLAR TWO | TOURNAMENTS</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface uppercase font-bold">
+          YOUR GAME. YOUR RULES. YOUR CHAMPIONSHIP.
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Manage brackets, coordinate schedules, and host competitive esports or casual community tournaments with automated score validation.
+        </p>
+<!-- Event Metadata Chips -->
+<div class="flex flex-wrap gap-space-xs py-space-2xs">
+<div class="px-space-sm py-1 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface font-semibold">
+            👥 128 Players
+          </div>
+<div class="px-space-sm py-1 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface font-semibold">
+            🛡️ 32 Teams
+          </div>
+<div class="px-space-sm py-1 rounded bg-surface-container-highest font-label-sm text-label-sm text-secondary font-semibold">
+            🏆 ₹25,000 Prize Pool
+          </div>
+</div>
+<!-- 4 Quick Capabilities -->
+<div class="grid grid-cols-2 gap-space-xs pt-space-2xs">
+<div class="p-space-sm rounded-lg bg-surface-container/60 font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">account_tree</span>
+            Create Bracket
+          </div>
+<div class="p-space-sm rounded-lg bg-surface-container/60 font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">groups</span>
+            Manage Squads
+          </div>
+<div class="p-space-sm rounded-lg bg-surface-container/60 font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">swords</span>
+            Run Live Matches
+          </div>
+<div class="p-space-sm rounded-lg bg-surface-container/60 font-body-sm text-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">leaderboard</span>
+            Track Standings
+          </div>
+</div>
+<div class="pt-space-xs">
+<a class="px-space-lg py-space-sm rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-bold hover:brightness-110 shadow-md inline-flex items-center gap-2" href="#">
+            Find Tournaments <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Right Column (58% / 7 cols): High-Fidelity Tournament Bracket UI Mockup -->
+<div class="col-span-12 lg:col-span-7 rounded-2xl bg-surface-container-high/80 backdrop-blur-xl p-space-lg shadow-2xl space-y-space-md">
+<!-- Bracket header -->
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-ping"></span>
+<span class="font-headline-sm text-[16px] text-on-surface font-bold">Valorant Community Cup: Grand Stage</span>
+</div>
+<span class="text-xs font-label-sm text-secondary bg-surface-container px-space-sm py-1 rounded-full uppercase tracking-wider">
+            Match #28 In-Progress
+          </span>
+</div>
+<!-- High-fidelity bracket columns -->
+<div class="grid grid-cols-3 gap-space-md pt-space-xs relative">
+<!-- Column 1: Quarter-Finals -->
+<div class="space-y-space-md">
+<span class="text-[11px] font-label-sm uppercase tracking-wider text-on-surface-variant block text-center">Quarter-Finals</span>
+<!-- Match 1 -->
+<div class="rounded-lg bg-surface-container-lowest/80 p-space-xs space-y-1">
+<div class="flex items-center justify-between text-xs px-1">
+<span class="font-semibold text-on-surface">Team Alpha</span>
+<span class="text-secondary font-bold">2</span>
+</div>
+<div class="flex items-center justify-between text-xs px-1 text-on-surface-variant">
+<span>Team Beta</span>
+<span>0</span>
+</div>
+</div>
+<!-- Match 2 -->
+<div class="rounded-lg bg-surface-container-lowest/80 p-space-xs space-y-1">
+<div class="flex items-center justify-between text-xs px-1">
+<span class="font-semibold text-on-surface">Team Phoenix</span>
+<span class="text-secondary font-bold">2</span>
+</div>
+<div class="flex items-center justify-between text-xs px-1 text-on-surface-variant">
+<span>Team Vortex</span>
+<span>1</span>
+</div>
+</div>
+</div>
+<!-- Column 2: Semi-Finals -->
+<div class="space-y-space-md pt-6">
+<span class="text-[11px] font-label-sm uppercase tracking-wider text-secondary block text-center">Semi-Finals</span>
+<div class="rounded-lg bg-surface-container-lowest/90 p-space-xs space-y-1 shadow-md">
+<div class="flex items-center justify-between text-xs px-1">
+<span class="font-semibold text-on-surface">Team Alpha</span>
+<span class="text-secondary font-bold">2</span>
+</div>
+<div class="flex items-center justify-between text-xs px-1">
+<span class="text-on-surface font-semibold">Team Phoenix</span>
+<span class="text-on-surface-variant font-bold">1</span>
+</div>
+</div>
+</div>
+<!-- Column 3: Grand Finals -->
+<div class="space-y-space-md pt-12">
+<span class="text-[11px] font-label-sm uppercase tracking-wider text-primary block text-center">Grand Finals</span>
+<div class="rounded-lg bg-surface-container-highest p-space-xs space-y-1 shadow-xl">
+<div class="flex items-center justify-between text-xs px-1">
+<span class="font-bold text-secondary">Team Alpha</span>
+<span class="text-secondary font-bold">3</span>
+</div>
+<div class="flex items-center justify-between text-xs px-1 text-on-surface-variant">
+<span>Shadow Clan</span>
+<span>2</span>
+</div>
+<div class="text-[9px] text-center font-label-sm text-primary uppercase pt-1">Champion Confirmed</div>
+</div>
+</div>
+</div>
+<!-- Live viewer & bracket footer -->
+<div class="pt-space-xs flex items-center justify-between text-xs text-on-surface-variant">
+<span class="flex items-center gap-1 font-label-sm"><span class="material-symbols-outlined text-sm text-secondary">visibility</span> 2,420 Live Viewers</span>
+<span class="font-label-sm text-label-sm text-secondary">Full Double Elimination Tree Available</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7: TOURNAMENT HOST CTA -->
+<section class="w-full py-space-2xl px-gutter bg-[#050A30]">
+<div class="max-w-[1380px] mx-auto rounded-3xl bg-surface-container-high/40 backdrop-blur-xl p-space-2xl shadow-xl flex flex-col gap-space-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">ORGANIZER SUITE</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface uppercase mt-space-2xs font-bold">
+            GOT A COMMUNITY? HOST A TOURNAMENT.
+          </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-xl">
+            Streamers, colleges, and gaming cafes run automated brackets with guaranteed check-ins and fair matchmaking.
+          </p>
+</div>
+<a class="px-space-xl py-space-md rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-[0_4px_20px_rgba(35,61,255,0.4)] hover:brightness-110 transition-all flex items-center gap-2 whitespace-nowrap self-start md:self-auto" href="#">
+          Host a Tournament <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</a>
+</div>
+<!-- Horizontal 4-Step Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-lowest/80 space-y-1">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">01</span>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Create Bracket</h4>
+<p class="text-xs text-on-surface-variant">Select Single, Double Elim, or Round Robin formats.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest/80 space-y-1">
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">02</span>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Invite Players</h4>
+<p class="text-xs text-on-surface-variant">Share custom entry links with automated discord role sync.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest/80 space-y-1">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">03</span>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Run Matches</h4>
+<p class="text-xs text-on-surface-variant">Track automated screenshot submissions and referee calls.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest/80 space-y-1">
+<span class="font-headline-sm text-headline-sm text-secondary font-bold">04</span>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Crown Winner</h4>
+<p class="text-xs text-on-surface-variant">Disburse prize pools instantly and publish permanent leaderboards.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 8: GAMER IDENTITY & REPUTATION DASHBOARD (Two-Column Profile View) -->
+<section class="w-full py-space-3xl px-gutter bg-surface">
+<div class="max-w-[1380px] mx-auto flex flex-col gap-space-2xl">
+<div class="text-center max-w-2xl mx-auto">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">VERIFIED REPUTATION</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-space-2xs uppercase">YOUR GAMING JOURNEY, IN ONE PLACE.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Carry your achievements, test credibility, and trophies everywhere.</p>
+</div>
+<div class="grid grid-cols-12 gap-space-xl items-start">
+<!-- Left Card: Profile Card for Rahul (5 cols) -->
+<div class="col-span-12 lg:col-span-5 rounded-2xl bg-surface-container-high/80 backdrop-blur-xl p-space-xl shadow-xl space-y-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-16 h-16 rounded-full bg-gradient-to-tr from-primary-container to-secondary flex items-center justify-center text-on-primary font-headline-lg font-bold shadow-lg">
+              RH
+            </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Rahul</h3>
+<span class="material-symbols-outlined text-secondary text-sm" title="Verified Player">verified</span>
+</div>
+<span class="text-xs text-on-surface-variant font-label-sm">Competitive FPS &amp; RPG Beta Specialist</span>
+</div>
+</div>
+<!-- Stats 2x2 Grid -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/70">
+<span class="text-xs text-on-surface-variant font-label-sm block">Testing Reputation</span>
+<span class="font-headline-lg text-headline-lg text-secondary font-bold">92 / 100</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/70">
+<span class="text-xs text-on-surface-variant font-label-sm block">Tournament Wins</span>
+<span class="font-headline-lg text-headline-lg text-primary font-bold">18</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/70">
+<span class="text-xs text-on-surface-variant font-label-sm block">Games Tested</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold">37</span>
+</div>
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/70">
+<span class="text-xs text-on-surface-variant font-label-sm block">Cups Played</span>
+<span class="font-headline-lg text-headline-lg text-on-surface font-bold">54</span>
+</div>
+</div>
+<!-- Verified Badges -->
+<div class="space-y-space-xs pt-space-xs">
+<span class="text-xs font-label-sm uppercase tracking-wider text-on-surface-variant">Verified Badges</span>
+<div class="flex flex-wrap gap-space-xs">
+<span class="px-space-sm py-1 rounded-full bg-primary-container/20 text-primary-fixed text-xs font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">verified_user</span> Beta Tester Elite
+              </span>
+<span class="px-space-sm py-1 rounded-full bg-secondary-container/20 text-secondary text-xs font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trophy</span> Tournament Champion
+              </span>
+<span class="px-space-sm py-1 rounded-full bg-tertiary-container/30 text-tertiary text-xs font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">bug_report</span> Bug Hunter Level 3
+              </span>
+</div>
+</div>
+</div>
+<!-- Right Card: Live Activity Log (7 cols) -->
+<div class="col-span-12 lg:col-span-7 rounded-2xl bg-surface-container-high/80 backdrop-blur-xl p-space-xl shadow-xl space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Live Activity Log</h3>
+<span class="font-label-sm text-label-sm text-secondary">Real-Time Validation</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Activity Item 1 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/80 flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">sports_esports</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Joined "Project Chronos" Closed Beta</h4>
+<span class="text-xs text-on-surface-variant">Telemetry Session: 4.5 hrs logged • GPU Profiler active</span>
+</div>
+</div>
+<span class="text-xs font-label-sm text-on-surface-variant whitespace-nowrap">2 hrs ago</span>
+</div>
+<!-- Activity Item 2 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/80 flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">emoji_events</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">1st Place — Apex Community Showdown</h4>
+<span class="text-xs text-on-surface-variant">Earned ₹7,500 split • Squad: Valkyrie Kings</span>
+</div>
+</div>
+<span class="text-xs font-label-sm text-on-surface-variant whitespace-nowrap">Yesterday</span>
+</div>
+<!-- Activity Item 3 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest/80 flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-lg">task_alt</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Bug Report Accepted &amp; Resolved #8491</h4>
+<span class="text-xs text-on-surface-variant">Netcode rollback sync issue in Cyber Strike: Reborn</span>
+</div>
+</div>
+<span class="text-xs font-label-sm text-on-surface-variant whitespace-nowrap">3 days ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 9: BUILT FOR EVERYONE (3 Large Desktop Cards in One Row) -->
+<section class="w-full py-space-3xl px-gutter bg-surface-container-lowest">
+<div class="max-w-[1380px] mx-auto flex flex-col gap-space-2xl">
+<div class="text-center max-w-2xl mx-auto">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">COMMUNITY ROLES</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-space-2xs uppercase">BUILT FOR PLAYERS, CREATORS &amp; COMMUNITIES.</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-xl">
+<!-- Card 1: GAMERS -->
+<div class="rounded-2xl bg-surface-container-high/60 backdrop-blur-xl p-space-xl shadow-xl flex flex-col justify-between hover:translate-y-[-4px] transition-transform">
+<div class="space-y-space-md">
+<div class="w-14 h-14 rounded-2xl bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">sports_esports</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface uppercase font-bold">GAMERS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Test cutting-edge titles before public release, compete against peers in scheduled brackets, form squads, and earn verified status in the global gaming ecosystem.
+            </p>
+</div>
+<div class="pt-space-lg">
+<span class="text-xs font-label-sm text-secondary uppercase tracking-wider font-semibold">Discover Beta Drops &amp; Tournaments →</span>
+</div>
+</div>
+<!-- Card 2: DEVELOPERS & STUDIOS -->
+<div class="rounded-2xl bg-surface-container-high/60 backdrop-blur-xl p-space-xl shadow-xl flex flex-col justify-between hover:translate-y-[-4px] transition-transform">
+<div class="space-y-space-md">
+<div class="w-14 h-14 rounded-2xl bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[32px]">code</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface uppercase font-bold">DEVELOPERS &amp; STUDIOS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              From indie teams to scale studios, run structured testing cohorts, squash game-breaking bugs, benchmark hardware performance, and tune gameplay balance.
+            </p>
+</div>
+<div class="pt-space-lg">
+<span class="text-xs font-label-sm text-secondary uppercase tracking-wider font-semibold">Onboard Your Game Studio →</span>
+</div>
+</div>
+<!-- Card 3: TOURNAMENT HOSTS -->
+<div class="rounded-2xl bg-surface-container-high/60 backdrop-blur-xl p-space-xl shadow-xl flex flex-col justify-between hover:translate-y-[-4px] transition-transform">
+<div class="space-y-space-md">
+<div class="w-14 h-14 rounded-2xl bg-primary-container/20 flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[32px]">hub</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface uppercase font-bold">TOURNAMENT HOSTS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              College clubs, gaming cafes, streamer communities, and grassroots esports organizers power matches with zero overhead, automatic brackets, and dispute resolution.
+            </p>
+</div>
+<div class="pt-space-lg">
+<span class="text-xs font-label-sm text-secondary uppercase tracking-wider font-semibold">Launch Community Brackets →</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 10: TRUST & SAFETY (5 Horizontal Pillars) -->
+<section class="w-full py-space-3xl px-gutter bg-surface-container-low">
+<div class="max-w-[1380px] mx-auto flex flex-col gap-space-2xl">
+<div class="text-center max-w-2xl mx-auto">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">INTEGRITY FIRST</span>
+<h2 class="font-headline-xl text-headline-xl text-on-surface mt-space-2xs uppercase">BUILT FOR FAIR PLAY.</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md">
+<!-- Pillar 1 -->
+<div class="p-space-md rounded-2xl bg-surface-container-high/50 backdrop-blur-md flex flex-col gap-space-sm text-center items-center">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-bold">Verified Game Developers</h4>
+<p class="text-xs text-on-surface-variant">Every testing campaign and studio lead is manually authenticated to prevent counterfeit builds.</p>
+</div>
+<!-- Pillar 2 -->
+<div class="p-space-md rounded-2xl bg-surface-container-high/50 backdrop-blur-md flex flex-col gap-space-sm text-center items-center">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">lock</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-bold">Secure Player Accounts</h4>
+<p class="text-xs text-on-surface-variant">Multi-factor security, steam ID linking, and hardware fingerprinting keep profiles protected.</p>
+</div>
+<!-- Pillar 3 -->
+<div class="p-space-md rounded-2xl bg-surface-container-high/50 backdrop-blur-md flex flex-col gap-space-sm text-center items-center">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">gavel</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-bold">Fair Competition Standards</h4>
+<p class="text-xs text-on-surface-variant">Standardized tournament rulebooks and automated check-ins eliminate match manipulation.</p>
+</div>
+<!-- Pillar 4 -->
+<div class="p-space-md rounded-2xl bg-surface-container-high/50 backdrop-blur-md flex flex-col gap-space-sm text-center items-center">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">shield</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-bold">Community Moderation</h4>
+<p class="text-xs text-on-surface-variant">Active match adjudicators and behavior scoring ensure toxic-free competitive play.</p>
+</div>
+<!-- Pillar 5 -->
+<div class="p-space-md rounded-2xl bg-surface-container-high/50 backdrop-blur-md flex flex-col gap-space-sm text-center items-center">
+<div class="w-12 h-12 rounded-full bg-tertiary-container/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">receipt_long</span>
+</div>
+<h4 class="font-headline-sm text-[16px] text-on-surface font-bold">Transparent Results</h4>
+<p class="text-xs text-on-surface-variant">All bracket matches and prize pool escrow settlements are immutable and publicly auditable.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 11: PLATFORM STATISTICS (Wide 4-Column Bar) -->
+<section class="w-full py-space-2xl px-gutter bg-surface">
+<div class="max-w-[1380px] mx-auto rounded-2xl bg-surface-container-high/70 backdrop-blur-xl p-space-xl shadow-xl">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-lg text-center">
+<!-- Metric 1 -->
+<div class="flex flex-col gap-1">
+<span class="font-display-lg text-[48px] text-primary font-bold">10K+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Gamers Active</span>
+<span class="text-xs text-on-surface-variant font-label-sm uppercase">Global Testers &amp; Players</span>
+</div>
+<!-- Metric 2 -->
+<div class="flex flex-col gap-1">
+<span class="font-display-lg text-[48px] text-secondary font-bold">250+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Games Tested</span>
+<span class="text-xs text-on-surface-variant font-label-sm uppercase">Alphas, Betas &amp; Playtests</span>
+</div>
+<!-- Metric 3 -->
+<div class="flex flex-col gap-1">
+<span class="font-display-lg text-[48px] text-primary font-bold">500+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Tournaments</span>
+<span class="text-xs text-on-surface-variant font-label-sm uppercase">Community &amp; Pro Cups</span>
+</div>
+<!-- Metric 4 -->
+<div class="flex flex-col gap-1">
+<span class="font-display-lg text-[48px] text-secondary font-bold">50K+</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Matches Played</span>
+<span class="text-xs text-on-surface-variant font-label-sm uppercase">Verified Competition Matches</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 12: DRAMATIC FINAL DESKTOP CTA -->
+<section class="w-full py-space-3xl px-gutter bg-[#050A30] relative overflow-hidden text-center">
+<!-- Glowing Radial Aura -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full bg-primary-container/25 blur-[160px] pointer-events-none"></div>
+<div class="relative max-w-4xl mx-auto flex flex-col items-center gap-space-lg z-10">
+<div class="inline-flex items-center gap-2 px-space-md py-1 rounded-full bg-surface-container-high/80">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Riyadah Elite Platform 2025</span>
+</div>
+<h2 class="font-display-lg text-[64px] leading-tight text-on-surface font-bold uppercase">
+        READY TO ENTER THE GAME?
+      </h2>
+<p class="font-headline-sm text-headline-sm text-on-surface-variant max-w-2xl font-normal">
+        Test the next great game. Find your next tournament. Start playing today.
+      </p>
+<!-- Dual Buttons -->
+<div class="flex flex-wrap items-center justify-center gap-space-md pt-space-xs">
+<a class="px-space-xl py-space-md rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-[0_8px_30px_rgba(35,61,255,0.5)] hover:brightness-110 hover:scale-[1.02] transition-all flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-lg">explore</span>
+          Explore Games
+        </a>
+<a class="px-space-xl py-space-md rounded-lg bg-surface-container-high text-secondary font-label-lg text-label-lg font-bold hover:bg-surface-container-highest transition-all flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-lg">emoji_events</span>
+          Find Tournaments
+        </a>
+</div>
+<!-- Sub-links -->
+<div class="flex flex-wrap items-center justify-center gap-space-xl pt-space-md text-on-surface-variant text-sm font-label-sm">
+<a class="hover:text-secondary transition-colors" href="#developers">
+          For Developers → Test Your Game
+        </a>
+<span class="opacity-30">|</span>
+<a class="hover:text-secondary transition-colors" href="#tournaments">
+          For Hosts → Create a Tournament
+        </a>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-3xl py-space-3xl"><div class="max-w-[1380px] mx-auto px-gutter"><div class="grid grid-cols-2 md:grid-cols-5 gap-space-xl mb-space-2xl"><div class="col-span-2"><div class="flex items-center gap-space-sm mb-space-md"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"><span class="font-headline-sm text-headline-sm text-on-surface">RIYADAH ELITE</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm mb-space-lg">The competitive gaming SaaS standard for live multi-regional tournament orchestrations and high-fidelity game testing telemetry.</p><div class="inline-flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-full bg-surface-container-high"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">All Systems Operational</span></div></div><div><h4 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Platform</h4><ul class="space-y-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Tournaments</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Game Testing Hub</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Leaderboards</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Telemetry Engine</li></ul></div><div><h4 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Solutions</h4><ul class="space-y-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Game Studios</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Esports Organizers</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Beta Playtesters</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Anti-Cheat Verification</li></ul></div><div><h4 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface mb-space-md">Legal &amp; Terms</h4><ul class="space-y-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Privacy Policy</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Terms of Service</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Code of Conduct</li><li class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">Security Telemetry</li></ul></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 Riyadah Elite Inc. All rights reserved.</p><div class="flex items-center gap-space-lg"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Region: Global Edge</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">v2.4.0-stable</span></div></div></div></footer></body></html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed": "#000a64", "on-tertiary-container": "#bcdaf1", "secondary": "#92ccff", "surface-tint": "#bcc2ff", "surface-container-high": "#21274c", "outline": "#8f8fa3", "on-primary-container": "#d0d3ff", "on-secondary-container": "#002c47", "outline-variant": "#444557", "secondary-fixed": "#cce5ff", "secondary-container": "#3698d9", "primary-fixed-dim": "#bcc2ff", "surface-container-lowest": "#050930", "tertiary-fixed": "#c8e6fd", "tertiary-fixed-dim": "#adcae1", "on-error": "#690005", "surface-dim": "#0a0f35", "on-background": "#dfe0ff", "error-container": "#93000a", "inverse-primary": "#2640ff", "on-primary-fixed-variant": "#0022da", "on-primary": "#00169d", "surface-container-low": "#13183d", "inverse-surface": "#dfe0ff", "on-tertiary-fixed-variant": "#2d4a5c", "on-secondary-fixed": "#001e31", "on-secondary": "#003351", "on-surface": "#dfe0ff", "error": "#ffb4ab", "surface-container": "#171c41", "tertiary": "#adcae1", "on-surface-variant": "#c5c5da", "inverse-on-surface": "#282d53", "on-secondary-fixed-variant": "#004b73", "secondary-fixed-dim": "#92ccff", "on-error-container": "#ffdad6", "primary": "#bcc2ff", "on-tertiary-fixed": "#001e2e", "on-tertiary": "#153345", "surface": "#0a0f35", "surface-bright": "#31365d", "background": "#0a0f35", "tertiary-container": "#446073", "primary-container": "#233dff", "surface-container-highest": "#2c3258", "primary-fixed": "#dfe0ff", "surface-variant": "#2c3258" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "2rem", "space-lg": "1.5rem", "space-xs": "0.5rem", "container-max": "1280px", "space-2xs": "0.25rem", "space-2xl": "3rem", "gutter": "1.5rem", "space-sm": "0.75rem", "space-md": "1rem", "space-3xl": "4.5rem" }, "fontFamily": { "body-sm": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Space Grotesk"], "body-md": ["Plus Jakarta Sans"], "display-lg-mobile": ["Space Grotesk"], "label-sm": ["Space Grotesk"], "body-lg": ["Plus Jakarta Sans"], "headline-sm": ["Space Grotesk"], "headline-lg": ["Space Grotesk"], "headline-xl": ["Space Grotesk"], "display-lg": ["Space Grotesk"], "label-lg": ["Space Grotesk"] }, "fontSize": { "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "display-lg-mobile": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "headline-sm": ["22px", { "lineHeight": "30px", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-xl": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" }] } } } }</script></head><body class="bg-background font-body-md text-body-md text-on-surface min-h-screen selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.35)]"><div class="h-20 max-w-container-max mx-auto px-gutter flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-sm shrink-0"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"><span class="font-headline-sm text-headline-sm tracking-wider uppercase text-on-surface">RIYADAH ELITE</span></div><nav class="hidden lg:flex items-center gap-space-xs px-space-2xs py-space-2xs rounded-full bg-surface-container-low/70" data-active-classes="bg-primary-container text-on-primary-container rounded-full"><a aria-current="page" class="px-space-md py-space-xs font-label-lg transition-all bg-primary-container text-on-primary-container rounded-full" data-path="games" href="#">Games</a><a class="px-space-md py-space-xs rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="tournaments" href="#">Tournaments</a><a class="px-space-md py-space-xs rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="how-it-works" href="#">How It Works</a><a class="px-space-md py-space-xs rounded-full font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all" data-path="for-developers" href="#">For Developers</a></nav><div class="flex items-center gap-space-sm shrink-0"><div class="hidden md:flex items-center gap-space-xs bg-surface-container-low/90 px-space-sm py-space-xs rounded-xl shadow-[inset_0_1px_0_rgba(202,232,255,0.08)]"><span class="material-symbols-outlined text-secondary text-[18px]">search</span><input class="bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface placeholder:text-outline w-32 focus:w-44 transition-all duration-200" placeholder="Search playtests..." type="text"><kbd class="font-label-sm text-label-sm bg-surface-container-high px-space-2xs py-0.5 rounded text-secondary font-bold tracking-tight shadow-sm">⌘K</kbd></div><button class="relative p-space-xs rounded-xl bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface-container-lowest animate-pulse"></span></button><div class="flex items-center gap-space-sm bg-surface-container-low/90 pl-space-sm pr-space-xs py-space-2xs rounded-full"><div class="flex flex-col items-end"><span class="font-label-lg text-label-lg text-on-surface leading-tight">Rahul</span><div class="flex items-center gap-1"><span class="font-label-sm text-label-sm text-secondary font-bold">REP</span><span class="font-label-sm text-label-sm text-on-surface-variant">92/100</span></div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-20 bg-background min-h-[calc(100vh-20rem)]"><div class="flex flex-col w-full">
+<!-- Dynamic Atmospheric Glow Background Layers -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[850px] h-[380px] bg-primary-container/20 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+<div class="absolute top-96 right-10 w-[420px] h-[420px] bg-secondary-container/15 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+<div class="max-w-container-max mx-auto px-gutter w-full flex flex-col gap-space-2xl pb-space-3xl pt-space-md">
+<!-- 1. COMPACT PAGE HEADER & DISCOVERY HERO SEARCH -->
+<section class="flex flex-col gap-space-lg">
+<!-- Breadcrumb & Telemetry Status Pin -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<a class="hover:text-secondary transition-colors" href="#">Home</a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-secondary transition-colors" href="#">Games</a>
+<span class="text-outline-variant">/</span>
+<span class="text-secondary font-bold">Testing Marketplace</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-high/60 px-space-sm py-1 rounded-full shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase font-semibold">Pipeline Node: Riyadh-01 Active</span>
+</div>
+</div>
+<!-- Headline & Live Metrics Banner -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-xl">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-sm bg-primary-container inline-block rotate-45 shadow-[0_0_12px_rgba(35,61,255,0.8)]"></span>
+<span class="font-label-lg text-label-lg uppercase tracking-widest text-secondary font-bold">Esports &amp; Telemetry Hub</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+              TEST <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-primary-fixed to-primary">GAMES</span>
+</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+              Discover upcoming titles, access unreleased competitive builds, log performance metrics, and earn studio telemetry bounties.
+            </p>
+</div>
+<!-- Live Stats Chips -->
+<div class="flex flex-wrap items-center gap-space-sm shrink-0">
+<div class="flex items-center gap-space-sm bg-surface-container-low/90 backdrop-blur-md px-space-md py-space-sm rounded-xl shadow-md">
+<div class="w-9 h-9 rounded-lg bg-primary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">videogame_asset</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Active Builds</span>
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight">28 Campaigns</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-low/90 backdrop-blur-md px-space-md py-space-sm rounded-xl shadow-md">
+<div class="w-9 h-9 rounded-lg bg-primary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Active Testers</span>
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight">4,850</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-low/90 backdrop-blur-md px-space-md py-space-sm rounded-xl shadow-md">
+<div class="w-9 h-9 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary-fixed">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">Pool Allocation</span>
+<span class="font-headline-sm text-headline-sm text-secondary-fixed leading-tight">₹1.2M Pool</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Discovery Search Bar & Quick Tags -->
+<div class="flex flex-col gap-space-sm mt-space-xs">
+<div class="relative w-full flex items-center bg-surface-container-low/95 backdrop-blur-xl rounded-xl p-1.5 shadow-lg">
+<span class="material-symbols-outlined text-secondary text-[24px] ml-space-sm mr-space-xs shrink-0">search</span>
+<input class="w-full bg-transparent font-body-md text-body-md text-on-surface placeholder:text-outline outline-none py-space-xs" id="game-search-input" placeholder="Search games by title, genre, or studio (e.g., Cyber Strike, FPS, XYZ Studios)..." type="text">
+<button class="hidden sm:flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container hover:bg-primary-container/80 text-on-primary-container font-label-lg text-label-lg transition-all shadow-[0_2px_14px_rgba(35,61,255,0.4)] shrink-0">
+<span>Inspect</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="flex flex-wrap items-center gap-space-xs font-label-sm text-label-sm">
+<span class="text-outline uppercase tracking-wider font-semibold mr-space-2xs">Quick Select:</span>
+<button class="px-space-sm py-1 rounded-full bg-surface-container-high/60 hover:bg-primary-container/40 text-on-surface-variant hover:text-secondary transition-all">FPS</button>
+<button class="px-space-sm py-1 rounded-full bg-surface-container-high/60 hover:bg-primary-container/40 text-on-surface-variant hover:text-secondary transition-all">RPG</button>
+<button class="px-space-sm py-1 rounded-full bg-surface-container-high/60 hover:bg-primary-container/40 text-on-surface-variant hover:text-secondary transition-all">Open Beta</button>
+<button class="px-space-sm py-1 rounded-full bg-surface-container-high/60 hover:bg-primary-container/40 text-on-surface-variant hover:text-secondary transition-all">PC Only</button>
+<button class="px-space-sm py-1 rounded-full bg-surface-container-high/60 hover:bg-primary-container/40 text-on-surface-variant hover:text-secondary transition-all">PlayStation</button>
+<button class="px-space-sm py-1 rounded-full bg-surface-container-high/60 hover:bg-primary-container/40 text-on-surface-variant hover:text-secondary transition-all">Telemetry Bounties</button>
+</div>
+</div>
+</section>
+<!-- 2. FILTER & SORT TOOLBAR -->
+<section class="flex flex-col gap-space-md bg-surface-container-lowest/80 backdrop-blur-xl p-space-md rounded-2xl shadow-xl">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Dropdown Filters Group -->
+<div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-space-xs flex-1">
+<!-- Genre -->
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm px-space-sm py-2.5 rounded-xl outline-none transition-colors cursor-pointer pr-space-lg">
+<option value="">Genre: All</option>
+<option value="fps">FPS</option>
+<option value="battle-royale">Battle Royale</option>
+<option value="rpg">RPG</option>
+<option value="strategy">Strategy</option>
+<option value="racing">Racing</option>
+</select>
+<span class="material-symbols-outlined text-outline text-[18px] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+<!-- Platform -->
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm px-space-sm py-2.5 rounded-xl outline-none transition-colors cursor-pointer pr-space-lg">
+<option value="">Platform: All</option>
+<option value="pc">PC Exclusive</option>
+<option value="playstation">PlayStation 5</option>
+<option value="xbox">Xbox Series X|S</option>
+<option value="mobile">Mobile (iOS/Android)</option>
+</select>
+<span class="material-symbols-outlined text-outline text-[18px] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+<!-- Testing Type -->
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm px-space-sm py-2.5 rounded-xl outline-none transition-colors cursor-pointer pr-space-lg">
+<option value="">Phase: All Types</option>
+<option value="open-beta">Open Beta</option>
+<option value="closed-alpha">Closed Alpha</option>
+<option value="focus-test">Focus Test</option>
+<option value="stress-test">Stress Test</option>
+</select>
+<span class="material-symbols-outlined text-outline text-[18px] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+<!-- Availability -->
+<div class="relative">
+<select class="w-full appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm px-space-sm py-2.5 rounded-xl outline-none transition-colors cursor-pointer pr-space-lg">
+<option value="">Availability: Any</option>
+<option value="spots-open">Spots Available</option>
+<option value="almost-full">Almost Full (&lt;15%)</option>
+<option value="closing-soon">Closing Soon</option>
+</select>
+<span class="material-symbols-outlined text-outline text-[18px] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+<!-- Experience Level -->
+<div class="relative col-span-2 sm:col-span-1">
+<select class="w-full appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm px-space-sm py-2.5 rounded-xl outline-none transition-colors cursor-pointer pr-space-lg">
+<option value="">Level: All Tiers</option>
+<option value="beginner">Beginner Friendly</option>
+<option value="experienced">Elite Testers (REP &gt;80)</option>
+<option value="pro">Esports Pro NDA</option>
+</select>
+<span class="material-symbols-outlined text-outline text-[18px] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Sort & View Layout Switchers -->
+<div class="flex items-center justify-between lg:justify-end gap-space-sm shrink-0">
+<!-- Sort dropdown -->
+<div class="relative min-w-[170px]">
+<select class="w-full appearance-none bg-surface-container hover:bg-surface-container-high text-secondary font-label-sm text-label-sm px-space-sm py-2.5 rounded-xl outline-none transition-colors cursor-pointer pr-space-lg">
+<option value="closing-soon">Sort: Closing Soon</option>
+<option value="popular">Sort: Most Popular</option>
+<option value="newest">Sort: Newest Builds</option>
+<option value="bounty">Sort: Highest Bounty</option>
+</select>
+<span class="material-symbols-outlined text-secondary text-[18px] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none">swap_vert</span>
+</div>
+<!-- View Toggles -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-xl">
+<button class="p-1.5 rounded-lg bg-primary-container text-on-primary-container shadow-sm" id="view-grid-btn" title="Grid View">
+<span class="material-symbols-outlined text-[18px] block">grid_view</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors" id="view-list-btn" title="List View">
+<span class="material-symbols-outlined text-[18px] block">view_list</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Active Filter Pills & Summary -->
+<div class="flex flex-wrap items-center justify-between gap-space-xs pt-space-xs">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline">Active Filters:</span>
+<span class="inline-flex items-center gap-1.5 bg-surface-container-high px-space-sm py-0.5 rounded-full font-label-sm text-label-sm text-secondary">
+              Platform: PC
+              <button class="hover:text-on-surface"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-surface-container-high px-space-sm py-0.5 rounded-full font-label-sm text-label-sm text-secondary">
+              Phase: Beta &amp; Alpha
+              <button class="hover:text-on-surface"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1.5 bg-surface-container-high px-space-sm py-0.5 rounded-full font-label-sm text-label-sm text-secondary">
+              Availability: Open Spots
+              <button class="hover:text-on-surface"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<button class="font-label-sm text-label-sm text-outline hover:text-secondary underline underline-offset-2 ml-space-xs transition-colors">Clear All</button>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">
+            Filtering <span class="text-secondary font-bold">6</span> of 28 campaigns
+          </div>
+</div>
+</section>
+<!-- 3. HERO FEATURED GAME BANNER (Cyber Strike) -->
+<section class="relative w-full rounded-2xl overflow-hidden bg-surface-container-low shadow-2xl">
+<!-- Ambient Decorative Lighting Elements -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-primary-container/30 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute -left-20 -top-20 w-80 h-80 bg-secondary/10 rounded-full blur-[90px] pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 relative z-10">
+<!-- Left/Center Visual Canvas -->
+<div class="lg:col-span-7 relative min-h-[360px] lg:min-h-[480px] overflow-hidden flex flex-col justify-between p-space-lg">
+<!-- Simulated Gameplay Scrim with High Fidelity Placeholder -->
+<div class="absolute inset-0 bg-cover bg-center -z-10 brightness-[0.7] contrast-[1.1] transform scale-105 transition-transform duration-700 hover:scale-100" data-alt="A gritty cinematic first-person cyberpunk tactical shooter battlefield rendered in Unreal Engine 5. Neon volumetric fog illuminates futuristic concrete ruins in shades of deep indigo, electric sapphire blue, and cyans. High-tech holographic weapon telemetry sights HUD float in crisp focus with weapon statistics and squad squad comms." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5UkOmCr6CINEP78z7ZGUHfeYbJq7QHuLOTr74SgTwOk5HBq6FQcYOL8BOUcXI4ogLvzQ73-jWYPLKpqFjaXYMVWtfh9rCWAQY8dWdaw7IbnqN2l_raus0FLcwpFahKHdiAP5PBSGBSPvkaEJS0LkMQOQfKXXMFQCGH3vAwooFAG4_OP8wd52tf8V7jMJ_BKDH-W5bYO1IBgJBOJ438iEqSu1wdq7uBN3GBM9rzTwlm5MX5ST0qKE')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/60 to-transparent -z-10"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-surface-container-low/40 to-surface-container-low lg:block hidden -z-10"></div>
+<!-- Top Overlay Badges -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-bold tracking-wider uppercase shadow-[0_0_12px_rgba(35,61,255,0.7)]">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-ping"></span>
+                Featured Test Campaign
+              </span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-secondary font-label-sm text-label-sm">
+                OPEN BETA • PC EXCLUSIVE
+              </span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-lowest/80 backdrop-blur-md text-error font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">timer</span>
+                Closes Sep 30 (4 days left)
+              </span>
+</div>
+<!-- Bottom Gameplay Telemetry Graphic Overlay -->
+<div class="bg-surface-container-lowest/85 backdrop-blur-xl p-space-md rounded-xl max-w-lg shadow-xl mt-auto">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">troubleshoot</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface font-semibold">Engine Telemetry: UE 5.4.3</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-mono">STABLE TICK: 128Hz</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-xs text-center font-mono">
+<div class="bg-surface-container p-space-2xs rounded">
+<div class="text-outline text-[10px] uppercase font-bold">Client Target</div>
+<div class="text-on-surface font-label-sm text-label-sm">165 FPS</div>
+</div>
+<div class="bg-surface-container p-space-2xs rounded">
+<div class="text-outline text-[10px] uppercase font-bold">Avg Ping</div>
+<div class="text-secondary font-label-sm text-label-sm">18.4 ms</div>
+</div>
+<div class="bg-surface-container p-space-2xs rounded">
+<div class="text-outline text-[10px] uppercase font-bold">Build Hash</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm">#UE5-920A</div>
+</div>
+<div class="bg-surface-container p-space-2xs rounded">
+<div class="text-outline text-[10px] uppercase font-bold">Bounty Pool</div>
+<div class="text-secondary-fixed font-label-sm text-label-sm">₹120,000</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Content & Action Panel -->
+<div class="lg:col-span-5 p-space-xl flex flex-col justify-between bg-surface-container-low/95 backdrop-blur-2xl">
+<div class="flex flex-col gap-space-md">
+<div>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider mb-1">
+                  XYZ Studios • FPS / Tactical Multiplayer
+                </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">
+                  Cyber Strike <span class="font-body-sm text-body-sm text-on-surface-variant block font-normal mt-0.5">Build Candidate v0.8.4-RC2</span>
+</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                Stress testing next-generation destructible cover systems and high-tickrate competitive hit registration on Middle East servers. Studio is directly rewarding bug reproductions with monetary bounties and tournament whitelisting.
+              </p>
+<!-- Capacity Progress Bar -->
+<div class="flex flex-col gap-1.5 bg-surface-container-high/40 p-space-sm rounded-xl">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">how_to_reg</span>
+                    Tester Roster Fill
+                  </span>
+<span class="text-on-surface font-bold">1,248 <span class="text-outline font-normal">/ 2,000 joined</span></span>
+</div>
+<!-- Progress track -->
+<div class="w-full h-2.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-secondary rounded-full shadow-[0_0_8px_rgba(92,182,249,0.8)]" style="width: 62.4%"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] font-mono text-outline">
+<span>62% Capacity</span>
+<span class="text-secondary font-semibold">752 Positions Open</span>
+</div>
+</div>
+<!-- 4 Focus Areas -->
+<div class="flex flex-col gap-space-2xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">Active Test Modules:</span>
+<div class="grid grid-cols-2 gap-space-2xs">
+<div class="flex items-center gap-space-xs bg-surface-container p-space-xs rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[16px]">balance</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">Gameplay Balance</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container p-space-xs rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[16px]">lan</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">Multiplayer Netcode</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container p-space-xs rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[16px]">speed</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">GPU Performance</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container p-space-xs rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[16px]">keyboard</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium truncate">WASD Ergonomics</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action CTAs -->
+<div class="flex flex-col sm:flex-row items-center gap-space-sm pt-space-lg mt-space-md">
+<button class="w-full sm:w-auto flex-1 flex items-center justify-center gap-space-xs px-space-lg py-space-sm rounded-xl bg-primary-container hover:bg-primary-container/85 text-on-primary-container font-label-lg text-label-lg font-bold shadow-[0_4px_22px_rgba(35,61,255,0.5)] transition-all transform hover:-translate-y-0.5">
+<span>View Game &amp; Requirements</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="w-full sm:w-auto flex items-center justify-center gap-space-xs px-space-lg py-space-sm rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-secondary font-label-lg text-label-lg transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span>Quick Apply</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. RESPONSIVE GAME CARDS GRID (3-4 columns) -->
+<section class="flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Open Verified Campaigns</h3>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Real-Time Telemetry Feed</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-lg" id="game-cards-container">
+<!-- CARD 1: Cyber Strike -->
+<article class="group relative flex flex-col justify-between bg-surface-container-low/80 hover:bg-surface-container/90 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(35,61,255,0.25)]">
+<div>
+<!-- Game Card Media / Header -->
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-high">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Futuristic sci-fi tactical soldier wielding a modern holographic rail rifle in an abandoned cybernetic hangar. Dramatic deep blue lighting, specular reflections on gun metal, volumetric dust motes, Unreal Engine game screenshot." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCjSV4FWcC-pidZRKLV02BpLXMzkkEH7ttNUws7xndD8k6hUV-oOfvl19xaOfNB8WWz-QQlv0MyPMhPqhtfTEpU2y_4fu0cBrLx8NR6CmplaZvDA4zaOJHc6S0pqel_Y38w1w3WNWwVS-GFnpYYUpOUnf59xDyALBPTsDJ872iTmL4zNhriqCwkHAWIjeiSSs70VXeblrdqwxWa5AoiruplQLEKoVpkJYr2yZS5bUW9VBCSjaIa1ms')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<!-- Badges -->
+<div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+<span class="px-space-xs py-0.5 rounded-md bg-primary-container/90 text-on-primary-container font-label-sm text-label-sm font-bold uppercase tracking-wider shadow-sm">
+                    Open Beta
+                  </span>
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-lowest/80 text-on-surface-variant font-label-sm text-label-sm">
+                    PC
+                  </span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-space-xs py-0.5 rounded-md bg-secondary-container/90 text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-container-lowest"></span>
+                    OPEN FOR TESTING
+                  </span>
+</div>
+<div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-on-surface">
+<span class="font-label-sm text-label-sm text-secondary font-mono">XYZ Studios</span>
+<span class="font-label-sm text-label-sm text-outline font-mono flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">event</span>
+                    Closes Sep 30
+                  </span>
+</div>
+</div>
+<!-- Card Body Content -->
+<div class="p-space-md flex flex-col gap-space-sm">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+                    Cyber Strike
+                  </h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">FPS • Competitive Multiplayer • UE5</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                  Validate Middle East low-latency server tickrates, destructible ballistic environments, and high-frequency bullet penetration.
+                </p>
+<!-- Capacity Metric -->
+<div class="flex flex-col gap-1 pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline">Roster Capacity</span>
+<span class="text-on-surface font-semibold">1,248 / 2,000 <span class="text-secondary">(62%)</span></span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 62.4%"></div>
+</div>
+</div>
+<!-- Bounty and Spec requirement snippet -->
+<div class="flex items-center justify-between bg-surface-container/60 px-space-sm py-1.5 rounded-lg text-[12px] font-mono">
+<span class="text-outline">Bounty Reward</span>
+<span class="text-secondary-fixed font-bold">₹120,000</span>
+</div>
+</div>
+</div>
+<!-- Card Footer Action -->
+<div class="p-space-md pt-0">
+<button class="w-full flex items-center justify-center gap-space-xs py-2.5 rounded-xl bg-primary-container hover:bg-primary-container/80 text-on-primary-container font-label-lg text-label-lg font-bold transition-all shadow-md">
+<span>View Game</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 2: Neon Racers: Overdrive -->
+<article class="group relative flex flex-col justify-between bg-surface-container-low/80 hover:bg-surface-container/90 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(255,180,171,0.2)]">
+<div>
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-high">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Futuristic anti-gravity neon racing hover-car drifting through a rain-slicked Tokyo-inspired metropolis highway at midnight. Motion blur streaks of vivid electric cyan, laser orange, and deep midnight navy blue." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcxC7xY4lSZOFhRqs9q6SVN751-mBjRO2lCaIAsk1RfwNSbafpgZAOY0bdQ4X46y2xPGWV06akKFu_aGCoGN1F5J17mjpQmH-11Rf9Uj08-wMUpv1meVnBtFYhZyLiMJHP_teOVbhD50kS-k0XWSFwz13UszEST7UvupWFX6-Ry5GMNOE2LLIa_KF-Gl9_VFzl4Op1nkoh-wQ-lB9xWZ8XojTXGwEB71diNQm5ti3AwiSnzCKXVuo')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-lowest/90 text-secondary font-label-sm text-label-sm font-bold uppercase tracking-wider">
+                    Closed Beta
+                  </span>
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-lowest/80 text-on-surface-variant font-label-sm text-label-sm">
+                    PC &amp; PS5
+                  </span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-space-xs py-0.5 rounded-md bg-error-container text-on-error-container font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-[0_0_10px_rgba(147,0,10,0.6)]">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+                    ALMOST FULL (10 spots)
+                  </span>
+</div>
+<div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-on-surface">
+<span class="font-label-sm text-label-sm text-secondary font-mono">Velocity Games</span>
+<span class="font-label-sm text-label-sm text-outline font-mono flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">event</span>
+                    Closes Oct 12
+                  </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+                    Neon Racers: Overdrive
+                  </h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Racing • Competitive Anti-Grav</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                  DualSense haptic feedback profiling and cross-play synchronization during 16-player supersonic draft slipstreaming.
+                </p>
+<div class="flex flex-col gap-1 pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline">Roster Capacity</span>
+<span class="text-error font-semibold">240 / 250 <span class="text-outline font-normal">(96%)</span></span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full shadow-[0_0_8px_rgba(255,180,171,0.8)]" style="width: 96%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between bg-surface-container/60 px-space-sm py-1.5 rounded-lg text-[12px] font-mono">
+<span class="text-outline">Haptic Telemetry</span>
+<span class="text-secondary font-bold">PS5 Trigger Pass</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<button class="w-full flex items-center justify-center gap-space-xs py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-secondary font-label-lg text-label-lg font-bold transition-all shadow-md">
+<span>View Game</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 3: Chronos Tactics -->
+<article class="group relative flex flex-col justify-between bg-surface-container-low/80 hover:bg-surface-container/90 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(35,61,255,0.25)]">
+<div>
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-high">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Stylized isometric dark fantasy turn-based strategy arena with glowing arcane clockwork runes on obsidian stone. Mages and armored mechanical sentinels battling in ethereal cyan and deep blue magical energy." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1agNzGkuYhAi8FHaviJOmIlX3-9PdOUpvONeiFNVv_fxnnn-47PiL8Hji3T5HJJbcYTm2fQSYsj0bjDXuXg7tfRWQGiF7Xp9rLZEzUytft_y-YV2pdswum9XiRonarRJ1BcL4IRCAd99Uhb3TuZDxnCA9D7aF5S8SkRM_cRY0u1MD3CcqQVORTNKaIEqeFRlhF-HVHgg9c8BXzNELEEm6SuRrr9p54TUUOrUaCLVIdruW3jy-E4o')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-lowest/90 text-primary-fixed font-label-sm text-label-sm font-bold uppercase tracking-wider">
+                    Alpha Test
+                  </span>
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-lowest/80 text-on-surface-variant font-label-sm text-label-sm">
+                    PC Exclusive
+                  </span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-space-xs py-0.5 rounded-md bg-error-container/80 text-on-error-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">alarm</span>
+                    CLOSING SOON (2 days)
+                  </span>
+</div>
+<div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-on-surface">
+<span class="font-label-sm text-label-sm text-secondary font-mono">Aether Interactive</span>
+<span class="font-label-sm text-label-sm text-error font-mono font-bold flex items-center gap-1">
+                    Closes Oct 5
+                  </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+                    Chronos Tactics
+                  </h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Turn-based RPG • Hex Grid Tactics</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                  Evaluating turn-timer adrenaline balance, async cloud-save stability, and card-draw RNG fairness analytics.
+                </p>
+<div class="flex flex-col gap-1 pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline">Roster Capacity</span>
+<span class="text-on-surface font-semibold">412 / 500 <span class="text-secondary">(82%)</span></span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 82.4%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between bg-surface-container/60 px-space-sm py-1.5 rounded-lg text-[12px] font-mono">
+<span class="text-outline">Focus Matrix</span>
+<span class="text-secondary font-bold">RNG Analytics</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<button class="w-full flex items-center justify-center gap-space-xs py-2.5 rounded-xl bg-primary-container hover:bg-primary-container/80 text-on-primary-container font-label-lg text-label-lg font-bold transition-all shadow-md">
+<span>View Game</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 4: Shadow Protocol -->
+<article class="group relative flex flex-col justify-between bg-surface-container-low/80 hover:bg-surface-container/90 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(255,180,171,0.2)]">
+<div>
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-high">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Third-person stealth operative cloaked with active optical camo sneaking past high-tech security drones in a moonlit glass skyscraper. Shadowy dark atmospheric mood with faint blue laser tripwires." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAbYGChwLQFRU2N5_Yizw-IoHdfTsKse9r1zoQ-lMwSJA-9yKnnalK439pozu3TGR8j5lEGvKpEYmogODXB3bS8VhayAcSiOWn9QkxjyMKJCtVY6ZEJjEHKCiCHHCvUWvUuXXDnjdeScps2eZGZuFyRyrVl77DXA8hwLDOZSkduaoh1Dw9eRQ-24q4K5WNruv1F9crYcUFXFL235QRyudI-G6ha08E_ZRLuAbPN8d2aAqisjLU-Iwk')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-lowest/90 text-primary-fixed font-label-sm text-label-sm font-bold uppercase tracking-wider">
+                    Focus Group
+                  </span>
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-lowest/80 text-on-surface-variant font-label-sm text-label-sm">
+                    PC / Xbox
+                  </span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-space-xs py-0.5 rounded-md bg-error-container text-on-error-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+                    ALMOST FULL
+                  </span>
+</div>
+<div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-on-surface">
+<span class="font-label-sm text-label-sm text-secondary font-mono">Darklight Studios</span>
+<span class="font-label-sm text-label-sm text-outline font-mono flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">event</span>
+                    Closes Oct 1
+                  </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+                    Shadow Protocol
+                  </h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Stealth Action • Asymmetric Co-op</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                  Specialized micro-cohort testing AI patrol vision cones and shadow illumination shaders across high dynamic range monitors.
+                </p>
+<div class="flex flex-col gap-1 pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline">Roster Capacity</span>
+<span class="text-error font-semibold">98 / 100 <span class="text-outline font-normal">(98%)</span></span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full shadow-[0_0_8px_rgba(255,180,171,0.8)]" style="width: 98%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between bg-surface-container/60 px-space-sm py-1.5 rounded-lg text-[12px] font-mono">
+<span class="text-outline">NDA Status</span>
+<span class="text-secondary font-bold">Tier 2 Signed NDA</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<button class="w-full flex items-center justify-center gap-space-xs py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-secondary font-label-lg text-label-lg font-bold transition-all shadow-md">
+<span>View Game</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 5: Voxel Realms Online -->
+<article class="group relative flex flex-col justify-between bg-surface-container-low/80 hover:bg-surface-container/90 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(35,61,255,0.25)]">
+<div>
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-high">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Vibrant high-resolution voxel MMO floating fantasy islands with towering crystalline blue spires, flying airships, and bustling miniature block avatars under a deep cosmic starry night sky." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDOgbkrRpht3P11CLHmT-eobaShUPcXOGAF6gHjsfplXHl_m9dV6COZJBOO2CD_wnUhmrpAHFbKKDyvZATkGUNXyfh7aV2jDheMzfKcVAXJaKdw_FmCzfRmG5kfm8x-iTIjH3fYGNdkPzKueHSgMmMWCYBW53wStAWvco6cr1nczXFNizQ0fWJdsNiR_LbNCfdOBcYLcfqTzx5xRvEZDnAYOGxn9dXx21uEgtHC68ibpglkCdtPCwY')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+<span class="px-space-xs py-0.5 rounded-md bg-primary-container/90 text-on-primary-container font-label-sm text-label-sm font-bold uppercase tracking-wider shadow-sm">
+                    Stress Test
+                  </span>
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-lowest/80 text-on-surface-variant font-label-sm text-label-sm">
+                    Cross-Platform
+                  </span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-space-xs py-0.5 rounded-md bg-secondary-container/90 text-on-secondary-container font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-container-lowest"></span>
+                    OPEN FOR TESTING
+                  </span>
+</div>
+<div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-on-surface">
+<span class="font-label-sm text-label-sm text-secondary font-mono">Blockforge</span>
+<span class="font-label-sm text-label-sm text-outline font-mono flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">event</span>
+                    Closes Nov 15
+                  </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-secondary transition-colors">
+                    Voxel Realms Online
+                  </h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Sandbox MMO • Infinite Sharded World</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                  Extreme concurrent user stress load (5,000 players per continent) testing server packet serialization and voxel chunk streaming.
+                </p>
+<div class="flex flex-col gap-1 pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline">Roster Capacity</span>
+<span class="text-on-surface font-semibold">3,120 / 5,000 <span class="text-secondary">(62%)</span></span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 62.4%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between bg-surface-container/60 px-space-sm py-1.5 rounded-lg text-[12px] font-mono">
+<span class="text-outline">Max Concurrency</span>
+<span class="text-secondary-fixed font-bold">5,000 CCU Node</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<button class="w-full flex items-center justify-center gap-space-xs py-2.5 rounded-xl bg-primary-container hover:bg-primary-container/80 text-on-primary-container font-label-lg text-label-lg font-bold transition-all shadow-md">
+<span>View Game</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- CARD 6: Apex Strikers Mobile -->
+<article class="group relative flex flex-col justify-between bg-surface-container-low/50 rounded-2xl overflow-hidden shadow-sm opacity-85 hover:opacity-100 transition-all duration-300">
+<div>
+<div class="relative h-48 w-full overflow-hidden bg-surface-container-high grayscale-[40%] group-hover:grayscale-0 transition-all">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Futuristic cybernetic football stadium with robotic mobile mecha strikers competing under blinding floodlights in neon cyan and midnight navy blue." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfb5YYmCd9NlbI-YrBBeKqoJV3Utjb86CA6X_ZMHtCltCfR6Bev6Ty0LUQXheCJlGI4va8nF2ubmVK3p584th9dea3LXEKO9OmEsTBXQ6T_A6LpPQVOeYPCDtTPia_DCmEFG0FkInv7MCvz74Ypz6aSG-aTU5-c233C7XXmU4zhepD3b7B7_CcaU47CZHIsuKgyEeqr7MiZ-L2Ny8-TfJI8bRUFExRRc6yXDgkseXhISgC1NREt64')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-surface-container-low/40 to-transparent"></div>
+<div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-lowest/90 text-outline font-label-sm text-label-sm font-bold uppercase tracking-wider">
+                    Closed Alpha
+                  </span>
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-lowest/80 text-on-surface-variant font-label-sm text-label-sm">
+                    iOS / Android
+                  </span>
+</div>
+<div class="absolute top-3 right-3">
+<span class="px-space-xs py-0.5 rounded-md bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+                    APPLICATIONS FULL
+                  </span>
+</div>
+<div class="absolute bottom-2 left-3 right-3 flex items-center justify-between text-on-surface">
+<span class="font-label-sm text-label-sm text-outline font-mono">Mirage Games</span>
+<span class="font-label-sm text-label-sm text-outline font-mono">
+                    Applications Closed
+                  </span>
+</div>
+</div>
+<div class="p-space-md flex flex-col gap-space-sm">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                    Apex Strikers Mobile
+                  </h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Mobile MOBA • 3v3 Ball Striker</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                  Snap touch response calibration, frame pacing stability across low-tier Android chipsets, and Bluetooth controller bindings.
+                </p>
+<div class="flex flex-col gap-1 pt-space-xs">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-outline">Roster Capacity</span>
+<span class="text-outline font-semibold">1,000 / 1,000 <span class="text-outline font-normal">(100%)</span></span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-outline rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="flex items-center justify-between bg-surface-container/60 px-space-sm py-1.5 rounded-lg text-[12px] font-mono">
+<span class="text-outline">Cohort Status</span>
+<span class="text-outline font-bold">Testing Underway</span>
+</div>
+</div>
+</div>
+<div class="p-space-md pt-0">
+<button class="w-full flex items-center justify-center gap-space-xs py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant hover:text-secondary font-label-lg text-label-lg font-medium transition-all">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+<span>Notify Next Round</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+<!-- 5. EMPTY STATE PREVIEW & DISCOVERY HELPER ACCORDION -->
+<section class="bg-surface-container-low/60 backdrop-blur-md rounded-2xl p-space-lg shadow-sm">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[28px]">manage_search</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Looking for a specific game genre or studio?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Can't find the playtest build you are looking for? Reset query parameters or sign up for bespoke testing alerts.
+              </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial px-space-md py-space-xs rounded-xl bg-surface-container-high hover:bg-surface-container text-secondary font-label-lg text-label-lg transition-colors">
+              Reset Filters
+            </button>
+<button class="flex-1 sm:flex-initial px-space-md py-space-xs rounded-xl bg-surface-container hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-colors">
+              Request Studio Invite
+            </button>
+</div>
+</div>
+</section>
+<!-- 6. PAGINATION & LOAD MORE PROGRESS -->
+<section class="flex flex-col items-center justify-center gap-space-sm py-space-md">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span>Showing <strong class="text-secondary">6</strong> of 28 Active Campaigns</span>
+</div>
+<div class="w-64 h-1.5 bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 21.4%"></div>
+</div>
+<button class="flex items-center gap-space-xs px-space-2xl py-space-sm rounded-xl bg-surface-container-high hover:bg-primary-container text-on-surface hover:text-on-primary-container font-label-lg text-label-lg font-bold shadow-md hover:shadow-[0_4px_20px_rgba(35,61,255,0.4)] transition-all mt-space-xs">
+<span class="material-symbols-outlined text-[18px]">cached</span>
+<span>Load More Campaigns (22 remaining)</span>
+</button>
+</section>
+<!-- 7. FLOATING TESTER REWARD & PERK BANNER -->
+<section class="relative rounded-2xl overflow-hidden bg-gradient-to-r from-surface-container-lowest via-surface-container-low to-surface-container-lowest p-space-xl shadow-2xl">
+<div class="absolute right-0 top-0 bottom-0 w-1/3 bg-primary-container/10 rounded-full blur-[90px] pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-space-xl">
+<div class="flex items-center gap-space-lg">
+<div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-container to-secondary flex items-center justify-center text-on-primary shadow-[0_0_24px_rgba(35,61,255,0.6)] shrink-0">
+<span class="material-symbols-outlined text-[34px]">verified</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">Tester Reputation Ecosystem</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-outline">Tier 1 to Tier 4</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
+                Earn Verified REP &amp; Access High-Stakes Pro Testing
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-2xl">
+                Every verified bug report and telemetry session increases your tester REP score. Unlock exclusive Discord badges, developer roundtables, and priority hardware testing bounties.
+              </p>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-space-sm w-full lg:w-auto shrink-0">
+<a class="w-full sm:w-auto text-center px-space-lg py-space-sm rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-secondary font-label-lg text-label-lg transition-colors" data-path="how-it-works" href="#">
+              How REP Works
+            </a>
+<button class="w-full sm:w-auto text-center px-space-lg py-space-sm rounded-xl bg-primary-container hover:bg-primary-container/85 text-on-primary-container font-label-lg text-label-lg font-bold shadow-[0_4px_18px_rgba(35,61,255,0.5)] transition-all">
+              View My REP Rank
+            </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<script>
+  // Simple view switcher interaction for high fidelity UI feel
+  const gridBtn = document.getElementById('view-grid-btn');
+  const listBtn = document.getElementById('view-list-btn');
+  const container = document.getElementById('game-cards-container');
+
+  if (gridBtn && listBtn && container) {
+    gridBtn.addEventListener('click', () => {
+      gridBtn.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-sm');
+      gridBtn.classList.remove('text-on-surface-variant');
+      listBtn.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-sm');
+      listBtn.classList.add('text-on-surface-variant');
+      container.classList.remove('grid-cols-1');
+      container.classList.add('md:grid-cols-2', 'xl:grid-cols-3');
+    });
+
+    listBtn.addEventListener('click', () => {
+      listBtn.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-sm');
+      listBtn.classList.remove('text-on-surface-variant');
+      gridBtn.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-sm');
+      gridBtn.classList.add('text-on-surface-variant');
+      container.classList.remove('md:grid-cols-2', 'xl:grid-cols-3');
+      container.classList.add('grid-cols-1');
+    });
+  }
+</script></main><footer class="w-full bg-surface-container-lowest py-space-3xl mt-space-3xl"><div class="max-w-container-max mx-auto px-gutter"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-2xl mb-space-3xl"><div class="flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><img alt="RE_Logo.png" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"><span class="font-headline-sm text-headline-sm tracking-wider uppercase text-on-surface">RIYADAH ELITE</span></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed max-w-xs">Play. Test. Compete. The premier esports competition telemetry and rigorous game testing nexus for elite players and visionary game studios.</p><div class="flex items-center gap-space-xs text-secondary"><span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span><span class="font-label-sm text-label-sm text-secondary tracking-wider uppercase">Telemetry Node Online</span></div></div><div class="flex flex-col gap-space-sm"><h4 class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider mb-space-2xs">Platform</h4><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="games" href="#">Verified Playtests</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="tournaments" href="#">Tournament Brackets</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="how-it-works" href="#">Telemetry Engine</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="games" href="#">Live Leaderboards</a></div><div class="flex flex-col gap-space-sm"><h4 class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider mb-space-2xs">Ecosystem</h4><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="for-developers" href="#">Studio Console</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="for-developers" href="#">Testing Telemetry SDK</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="how-it-works" href="#">Reputation Metric</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="tournaments" href="#">Prize Escrow</a></div><div class="flex flex-col gap-space-sm"><h4 class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider mb-space-2xs">Governance &amp; Terms</h4><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="terms-and-fair-play" href="#">Competitive Integrity</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="terms-and-fair-play" href="#">Developer NDA Protocol</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="terms-and-fair-play" href="#">Privacy Policy</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" data-path="terms-and-fair-play" href="#">Terms of Service</a></div></div><div class="pt-space-xl flex flex-col sm:flex-row items-center justify-between gap-space-md bg-surface-container-low/40 px-space-lg py-space-md rounded-2xl"><span class="font-body-sm text-body-sm text-outline">© 2025 Riyadah Elite. All rights reserved. Precision esports operations.</span><div class="flex items-center gap-space-lg"><span class="font-label-sm text-label-sm text-outline">MENA REGION CORE</span><span class="font-label-sm text-label-sm text-secondary font-bold">BUILD v3.12.4</span></div></div></div></footer></body></html>

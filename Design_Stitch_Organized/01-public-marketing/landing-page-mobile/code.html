@@ -1,0 +1,877 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>Riyadah Elite — Play. Test. Compete.</title>
+<!-- Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'sky-tint': '#CAE8FF',
+            'primary-blue': '#5CB6F9',
+            'electric-blue': '#233DFF',
+            'deep-navy': '#050A30',
+            'soft-white': '#F7FBFF',
+          },
+          fontFamily: {
+            display: ['Space Grotesk', 'Orbitron', 'sans-serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          boxShadow: {
+            'glow-electric': '0 0 24px -4px rgba(35, 61, 255, 0.45)',
+            'glow-soft': '0 10px 30px -10px rgba(92, 182, 249, 0.35)',
+            'inner-glow': 'inset 0 1px 2px rgba(202, 232, 255, 0.4)',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style data-purpose="custom-layout">
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #F7FBFF;
+      color: #050A30;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-display {
+      font-family: 'Space Grotesk', 'Orbitron', sans-serif;
+    }
+    /* Subtle gaming grid overlay */
+    .bg-grid-pattern {
+      background-image: radial-gradient(#5CB6F9 0.75px, transparent 0.75px), radial-gradient(#CAE8FF 0.75px, #F7FBFF 0.75px);
+      background-size: 24px 24px;
+      background-position: 0 0, 12px 12px;
+    }
+    .bg-dark-grid {
+      background-image: linear-gradient(to right, rgba(92, 182, 249, 0.08) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(92, 182, 249, 0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    /* Smooth glassmorphic effect */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(202, 232, 255, 0.8);
+    }
+    .glass-nav {
+      background: rgba(247, 251, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+  </style>
+</head>
+<body class="bg-soft-white text-deep-navy antialiased selection:bg-primary-blue selection:text-white pb-6">
+<!-- BEGIN: Navigation -->
+<header class="sticky top-0 z-50 w-full glass-nav border-b border-sky-tint/80 transition-all duration-300">
+<div class="max-w-md mx-auto px-4 h-16 flex items-center justify-between">
+<!-- Brand Logo + Identity -->
+<a aria-label="Riyadah Elite Home" class="flex items-center gap-2.5 focus:outline-none" href="#">
+<img alt="Riyadah Elite Logo" class="w-8 h-8 rounded-full border border-primary-blue/40 shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdgMxa_7c-8woVTU6mQ6h2_KqMHDCAuSuvJ5ksd9foJeMGDI1Q8SGsR29V9kYbA9a82v3cgUFhvhwvsBM4Qp3hHxsQEf9oeKFtgwakMOxC9zrRjgPCFIjiFaEt2eEAUXNagMNfdQS3iTI7lH35M5YhClGBM47y6YucJuoRydO2CuQXsY2aY8cllWOoVLUCQXzXUmwRR4LyHm_YfJ4kHs_iUz_s5YNfCVD3IE1P6-3XPjSr_un19dMriXcLPOF6q5_8">
+<span class="font-display font-extrabold tracking-tight text-lg text-deep-navy">
+          RIYADAH<span class="text-electric-blue"> ELITE</span>
+</span>
+</a>
+<!-- Quick Action / Menu Toggle -->
+<div class="flex items-center gap-2">
+<a class="hidden sm:inline-flex text-xs font-semibold px-3 py-1.5 rounded-full text-deep-navy hover:text-electric-blue" href="#hero">Log In</a>
+<a class="text-xs font-bold px-3 py-1.5 rounded-xl bg-electric-blue text-white shadow-sm hover:bg-blue-700 transition" href="#hero">Get Started</a>
+<button aria-label="Toggle navigation menu" class="p-2 rounded-xl text-deep-navy hover:bg-sky-tint/50 focus:outline-none focus:ring-2 focus:ring-primary-blue" id="mobile-menu-button">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Dropdown Menu Sheet -->
+<div class="hidden border-b border-sky-tint bg-white/95 backdrop-blur-lg px-5 py-4 space-y-3 transition-all" id="mobile-menu">
+<nav class="flex flex-col gap-2 font-medium text-sm">
+<a class="py-2 px-3 rounded-lg hover:bg-sky-tint/30 text-deep-navy" href="#game-testing">Game Testing</a>
+<a class="py-2 px-3 rounded-lg hover:bg-sky-tint/30 text-deep-navy" href="#tournaments">Tournaments</a>
+<a class="py-2 px-3 rounded-lg hover:bg-sky-tint/30 text-deep-navy" href="#how-it-works">How It Works</a>
+<a class="py-2 px-3 rounded-lg hover:bg-sky-tint/30 text-deep-navy" href="#developers">For Developers</a>
+<a class="py-2 px-3 rounded-lg hover:bg-sky-tint/30 text-deep-navy" href="#hosts">For Hosts</a>
+</nav>
+<div class="pt-2 border-t border-sky-tint/60 flex items-center justify-between">
+<a class="text-xs font-semibold text-gray-600" href="#">Log In</a>
+<span class="text-xs text-primary-blue font-bold">Riyadah Elite Mobile v1.0</span>
+</div>
+</div>
+</header>
+<!-- END: Navigation -->
+<main class="max-w-md mx-auto overflow-hidden">
+<!-- BEGIN: Hero Section -->
+<section class="relative pt-6 pb-12 px-4 bg-gradient-to-b from-sky-tint/60 via-soft-white to-soft-white bg-grid-pattern" id="hero">
+<!-- Atmospheric Glow -->
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary-blue/30 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- Two-Sided Platform Badge -->
+<div class="flex justify-center mb-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-primary-blue/40 shadow-sm text-[11px] font-bold tracking-wider uppercase text-electric-blue">
+<span class="w-2 h-2 rounded-full bg-electric-blue animate-pulse"></span>
+          THE TWO-SIDED GAMING PLATFORM
+        </div>
+</div>
+<!-- Main Headlines -->
+<div class="text-center space-y-3">
+<h1 class="font-display font-extrabold text-4xl sm:text-5xl tracking-tight text-deep-navy leading-[1.08]">
+          PLAY. TEST.<br><span class="text-electric-blue">COMPETE.</span>
+</h1>
+<p class="font-medium text-base text-deep-navy/80 px-2 leading-snug">
+          One platform for gamers, game developers, and tournament communities.
+        </p>
+<p class="text-xs text-gray-600 px-4 leading-relaxed">
+          Discover upcoming games, help developers build better experiences, and compete in tournaments hosted by communities around the world.
+        </p>
+</div>
+<!-- Call to Actions -->
+<div class="mt-6 flex flex-col gap-2.5 px-2">
+<a class="w-full py-3.5 px-6 rounded-2xl bg-electric-blue text-white font-bold text-center text-sm shadow-glow-electric active:scale-[0.98] transition" href="#game-testing">
+          Explore Games
+        </a>
+<a class="w-full py-3.5 px-6 rounded-2xl bg-white border-2 border-primary-blue/70 text-electric-blue font-bold text-center text-sm shadow-sm active:scale-[0.98] transition" href="#tournaments">
+          Find Tournaments
+        </a>
+</div>
+<!-- Role-specific sub-links -->
+<div class="mt-4 flex flex-col items-center gap-1.5 text-xs font-semibold text-deep-navy/80">
+<a class="hover:text-electric-blue flex items-center gap-1" href="#developers">
+          Are you a developer? Test your game <span class="text-primary-blue">→</span>
+</a>
+<a class="hover:text-electric-blue flex items-center gap-1" href="#hosts">
+          Want to host? Create a tournament <span class="text-primary-blue">→</span>
+</a>
+</div>
+<!-- Product Visualization Preview Cards -->
+<div class="mt-8 space-y-3 relative">
+<!-- Floating Game Testing Card -->
+<div class="glass-card p-4 rounded-2xl shadow-soft border border-sky-tint/80 relative">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-electric-blue to-primary-blue flex items-center justify-center text-white text-base shadow-sm">
+                🎮
+              </div>
+<div>
+<h4 class="font-bold text-sm text-deep-navy leading-tight">Cyber Strike</h4>
+<div class="flex items-center gap-2 text-[11px] text-gray-500 mt-0.5">
+<span class="font-medium text-electric-blue">Beta 0.8</span>
+<span>•</span>
+<span>PC</span>
+<span>•</span>
+<span class="text-emerald-600 font-semibold">Open Beta</span>
+</div>
+</div>
+</div>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-tint text-deep-navy">500 Needed</span>
+</div>
+<div class="mt-3 flex items-center justify-between pt-2 border-t border-sky-tint/50">
+<span class="text-[11px] font-medium text-gray-600">Reward: Exclusive Beta Badge</span>
+<button class="text-xs font-bold py-1.5 px-3 rounded-lg bg-electric-blue text-white shadow hover:bg-blue-700">
+              Start Testing
+            </button>
+</div>
+</div>
+<!-- Floating Tournament Card -->
+<div class="glass-card p-4 rounded-2xl shadow-soft border border-sky-tint/80 relative">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-base shadow-sm">
+                🏆
+              </div>
+<div>
+<h4 class="font-bold text-sm text-deep-navy leading-tight">Valorant Community Cup</h4>
+<div class="flex items-center gap-2 text-[11px] text-gray-500 mt-0.5">
+<span>128 Players</span>
+<span>•</span>
+<span class="font-semibold text-deep-navy">₹25,000 Pool</span>
+</div>
+</div>
+</div>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Open</span>
+</div>
+<div class="mt-3 flex items-center justify-between pt-2 border-t border-sky-tint/50">
+<div class="flex items-center gap-1 text-[11px] text-gray-500">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> 24ms Ping Check OK
+            </div>
+<button class="text-xs font-bold py-1.5 px-3 rounded-lg bg-primary-blue text-deep-navy shadow hover:bg-sky-300">
+              Join Tournament
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Two Core Products -->
+<section class="py-10 px-4 bg-white border-t border-sky-tint/60">
+<div class="text-center mb-6">
+<span class="text-[11px] font-bold uppercase tracking-widest text-primary-blue">DUAL ECOSYSTEM</span>
+<h2 class="font-display font-extrabold text-2xl text-deep-navy mt-1">
+          ONE PLATFORM.<br><span class="text-electric-blue">TWO WAYS TO GET IN.</span>
+</h2>
+</div>
+<div class="space-y-5">
+<!-- Pillar 1: Test Games -->
+<article class="p-5 rounded-3xl bg-gradient-to-br from-soft-white via-white to-sky-tint/30 border border-sky-tint shadow-sm relative overflow-hidden" data-purpose="pillar-test-games">
+<div class="w-12 h-12 rounded-2xl bg-sky-tint/80 flex items-center justify-center text-2xl mb-3 shadow-inner">
+            🧪
+          </div>
+<h3 class="font-display font-bold text-xl text-deep-navy mb-1">Test Games</h3>
+<p class="text-xs text-gray-600 leading-relaxed mb-4">
+            Play upcoming games, discover new experiences, and help developers build better games with real player feedback.
+          </p>
+<ul class="space-y-2 text-xs font-medium text-deep-navy/90 mb-5">
+<li class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary-blue/20 text-electric-blue flex items-center justify-center text-[10px] font-bold">✓</span>
+              Discover upcoming games
+            </li>
+<li class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary-blue/20 text-electric-blue flex items-center justify-center text-[10px] font-bold">✓</span>
+              Join active testing campaigns
+            </li>
+<li class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary-blue/20 text-electric-blue flex items-center justify-center text-[10px] font-bold">✓</span>
+              Play private &amp; early alpha/beta builds
+            </li>
+<li class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary-blue/20 text-electric-blue flex items-center justify-center text-[10px] font-bold">✓</span>
+              Report bugs &amp; earn tester recognition
+            </li>
+<li class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary-blue/20 text-electric-blue flex items-center justify-center text-[10px] font-bold">✓</span>
+              Share in-depth gameplay feedback
+            </li>
+</ul>
+<a class="inline-flex items-center gap-1.5 text-xs font-bold text-electric-blue hover:underline" href="#game-testing">
+            Explore Games <span>→</span>
+</a>
+</article>
+<!-- Pillar 2: Play Tournaments -->
+<article class="p-5 rounded-3xl bg-gradient-to-br from-soft-white via-white to-sky-tint/30 border border-sky-tint shadow-sm relative overflow-hidden" data-purpose="pillar-tournaments">
+<div class="w-12 h-12 rounded-2xl bg-sky-tint/80 flex items-center justify-center text-2xl mb-3 shadow-inner">
+            🏆
+          </div>
+<h3 class="font-display font-bold text-xl text-deep-navy mb-1">Play Tournaments</h3>
+<p class="text-xs text-gray-600 leading-relaxed mb-4">
+            Find competitions, join teams, and compete in tournaments hosted by gamers, communities, schools, creators, and organizations.
+          </p>
+<ul class="space-y-2 text-xs font-medium text-deep-navy/90 mb-5">
+<li class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary-blue/20 text-electric-blue flex items-center justify-center text-[10px] font-bold">✓</span>
+              Discover open esports &amp; casual tournaments
+            </li>
+<li class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary-blue/20 text-electric-blue flex items-center justify-center text-[10px] font-bold">✓</span>
+              Join individual or squad competitions
+            </li>
+<li class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary-blue/20 text-electric-blue flex items-center justify-center text-[10px] font-bold">✓</span>
+              Create or join verified gaming teams
+            </li>
+<li class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary-blue/20 text-electric-blue flex items-center justify-center text-[10px] font-bold">✓</span>
+              Play scheduled matches with automated brackets
+            </li>
+<li class="flex items-center gap-2">
+<span class="w-4 h-4 rounded-full bg-primary-blue/20 text-electric-blue flex items-center justify-center text-[10px] font-bold">✓</span>
+              Track stats, wins, and platform prize pools
+            </li>
+</ul>
+<a class="inline-flex items-center gap-1.5 text-xs font-bold text-electric-blue hover:underline" href="#tournaments">
+            Find Tournaments <span>→</span>
+</a>
+</article>
+</div>
+</section>
+<!-- END: Two Core Products -->
+<!-- BEGIN: How Riyadah Elite Works -->
+<section class="py-10 px-4 bg-soft-white" id="how-it-works">
+<div class="text-center mb-8">
+<span class="text-[11px] font-bold uppercase tracking-widest text-primary-blue">SIMPLE 4-STEP LOOP</span>
+<h2 class="font-display font-extrabold text-2xl text-deep-navy mt-1">
+          HOW RIYADAH ELITE WORKS
+        </h2>
+<p class="text-xs text-gray-600 mt-1">
+          Find your game. Join the action. Build your gaming journey.
+        </p>
+</div>
+<!-- Vertical Connected Timeline -->
+<div class="relative pl-6 space-y-7 before:content-[''] before:absolute before:left-[19px] before:top-3 before:bottom-3 before:w-0.5 before:bg-gradient-to-b before:from-electric-blue before:via-primary-blue before:to-sky-tint">
+<!-- Step 1 -->
+<div class="relative flex items-start gap-4">
+<div class="absolute -left-6 top-0 w-7 h-7 rounded-full bg-deep-navy text-white text-xs font-display font-bold flex items-center justify-center border-2 border-primary-blue">
+            01
+          </div>
+<div class="bg-white p-4 rounded-2xl border border-sky-tint w-full shadow-sm">
+<h4 class="font-display font-bold text-sm text-deep-navy">DISCOVER</h4>
+<p class="text-xs text-gray-600 mt-1">
+              Find an upcoming game to test or an open community tournament to join tailored to your platform.
+            </p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative flex items-start gap-4">
+<div class="absolute -left-6 top-0 w-7 h-7 rounded-full bg-electric-blue text-white text-xs font-display font-bold flex items-center justify-center border-2 border-primary-blue">
+            02
+          </div>
+<div class="bg-white p-4 rounded-2xl border border-sky-tint w-full shadow-sm">
+<h4 class="font-display font-bold text-sm text-deep-navy">JOIN</h4>
+<p class="text-xs text-gray-600 mt-1">
+              Apply to active testing campaigns or register your team into open tournament brackets in seconds.
+            </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative flex items-start gap-4">
+<div class="absolute -left-6 top-0 w-7 h-7 rounded-full bg-primary-blue text-deep-navy text-xs font-display font-bold flex items-center justify-center border-2 border-white shadow">
+            03
+          </div>
+<div class="bg-white p-4 rounded-2xl border border-sky-tint w-full shadow-sm">
+<h4 class="font-display font-bold text-sm text-deep-navy">PLAY</h4>
+<p class="text-xs text-gray-600 mt-1">
+              Test pre-release builds, file structured bug reports, or play tournament rounds with real-time match tracking.
+            </p>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative flex items-start gap-4">
+<div class="absolute -left-6 top-0 w-7 h-7 rounded-full bg-sky-tint text-deep-navy text-xs font-display font-bold flex items-center justify-center border-2 border-primary-blue">
+            04
+          </div>
+<div class="bg-white p-4 rounded-2xl border border-sky-tint w-full shadow-sm">
+<h4 class="font-display font-bold text-sm text-deep-navy">BUILD</h4>
+<p class="text-xs text-gray-600 mt-1">
+              Build your verified gaming reputation, unlock tester milestones, and earn your place on community leaderboards.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: How Riyadah Elite Works -->
+<!-- BEGIN: Game Testing Showcase -->
+<section class="py-10 px-4 bg-white border-t border-sky-tint/70" id="game-testing">
+<div class="text-center mb-6">
+<span class="text-[11px] font-bold uppercase tracking-wider text-electric-blue">PILLAR ONE : GAME TESTING</span>
+<h2 class="font-display font-extrabold text-2xl text-deep-navy mt-1">
+          PLAY GAMES BEFORE<br>THE WORLD DOES.
+        </h2>
+<p class="text-xs text-gray-600 mt-1.5 px-2">
+          Developers need real players. Your feedback can directly shape the next great game release.
+        </p>
+</div>
+<!-- Rich Interactive Mockup Card -->
+<div class="rounded-3xl border border-sky-tint bg-gradient-to-b from-soft-white to-white p-4 shadow-md mb-6">
+<div class="flex items-center justify-between pb-3 border-b border-sky-tint/60">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+<span class="text-xs font-bold text-deep-navy uppercase tracking-wider">Live Testing Campaign</span>
+</div>
+<span class="text-[10px] font-semibold bg-sky-tint px-2 py-0.5 rounded-md text-deep-navy">PC Exclusive</span>
+</div>
+<div class="mt-4">
+<div class="flex items-center justify-between">
+<h3 class="font-display font-bold text-lg text-deep-navy">Cyber Strike: Reborn</h3>
+<span class="text-xs font-bold text-electric-blue bg-blue-50 px-2 py-1 rounded-lg">Build v0.8.4</span>
+</div>
+<p class="text-[11px] text-gray-500 mt-1">Tactical squad shooter with fast-paced cyber warfare dynamics.</p>
+</div>
+<!-- Testing Metrics -->
+<div class="grid grid-cols-2 gap-2 mt-4">
+<div class="bg-sky-tint/30 p-2.5 rounded-xl text-center">
+<div class="text-base font-display font-bold text-deep-navy">1,248</div>
+<div class="text-[10px] font-medium text-gray-600 uppercase">Testers Active</div>
+</div>
+<div class="bg-sky-tint/30 p-2.5 rounded-xl text-center">
+<div class="text-base font-display font-bold text-electric-blue">387</div>
+<div class="text-[10px] font-medium text-gray-600 uppercase">Feedback Reports</div>
+</div>
+</div>
+<!-- Feedback Tags Checklist -->
+<div class="mt-4">
+<span class="text-[11px] font-bold text-deep-navy">Active Testing Focus Areas:</span>
+<div class="flex flex-wrap gap-1.5 mt-2">
+<span class="text-[10px] font-medium px-2.5 py-1 rounded-full bg-white border border-sky-tint text-gray-700">🎯 Gameplay Balance</span>
+<span class="text-[10px] font-medium px-2.5 py-1 rounded-full bg-white border border-sky-tint text-gray-700">🌐 Multiplayer Netcode</span>
+<span class="text-[10px] font-medium px-2.5 py-1 rounded-full bg-white border border-sky-tint text-gray-700">⚡ GPU Performance</span>
+<span class="text-[10px] font-medium px-2.5 py-1 rounded-full bg-white border border-sky-tint text-gray-700">🕹️ UI/UX Controls</span>
+</div>
+</div>
+<!-- CTA Inside Card -->
+<button class="mt-5 w-full py-3 rounded-xl bg-electric-blue text-white font-bold text-xs shadow-md active:scale-[0.98] transition">
+          Join Testing Campaign
+        </button>
+</div>
+<!-- 4 Feature Cards Grid -->
+<div class="grid grid-cols-2 gap-2.5">
+<div class="p-3 rounded-2xl bg-sky-tint/20 border border-sky-tint">
+<div class="text-xl mb-1">🐛</div>
+<h4 class="font-bold text-xs text-deep-navy">Report Bugs</h4>
+<p class="text-[11px] text-gray-600 mt-0.5">Submit crash logs and repro steps effortlessly.</p>
+</div>
+<div class="p-3 rounded-2xl bg-sky-tint/20 border border-sky-tint">
+<div class="text-xl mb-1">💬</div>
+<h4 class="font-bold text-xs text-deep-navy">Give Feedback</h4>
+<p class="text-[11px] text-gray-600 mt-0.5">Voice impressions directly to game studios.</p>
+</div>
+<div class="p-3 rounded-2xl bg-sky-tint/20 border border-sky-tint">
+<div class="text-xl mb-1">⭐</div>
+<h4 class="font-bold text-xs text-deep-navy">Rate Experience</h4>
+<p class="text-[11px] text-gray-600 mt-0.5">Grade performance, fun factor, and gameplay feel.</p>
+</div>
+<div class="p-3 rounded-2xl bg-sky-tint/20 border border-sky-tint">
+<div class="text-xl mb-1">🎮</div>
+<h4 class="font-bold text-xs text-deep-navy">Play Early Builds</h4>
+<p class="text-[11px] text-gray-600 mt-0.5">Exclusive access prior to public store release.</p>
+</div>
+</div>
+</section>
+<!-- END: Game Testing Showcase -->
+<!-- BEGIN: Developer CTA Section (B2B SaaS) -->
+<section class="py-12 px-4 bg-deep-navy text-white bg-dark-grid relative overflow-hidden" id="developers">
+<!-- Glow ambient -->
+<div class="absolute -right-10 top-1/3 w-48 h-48 bg-electric-blue/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="text-center space-y-2">
+<span class="text-[11px] font-bold uppercase tracking-widest text-primary-blue">FOR GAME DEVELOPERS &amp; STUDIOS</span>
+<h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white">
+          BUILDING A GAME?<br>Get Real Players Testing It.
+        </h2>
+<p class="text-xs text-gray-300 px-2 leading-relaxed">
+          Launch targeted testing campaigns, find qualified players, collect structured bug reports, and iterate with confidence.
+        </p>
+</div>
+<!-- Developer Stepper -->
+<div class="mt-6 space-y-2.5">
+<div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+<span class="w-6 h-6 rounded-lg bg-electric-blue text-xs font-bold flex items-center justify-center shrink-0">1</span>
+<span class="text-xs font-semibold text-white">Create your testing campaign in minutes</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+<span class="w-6 h-6 rounded-lg bg-primary-blue text-deep-navy text-xs font-bold flex items-center justify-center shrink-0">2</span>
+<span class="text-xs font-semibold text-white">Find verified players tailored to your genre</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+<span class="w-6 h-6 rounded-lg bg-electric-blue text-xs font-bold flex items-center justify-center shrink-0">3</span>
+<span class="text-xs font-semibold text-white">Collect structured bug reports &amp; qualitative feedback</span>
+</div>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+<span class="w-6 h-6 rounded-lg bg-emerald-400 text-deep-navy text-xs font-bold flex items-center justify-center shrink-0">4</span>
+<span class="text-xs font-semibold text-white">Improve your retention and polish before launch</span>
+</div>
+</div>
+<!-- CTAs -->
+<div class="mt-7 flex flex-col gap-2.5">
+<a class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-electric-blue to-primary-blue text-white font-bold text-center text-xs tracking-wide shadow-glow-electric" href="#">
+          Start Testing Your Game →
+        </a>
+<a class="w-full py-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-center text-xs border border-white/20" href="#">
+          Learn More About Developer Tools
+        </a>
+</div>
+</section>
+<!-- END: Developer CTA Section -->
+<!-- BEGIN: Tournament Showcase -->
+<section class="py-10 px-4 bg-white" id="tournaments">
+<div class="text-center mb-6">
+<span class="text-[11px] font-bold uppercase tracking-wider text-electric-blue">PILLAR TWO : TOURNAMENTS</span>
+<h2 class="font-display font-extrabold text-2xl text-deep-navy mt-1">
+          YOUR GAME. YOUR RULES.<br><span class="text-electric-blue">YOUR CHAMPIONSHIP.</span>
+</h2>
+<p class="text-xs text-gray-600 mt-1.5 px-3">
+          Manage brackets, coordinate schedules, and host competitive esports or casual community tournaments.
+        </p>
+</div>
+<!-- Tournament Dashboard & Bracket Card -->
+<div class="rounded-3xl border border-sky-tint bg-soft-white p-4 shadow-md">
+<!-- Tournament Meta -->
+<div class="flex items-center justify-between">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-100 px-2 py-0.5 rounded-full">Registration Open</span>
+<h3 class="font-display font-bold text-base text-deep-navy mt-1">VALORANT COMMUNITY CUP</h3>
+</div>
+<span class="font-display font-black text-xs text-electric-blue bg-blue-50 px-2 py-1 rounded-lg">₹25,000</span>
+</div>
+<!-- Key Stats Pill Row -->
+<div class="mt-3 flex items-center justify-between text-[11px] font-medium text-gray-600 bg-white p-2 rounded-xl border border-sky-tint/80">
+<div>👥 128 Players</div>
+<div>⚔️ 32 Teams</div>
+<div>🎮 5v5 Single Elim</div>
+</div>
+<!-- Interactive Bracket Visual Representation -->
+<div class="mt-4 pt-3 border-t border-sky-tint">
+<div class="text-[10px] font-bold uppercase text-gray-500 mb-2 flex justify-between">
+<span>Quarter Finals</span>
+<span>Semi Finals</span>
+<span>Grand Final</span>
+</div>
+<!-- Mini Bracket Wireframe -->
+<div class="space-y-2 text-[11px]">
+<!-- Match 1 -->
+<div class="bg-white p-2 rounded-lg border border-sky-tint flex items-center justify-between">
+<span class="font-semibold text-deep-navy truncate">Team Alpha</span>
+<span class="font-bold text-emerald-600">2</span>
+</div>
+<div class="bg-white p-2 rounded-lg border border-sky-tint flex items-center justify-between opacity-70">
+<span class="font-semibold text-gray-600 truncate">Team Delta</span>
+<span class="font-bold text-gray-400">1</span>
+</div>
+<div class="h-1 bg-gradient-to-r from-primary-blue/30 to-electric-blue/50 rounded-full my-2"></div>
+<!-- Match 2 -->
+<div class="bg-white p-2 rounded-lg border border-sky-tint flex items-center justify-between">
+<span class="font-semibold text-deep-navy truncate">Team Phoenix</span>
+<span class="font-bold text-emerald-600">2</span>
+</div>
+<div class="bg-white p-2 rounded-lg border border-sky-tint flex items-center justify-between opacity-70">
+<span class="font-semibold text-gray-600 truncate">Team Omega</span>
+<span class="font-bold text-gray-400">0</span>
+</div>
+</div>
+</div>
+<!-- Feature Action Pills -->
+<div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-sky-tint/80">
+<div class="flex items-center gap-1.5 text-[11px] font-semibold text-deep-navy">
+<span>🏆</span> Create Bracket
+          </div>
+<div class="flex items-center gap-1.5 text-[11px] font-semibold text-deep-navy">
+<span>👥</span> Manage Squads
+          </div>
+<div class="flex items-center gap-1.5 text-[11px] font-semibold text-deep-navy">
+<span>⚔️</span> Run Live Matches
+          </div>
+<div class="flex items-center gap-1.5 text-[11px] font-semibold text-deep-navy">
+<span>📊</span> Track Standings
+          </div>
+</div>
+<button class="mt-4 w-full py-3 rounded-xl bg-electric-blue text-white font-bold text-xs shadow-md">
+          Find Tournaments →
+        </button>
+</div>
+</section>
+<!-- END: Tournament Showcase -->
+<!-- BEGIN: Tournament Host CTA -->
+<section class="py-10 px-4 bg-gradient-to-b from-sky-tint/40 to-soft-white border-y border-sky-tint" id="hosts">
+<div class="p-6 rounded-3xl bg-white border border-primary-blue/30 shadow-sm text-center">
+<span class="text-[11px] font-bold uppercase tracking-wider text-electric-blue">COMMUNITY EMPOWERMENT</span>
+<h2 class="font-display font-extrabold text-xl text-deep-navy mt-1">
+          GOT A COMMUNITY?<br>HOST A TOURNAMENT.
+        </h2>
+<p class="text-xs text-gray-600 mt-2 leading-relaxed">
+          From college campus rivalries to global discord championships, create and automate your bracket system seamlessly.
+        </p>
+<!-- Visual Flow Strip -->
+<div class="mt-5 grid grid-cols-2 gap-2 text-left">
+<div class="p-2.5 rounded-xl bg-soft-white border border-sky-tint">
+<span class="text-[10px] font-bold text-primary-blue uppercase">01</span>
+<div class="font-bold text-xs text-deep-navy">Create Bracket</div>
+</div>
+<div class="p-2.5 rounded-xl bg-soft-white border border-sky-tint">
+<span class="text-[10px] font-bold text-primary-blue uppercase">02</span>
+<div class="font-bold text-xs text-deep-navy">Invite Players</div>
+</div>
+<div class="p-2.5 rounded-xl bg-soft-white border border-sky-tint">
+<span class="text-[10px] font-bold text-primary-blue uppercase">03</span>
+<div class="font-bold text-xs text-deep-navy">Run Matches</div>
+</div>
+<div class="p-2.5 rounded-xl bg-soft-white border border-sky-tint">
+<span class="text-[10px] font-bold text-primary-blue uppercase">04</span>
+<div class="font-bold text-xs text-deep-navy">Crown Winner</div>
+</div>
+</div>
+<a class="mt-5 inline-block w-full py-3 rounded-xl bg-deep-navy text-white font-bold text-xs tracking-wide shadow hover:bg-black transition" href="#tournaments">
+          Host a Tournament →
+        </a>
+</div>
+</section>
+<!-- END: Tournament Host CTA -->
+<!-- BEGIN: Gamer Profile / Gaming Identity -->
+<section class="py-10 px-4 bg-white">
+<div class="text-center mb-6">
+<span class="text-[11px] font-bold uppercase tracking-wider text-primary-blue">VERIFIED REPUTATION</span>
+<h2 class="font-display font-extrabold text-2xl text-deep-navy mt-1">
+          YOUR GAMING JOURNEY,<br>IN ONE PLACE.
+        </h2>
+<p class="text-xs text-gray-600 mt-1">Carry your achievements, test credibility, and trophies everywhere.</p>
+</div>
+<!-- Gamer Card Profile Mockup -->
+<div class="rounded-3xl border border-sky-tint bg-gradient-to-br from-white to-sky-tint/20 p-5 shadow-md">
+<!-- Gamer Header -->
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-electric-blue to-primary-blue p-0.5 shadow-sm">
+<div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center font-display font-black text-electric-blue text-lg">
+              R
+            </div>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="font-display font-bold text-base text-deep-navy">Rahul</h3>
+<span class="text-[10px] bg-sky-tint text-deep-navy font-bold px-1.5 py-0.5 rounded">PRO</span>
+</div>
+<p class="text-xs text-gray-500 font-medium">Competitive FPS &amp; RPG Beta Specialist</p>
+</div>
+</div>
+<!-- Key Scores -->
+<div class="grid grid-cols-2 gap-2 mt-4">
+<div class="p-2.5 rounded-xl bg-white border border-sky-tint text-center">
+<div class="text-lg font-display font-extrabold text-electric-blue">92</div>
+<div class="text-[10px] text-gray-500 font-semibold">Testing Reputation</div>
+</div>
+<div class="p-2.5 rounded-xl bg-white border border-sky-tint text-center">
+<div class="text-lg font-display font-extrabold text-amber-500">18</div>
+<div class="text-[10px] text-gray-500 font-semibold">Tournament Wins</div>
+</div>
+</div>
+<!-- Secondary Stats -->
+<div class="flex justify-between items-center px-3 py-2 mt-2 bg-soft-white rounded-xl text-xs font-semibold text-deep-navy">
+<span>🎮 Games Tested: <strong>37</strong></span>
+<span>🏆 Cups Played: <strong>54</strong></span>
+</div>
+<!-- Badges Earned -->
+<div class="mt-4 pt-3 border-t border-sky-tint/60">
+<span class="text-[10px] font-bold text-gray-500 uppercase">Earned Accolades</span>
+<div class="flex flex-wrap gap-1.5 mt-1.5">
+<span class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white border border-primary-blue/40 text-deep-navy flex items-center gap-1">
+              🏅 Beta Tester
+            </span>
+<span class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white border border-amber-300 text-deep-navy flex items-center gap-1">
+              🏆 Tournament Champion
+            </span>
+<span class="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-white border border-sky-tint text-deep-navy flex items-center gap-1">
+              🐛 Bug Hunter
+            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Gamer Profile / Gaming Identity -->
+<!-- BEGIN: Built For Everyone -->
+<section class="py-10 px-4 bg-soft-white border-t border-sky-tint/80">
+<div class="text-center mb-6">
+<span class="text-[11px] font-bold uppercase tracking-wider text-electric-blue">COMMUNITY ROLES</span>
+<h2 class="font-display font-extrabold text-2xl text-deep-navy mt-1">
+          BUILT FOR PLAYERS, CREATORS &amp; COMMUNITIES
+        </h2>
+</div>
+<div class="space-y-3">
+<!-- Gamers -->
+<div class="p-4 rounded-2xl bg-white border border-sky-tint shadow-sm">
+<div class="flex items-center gap-2 font-display font-bold text-sm text-deep-navy">
+<span class="text-lg">🎮</span> GAMERS
+          </div>
+<p class="text-xs text-gray-600 mt-1 leading-relaxed">
+            Test cutting-edge titles, compete against peers, form squads, and earn direct status in the gaming world.
+          </p>
+</div>
+<!-- Developers -->
+<div class="p-4 rounded-2xl bg-white border border-sky-tint shadow-sm">
+<div class="flex items-center gap-2 font-display font-bold text-sm text-deep-navy">
+<span class="text-lg">🛠️</span> DEVELOPERS &amp; STUDIOS
+          </div>
+<p class="text-xs text-gray-600 mt-1 leading-relaxed">
+            From indie teams to scale studios, run structured testing cohorts, squash bugs, and tune game balance.
+          </p>
+</div>
+<!-- Tournament Hosts -->
+<div class="p-4 rounded-2xl bg-white border border-sky-tint shadow-sm">
+<div class="flex items-center gap-2 font-display font-bold text-sm text-deep-navy">
+<span class="text-lg">🎙️</span> TOURNAMENT HOSTS
+          </div>
+<p class="text-xs text-gray-600 mt-1 leading-relaxed">
+            College clubs, gaming cafes, streamer communities, and esports organizers power matches with zero overhead.
+          </p>
+</div>
+</div>
+</section>
+<!-- END: Built For Everyone -->
+<!-- BEGIN: Trust & Safety -->
+<section class="py-10 px-4 bg-white border-t border-sky-tint">
+<div class="text-center mb-6">
+<span class="text-[11px] font-bold uppercase tracking-wider text-primary-blue">INTEGRITY FIRST</span>
+<h2 class="font-display font-extrabold text-2xl text-deep-navy mt-1">
+          BUILT FOR FAIR PLAY.
+        </h2>
+<p class="text-xs text-gray-600 mt-1">A transparent foundation for players and studios alike.</p>
+</div>
+<!-- Trust Pillars Grid -->
+<div class="grid grid-cols-1 gap-2.5">
+<div class="p-3 rounded-xl bg-soft-white border border-sky-tint flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-blue/20 text-electric-blue flex items-center justify-center font-bold">✓</div>
+<div>
+<h4 class="font-bold text-xs text-deep-navy">Verified Game Developers</h4>
+<p class="text-[11px] text-gray-500">Every studio and pre-release build is authenticity-checked.</p>
+</div>
+</div>
+<div class="p-3 rounded-xl bg-soft-white border border-sky-tint flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-blue/20 text-electric-blue flex items-center justify-center font-bold">🔒</div>
+<div>
+<h4 class="font-bold text-xs text-deep-navy">Secure Player Accounts</h4>
+<p class="text-[11px] text-gray-500">Protection against smurfs, multi-accounts, and fraud.</p>
+</div>
+</div>
+<div class="p-3 rounded-xl bg-soft-white border border-sky-tint flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-blue/20 text-electric-blue flex items-center justify-center font-bold">⚖️</div>
+<div>
+<h4 class="font-bold text-xs text-deep-navy">Fair Competition Standards</h4>
+<p class="text-[11px] text-gray-500">Strict bracket anti-cheat policies and ping verification.</p>
+</div>
+</div>
+<div class="p-3 rounded-xl bg-soft-white border border-sky-tint flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-blue/20 text-electric-blue flex items-center justify-center font-bold">🛡️</div>
+<div>
+<h4 class="font-bold text-xs text-deep-navy">Community Moderation</h4>
+<p class="text-[11px] text-gray-500">Active referees and sportsmanship guidelines for all cups.</p>
+</div>
+</div>
+<div class="p-3 rounded-xl bg-soft-white border border-sky-tint flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-blue/20 text-electric-blue flex items-center justify-center font-bold">📊</div>
+<div>
+<h4 class="font-bold text-xs text-deep-navy">Transparent Match Results</h4>
+<p class="text-[11px] text-gray-500">Immutable bracket logs, score submissions, and replay links.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Trust & Safety -->
+<!-- BEGIN: Platform Statistics -->
+<section class="py-10 px-4 bg-gradient-to-r from-deep-navy via-[#0c1445] to-deep-navy text-white text-center">
+<div class="mb-6">
+<span class="text-[11px] font-bold uppercase tracking-wider text-primary-blue">MOMENTUM &amp; SCALE</span>
+<h2 class="font-display font-extrabold text-2xl text-white mt-1">POWERING THE NEXT GEN</h2>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+<div class="font-display font-black text-2xl text-primary-blue">10K+</div>
+<div class="text-[11px] text-gray-300 uppercase font-semibold mt-1">Gamers Active</div>
+</div>
+<div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+<div class="font-display font-black text-2xl text-white">250+</div>
+<div class="text-[11px] text-gray-300 uppercase font-semibold mt-1">Games Tested</div>
+</div>
+<div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+<div class="font-display font-black text-2xl text-white">500+</div>
+<div class="text-[11px] text-gray-300 uppercase font-semibold mt-1">Tournaments</div>
+</div>
+<div class="p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
+<div class="font-display font-black text-2xl text-primary-blue">50K+</div>
+<div class="text-[11px] text-gray-300 uppercase font-semibold mt-1">Matches Played</div>
+</div>
+</div>
+</section>
+<!-- END: Platform Statistics -->
+<!-- BEGIN: Final CTA -->
+<section class="py-12 px-4 bg-deep-navy text-center relative overflow-hidden border-t border-white/10">
+<!-- Ambient light effect -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(35,61,255,0.25)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 space-y-3">
+<span class="text-[11px] font-bold uppercase tracking-widest text-primary-blue">GET STARTED TODAY</span>
+<h2 class="font-display font-extrabold text-3xl text-white leading-tight">
+          READY TO ENTER<br>THE GAME?
+        </h2>
+<p class="text-xs text-gray-300 max-w-xs mx-auto leading-relaxed">
+          Test the next great game. Find your next tournament. Start playing today.
+        </p>
+<!-- CTA Buttons -->
+<div class="pt-4 flex flex-col gap-2.5">
+<a class="w-full py-3.5 px-6 rounded-xl bg-electric-blue text-white font-bold text-sm shadow-glow-electric active:scale-[0.98] transition" href="#game-testing">
+            Explore Games
+          </a>
+<a class="w-full py-3 px-6 rounded-xl bg-white/10 text-white font-bold text-sm border border-white/20 hover:bg-white/20 active:scale-[0.98] transition" href="#tournaments">
+            Find Tournaments
+          </a>
+</div>
+<!-- Side Role Paths -->
+<div class="pt-4 flex flex-col items-center gap-2 text-xs text-gray-400 font-medium">
+<a class="hover:text-white transition" href="#developers">
+            For Developers → <span class="text-primary-blue underline">Test Your Game</span>
+</a>
+<a class="hover:text-white transition" href="#hosts">
+            For Hosts → <span class="text-primary-blue underline">Create a Tournament</span>
+</a>
+</div>
+</div>
+</section>
+<!-- END: Final CTA -->
+<!-- BEGIN: Footer -->
+<footer class="py-10 px-4 bg-[#03061C] text-gray-400 border-t border-white/10">
+<div class="space-y-6">
+<!-- Brand + Tagline -->
+<div class="flex flex-col items-center text-center">
+<img alt="Riyadah Elite" class="w-12 h-12 rounded-full border border-primary-blue/50 mb-2 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc5h5RkUJdnOoAooPIC1UaS9UgcOfS99xMhqfQxtP9CWtysvZTbjO2MC0Wono5SP494fY28p0ITDbemvKMYbzSWvnQYZyZ80ZfhnZIap_TeICP-SxkqTIavTP23ogQTgi8fxiG9TnlJYk04AMFhq_NT2k6M21zyKlQOIST0p9VA3aOsC2bfdJMCU9xfqXDfbF3Zu8cYXg4tPOY98p911P5UggwURvCQEUUtlnUFKJJGwgBJqaLfHd7oghLKGlzK74L">
+<span class="font-display font-black text-lg tracking-wider text-white">RIYADAH ELITE</span>
+<span class="text-xs text-primary-blue font-semibold tracking-widest uppercase mt-0.5">Play. Test. Compete.</span>
+<p class="text-[11px] text-gray-500 mt-2 max-w-xs">
+            The modern esports &amp; game testing infrastructure for developers, competitive players, and community hosts.
+          </p>
+</div>
+<!-- Nav Columns Grid -->
+<div class="grid grid-cols-2 gap-6 pt-4 border-t border-white/10 text-xs">
+<div class="space-y-2">
+<h5 class="font-display font-bold text-white uppercase text-[11px] tracking-wider">Platform</h5>
+<ul class="space-y-1.5">
+<li><a class="hover:text-white transition" href="#game-testing">Game Testing</a></li>
+<li><a class="hover:text-white transition" href="#tournaments">Tournaments</a></li>
+<li><a class="hover:text-white transition" href="#how-it-works">How It Works</a></li>
+<li><a class="hover:text-white transition" href="#">Leaderboards</a></li>
+</ul>
+</div>
+<div class="space-y-2">
+<h5 class="font-display font-bold text-white uppercase text-[11px] tracking-wider">Solutions</h5>
+<ul class="space-y-1.5">
+<li><a class="hover:text-white transition" href="#developers">For Game Studios</a></li>
+<li><a class="hover:text-white transition" href="#hosts">Tournament Hosts</a></li>
+<li><a class="hover:text-white transition" href="#">Collegiate Esports</a></li>
+<li><a class="hover:text-white transition" href="#">Bug Bounty System</a></li>
+</ul>
+</div>
+<div class="space-y-2">
+<h5 class="font-display font-bold text-white uppercase text-[11px] tracking-wider">Community</h5>
+<ul class="space-y-1.5">
+<li><a class="hover:text-white transition" href="#">Discord Server</a></li>
+<li><a class="hover:text-white transition" href="#">Twitter / X</a></li>
+<li><a class="hover:text-white transition" href="#">Creator Program</a></li>
+<li><a class="hover:text-white transition" href="#">Help Center</a></li>
+</ul>
+</div>
+<div class="space-y-2">
+<h5 class="font-display font-bold text-white uppercase text-[11px] tracking-wider">Legal &amp; Trust</h5>
+<ul class="space-y-1.5">
+<li><a class="hover:text-white transition" href="#">Fair Play Code</a></li>
+<li><a class="hover:text-white transition" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-white transition" href="#">Terms of Service</a></li>
+<li><a class="hover:text-white transition" href="#">Security Guidelines</a></li>
+</ul>
+</div>
+</div>
+<!-- Copyright -->
+<div class="pt-6 border-t border-white/10 text-center text-[11px] text-gray-500">
+<p>© Riyadah Elite. All rights reserved.</p>
+<p class="mt-1 text-[10px] text-gray-600">Engineered for competitive players and visionary game creators worldwide.</p>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</main>
+<!-- Mobile Menu Interactive Toggle -->
+<script data-purpose="mobile-menu-toggle">
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.getElementById('mobile-menu-button');
+      const menu = document.getElementById('mobile-menu');
+
+      if (menuBtn && menu) {
+        menuBtn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+        });
+
+        // Close when clicking an anchor link inside menu
+        menu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            menu.classList.add('hidden');
+          });
+        });
+      }
+    });
+  </script>
+</body></html>

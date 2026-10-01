@@ -1,0 +1,861 @@
+<!DOCTYPE html><html class="dark" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-container": "#446073", "on-primary-fixed-variant": "#0022da", "on-error-container": "#ffdad6", "on-secondary-fixed": "#001e31", "inverse-surface": "#dfe0ff", "on-error": "#690005", "on-primary": "#00169d", "inverse-on-surface": "#282d53", "surface-container-high": "#21274c", "on-tertiary": "#153345", "primary-container": "#233dff", "on-surface-variant": "#c5c5da", "surface-container-highest": "#2c3258", "secondary-fixed": "#cce5ff", "primary": "#bcc2ff", "primary-fixed": "#dfe0ff", "outline-variant": "#444557", "tertiary-fixed": "#c8e6fd", "secondary-fixed-dim": "#92ccff", "surface-bright": "#31365d", "surface-variant": "#2c3258", "surface-dim": "#0a0f35", "on-secondary-fixed-variant": "#004b73", "outline": "#8f8fa3", "secondary-container": "#3698d9", "on-secondary-container": "#002c47", "tertiary": "#adcae1", "secondary": "#92ccff", "primary-fixed-dim": "#bcc2ff", "background": "#0a0f35", "error": "#ffb4ab", "surface-container-lowest": "#050930", "inverse-primary": "#2640ff", "error-container": "#93000a", "surface-tint": "#bcc2ff", "on-surface": "#dfe0ff", "on-tertiary-fixed": "#001e2e", "on-tertiary-container": "#bcdaf1", "on-secondary": "#003351", "on-background": "#dfe0ff", "surface": "#0a0f35", "surface-container": "#171c41", "tertiary-fixed-dim": "#adcae1", "on-tertiary-fixed-variant": "#2d4a5c", "on-primary-container": "#d0d3ff", "surface-container-low": "#13183d", "on-primary-fixed": "#000a64" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-2xs": "0.25rem", "space-xl": "2rem", "space-2xl": "3rem", "space-md": "1rem", "space-lg": "1.5rem", "space-3xl": "4.5rem", "space-xs": "0.5rem", "container-max": "1280px", "gutter": "1.5rem", "space-sm": "0.75rem" }, "fontFamily": { "display-lg": [ "Space Grotesk" ], "label-lg": [ "Space Grotesk" ], "body-md": [ "Plus Jakarta Sans" ], "headline-xl": [ "Space Grotesk" ], "body-sm": [ "Plus Jakarta Sans" ], "headline-xl-mobile": [ "Space Grotesk" ], "display-lg-mobile": [ "Space Grotesk" ], "label-sm": [ "Space Grotesk" ], "headline-sm": [ "Space Grotesk" ], "body-lg": [ "Plus Jakarta Sans" ], "headline-lg": [ "Space Grotesk" ] }, "fontSize": { "display-lg": [ "64px", { "lineHeight": "72px", "letterSpacing": "-0.03em", "fontWeight": "700" } ], "label-lg": [ "14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "headline-xl": [ "44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "display-lg-mobile": [ "38px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" } ], "headline-sm": [ "22px", { "lineHeight": "30px", "fontWeight": "600" } ], "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "400" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-background font-body-md text-body-md text-on-surface min-h-screen"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/90 backdrop-blur-xl z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col flex-1 overflow-y-auto px-space-md pt-space-md"><div class="flex items-center gap-space-sm pb-space-md mb-space-xs"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"><div class="flex flex-col"><span class="font-label-lg text-label-lg text-on-surface tracking-wider font-bold">RIYADAH ELITE</span><div class="flex items-center gap-space-2xs mt-0.5"><span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-space-xs py-0.5 rounded-full">RIG V2.4</span><span class="font-label-sm text-label-sm text-tertiary flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>NODE 04</span></div></div></div><nav class="flex flex-col gap-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-label-lg rounded-xl shadow-[0_4px_20px_rgba(35,61,255,0.5)]"><div class="flex flex-col gap-1"><div class="px-space-xs py-1 font-label-sm text-label-sm text-outline tracking-wider uppercase">MAIN</div><a class="flex items-center justify-between px-space-sm py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="overview" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Overview</span></div></a><a aria-current="page" class="flex items-center justify-between px-space-sm py-2 transition-all bg-primary-container text-on-primary-container font-label-lg rounded-xl shadow-[0_4px_20px_rgba(35,61,255,0.5)]" data-path="my-games" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">sports_esports</span><span>My Games</span></div><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="testing-campaigns" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">rocket_launch</span><span>Testing Campaigns</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-surface-container text-secondary">2 Active</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="testers" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">groups</span><span>Testers</span></div></a><a class="flex items-center justify-between px-space-sm py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="feedback-and-results" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">rate_review</span><span>Feedback &amp; Results</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-primary-container text-on-primary-container">14 New</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="payments-and-earnings" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span><span>Payments &amp; Earnings</span></div></a></div><div class="flex flex-col gap-1"><div class="px-space-xs py-1 font-label-sm text-label-sm text-outline tracking-wider uppercase">DEVELOPER</div><a class="flex items-center justify-between px-space-sm py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="profile" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">badge</span><span>Profile</span></div></a><a class="flex items-center justify-between px-space-sm py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="verification" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">verified</span><span>Verification</span></div><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-surface-container-highest text-secondary">Tier 1</span></a><a class="flex items-center justify-between px-space-sm py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="settings" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></div></a></div><div class="flex flex-col gap-1"><div class="px-space-xs py-1 font-label-sm text-label-sm text-outline tracking-wider uppercase">SUPPORT</div><a class="flex items-center justify-between px-space-sm py-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="support-and-disputes" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[20px]">help_center</span><span>Support &amp; Disputes</span></div></a></div></nav></div><div class="p-space-md"><div class="rounded-xl bg-surface-container-low p-space-sm flex flex-col gap-2 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center"><span class="material-symbols-outlined text-secondary text-[18px]">token</span></div><div><div class="font-label-lg text-label-lg text-on-surface leading-none">CyberNova Studios</div><div class="font-body-sm text-body-sm text-outline mt-0.5">@cybernovagames</div></div></div><span class="material-symbols-outlined text-secondary text-[18px]">verified</span></div><div class="flex items-center justify-between pt-1 text-outline"><span class="font-label-sm text-label-sm text-secondary bg-surface-container px-1.5 py-0.5 rounded">Riyadh Node 04</span><div class="flex items-center gap-1 font-label-sm text-label-sm text-tertiary"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span>19ms</span></div></div></div></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/80 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"><div class="flex items-center gap-2"><span class="font-label-lg text-label-lg text-outline">DEVELOPER PORTAL</span><span class="text-outline-variant font-label-lg text-label-lg">/</span><span class="font-label-lg text-label-lg text-secondary">RIYADAH NODE 04</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center bg-surface-container-low px-space-md py-1.5 rounded-xl gap-space-sm w-72"><span class="material-symbols-outlined text-outline text-[18px]">search</span><input class="bg-transparent border-none outline-none text-on-surface font-body-sm text-body-sm w-full placeholder:text-outline" placeholder="Telemetry Search Rig..." type="text"><kbd class="font-label-sm text-label-sm bg-surface-container-high text-outline px-1.5 py-0.5 rounded">⌘K</kbd></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container"><span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span><span class="font-label-sm text-label-sm text-secondary">99.9% Online</span></div><button class="flex items-center gap-1 text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors"><span class="material-symbols-outlined text-[20px]">help</span><span>Help</span></button><button class="relative p-1 text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 bg-primary-container rounded-full"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center cursor-pointer"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 pt-16 bg-surface-dim w-full px-space-lg py-space-lg"><div class="flex flex-col w-full gap-space-xl">
+<!-- Interactive State Simulator Toast Bar -->
+<div class="w-full bg-surface-container-lowest/80 backdrop-blur-md px-space-md py-2.5 rounded-xl shadow-lg flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Telemetric State Controller:</span>
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-tertiary" id="status-toast-pill">
+<span class="material-symbols-outlined text-[14px]">info</span>
+<span id="toast-text">All parameters synchronized</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 overflow-x-auto">
+<span class="font-label-sm text-label-sm text-outline mr-1">Simulate State:</span>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface transition-all" onclick="setSimState('unsaved')">Unsaved (2 edits)</button>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high font-label-sm text-label-sm text-on-surface transition-all" onclick="setSimState('saving')">Saving...</button>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high font-label-sm text-label-sm text-secondary transition-all" onclick="setSimState('saved')">Saved OK</button>
+<button class="px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high font-label-sm text-label-sm text-error transition-all" onclick="setSimState('error')">Validation Error</button>
+<button class="px-2 py-1 rounded bg-error-container/40 hover:bg-error-container text-error font-label-sm text-label-sm transition-all ml-2" onclick="openDeleteModal()">Preview Deletion Modal</button>
+</div>
+</div>
+<!-- Page Header Title Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-xs">
+<div class="flex flex-col gap-1 max-w-3xl">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase">Studio Configuration · Rig v2.4</span>
+<span class="text-outline text-[11px]">/</span>
+<span class="font-label-sm text-label-sm text-outline">ESCROW VAULT SECURE</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Developer Settings</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Manage studio operator account credentials, multi-factor security, telemetry notification triggers, and platform privacy policies for CyberNova Studios.
+      </p>
+</div>
+<!-- Header Action Controls -->
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<div class="hidden items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary-container/20 text-secondary font-label-sm text-label-sm" id="unsaved-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span>Unsaved Changes • 2 edits</span>
+</div>
+<button class="px-4 py-2 rounded-xl bg-surface-container-high hover:bg-surface-bright text-on-surface-variant hover:text-on-surface transition-all font-label-lg text-label-lg shadow-sm" onclick="discardChanges()">
+        Discard Changes
+      </button>
+<button class="flex items-center gap-2 px-5 py-2 rounded-xl bg-primary-container hover:bg-inverse-primary text-on-primary-container font-label-lg text-label-lg shadow-[0_4px_20px_rgba(35,61,255,0.45)] transition-all" id="main-save-btn" onclick="triggerSave()">
+<span class="material-symbols-outlined text-[18px]" id="save-btn-icon">check_circle</span>
+<span id="save-btn-text">Save Changes</span>
+</button>
+</div>
+</div>
+<!-- Main Settings Layout (2-Column Architecture) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Sticky Secondary Navigation Rail -->
+<div class="lg:col-span-3 sticky top-20 flex flex-col gap-1.5 bg-surface-container-lowest/70 backdrop-blur-xl p-space-sm rounded-2xl shadow-xl">
+<div class="px-3 py-2 font-label-sm text-label-sm uppercase tracking-wider text-outline">Configuration Sub-modules</div>
+<a class="nav-tab flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-[0_2px_12px_rgba(35,61,255,0.35)] transition-all" data-target="section-account" href="#section-account">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+<span>Account &amp; Profile</span>
+</div>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</a>
+<a class="nav-tab flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-all" data-target="section-security" href="#section-security">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px]">shield</span>
+<span>Security &amp; Access</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-high px-1.5 py-0.5 rounded">MFA ON</span>
+</a>
+<a class="nav-tab flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-all" data-target="section-notifications" href="#section-notifications">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px]">notifications_active</span>
+<span>Notification Dispatch</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">6 of 7</span>
+</a>
+<a class="nav-tab flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-all" data-target="section-preferences" href="#section-preferences">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span>Studio Preferences</span>
+</div>
+</a>
+<a class="nav-tab flex items-center justify-between px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-all" data-target="section-privacy" href="#section-privacy">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px]">lock_reset</span>
+<span>Privacy &amp; Telemetry</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary">Anonymized</span>
+</a>
+<div class="pt-2"></div>
+<a class="nav-tab flex items-center justify-between px-3.5 py-2.5 rounded-xl text-error hover:bg-error-container/20 font-label-lg text-label-lg transition-all" data-target="section-danger" href="#section-danger">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<span>Danger Zone</span>
+</div>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+<!-- Cluster Live Node Telemetry Card -->
+<div class="mt-4 p-3 bg-surface-container-low rounded-xl flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Active Gateway</span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span> Riyadh 04
+          </span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-secondary-container h-full w-[94%]"></div>
+</div>
+<span class="font-body-sm text-[12px] text-tertiary">Direct Escrow SSL Handshake Encrypted</span>
+</div>
+</div>
+<!-- Right Settings Sections Stack -->
+<div class="lg:col-span-9 flex flex-col gap-space-2xl">
+<!-- ================= SECTION 1: ACCOUNT ================= -->
+<section class="flex flex-col gap-space-md scroll-mt-24" id="section-account">
+<div class="flex items-center justify-between pb-space-xs">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Account &amp; Studio Operator Identity</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Primary legal operator, verified administrative tier, and studio registry profile.</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-secondary font-label-lg text-label-lg transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span>Edit Credentials</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-lg rounded-2xl p-space-lg shadow-md flex flex-col gap-space-lg">
+<!-- Profile Avatar & Identity Row -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md pb-space-md bg-surface-container-low/50 p-space-md rounded-xl">
+<div class="flex items-center gap-space-md">
+<div class="relative">
+<div class="w-20 h-20 rounded-2xl bg-surface-container-high overflow-hidden shadow-inner flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="Futuristic cybernetic avatar portrait of a studio developer with luminous neon blue reflections against a deep cobalt blue gaming studio console background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKhWDiiFWr3ET-9ZkS17ibbjzHKHoGK7ANnkHE69q9ymKvc5tdzfYVFHq5GPyE50yyj1YWsLw_9y_0RpNMF2hvA44bQ-XtGu0mjFssEr3aSgUkcXwxWJUu8gwwpU23oqTJGk9bxBddB3xYyJ1pQwTzD-k0aPwlzfMJiZOcHtk3I-gH2CVijY77gkNTJQVEbGZ_SQRYKdci3vN65ceIPhXaZiSvlalL7-qe5k9XnV3jn6w83AfSUkw">
+</div>
+<span class="absolute -bottom-1 -right-1 p-1 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center shadow">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Tariq Al-Mansoor</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-label-sm font-semibold">Tier 1 Studio Owner</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="font-label-lg text-label-lg text-secondary">@Tariq_CyberNova</span>
+<span class="text-outline text-xs">·</span>
+<span class="font-body-sm text-body-sm text-tertiary">Executive Game Director</span>
+</div>
+<span class="font-label-sm text-[12px] text-outline mt-1">Full Administrative, Telemetry, and Escrow Vault Authority</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-stretch sm:self-auto justify-end">
+<button class="px-3.5 py-2 rounded-xl bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-sm text-label-sm transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">photo_camera</span>
+<span>Change Avatar</span>
+</button>
+</div>
+</div>
+<!-- Studio Operator Metadata Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1 p-space-sm bg-surface-container-low rounded-xl">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Email Address</label>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface font-medium">tariq.mansoor@cybernovastudios.com</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+</div>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-[12px] text-tertiary">Verified via Riyadh GovID &amp; Enterprise SSO</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 p-space-sm bg-surface-container-low rounded-xl">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Studio Legal Entity</label>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface font-medium">CyberNova Studios LLC</span>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded">Riyadh Node 04</span>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-sm text-[12px] text-outline">CR: 1010-849204 · ZATCA E-Invoicing Active</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 p-space-sm bg-surface-container-low rounded-xl">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Developer Tier &amp; License</label>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface font-medium">Enterprise Commercial License</span>
+<span class="font-label-sm text-label-sm text-secondary bg-primary-container/20 px-2 py-0.5 rounded">RIG v2.4 PRO</span>
+</div>
+<span class="font-label-sm text-[12px] text-outline mt-1">Telemetry Quota: Unlimited 128-tick packet ingestion</span>
+</div>
+<div class="flex flex-col gap-1 p-space-sm bg-surface-container-low rounded-xl">
+<label class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Escrow Vault Signatory</label>
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface font-medium">Multi-Sig Hardware Key (M-of-2)</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">key</span>
+</div>
+<span class="font-label-sm text-[12px] text-tertiary mt-1">Authorized for SAR 500,000+ Prize Pools</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= SECTION 2: SECURITY & AUTHENTICATION ================= -->
+<section class="flex flex-col gap-space-md scroll-mt-24" id="section-security">
+<div class="pb-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Security &amp; Authentication</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage master studio cryptographic keys, multi-factor hardware authenticators, and authorized cluster sessions.</p>
+</div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-lg rounded-2xl p-space-lg shadow-md flex flex-col gap-space-lg">
+<!-- Password Management Subcard -->
+<div class="flex flex-col gap-space-md bg-surface-container-low/60 p-space-md rounded-xl">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold">Studio Operator Password</h3>
+<span class="font-body-sm text-[13px] text-outline">Last rotated 32 days ago (July 24, 2025)</span>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-secondary flex items-center gap-1 self-start sm:self-auto">
+<span class="material-symbols-outlined text-[14px]">lock</span> Compliant with ISO 27001
+              </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-outline">Current Password</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container px-3.5 py-2 rounded-xl text-on-surface font-body-sm text-body-sm pr-10 focus:outline-none focus:bg-surface-container-high transition-colors" id="curr-pass" type="password" value="MasterPass2025!#">
+<button class="absolute right-3 text-outline hover:text-on-surface" onclick="togglePassVisibility('curr-pass', this)" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-outline">New Password</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container px-3.5 py-2 rounded-xl text-on-surface font-body-sm text-body-sm pr-10 focus:outline-none focus:bg-surface-container-high transition-colors" id="new-pass" oninput="evalPassStrength(this.value)" placeholder="Min. 14 chars, symbols" type="password">
+<button class="absolute right-3 text-outline hover:text-on-surface" onclick="togglePassVisibility('new-pass', this)" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-outline">Confirm New Password</label>
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container px-3.5 py-2 rounded-xl text-on-surface font-body-sm text-body-sm pr-10 focus:outline-none focus:bg-surface-container-high transition-colors" id="confirm-pass" placeholder="Repeat new password" type="password">
+<button class="absolute right-3 text-outline hover:text-on-surface" onclick="togglePassVisibility('confirm-pass', this)" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Live Password Strength Meter -->
+<div class="flex flex-col gap-2 pt-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline">Password Strength Verification</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold" id="pass-strength-label">4/4 Very Strong</span>
+</div>
+<div class="grid grid-cols-4 gap-1.5 w-full h-1.5">
+<div class="h-full rounded-full bg-secondary"></div>
+<div class="h-full rounded-full bg-secondary"></div>
+<div class="h-full rounded-full bg-secondary"></div>
+<div class="h-full rounded-full bg-secondary"></div>
+</div>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 font-label-sm text-[12px] text-tertiary">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-secondary text-[14px]">check</span> 14+ characters</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-secondary text-[14px]">check</span> Uppercase &amp; Lowercase</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-secondary text-[14px]">check</span> Numeric digits</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-secondary text-[14px]">check</span> Cryptographic symbol</span>
+</div>
+</div>
+<div class="flex justify-end pt-2">
+<button class="px-4 py-2 rounded-xl bg-surface-container-high hover:bg-surface-bright text-secondary hover:text-on-surface font-label-lg text-label-lg transition-all shadow-sm" onclick="triggerSave()">
+                Update Master Password
+              </button>
+</div>
+</div>
+<!-- Multi-Factor Authentication (MFA / 2FA) -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md p-space-md bg-surface-container-low/60 rounded-xl">
+<div class="flex items-start gap-3">
+<div class="p-2.5 rounded-xl bg-surface-container-high text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">vpn_key</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-bold">Hardware Multi-Factor Authentication (MFA)</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-container/25 text-secondary font-label-sm text-label-sm">Enforced &amp; Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline mt-0.5">Configured with YubiKey 5C NFC &amp; Google Authenticator (TOTP Algorithm SHA-256).</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="font-label-sm text-[12px] text-tertiary">Emergency backup codes:</span>
+<span class="font-label-sm text-[12px] text-secondary font-mono">8 unused codes remaining</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 self-stretch sm:self-auto justify-end">
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-all">View Codes</button>
+<button class="px-3.5 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-secondary font-label-sm text-label-sm transition-all">Manage Keys</button>
+</div>
+</div>
+<!-- Active Authorized Sessions -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold">Active Authorized Studio Sessions</h3>
+<span class="font-body-sm text-[13px] text-outline">Active sessions authorized to trigger testing telemetry pipelines</span>
+</div>
+<button class="px-3 py-1.5 rounded-lg bg-error-container/20 hover:bg-error-container/40 text-error font-label-sm text-label-sm transition-all flex items-center gap-1" onclick="terminateOtherSessions()">
+<span class="material-symbols-outlined text-[16px]">logout</span>
+<span>Sign Out All Other Sessions</span>
+</button>
+</div>
+<!-- Session List Cards -->
+<div class="flex flex-col gap-2">
+<!-- Session 1: Current -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 bg-surface-container-low rounded-xl gap-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[22px]">laptop_mac</span>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface">Chrome 128 · macOS Sonoma</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span> Current Session
+                      </span>
+</div>
+<span class="font-body-sm text-[13px] text-outline">Riyadh, Saudi Arabia · IP: 212.138.64.102 · TLS 1.3 Certified</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-secondary self-start sm:self-auto">Active now</span>
+</div>
+<!-- Session 2: CLI -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 bg-surface-container-low rounded-xl gap-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-[22px]">terminal</span>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface">Riyadah Studio Engine CLI v2.4</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary font-label-sm text-label-sm">CI/CD Pipeline</span>
+</div>
+<span class="font-body-sm text-[13px] text-outline">Cloud Node EU-Central · Linux Ubuntu 22.04 LTS · API Hash: 0x9f...28b</span>
+</div>
+</div>
+<div class="flex items-center gap-3 self-start sm:self-auto">
+<span class="font-label-sm text-label-sm text-outline">Last active 2h ago</span>
+<button class="text-outline hover:text-error transition-colors" title="Revoke Token">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Session 3: Secondary Desktop -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 bg-surface-container-low rounded-xl gap-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary text-[22px]">desktop_windows</span>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface">Firefox Developer Edition 129 · Windows 11</span>
+</div>
+<span class="font-body-sm text-[13px] text-outline">Dubai, United Arab Emirates · IP: 94.200.12.89</span>
+</div>
+</div>
+<div class="flex items-center gap-3 self-start sm:self-auto">
+<span class="font-label-sm text-label-sm text-outline">Last active 3 days ago</span>
+<button class="text-outline hover:text-error transition-colors" title="Revoke Token">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= SECTION 3: NOTIFICATION DISPATCH & TELEMETRY TRIGGERS ================= -->
+<section class="flex flex-col gap-space-md scroll-mt-24" id="section-notifications">
+<div class="pb-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Notification Dispatch &amp; Telemetry Triggers</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Configure real-time threshold notifications, incident alerts, and escrow accounting dispatches across channels.</p>
+</div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-lg rounded-2xl p-space-lg shadow-md flex flex-col gap-space-md">
+<!-- Toggle Row 1 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Testing Campaign Updates</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary">Email · In-App</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Instant alerts when campaigns launch, QA quotas fill, or multi-region testing waves conclude.</p>
+</div>
+<button aria-checked="true" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary-container shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<!-- Toggle Row 2 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Tester Activity &amp; Node Check-Ins</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary">In-App · Webhook</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Real-time updates when QA testers connect to Riyadh Node 04 or submit playtest soak logs.</p>
+</div>
+<button aria-checked="true" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary-container shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<!-- Toggle Row 3 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">New Critical Bugs &amp; Telemetry Dumps</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-error-container/30 text-error">Priority Webhook</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Immediate high-priority alert when 128-tick hitbox or client crash dumps exceed severity threshold.</p>
+</div>
+<button aria-checked="true" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary-container shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<!-- Toggle Row 4 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Escrow &amp; Payment Updates</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary">Email · Push</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Notifications regarding milestone escrow locks, ZATCA tax invoices, and tester payout disbursements.</p>
+</div>
+<button aria-checked="true" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary-container shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<!-- Toggle Row 5 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Developer Verification &amp; Compliance</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary">Email · Official</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">System notices about NDA v2.4 updates, studio re-verification, and node certificate renewals.</p>
+</div>
+<button aria-checked="true" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary-container shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<!-- Toggle Row 6 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Dispute &amp; Desync Anomaly Flags</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-secondary">Real-Time Daemon</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Alerts when anti-cheat daemons detect memory desync anomalies or playtest dispute requests.</p>
+</div>
+<button aria-checked="true" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary-container shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<!-- Toggle Row 7 (Off) -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl hover:bg-surface-container transition-colors">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Product &amp; SDK Marketing Announcements</span>
+<span class="font-label-sm text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-outline">Monthly Digest</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Major changelog releases, new telemetry APIs, and platform benchmark digests.</p>
+</div>
+<button aria-checked="false" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-surface-container-high p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-outline shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+</section>
+<!-- ================= SECTION 4: STUDIO PREFERENCES ================= -->
+<section class="flex flex-col gap-space-md scroll-mt-24" id="section-preferences">
+<div class="pb-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Studio Preferences &amp; Workplace Rig</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Default dashboard views, data density layouts, and timezone localization.</p>
+</div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-lg rounded-2xl p-space-lg shadow-md flex flex-col gap-space-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Default Landing Workspace -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-outline uppercase">Default Landing Workspace</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low px-3.5 py-2.5 rounded-xl text-on-surface font-body-sm text-body-sm appearance-none focus:outline-none focus:bg-surface-container cursor-pointer" onchange="registerEdit()">
+<option selected="" value="campaigns">Testing Campaigns (Active Operations)</option>
+<option value="overview">Developer Overview (Global Dashboard)</option>
+<option value="feedback">Player Feedback &amp; Soak Reports</option>
+<option value="payments">Payments &amp; Escrow Earnings</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+<span class="font-label-sm text-[12px] text-tertiary">Workspace loaded upon Riyadh Node 04 session start.</span>
+</div>
+<!-- Timezone Localizer -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-outline uppercase">Studio Telemetry Timezone</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low px-3.5 py-2.5 rounded-xl text-on-surface font-body-sm text-body-sm appearance-none focus:outline-none focus:bg-surface-container cursor-pointer" onchange="registerEdit()">
+<option selected="" value="riyadh">AST (UTC+3) · Riyadh Standard Time</option>
+<option value="dubai">GST (UTC+4) · Dubai Standard Time</option>
+<option value="london">BST (UTC+1) · London / UTC Node</option>
+<option value="pst">PST (UTC-8) · US Pacific</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+<span class="font-label-sm text-[12px] text-tertiary">All logs and frame tick marks format according to this standard.</span>
+</div>
+</div>
+<!-- Interface Appearance -->
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-outline uppercase">Interface Theme</label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
+<!-- Dark Gaming Cyber (Selected) -->
+<div class="flex flex-col gap-2 p-3 rounded-xl bg-surface-container-high/60 shadow-lg cursor-pointer transition-all">
+<div class="h-16 rounded-lg bg-surface-container-lowest p-2 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<div class="flex gap-1">
+<span class="w-2 h-2 rounded-full bg-surface-container-highest"></span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+</div>
+<div class="w-full h-2 rounded bg-surface-container"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Dark Cyber Pro</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">check_circle</span>
+</div>
+</div>
+<!-- Light Theme (Disabled/Secondary) -->
+<div class="flex flex-col gap-2 p-3 rounded-xl bg-surface-container-low/40 opacity-50 cursor-not-allowed">
+<div class="h-16 rounded-lg bg-inverse-surface p-2 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="w-3 h-3 rounded-full bg-inverse-primary"></span>
+</div>
+<div class="w-full h-2 rounded bg-outline-variant"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-outline">Clinical Light</span>
+<span class="font-label-sm text-[11px] text-outline">Sunsetting</span>
+</div>
+</div>
+<!-- System Default -->
+<div class="flex flex-col gap-2 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-all">
+<div class="h-16 rounded-lg bg-surface-container p-2 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+</div>
+<div class="w-full h-2 rounded bg-surface-container-high"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Auto System Synced</span>
+<span class="material-symbols-outlined text-outline text-[18px]">radio_button_unchecked</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Telemetry Density -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pt-2">
+<div>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Dashboard Data Density</span>
+<p class="font-body-sm text-body-sm text-outline">Choose between compact high-density statistics or comfortable layout spacing.</p>
+</div>
+<div class="flex items-center bg-surface-container p-1 rounded-xl">
+<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-label-sm text-label-sm shadow">High Density (Ops)</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm">Comfortable</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ================= SECTION 5: PRIVACY & ECOSYSTEM VISIBILITY ================= -->
+<section class="flex flex-col gap-space-md scroll-mt-24" id="section-privacy">
+<div class="pb-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Privacy &amp; Ecosystem Visibility</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage how CyberNova Studios and title metrics are showcased across the Riyadah Elite discovery network.</p>
+</div>
+<div class="bg-surface-container-lowest/80 backdrop-blur-lg rounded-2xl p-space-lg shadow-md flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Public Studio Discovery Profile</span>
+<p class="font-body-sm text-body-sm text-outline">Allow verified competitive players and tournament organizers to view CyberNova Studios on Riyadah Elite.</p>
+</div>
+<button aria-checked="true" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary-container shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Show Aggregate Testing Telemetry Activity</span>
+<p class="font-body-sm text-body-sm text-outline">Display aggregate performance badges, completed testing waves, and community feedback stars.</p>
+</div>
+<button aria-checked="true" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary-container shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl">
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Public Game Showcase</span>
+<span class="font-label-sm text-[11px] px-2 py-0.5 rounded bg-surface-container text-secondary">3 Titles Featured</span>
+</div>
+<p class="font-body-sm text-body-sm text-outline">Feature verified titles (Shadow Protocol, Cyber Drift, Neon Strike) in the Riyadah Discovery hub.</p>
+</div>
+<button aria-checked="true" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary-container shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low rounded-xl">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Anonymize QA Hardware Telemetry</span>
+<p class="font-body-sm text-body-sm text-outline">Cryptographically hash tester MAC fingerprints and GPU IDs in public benchmark leaderboards.</p>
+</div>
+<button aria-checked="true" class="switch-toggle relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full bg-primary-container p-0.5 transition-colors duration-200 ease-in-out focus:outline-none" onclick="toggleSwitch(this)" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary-container shadow-md ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+</section>
+<!-- ================= SECTION 6: DANGER ZONE ================= -->
+<section class="flex flex-col gap-space-md scroll-mt-24" id="section-danger">
+<div class="pb-space-xs">
+<h2 class="font-headline-sm text-headline-sm text-error flex items-center gap-2">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+<span>Danger Zone &amp; Protocol Termination</span>
+</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Destructive operations that impact active campaigns, smart escrow contracts, and studio accounts.</p>
+</div>
+<div class="bg-error-container/10 rounded-2xl p-space-lg shadow-md flex flex-col gap-space-md">
+<!-- Danger Action 1: Sign Out -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low/70 rounded-xl">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Sign Out of Developer Portal</span>
+<p class="font-body-sm text-body-sm text-outline">Terminate this device's current session token and clear cached telemetry storage.</p>
+</div>
+<button class="px-4 py-2 rounded-xl bg-surface-container-high hover:bg-surface-bright text-on-surface font-label-lg text-label-lg transition-all self-start sm:self-auto">
+              Sign Out Now
+            </button>
+</div>
+<!-- Danger Action 2: Deactivate -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-surface-container-low/70 rounded-xl">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Deactivate Studio Account</span>
+<p class="font-body-sm text-body-sm text-outline">Temporarily suspend active testing campaigns, pause escrow deposits, and hide developer games from public view.</p>
+</div>
+<button class="px-4 py-2 rounded-xl bg-surface-container-high hover:bg-error-container/30 text-error font-label-lg text-label-lg transition-all self-start sm:self-auto">
+              Deactivate Studio
+            </button>
+</div>
+<!-- Danger Action 3: Permanently Delete -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md p-3.5 bg-error-container/20 rounded-xl">
+<div class="flex flex-col gap-0.5">
+<span class="font-label-lg text-label-lg text-error font-bold">Permanently Delete Developer Account</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Purge all telemetry logs, forfeit unresolved dispute balances, and delete CyberNova Studios forever.</p>
+</div>
+<button class="px-4 py-2 rounded-xl bg-error-container hover:bg-error text-on-error font-label-lg text-label-lg shadow-md transition-all self-start sm:self-auto" onclick="openDeleteModal()">
+              Delete Account
+            </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- ================= EMBEDDED CONFIRMATION MODAL (DELETION) ================= -->
+<div class="fixed inset-0 z-50 bg-surface-container-lowest/80 backdrop-blur-md hidden items-center justify-center p-4" id="delete-modal-backdrop">
+<div class="bg-surface-container-low rounded-2xl max-w-xl w-full p-space-lg shadow-2xl flex flex-col gap-space-md relative overflow-hidden">
+<!-- Top Neon Glow Edge -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-error via-error to-error"></div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-error-container/40 text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">crisis_alert</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Delete Developer Account?</h3>
+<span class="font-label-sm text-label-sm text-error uppercase tracking-wider font-bold">Critical Studio Purge Protocol</span>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface p-1" onclick="closeDeleteModal()">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+</div>
+<div class="bg-error-container/15 p-space-sm rounded-xl flex flex-col gap-2">
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          This action is <strong class="text-error font-bold">permanent and irreversible</strong>. All active testing campaigns for <em>Shadow Protocol</em>, <em>Cyber Drift</em>, and <em>Neon Strike</em> will be immediately aborted.
+        </p>
+<div class="flex items-center gap-2 font-label-sm text-[12px] text-tertiary">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified_user</span>
+<span>Locked escrow balances undergo mandatory 14-day compliance audit before release.</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm text-outline">To confirm, type <strong class="text-on-surface">CyberNova Studios / DELETE</strong> below:</label>
+<input class="w-full bg-surface-container px-3.5 py-2.5 rounded-xl text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-high transition-colors" id="delete-confirm-input" oninput="checkDeleteMatch(this.value)" placeholder="Type confirmation string..." type="text">
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-2">
+<button class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-all" onclick="closeDeleteModal()">
+          Cancel
+        </button>
+<button class="px-5 py-2 rounded-xl bg-error-container text-on-error font-label-lg text-label-lg opacity-40 cursor-not-allowed transition-all" disabled="" id="delete-final-btn">
+          Yes, Permanently Delete Account
+        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Interactive Behavior & Navigation Handling -->
+<script>
+  // Track modified edits
+  let unsavedEdits = 0;
+
+  function registerEdit() {
+    unsavedEdits++;
+    setSimState('unsaved');
+  }
+
+  function togglePassVisibility(inputId, btn) {
+    const field = document.getElementById(inputId);
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (field.type === 'password') {
+      field.type = 'text';
+      icon.textContent = 'visibility_off';
+    } else {
+      field.type = 'password';
+      icon.textContent = 'visibility';
+    }
+  }
+
+  function evalPassStrength(val) {
+    const label = document.getElementById('pass-strength-label');
+    if (val.length === 0) {
+      label.textContent = "4/4 Very Strong";
+      label.className = "font-label-sm text-label-sm text-secondary font-semibold";
+      return;
+    }
+    if (val.length < 8) {
+      label.textContent = "Weak (Minimum 8 chars)";
+      label.className = "font-label-sm text-label-sm text-error font-semibold";
+    } else if (val.length < 12) {
+      label.textContent = "Moderate (Needs symbols)";
+      label.className = "font-label-sm text-label-sm text-tertiary font-semibold";
+    } else {
+      label.textContent = "Very Strong";
+      label.className = "font-label-sm text-label-sm text-secondary font-semibold";
+    }
+    registerEdit();
+  }
+
+  function toggleSwitch(btn) {
+    const isChecked = btn.getAttribute('aria-checked') === 'true';
+    const thumb = btn.querySelector('span');
+    
+    if (isChecked) {
+      btn.setAttribute('aria-checked', 'false');
+      btn.classList.remove('bg-primary-container');
+      btn.classList.add('bg-surface-container-high');
+      thumb.classList.remove('translate-x-5', 'bg-on-primary-container');
+      thumb.classList.add('translate-x-0', 'bg-outline');
+    } else {
+      btn.setAttribute('aria-checked', 'true');
+      btn.classList.remove('bg-surface-container-high');
+      btn.classList.add('bg-primary-container');
+      thumb.classList.remove('translate-x-0', 'bg-outline');
+      thumb.classList.add('translate-x-5', 'bg-on-primary-container');
+    }
+    registerEdit();
+  }
+
+  function setSimState(state) {
+    const pill = document.getElementById('status-toast-pill');
+    const toastText = document.getElementById('toast-text');
+    const unsavedBadge = document.getElementById('unsaved-badge');
+    const saveBtn = document.getElementById('main-save-btn');
+    const saveIcon = document.getElementById('save-btn-icon');
+    const saveText = document.getElementById('save-btn-text');
+
+    if (state === 'unsaved') {
+      unsavedBadge.classList.remove('hidden');
+      unsavedBadge.classList.add('flex');
+      toastText.textContent = "Unsaved changes detected (2 edits)";
+      pill.className = "flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary-container/20 font-label-sm text-label-sm text-secondary";
+      saveIcon.textContent = "save";
+      saveText.textContent = "Save Changes";
+    } else if (state === 'saving') {
+      toastText.textContent = "Transmitting to Riyadh Node 04...";
+      pill.className = "flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm text-secondary";
+      saveIcon.textContent = "sync";
+      saveBtn.classList.add('animate-pulse');
+      saveText.textContent = "Saving...";
+    } else if (state === 'saved') {
+      unsavedBadge.classList.remove('flex');
+      unsavedBadge.classList.add('hidden');
+      saveBtn.classList.remove('animate-pulse');
+      toastText.textContent = "Telemetry synced successfully (200 OK)";
+      pill.className = "flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary/15 font-label-sm text-label-sm text-secondary";
+      saveIcon.textContent = "check_circle";
+      saveText.textContent = "Saved Changes";
+    } else if (state === 'error') {
+      toastText.textContent = "Verification failed: SSL signature mismatch";
+      pill.className = "flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error-container/30 font-label-sm text-label-sm text-error";
+      saveIcon.textContent = "error";
+      saveText.textContent = "Retry Save";
+    }
+  }
+
+  function triggerSave() {
+    setSimState('saving');
+    setTimeout(() => {
+      setSimState('saved');
+    }, 1100);
+  }
+
+  function discardChanges() {
+    unsavedEdits = 0;
+    setSimState('saved');
+    const toastText = document.getElementById('toast-text');
+    toastText.textContent = "Modifications reverted to origin";
+  }
+
+  function terminateOtherSessions() {
+    const toastText = document.getElementById('toast-text');
+    toastText.textContent = "All 2 auxiliary sessions terminated.";
+    const pill = document.getElementById('status-toast-pill');
+    pill.className = "flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary/20 font-label-sm text-label-sm text-secondary";
+  }
+
+  // Delete Modal logic
+  function openDeleteModal() {
+    const modal = document.getElementById('delete-modal-backdrop');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeDeleteModal() {
+    const modal = document.getElementById('delete-modal-backdrop');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.getElementById('delete-confirm-input').value = "";
+    checkDeleteMatch("");
+  }
+
+  function checkDeleteMatch(val) {
+    const btn = document.getElementById('delete-final-btn');
+    if (val.trim() === "CyberNova Studios / DELETE") {
+      btn.disabled = false;
+      btn.classList.remove('opacity-40', 'cursor-not-allowed');
+      btn.classList.add('bg-error', 'hover:bg-error-container');
+    } else {
+      btn.disabled = true;
+      btn.classList.add('opacity-40', 'cursor-not-allowed');
+      btn.classList.remove('bg-error', 'hover:bg-error-container');
+    }
+  }
+
+  // Smooth local sidebar nav scroll indicator
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      document.querySelectorAll('.nav-tab').forEach(el => {
+        el.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-[0_2px_12px_rgba(35,61,255,0.35)]');
+        el.classList.add('text-on-surface-variant');
+      });
+      this.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-[0_2px_12px_rgba(35,61,255,0.35)]');
+      this.classList.remove('text-on-surface-variant');
+    });
+  });
+</script></main></div></body></html>

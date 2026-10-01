@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "tertiary-fixed-dim": "#adcae1", "tertiary": "#adcae1", "tertiary-container": "#446073", "on-secondary-fixed-variant": "#004b73", "surface-container-lowest": "#050930", "on-error-container": "#ffdad6", "on-secondary": "#003351", "surface-container-highest": "#2c3258", "surface-container-high": "#21274c", "on-surface": "#dfe0ff", "primary-container": "#233dff", "surface-variant": "#2c3258", "on-tertiary": "#153345", "surface-container": "#171c41", "secondary-container": "#3698d9", "error-container": "#93000a", "on-background": "#dfe0ff", "background": "#0a0f35", "inverse-primary": "#2640ff", "inverse-on-surface": "#282d53", "on-tertiary-fixed-variant": "#2d4a5c", "on-error": "#690005", "on-tertiary-container": "#bcdaf1", "surface-bright": "#31365d", "primary-fixed": "#dfe0ff", "surface-dim": "#0a0f35", "on-secondary-fixed": "#001e31", "on-primary-fixed-variant": "#0022da", "outline-variant": "#444557", "error": "#ffb4ab", "on-secondary-container": "#002c47", "on-primary-fixed": "#000a64", "surface-tint": "#bcc2ff", "on-primary-container": "#d0d3ff", "on-tertiary-fixed": "#001e2e", "inverse-surface": "#dfe0ff", "on-primary": "#00169d", "secondary": "#92ccff", "secondary-fixed": "#cce5ff", "primary-fixed-dim": "#bcc2ff", "surface-container-low": "#13183d", "outline": "#8f8fa3", "secondary-fixed-dim": "#92ccff", "primary": "#bcc2ff", "surface": "#0a0f35", "on-surface-variant": "#c5c5da", "tertiary-fixed": "#c8e6fd" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "2rem", "space-lg": "1.5rem", "space-2xs": "0.25rem", "gutter": "1.5rem", "space-sm": "0.75rem", "container-max": "1280px", "space-2xl": "3rem", "space-md": "1rem", "space-xs": "0.5rem", "space-3xl": "4.5rem" }, "fontFamily": { "display-lg-mobile": [ "Space Grotesk" ], "headline-xl-mobile": [ "Space Grotesk" ], "label-sm": [ "Space Grotesk" ], "body-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "display-lg": [ "Space Grotesk" ], "label-lg": [ "Space Grotesk" ], "headline-sm": [ "Space Grotesk" ], "headline-xl": [ "Space Grotesk" ], "headline-lg": [ "Space Grotesk" ], "body-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "display-lg-mobile": [ "38px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-xl-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" } ], "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "display-lg": [ "64px", { "lineHeight": "72px", "letterSpacing": "-0.03em", "fontWeight": "700" } ], "label-lg": [ "14px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "headline-sm": [ "22px", { "lineHeight": "30px", "fontWeight": "600" } ], "headline-xl": [ "44px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest flex flex-col z-50 shadow-[4px_0_24px_rgba(5,9,48,0.6)]"><div class="p-space-lg flex flex-col gap-space-xs bg-surface-container-low/60 backdrop-blur-xl"><div class="flex items-center gap-space-sm"><img alt="RE_Logo.png" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XGSUHx0ZAXnfeVAW1w0pgBFV4NcJQUAOg-Sz8D_w3Rra9CCwngiBe-T3OvIwEo0K53Lz3MBWaGUAdjSKa_-nKavPm2T1K4CEH3gyAXYyV6pMMMitObFoRqbw7rSw949v_l4Spko5Eo9L1fAvXQlwu2URQgP9dModwImNbhYNDtDzVLhL6qMomLkVfZuPRuG6ceu-7XI-WGY0h-Pd-8boY9XHyNZbOlMMcyBYTX2CUstghg1s3cZK537p5a_RrT3iR1JNt2TUww"/><div class="flex flex-col"><span class="font-label-lg text-label-lg tracking-wider text-on-surface uppercase">RIYADAH ELITE</span><span class="font-label-sm text-label-sm text-secondary tracking-widest">ENTERPRISE CONSOLE</span></div></div><div class="mt-space-xs flex items-center justify-between px-space-sm py-space-2xs rounded-lg bg-surface-container-high/80"><span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">VICE ADMIN / CO-FOUNDER</span><span class="px-space-xs py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">LVL 4</span></div></div><nav class="flex-1 overflow-y-auto px-space-md py-space-sm space-y-space-md" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm text-outline uppercase tracking-wider">OVERVIEW</div><a aria-current="page" class="flex items-center justify-between px-space-sm py-space-xs transition-all bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="operations-command" href="#"><span>Operations Command</span><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span></a></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm text-outline uppercase tracking-wider">MANAGEMENT</div><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all font-body-sm text-body-sm" data-path="user-management" href="#"><span>User Management</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all font-body-sm text-body-sm" data-path="operations-and-disputes" href="#"><span>Operations &amp; Disputes</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all font-body-sm text-body-sm" data-path="trust-and-safety" href="#"><span>Trust &amp; Safety</span><span class="px-space-xs py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">3</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all font-body-sm text-body-sm" data-path="verification" href="#"><span>Verification</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm">14</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all font-body-sm text-body-sm" data-path="finance-and-escrow" href="#"><span>Finance &amp; Escrow</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all font-body-sm text-body-sm" data-path="content-and-games" href="#"><span>Content &amp; Games</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all font-body-sm text-body-sm" data-path="support-desk" href="#"><span>Support Desk</span><span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm">7</span></a></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm text-outline uppercase tracking-wider">STAFF</div><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all font-body-sm text-body-sm" data-path="staff-management" href="#"><span>Staff Management</span></a></div><div class="space-y-space-2xs"><div class="px-space-sm py-space-2xs font-label-sm text-label-sm text-outline uppercase tracking-wider">REPORTS</div><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all font-body-sm text-body-sm" data-path="operational-reports" href="#"><span>Operational Reports</span></a><a class="flex items-center justify-between px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all font-body-sm text-body-sm" data-path="audit-activity" href="#"><span>Audit Activity</span></a></div></nav><div class="p-space-sm m-space-sm rounded-lg bg-surface-container-low/80 backdrop-blur-md"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">LEVEL 4 SECURITY ENCLAVE</span></div><div class="mt-space-2xs font-body-sm text-[12px] leading-tight text-outline">ME-East Node #2 (9ms) • Operational Root</div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/85 backdrop-blur-xl z-40 px-space-lg flex items-center justify-between shadow-[0_4px_20px_rgba(5,9,48,0.5)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-sm text-label-sm tracking-wider text-outline"><span class="text-on-surface-variant">ADMIN ROOT</span><span>/</span><span class="text-on-surface-variant">VICE ADMIN</span><span>/</span><span class="text-secondary font-semibold">OPERATIONS COMMAND</span></div><div class="hidden xl:flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-body-sm text-body-sm text-on-surface-variant">Services 100% Operational • 0 Breaches</span></div></div><div class="flex items-center gap-space-md"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-outline text-[18px]">search</span><input class="w-64 lg:w-80 pl-9 pr-12 py-1.5 rounded-lg bg-surface-container-low text-on-surface placeholder-outline font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="Search telemetry, nodes, telemetry ID..." type="text"/><div class="absolute right-2 px-1.5 py-0.5 rounded bg-surface-container-high font-label-sm text-[10px] text-outline">⌘K</div></div><button class="relative p-2 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="flex items-center gap-space-sm pl-space-sm"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-lg text-label-lg text-on-surface leading-tight">Nasser Al-Husseini</span><span class="font-label-sm text-label-sm text-secondary">Co-Founder • Level 4</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen flex flex-col justify-between"><div><div class="flex flex-col w-full">
+<!-- Radial Glow Atmosphere Background Accent -->
+<div class="relative w-full overflow-hidden px-space-lg py-space-xl lg:px-space-2xl space-y-space-xl">
+<!-- Top Decorative Glow Orb -->
+<div class="absolute -top-32 left-1/3 w-96 h-96 bg-primary-container/20 rounded-full blur-[110px] pointer-events-none -z-10"></div>
+<div class="absolute top-80 right-10 w-80 h-80 bg-secondary/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+<!-- 1. PAGE BANNER & HEADER -->
+<section class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-lg bg-surface-container-low/70 backdrop-blur-xl p-space-lg rounded-xl shadow-xl">
+<div class="space-y-space-2xs max-w-3xl">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-surface-container-high/90">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest uppercase">OPERATIONAL AUTHORITY LEVEL 4 • CO-FOUNDER CONSOLE</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Operations Command Center</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Day-to-day platform oversight, cross-department workflows, telemetry audits, and escalated incident triage.</p>
+</div>
+<!-- Quick Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-lg hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Review Escalations (4)</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-all shadow-md">
+<span class="material-symbols-outlined text-[18px] text-tertiary">summarize</span>
+<span>Export Daily Ops Report</span>
+</button>
+<div class="relative group">
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container-lowest text-tertiary-fixed-dim hover:text-on-surface font-label-lg text-label-lg shadow-md transition-all">
+<span class="material-symbols-outlined text-[18px] text-tertiary">lock</span>
+<span>Founder Escalation Gate</span>
+</button>
+<div class="absolute right-0 top-full mt-2 hidden group-hover:block z-30 w-64 p-space-sm bg-surface-container-highest text-on-surface-variant text-body-sm font-body-sm rounded-lg shadow-xl">
+            Direct secure cryptographic tunnel to Root Founder Level 5 Authority keys.
+          </div>
+</div>
+</div>
+</section>
+<!-- 2. ESCALATED TO FOUNDER / URGENT ATTENTION (3 Cards Grid) -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-error text-[22px]">emergency</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Urgent Attention &amp; Escalated Gate</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Founder Enclave Sync: Active</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Urgent Item 1 -->
+<div class="bg-surface-container-low/80 backdrop-blur-md p-space-lg rounded-xl shadow-lg flex flex-col justify-between space-y-space-md hover:bg-surface-container/70 transition-all">
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm uppercase tracking-wider">High Priority • Dispute</span>
+<span class="font-label-sm text-label-sm text-secondary tracking-wider">REF #VAL-902</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Tournament Match #VAL-2026-902 Escrow Lock ($1,200)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Unauthorized roster substitution flagged by referee. Co-founder triage: Evidence verified. Awaiting dispute settlement.</p>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary font-label-lg text-label-lg text-center transition-colors">
+              Resolve Operational Part
+            </button>
+<button class="w-full py-space-xs rounded-lg bg-surface-container-lowest/80 text-outline cursor-not-allowed font-label-lg text-label-lg flex items-center justify-center gap-space-xs opacity-70" disabled="">
+<span class="material-symbols-outlined text-[16px] text-tertiary">lock</span>
+<span>Escalate: Requires Admin Approval</span>
+</button>
+</div>
+</div>
+<!-- Urgent Item 2 -->
+<div class="bg-surface-container-low/80 backdrop-blur-md p-space-lg rounded-xl shadow-lg flex flex-col justify-between space-y-space-md hover:bg-surface-container/70 transition-all">
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm uppercase tracking-wider">High Priority • Studio IP</span>
+<span class="font-label-sm text-label-sm text-secondary tracking-wider">BLD #402-Q</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Copyright Assertion: 'Cyber Horizon' Build #402</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Studio asset clash claim submitted. Co-Founder sandbox quarantine activated. 14,000 asset manifests queued for diff.</p>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<button class="w-full py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-secondary font-label-lg text-label-lg text-center transition-colors">
+              Review QA Diff
+            </button>
+<button class="w-full py-space-xs rounded-lg bg-surface-container-highest hover:bg-primary-container text-on-surface font-label-lg text-label-lg text-center transition-colors">
+              Request Founder Takedown Order
+            </button>
+</div>
+</div>
+<!-- Urgent Item 3 (Restricted Action Showcase) -->
+<div class="bg-surface-container-low/80 backdrop-blur-md p-space-lg rounded-xl shadow-lg flex flex-col justify-between space-y-space-md relative overflow-hidden">
+<div class="absolute -right-8 -top-8 w-24 h-24 bg-error/10 rounded-full blur-xl pointer-events-none"></div>
+<div class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-error font-label-sm text-label-sm flex items-center gap-1 uppercase tracking-wider">
+<span class="material-symbols-outlined text-[13px]">lock</span>
+                RESTRICTED LEVEL 5 • Requires Admin Approval
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Permanent Moderator Revocation &amp; Platform Role Restructure</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Vice Admin recommendation prepared: Transition 2 senior referees. Cryptographic consensus pending Founder signature key.</p>
+</div>
+<div class="pt-space-xs">
+<button class="w-full py-2.5 rounded-lg bg-surface-container-lowest text-outline-variant font-label-lg text-label-lg flex items-center justify-center gap-space-xs cursor-not-allowed shadow-inner" disabled="">
+<span class="material-symbols-outlined text-[18px] text-outline">lock_clock</span>
+<span>Locked: Requires Admin Approval</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. HIGH-DENSITY OPERATIONAL METRICS (10 Cards Grid) -->
+<section class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">LIVE TELEMETRY STREAM • SYSTEM CLUSTER ALPHA</span>
+<span class="font-label-sm text-label-sm text-secondary">REFRESH RATE: 1000ms</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-space-sm">
+<!-- Metric 1 -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md rounded-xl shadow-md space-y-space-2xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Active Gamers</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">sports_esports</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">142,850</div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-secondary">
+<span>↑ 12.4% MoM</span>
+<span class="text-outline text-[12px]">• 14.3k Live</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md rounded-xl shadow-md space-y-space-2xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Verified Studios</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">developer_mode</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">412</div>
+<div class="font-body-sm text-body-sm text-tertiary">18 In Review Queue</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md rounded-xl shadow-md space-y-space-2xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Tournament Hosts</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">podium</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">89 Hosts</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">6 Tier-3 Enterprise</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md rounded-xl shadow-md space-y-space-2xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Active Brackets</span>
+<span class="material-symbols-outlined text-primary text-[18px]">trophy</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">16 Live</div>
+<div class="font-body-sm text-body-sm text-primary">2 Grand Finals Today</div>
+</div>
+<!-- Metric 5 -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md rounded-xl shadow-md space-y-space-2xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">QA Testing Waves</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">sensors</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">24 Live</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">4,210 Concurrents</div>
+</div>
+<!-- Metric 6 -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md rounded-xl shadow-md space-y-space-2xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Verifications</span>
+<span class="material-symbols-outlined text-tertiary text-[18px]">fact_check</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">14 Items</div>
+<div class="font-body-sm text-body-sm text-tertiary">8 Studio • 6 Host</div>
+</div>
+<!-- Metric 7 -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md rounded-xl shadow-md space-y-space-2xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Safety Reports</span>
+<span class="material-symbols-outlined text-error text-[18px]">shield_with_heart</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">9 Open</div>
+<div class="font-body-sm text-body-sm text-error">3 Cheats Quarantined</div>
+</div>
+<!-- Metric 8 -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md rounded-xl shadow-md space-y-space-2xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Match Disputes</span>
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[18px]">balance</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">4 Active</div>
+<div class="font-body-sm text-body-sm text-tertiary-fixed-dim">1 Escrow Founder Gate</div>
+</div>
+<!-- Metric 9 -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md rounded-xl shadow-md space-y-space-2xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Support Tickets</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">headset_mic</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">27 Open</div>
+<div class="font-body-sm text-body-sm text-secondary">SLA: 98.2% &lt;2h</div>
+</div>
+<!-- Metric 10 -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-md rounded-xl shadow-md space-y-space-2xs hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase">Daily Ops Vol</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">account_balance_wallet</span>
+</div>
+<div class="font-headline-lg text-headline-lg text-on-surface">$38.4k</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Sponsor &amp; Host Escrow</div>
+</div>
+</div>
+</section>
+<!-- 4. QUICK ACTIONS TOOLBAR (Pill Buttons) -->
+<section class="flex flex-wrap items-center gap-space-xs p-space-xs bg-surface-container-low/70 backdrop-blur-lg rounded-xl shadow-md">
+<button class="px-space-md py-space-xs rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-space-2xs hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-[16px]">priority_high</span>
+<span>Review Escalations (4)</span>
+</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-space-2xs transition-all">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span>Manage Users</span>
+</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-space-2xs transition-all">
+<span class="material-symbols-outlined text-[16px]">trophy</span>
+<span>Review Tournaments (16)</span>
+</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-space-2xs transition-all">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+<span>Review Developers (18)</span>
+</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-space-2xs transition-all">
+<span class="material-symbols-outlined text-[16px]">policy</span>
+<span>Review Reports (9)</span>
+</button>
+<button class="px-space-md py-space-xs rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm tracking-wider uppercase flex items-center gap-space-2xs transition-all">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Review Verifications (14)</span>
+</button>
+</section>
+<!-- 5. TWO-COLUMN OPERATIONAL WORKSPACE -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- LEFT COLUMN: 60% (Col-span 7 on 12-col) -->
+<div class="lg:col-span-7 space-y-space-md">
+<!-- Queue Card Header & Interactive Tabs -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-lg rounded-xl shadow-lg space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Daily Operational Review &amp; Queue</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Live operations pending Level 4 sign-off or triage routing.</p>
+</div>
+<!-- Filter Tabs -->
+<div class="inline-flex p-1 rounded-lg bg-surface-container-lowest gap-1">
+<button class="px-space-sm py-1 rounded font-label-sm text-label-sm bg-primary-container text-on-primary-container transition-all" id="tab-verif" onclick="switchQueueTab('verif')">
+                Verifications (14)
+              </button>
+<button class="px-space-sm py-1 rounded font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" id="tab-disputes" onclick="switchQueueTab('disputes')">
+                Disputes (4)
+              </button>
+<button class="px-space-sm py-1 rounded font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all" id="tab-tournaments" onclick="switchQueueTab('tournaments')">
+                Flagged (2)
+              </button>
+</div>
+</div>
+<!-- Queue Items List -->
+<div class="space-y-space-sm">
+<!-- Item 1: Developer Studio Verification -->
+<div class="p-space-md bg-surface-container-high/60 rounded-xl space-y-space-xs hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-bold">
+                    II
+                  </div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Ironclad Interactive</h4>
+<span class="font-body-sm text-body-sm text-outline">Studio CR #1010-9824 • Desert Protocol UE 5.4 Sandbox</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm">Docs Verified by Ops</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span>Commercial Registry &amp; Tax Compliance Validated</span>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container font-label-sm text-label-sm font-semibold transition-colors">
+                  Sign Off &amp; Grant QA Sandbox
+                </button>
+</div>
+</div>
+<!-- Item 2: Host Tier-3 Elevation Request -->
+<div class="p-space-md bg-surface-container-high/60 rounded-xl space-y-space-xs hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-secondary font-bold">
+                    SC
+                  </div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Saudi Collegiate Esports League</h4>
+<span class="font-body-sm text-body-sm text-outline">Host Tier-3 Elevation Request • 64 Teams Circuit</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-tertiary-fixed-dim font-label-sm text-label-sm">Telemetry Passed (99.8%)</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span>Requires Founder authorization for Tier-3 treasury access</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-highest text-secondary font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">
+                    Approve Tier 2
+                  </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-lowest text-outline font-label-sm text-label-sm flex items-center gap-1 cursor-not-allowed opacity-75" disabled="">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                    Elevate: Requires Admin Approval
+                  </button>
+</div>
+</div>
+</div>
+<!-- Item 3: Beta Testing Wave Monitoring -->
+<div class="p-space-md bg-surface-container-high/60 rounded-xl space-y-space-xs hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-error font-bold">
+                    CS
+                  </div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Cyber Strike Beta Testing Wave 3</h4>
+<span class="font-body-sm text-body-sm text-outline">Telemetry Spike: Riyadh Node #4 • 1,240 Concurrents</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">Crash rate spike 2.1% on Vulkan</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-error">warning</span>
+<span>Driver conflict detected on GeForce RTX 40-series mobile</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1.5 rounded-lg bg-surface-container-highest text-on-surface hover:bg-surface-bright font-label-sm text-label-sm transition-colors">
+                    Notify Dev
+                  </button>
+<button class="px-space-sm py-1.5 rounded-lg bg-error-container text-on-error-container hover:brightness-110 font-label-sm text-label-sm transition-colors">
+                    Pause Wave
+                  </button>
+</div>
+</div>
+</div>
+<!-- Item 4: Valorant Community Cup Semi-Final -->
+<div class="p-space-md bg-surface-container-high/60 rounded-xl space-y-space-xs hover:bg-surface-container-high transition-colors">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary font-bold">
+                    VC
+                  </div>
+<div>
+<h4 class="font-label-lg text-label-lg text-on-surface">Valorant Community Cup Semi-Final 2</h4>
+<span class="font-body-sm text-body-sm text-outline">Falcon Esports vs. Tuwaiq Gaming • Match #98</span>
+</div>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm">Ping Parity Passed (8ms avg)</span>
+</div>
+<div class="flex items-center justify-between pt-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+<span>Anti-cheat Vanguard signatures green</span>
+</div>
+<button class="px-space-md py-1.5 rounded-lg bg-primary-container hover:bg-primary-fixed-dim text-on-primary-container font-label-sm text-label-sm font-semibold transition-colors">
+                  Authorize Bracket Progress
+                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Visual: Escrow Velocity & Tournament Health Telemetry -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-lg rounded-xl shadow-lg space-y-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Weekly Tournament &amp; Testing Velocity</h3>
+<span class="font-label-sm text-label-sm text-secondary">Zero-Gambling Compliance Rate: 100%</span>
+</div>
+<!-- Micro SVG Telemetry Chart -->
+<div class="w-full h-32 flex items-end gap-2 pt-space-sm">
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-full bg-primary-container/40 rounded-t h-16 hover:bg-primary transition-all"></div>
+<span class="font-label-sm text-[10px] text-outline">MON</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-full bg-primary-container/60 rounded-t h-20 hover:bg-primary transition-all"></div>
+<span class="font-label-sm text-[10px] text-outline">TUE</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-full bg-primary-container/50 rounded-t h-24 hover:bg-primary transition-all"></div>
+<span class="font-label-sm text-[10px] text-outline">WED</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-full bg-primary-container/70 rounded-t h-28 hover:bg-primary transition-all"></div>
+<span class="font-label-sm text-[10px] text-outline">THU</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-full bg-secondary rounded-t h-32 shadow-[0_0_12px_rgba(146,204,255,0.4)]"></div>
+<span class="font-label-sm text-[10px] text-secondary font-bold">FRI (PEAK)</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-full bg-primary-container/80 rounded-t h-28 hover:bg-primary transition-all"></div>
+<span class="font-label-sm text-[10px] text-outline">SAT</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-1">
+<div class="w-full bg-primary-container/60 rounded-t h-14 hover:bg-primary transition-all"></div>
+<span class="font-label-sm text-[10px] text-outline">SUN</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: 40% (Col-span 5 on 12-col) -->
+<div class="lg:col-span-5 space-y-space-md">
+<!-- Department Pulse Cards -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-lg rounded-xl shadow-lg space-y-space-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Department Pulse</h3>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm">4 ENCLAVES ONLINE</span>
+</div>
+<div class="space-y-space-xs">
+<!-- Pulse 1: Esports Operations -->
+<div class="p-space-sm rounded-lg bg-surface-container-high/50 flex items-start gap-space-sm hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-0.5">sports_esports</span>
+<div class="space-y-0.5">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Esports Operations</span>
+<span class="font-label-sm text-[11px] text-secondary">ACTIVE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">16 matches completed today • Avg ping 11.4ms • Riot Vanguard synced with zero anomalies.</p>
+</div>
+</div>
+<!-- Pulse 2: Studio QA Ecosystem -->
+<div class="p-space-sm rounded-lg bg-surface-container-high/50 flex items-start gap-space-sm hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">developer_board</span>
+<div class="space-y-0.5">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Studio QA Ecosystem</span>
+<span class="font-label-sm text-[11px] text-primary">TELEMETRY ON</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">24 active testing builds • 4,210 live telemetry feeds streaming telemetry crash dumps.</p>
+</div>
+</div>
+<!-- Pulse 3: Trust & Anti-Cheat -->
+<div class="p-space-sm rounded-lg bg-surface-container-high/50 flex items-start gap-space-sm hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-error text-[20px] mt-0.5">security</span>
+<div class="space-y-0.5">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Trust &amp; Anti-Cheat</span>
+<span class="font-label-sm text-[11px] text-error">3 FLAGS</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">3 Vanguard memory flags quarantined instantly • Zero false positive appeals raised.</p>
+</div>
+</div>
+<!-- Pulse 4: Escrow & Compliance -->
+<div class="p-space-sm rounded-lg bg-surface-container-high/50 flex items-start gap-space-sm hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">account_balance</span>
+<div class="space-y-0.5">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface">Escrow &amp; Compliance</span>
+<span class="font-label-sm text-[11px] text-tertiary">STRICT CHARTER</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Zero-gambling audit cleared for 8 weekend cups • $18,200 settled without fee retention.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Escalation to Founder Stream -->
+<div class="bg-surface-container-low/90 backdrop-blur-md p-space-lg rounded-xl shadow-lg space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[20px]">vpn_key</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Founder Escalation Stream</h3>
+</div>
+<span class="font-label-sm text-label-sm text-outline">IMMUTABLE LOG</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Log 1 -->
+<div class="p-space-sm rounded-lg bg-surface-container-high/40 space-y-space-2xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary">ESC-881 • STUDIO NEOM PAYOUT</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-tertiary font-label-sm text-[10px]">PENDING SIGNATURE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                $14,500 milestone release transferred to Founder Enclave queue. Awaiting final Root HSM multi-sig authorization.
+              </p>
+</div>
+<!-- Log 2 -->
+<div class="p-space-sm rounded-lg bg-surface-container-high/40 space-y-space-2xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-error">ESC-879 • ROOT SECURITY ROTATION</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-outline font-label-sm text-[10px] flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[10px]">lock</span>
+                  Requires Admin Approval
+                </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Quarterly enclave key rotation prepared by Vice Admin Nasser. Root Founder token generation mandatory.
+              </p>
+</div>
+<!-- Log 3 -->
+<div class="p-space-sm rounded-lg bg-surface-container-high/40 space-y-space-2xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary">STAFF ACTION • HOST ELEVATION</span>
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-secondary font-label-sm text-[10px]">OPS EXECUTED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Co-Founder Nasser approved Tier-1 Host AlexPlays verification with $2,000 seasonal cap.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. ZERO-GAMBLING & GOVERNANCE COMPLIANCE BANNER -->
+<section class="p-space-lg rounded-xl bg-surface-container-low/95 backdrop-blur-xl shadow-xl flex flex-col md:flex-row items-center gap-space-md">
+<div class="p-3 rounded-full bg-secondary-container/20 text-secondary shrink-0">
+<span class="material-symbols-outlined text-[32px]">gavel</span>
+</div>
+<div class="space-y-1 text-center md:text-left flex-1">
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-space-xs">
+<span class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider font-bold">RIYADAH ELITE OPERATIONAL CHARTER</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm">KSA-GSA-094 COMPLIANT</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          All tournaments and testing rewards are strictly host-funded or developer-sponsored. Betting, wagering, and player-funded stakes are permanently prohibited under KSA-GSA-094. Level 4 Vice Admin operations are tracked on immutable enclave audit trails.
+        </p>
+</div>
+<div class="shrink-0 flex items-center gap-space-xs">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface tracking-wider uppercase">ROOT AUDIT SEALED</span>
+</div>
+</section>
+</div>
+</div>
+<script>
+  function switchQueueTab(tabKey) {
+    const tabs = ['verif', 'disputes', 'tournaments'];
+    tabs.forEach(t => {
+      const btn = document.getElementById('tab-' + t);
+      if (btn) {
+        if (t === tabKey) {
+          btn.className = 'px-space-sm py-1 rounded font-label-sm text-label-sm bg-primary-container text-on-primary-container transition-all';
+        } else {
+          btn.className = 'px-space-sm py-1 rounded font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-all';
+        }
+      }
+    });
+  }
+</script></div><footer class="w-full py-space-sm px-space-lg bg-surface-container-lowest/90 backdrop-blur-md text-center"><div class="max-w-container-max mx-auto flex flex-col sm:flex-row items-center justify-between gap-space-xs text-outline font-label-sm text-label-sm tracking-wider uppercase"><span>RIYADAH ELITE OPERATIONAL CONSOLE</span><span class="text-secondary font-semibold">STRICT ZERO-GAMBLING POLICY ENFORCED</span><span>FOUNDER AUTHORITY GATES ACTIVE</span></div></footer></main></div></body></html>
