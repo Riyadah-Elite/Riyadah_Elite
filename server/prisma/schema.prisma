@@ -1,0 +1,15 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Initial baseline model for connection and schema verification
+model HealthCheck {
+  id        String   @id @default(uuid())
+  status    String
+  createdAt DateTime @default(now())
+}

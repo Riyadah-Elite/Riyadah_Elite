@@ -1,0 +1,41 @@
+{
+  "name": "riyadah-elite",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Riyadah Elite - Clean PERN Stack Monorepo",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:client": "npm run dev --workspace=client",
+    "dev:server": "npm run dev --workspace=server",
+    "build": "npm run build --workspaces --if-present",
+    "build:client": "npm run build --workspace=client",
+    "build:server": "npm run build --workspace=server",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "typecheck:client": "npm run typecheck --workspace=client",
+    "typecheck:server": "npm run typecheck --workspace=server",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:client": "npm run lint --workspace=client",
+    "lint:server": "npm run lint --workspace=server",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run test --workspaces --if-present",
+    "test:client": "npm run test --workspace=client",
+    "test:server": "npm run test --workspace=server",
+    "prisma:generate": "npm run prisma:generate --workspace=server",
+    "prisma:migrate": "npm run prisma:migrate --workspace=server",
+    "prisma:studio": "npm run prisma:studio --workspace=server"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3"
+  },
+  "allowScripts": {
+    "@prisma/client": true,
+    "prisma": true,
+    "@prisma/engines": true,
+    "esbuild": true
+  }
+}
