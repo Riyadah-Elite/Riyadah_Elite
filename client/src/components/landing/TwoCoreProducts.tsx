@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const TwoCoreProducts: React.FC = () => {
   return (
@@ -92,13 +93,13 @@ export const TwoCoreProducts: React.FC = () => {
               </ul>
             </div>
             <div className="pt-6">
-              <a
+              <Link
                 className="btn-shimmer inline-flex items-center gap-2 font-headline text-sm text-[#92ccff] hover:text-white px-4 py-2 rounded-lg hover:bg-[#233dff] transition-all duration-300 font-bold"
-                href="#games"
+                to="/games"
               >
                 Explore Games{" "}
                 <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -188,13 +189,13 @@ export const TwoCoreProducts: React.FC = () => {
               </ul>
             </div>
             <div className="pt-6">
-              <a
+              <Link
                 className="btn-shimmer inline-flex items-center gap-2 font-headline text-sm text-[#92ccff] hover:text-white px-4 py-2 rounded-lg hover:bg-[#3698d9] transition-all duration-300 font-bold"
-                href="#tournaments"
+                to="/tournaments"
               >
                 Find Tournaments{" "}
                 <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const FinalCTASection: React.FC = () => {
   return (
@@ -27,37 +28,37 @@ export const FinalCTASection: React.FC = () => {
 
         {/* Dual Buttons */}
         <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-          <a
+          <Link
             className="btn-shimmer px-8 py-3.5 rounded-xl bg-[#233dff] text-white font-headline text-sm font-bold shadow-[0_8px_30px_rgba(35,61,255,0.5)] hover:shadow-[0_0_30px_rgba(35,61,255,0.8)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center gap-2"
-            href="#games"
+            to="/games"
           >
             <span className="material-symbols-outlined text-lg">explore</span>
             Explore Games
-          </a>
-          <a
+          </Link>
+          <Link
             className="btn-shimmer px-8 py-3.5 rounded-xl bg-[#21274c] border border-[#444557]/40 text-[#92ccff] font-headline text-sm font-bold hover:bg-[#2c3258] hover:border-[#92ccff] hover:shadow-[0_0_20px_rgba(92,182,249,0.4)] active:scale-95 transition-all duration-300 flex items-center gap-2"
-            href="#tournaments"
+            to="/tournaments"
           >
             <span className="material-symbols-outlined text-lg">emoji_events</span>
             Find Tournaments
-          </a>
+          </Link>
         </div>
 
         {/* Sub-links */}
         <div className="flex flex-wrap items-center justify-center gap-6 pt-4 text-[#c5c5da] text-xs sm:text-sm font-headline">
-          <a
+          <Link
             className="hover:text-[#92ccff] flex items-center gap-1 transition-colors"
-            href="#developers"
+            to="/for-developers"
           >
             For Developers → Test Your Game
-          </a>
+          </Link>
           <span className="opacity-30">|</span>
-          <a
+          <Link
             className="hover:text-[#92ccff] flex items-center gap-1 transition-colors"
-            href="#tournaments"
+            to="/tournaments"
           >
             For Hosts → Create a Tournament
-          </a>
+          </Link>
         </div>
       </div>
     </section>

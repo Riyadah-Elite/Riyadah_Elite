@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Header } from "../components/landing/Header";
-import { Footer } from "../components/landing/Footer";
-
 export const GameTestingDiscoveryPage: React.FC = () => {
   const [activePlatform, setActivePlatform] = useState("All");
   const [activeGenre, setActiveGenre] = useState("All");
@@ -159,10 +156,7 @@ export const GameTestingDiscoveryPage: React.FC = () => {
   });
 
   return (
-    <div className="bg-[#0a0f35] font-body text-[#dfe0ff] min-h-screen selection:bg-[#bcc2ff] selection:text-[#00169d] overflow-x-hidden">
-      <Header />
-
-      <main className="w-full pt-28 pb-20 px-6 max-w-[1380px] mx-auto flex flex-col gap-10">
+    <div className="w-full pb-20 px-6 max-w-[1380px] mx-auto flex flex-col gap-10">
         {/* Breadcrumb & Node Status */}
         <div className="flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#8f8fa3]">
           <div className="flex items-center gap-2">
@@ -656,9 +650,6 @@ export const GameTestingDiscoveryPage: React.FC = () => {
             </Link>
           </div>
         </section>
-      </main>
-
-      <Footer />
     </div>
   );
 };

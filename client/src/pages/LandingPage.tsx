@@ -1,5 +1,4 @@
 import React from "react";
-import { Header } from "../components/landing/Header";
 import { HeroShader } from "../components/landing/HeroShader";
 import { HeroSection } from "../components/landing/HeroSection";
 import { TwoCoreProducts } from "../components/landing/TwoCoreProducts";
@@ -13,14 +12,10 @@ import { CommunityRolesSection } from "../components/landing/CommunityRolesSecti
 import { TrustAndSafetySection } from "../components/landing/TrustAndSafetySection";
 import { PlatformStatisticsSection } from "../components/landing/PlatformStatisticsSection";
 import { FinalCTASection } from "../components/landing/FinalCTASection";
-import { Footer } from "../components/landing/Footer";
 
 export const LandingPage: React.FC = () => {
   return (
-    <div className="bg-[#0a0f35] font-body text-[#dfe0ff] min-h-screen selection:bg-[#bcc2ff] selection:text-[#00169d] overflow-x-hidden">
-      <Header />
-      <main className="w-full pt-20 bg-[#0a0f35] overflow-x-hidden">
-        <div className="flex flex-col w-full text-[#dfe0ff] overflow-x-hidden">
+    <div className="flex flex-col w-full text-[#dfe0ff] overflow-x-hidden">
           {/* SECTION 1: HERO WITH WEBGL SHADER */}
           <div className="relative">
             <HeroShader />
@@ -57,11 +52,8 @@ export const LandingPage: React.FC = () => {
           {/* SECTION 11: PLATFORM STATISTICS WITH ANIMATED COUNTERS */}
           <PlatformStatisticsSection />
 
-          {/* SECTION 12: DRAMATIC FINAL CTA */}
-          <FinalCTASection />
-        </div>
-      </main>
-      <Footer />
+      {/* SECTION 12: DRAMATIC FINAL CTA */}
+      <FinalCTASection />
     </div>
   );
 };

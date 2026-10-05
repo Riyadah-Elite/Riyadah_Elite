@@ -13,3 +13,225 @@ model HealthCheck {
   status    String
   createdAt DateTime @default(now())
 }
+
+enum Role {
+  PLAYER
+  DEVELOPER
+  HOST
+  ADMIN
+}
+
+model User {
+  id           String               @id @default(uuid())
+  fullName     String
+  username     String               @unique
+  email        String               @unique
+  passwordHash String
+  role         Role                 @default(PLAYER)
+  isVerified   Boolean              @default(false)
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+  resetTokens  PasswordResetToken[]
+  profile      PlayerProfile?
+  applications GameTestingApplication[]
+  tournamentRegistrations TournamentRegistration[]
+
+  @@index([email])
+  @@index([username])
+}
+
+model PasswordResetToken {
+  id        String    @id @default(uuid())
+  tokenHash String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([tokenHash])
+}
+
+model PlayerProfile {
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bio              String?
+  country          String?  @default("Saudi Arabia")
+  city             String?  @default("Riyadh")
+  primaryPlatform  String?  @default("PC Windows")
+  favoriteGenres   String[] @default(["FPS", "Tactical Shooter"])
+  hardwareGpu      String?
+  hardwareCpu      String?
+  hardwareRam      String?
+  hardwareOs       String?
+  testerScore      Int      @default(0)
+  totalGamesTested Int      @default(0)
+  avatarUrl        String?
+  discordHandle    String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([userId])
+}
+
+enum OpportunityStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  CLOSED
+}
+
+model GameOpportunity {
+  id                 String                   @id @default(uuid())
+  slug               String                   @unique
+  title              String
+  studio             String
+  genre              String
+  platform           String
+  stage              String                   @default("Beta")
+  version            String?
+  description        String
+  focusAreas         String[]                 @default([])
+  requirements       String[]                 @default([])
+  capacity           Int                      @default(100)
+  rewardText         String?
+  imageUrl           String?
+  status             OpportunityStatus        @default(ACTIVE)
+  startDate          DateTime?
+  endDate            DateTime?
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+  applications       GameTestingApplication[]
+
+  @@index([slug])
+  @@index([status])
+}
+
+enum ApplicationStatus {
+  PENDING
+  UNDER_REVIEW
+  ACCEPTED
+  REJECTED
+  COMPLETED
+}
+
+model GameTestingApplication {
+  id                String            @id @default(uuid())
+  userId            String
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  opportunityId     String
+  opportunity       GameOpportunity   @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  status            ApplicationStatus @default(PENDING)
+  platform          String
+  primaryGames      String[]          @default([])
+  hardwareGpu       String
+  hardwareCpu       String
+  hardwareRam       String
+  availabilityHours String
+  experienceNotes   String?
+  agreedNda         Boolean           @default(false)
+  agreedTelemetry   Boolean           @default(false)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+
+  @@unique([userId, opportunityId])
+  @@index([userId])
+  @@index([opportunityId])
+  @@index([status])
+}
+
+enum TournamentStatus {
+  DRAFT
+  REGISTRATION_OPEN
+  REGISTRATION_CLOSED
+  ONGOING
+  COMPLETED
+  CANCELLED
+}
+
+enum RegistrationMode {
+  SOLO
+  EXISTING_TEAM
+  NEW_TEAM
+}
+
+enum RegistrationStatus {
+  CONFIRMED
+  WAITLISTED
+  CHECKED_IN
+  WITHDRAWN
+  DISQUALIFIED
+}
+
+model Tournament {
+  id                   String                   @id @default(uuid())
+  slug                 String                   @unique
+  title                String
+  game                 String
+  organizer            String
+  format               String
+  bracketType          String                   @default("Single Elimination")
+  platform             String                   @default("PC")
+  region               String                   @default("Middle East / MENA")
+  prizePool            String?
+  entryFee             String                   @default("Free")
+  teamSize             Int                      @default(5)
+  maxParticipants      Int                      @default(64)
+  registrationDeadline DateTime?
+  startDate            DateTime
+  endDate              DateTime?
+  rules                String[]
+  description          String
+  bannerUrl            String?
+  discordUrl           String?
+  status               TournamentStatus         @default(REGISTRATION_OPEN)
+  createdAt            DateTime                 @default(now())
+  updatedAt            DateTime                 @updatedAt
+  registrations        TournamentRegistration[]
+
+  @@index([slug])
+  @@index([status])
+  @@index([game])
+}
+
+model TournamentRegistration {
+  id               String             @id @default(uuid())
+  tournamentId     String
+  tournament       Tournament         @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  userId           String
+  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  registrationMode RegistrationMode   @default(SOLO)
+  status           RegistrationStatus @default(CONFIRMED)
+  inGameHandle     String
+  preferredRoles   String[]
+  teamName         String?
+  discordHandle    String?
+  agreedRules      Boolean            @default(true)
+  agreedAntiCheat  Boolean            @default(true)
+  ticketCode       String             @unique @default(uuid())
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+
+  @@unique([userId, tournamentId])
+  @@index([userId])
+  @@index([tournamentId])
+  @@index([status])
+}
+
+model AdminAuditLog {
+  id         String   @id @default(uuid())
+  actorId    String
+  action     String
+  entityType String
+  entityId   String?
+  reason     String?
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  @@index([actorId])
+  @@index([action])
+  @@index([entityType])
+  @@index([createdAt])
+}

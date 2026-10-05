@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logoBadge from "../../../assets/logos/re_logo_badge.png";
 import cyberDriftGame from "../../../assets/images/cyber_drift_game.png";
 
@@ -7,7 +8,7 @@ interface HeroProps {
   onFindTournaments?: () => void;
 }
 
-export const HeroSection: React.FC<HeroProps> = ({ onExploreGames, onFindTournaments }) => {
+export const HeroSection: React.FC<HeroProps> = () => {
   return (
     <section className="relative w-full overflow-hidden bg-[#CAE8FF] text-[#002c47] py-16 md:py-20 px-6 min-h-[740px] flex items-center">
       {/* Ambient Grid Layer */}
@@ -51,40 +52,38 @@ export const HeroSection: React.FC<HeroProps> = ({ onExploreGames, onFindTournam
 
           {/* Dual CTA Buttons */}
           <div className="flex flex-wrap items-center gap-4 pt-1">
-            <a
-              onClick={onExploreGames}
+            <Link
+              to="/games"
               className="btn-shimmer px-8 py-3.5 rounded-xl bg-[#233dff] text-white font-headline text-sm font-bold shadow-[0_8px_30px_rgba(35,61,255,0.4)] hover:shadow-[0_0_25px_rgba(35,61,255,0.7)] hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center gap-2 cursor-pointer"
-              href="#games"
             >
               <span className="material-symbols-outlined text-[20px]">explore</span>
               Explore Games
-            </a>
-            <a
-              onClick={onFindTournaments}
+            </Link>
+            <Link
+              to="/tournaments"
               className="btn-shimmer px-8 py-3.5 rounded-xl bg-white/70 backdrop-blur-md text-[#233dff] font-headline text-sm font-bold border border-[#233dff]/20 shadow-md hover:bg-[#233dff] hover:text-white hover:shadow-[0_0_25px_rgba(35,61,255,0.5)] active:scale-95 transition-all duration-300 flex items-center gap-2 cursor-pointer"
-              href="#tournaments"
             >
               <span className="material-symbols-outlined text-[20px]">emoji_events</span>
               Find Tournaments
-            </a>
+            </Link>
           </div>
 
           {/* Sub-links */}
           <div className="flex flex-wrap items-center gap-6 pt-2 text-[#050A30]/80 font-headline text-xs font-semibold">
-            <a
+            <Link
               className="hover:text-[#233dff] hover:translate-x-1 flex items-center gap-1 transition-all"
-              href="#developers"
+              to="/for-developers"
             >
               Are you a developer? Test your game{" "}
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
-            <a
+            </Link>
+            <Link
               className="hover:text-[#233dff] hover:translate-x-1 flex items-center gap-1 transition-all"
-              href="#tournaments"
+              to="/tournaments"
             >
               Want to host? Create a tournament{" "}
               <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
+            </Link>
           </div>
         </div>
 
