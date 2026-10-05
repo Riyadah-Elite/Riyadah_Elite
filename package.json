@@ -25,9 +25,9 @@
     "test": "npm run test --workspaces --if-present",
     "test:client": "npm run test --workspace=client",
     "test:server": "npm run test --workspace=server",
-    "prisma:generate": "npx prisma generate --schema=server/prisma/schema.prisma",
-    "prisma:migrate": "npx prisma migrate dev --schema=server/prisma/schema.prisma",
-    "prisma:studio": "npx prisma studio --schema=server/prisma/schema.prisma"
+    "prisma:generate": "node node_modules/prisma/build/index.js generate --schema=server/prisma/schema.prisma",
+    "prisma:migrate": "node node_modules/prisma/build/index.js migrate deploy --schema=server/prisma/schema.prisma",
+    "prisma:studio": "node node_modules/prisma/build/index.js studio --schema=server/prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",
