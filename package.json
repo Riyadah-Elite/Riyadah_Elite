@@ -25,9 +25,9 @@
     "test": "npm run test --workspaces --if-present",
     "test:client": "npm run test --workspace=client",
     "test:server": "npm run test --workspace=server",
-    "prisma:generate": "node -e \"const { execFileSync } = require('child_process'); execFileSync(process.execPath, [require.resolve('prisma/build/index.js'), 'generate', '--schema=server/prisma/schema.prisma'], { stdio: 'inherit' });\"",
-    "prisma:migrate": "node -e \"const { execFileSync } = require('child_process'); execFileSync(process.execPath, [require.resolve('prisma/build/index.js'), 'migrate', 'deploy', '--schema=server/prisma/schema.prisma'], { stdio: 'inherit' });\"",
-    "prisma:studio": "node -e \"const { execFileSync } = require('child_process'); execFileSync(process.execPath, [require.resolve('prisma/build/index.js'), 'studio', '--schema=server/prisma/schema.prisma'], { stdio: 'inherit' });\""
+    "prisma:generate": "prisma generate --schema=server/prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate deploy --schema=server/prisma/schema.prisma",
+    "prisma:studio": "prisma studio --schema=server/prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",
