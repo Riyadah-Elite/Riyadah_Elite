@@ -1,0 +1,7 @@
+{
+  "commit_docs": true,
+  "workflow": {
+    "subagent_timeout": 300000,
+    "compact_content": true
+  }
+}
