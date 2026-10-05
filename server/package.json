@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
-    "prisma:generate": "node ../node_modules/prisma/build/index.js generate",
-    "prisma:migrate": "node ../node_modules/prisma/build/index.js migrate deploy"
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",
