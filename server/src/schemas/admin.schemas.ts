@@ -9,6 +9,25 @@ export const userStatusUpdateSchema = z.object({
   reason: z.string().min(3, "Reason required").max(500),
 });
 
+export const updateUserRoleSchema = z.object({
+  role: z.enum(["PLAYER", "DEVELOPER", "HOST", "ADMIN"]),
+  reason: z.string().min(3, "Reason required").max(500),
+});
+
+export const createCategorySchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(50),
+  slug: z.string().min(2).max(60).optional(),
+  description: z.string().max(500).optional().nullable(),
+  isActive: z.boolean().default(true),
+});
+
+export const updateCategorySchema = createCategorySchema.partial();
+
+export const updatePlatformSettingSchema = z.object({
+  value: z.any(),
+  description: z.string().max(500).optional().nullable(),
+});
+
 export const tournamentArbiterDecisionSchema = z.object({
   action: z.enum(["FREEZE_BRACKET", "RESOLVE_DISPUTE", "FORCE_ADVANCE", "CANCEL_TOURNAMENT"]),
   matchId: z.string().optional(),

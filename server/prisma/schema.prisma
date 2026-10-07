@@ -23,22 +23,25 @@ enum Role {
 }
 
 model User {
-  id           String               @id @default(uuid())
-  fullName     String
-  username     String               @unique
-  email        String               @unique
-  passwordHash String
-  role         Role                 @default(PLAYER)
-  isVerified   Boolean              @default(false)
-  createdAt    DateTime             @default(now())
-  updatedAt    DateTime             @updatedAt
-  resetTokens  PasswordResetToken[]
-  profile      PlayerProfile?
-  applications GameTestingApplication[]
+  id                      String                   @id @default(uuid())
+  fullName                String
+  username                String                   @unique
+  email                   String                   @unique
+  passwordHash            String
+  role                    Role                     @default(PLAYER)
+  isVerified              Boolean                  @default(false)
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  resetTokens             PasswordResetToken[]
+  profile                 PlayerProfile?
+  applications            GameTestingApplication[]
   tournamentRegistrations TournamentRegistration[]
+  bugReports              BugReport[]
+  files                   FileMedia[]
 
   @@index([email])
   @@index([username])
+  @@index([role])
 }
 
 model PasswordResetToken {
@@ -77,6 +80,20 @@ model PlayerProfile {
   @@index([userId])
 }
 
+model Category {
+  id            String            @id @default(uuid())
+  name          String            @unique
+  slug          String            @unique
+  description   String?
+  isActive      Boolean           @default(true)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  opportunities GameOpportunity[]
+
+  @@index([slug])
+  @@index([isActive])
+}
+
 enum OpportunityStatus {
   DRAFT
   ACTIVE
@@ -99,15 +116,23 @@ model GameOpportunity {
   capacity           Int                      @default(100)
   rewardText         String?
   imageUrl           String?
+  externalLink       String?
+  compensationAmount Decimal?                 @db.Decimal(10, 2)
+  currency           String?                  @default("SAR")
   status             OpportunityStatus        @default(ACTIVE)
   startDate          DateTime?
   endDate            DateTime?
+  categoryId         String?
+  category           Category?                @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   createdAt          DateTime                 @default(now())
   updatedAt          DateTime                 @updatedAt
   applications       GameTestingApplication[]
+  bugReports         BugReport[]
 
   @@index([slug])
   @@index([status])
+  @@index([studio])
+  @@index([categoryId])
 }
 
 enum ApplicationStatus {
@@ -141,6 +166,62 @@ model GameTestingApplication {
   @@index([userId])
   @@index([opportunityId])
   @@index([status])
+}
+
+enum BugSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum BugStatus {
+  OPEN
+  INVESTIGATING
+  CONFIRMED
+  RESOLVED
+  WONT_FIX
+}
+
+model BugReport {
+  id                String          @id @default(uuid())
+  userId            String
+  user              User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  opportunityId     String
+  opportunity       GameOpportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  title             String
+  summary           String?
+  description       String
+  severity          BugSeverity     @default(MEDIUM)
+  status            BugStatus       @default(OPEN)
+  reproductionSteps String?
+  systemSpecs       Json?
+  mediaUrls         String[]        @default([])
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  @@index([userId])
+  @@index([opportunityId])
+  @@index([status])
+  @@index([severity])
+}
+
+model FileMedia {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  filename    String
+  storageKey  String
+  url         String
+  mimeType    String
+  size        Int
+  fileType    String   @default("EVIDENCE") // AVATAR, EVIDENCE, BANNER, DOCUMENT
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+  @@index([fileType])
 }
 
 enum TournamentStatus {
@@ -177,6 +258,8 @@ model Tournament {
   platform             String                   @default("PC")
   region               String                   @default("Middle East / MENA")
   prizePool            String?
+  prizeAmount          Decimal?                 @db.Decimal(10, 2)
+  currency             String?                  @default("SAR")
   entryFee             String                   @default("Free")
   teamSize             Int                      @default(5)
   maxParticipants      Int                      @default(64)
@@ -187,6 +270,7 @@ model Tournament {
   description          String
   bannerUrl            String?
   discordUrl           String?
+  externalLink         String?
   status               TournamentStatus         @default(REGISTRATION_OPEN)
   createdAt            DateTime                 @default(now())
   updatedAt            DateTime                 @updatedAt
@@ -195,6 +279,8 @@ model Tournament {
   @@index([slug])
   @@index([status])
   @@index([game])
+  @@index([organizer])
+  @@index([registrationDeadline])
 }
 
 model TournamentRegistration {
@@ -219,6 +305,16 @@ model TournamentRegistration {
   @@index([userId])
   @@index([tournamentId])
   @@index([status])
+}
+
+model PlatformSetting {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       Json
+  description String?
+  updatedAt   DateTime @updatedAt
+
+  @@index([key])
 }
 
 model AdminAuditLog {

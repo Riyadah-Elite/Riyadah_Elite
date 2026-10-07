@@ -10,14 +10,20 @@ import {
 import {
   lockdownSchema,
   userStatusUpdateSchema,
+  updateUserRoleSchema,
+  createCategorySchema,
+  updateCategorySchema,
+  updatePlatformSettingSchema,
   tournamentArbiterDecisionSchema,
   verificationDecisionSchema,
   trustSafetyActionSchema,
   contentItemCreateSchema,
 } from "../schemas/admin.schemas.js";
 import { persistAdminAuditLog } from "../lib/audit.js";
+import { cacheService } from "../services/cache.service.js";
 
 export const adminRouter = Router();
+
 
 // Base security gate: ALL admin endpoints require active authentication and ADMIN role
 adminRouter.use(requireAuth);
@@ -331,6 +337,77 @@ adminRouter.patch(
       res.status(500).json({
         status: "error",
         message: "Failed to update user account status",
+      });
+    }
+  },
+);
+
+adminRouter.patch(
+  "/users/:id/role",
+  requireViceAdmin,
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    try {
+      const targetUserId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+      const parseResult = updateUserRoleSchema.safeParse(req.body);
+
+      if (!parseResult.success) {
+        res.status(400).json({
+          status: "error",
+          message: "Invalid role update payload",
+          errors: parseResult.error.flatten().fieldErrors,
+        });
+        return;
+      }
+
+      if (req.user?.userId === targetUserId) {
+        res.status(400).json({
+          status: "error",
+          message: "Administrators cannot alter the role of their own account",
+        });
+        return;
+      }
+
+      const targetUser = await prisma.user.findUnique({
+        where: { id: targetUserId },
+      });
+
+      if (!targetUser) {
+        res.status(404).json({
+          status: "error",
+          message: "Target user not found",
+        });
+        return;
+      }
+
+      const updatedUser = await prisma.user.update({
+        where: { id: targetUserId },
+        data: { role: parseResult.data.role },
+      });
+
+      await persistAdminAuditLog({
+        actorId: req.user?.userId || "UNKNOWN",
+        action: `USER_ROLE_CHANGE`,
+        entityType: "USER",
+        entityId: targetUserId,
+        reason: parseResult.data.reason,
+        metadata: {
+          previousRole: targetUser.role,
+          newRole: parseResult.data.role,
+          targetUsername: targetUser.username,
+        },
+      });
+
+      res.status(200).json({
+        status: "ok",
+        message: `User role successfully updated to ${parseResult.data.role}`,
+        userId: targetUserId,
+        role: updatedUser.role,
+      });
+    } catch (err: unknown) {
+      console.error("Admin user role error:", err);
+      res.status(500).json({
+        status: "error",
+        message: "Failed to update user role",
       });
     }
   },
@@ -907,3 +984,320 @@ adminRouter.post(
     }
   },
 );
+
+// =========================================================================
+// 12. CATEGORY MANAGEMENT
+// =========================================================================
+
+adminRouter.get("/categories", async (_req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const cacheKey = "cache:admin:categories";
+    const cached = await cacheService.get<{ categories: any[] }>(cacheKey);
+    if (cached) {
+      res.status(200).json({
+        status: "ok",
+        data: cached,
+      });
+      return;
+    }
+
+    const categories = await prisma.category.findMany({
+      orderBy: { name: "asc" },
+      include: {
+        _count: {
+          select: { opportunities: true },
+        },
+      },
+    });
+
+    const payload = {
+      categories: categories.map((c) => ({
+        ...c,
+        opportunitiesCount: c._count.opportunities,
+      })),
+    };
+
+    await cacheService.set(cacheKey, payload, 600);
+
+    res.status(200).json({
+      status: "ok",
+      data: payload,
+    });
+  } catch (err) {
+    console.error("Admin categories list error:", err);
+    res.status(500).json({ status: "error", message: "Failed to list categories" });
+  }
+});
+
+adminRouter.post("/categories", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const parseResult = createCategorySchema.safeParse(req.body);
+    if (!parseResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid category payload",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const { name, slug, description, isActive } = parseResult.data;
+    const finalSlug = slug || name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+    const existing = await prisma.category.findFirst({
+      where: { OR: [{ name }, { slug: finalSlug }] },
+    });
+
+    if (existing) {
+      res.status(409).json({
+        status: "error",
+        message: "A category with this name or slug already exists",
+      });
+      return;
+    }
+
+    const category = await prisma.category.create({
+      data: {
+        name,
+        slug: finalSlug,
+        description: description || null,
+        isActive,
+      },
+    });
+
+    // Invalidate categories and opportunities cache
+    await cacheService.del("cache:admin:categories");
+    await cacheService.invalidatePrefix("cache:opportunities");
+
+    await persistAdminAuditLog({
+      actorId: req.user?.userId || "UNKNOWN",
+      action: "CATEGORY_CREATE",
+      entityType: "CATEGORY",
+      entityId: category.id,
+      reason: `Category created: ${category.name}`,
+    });
+
+    res.status(201).json({
+      status: "ok",
+      message: "Category created successfully",
+      data: { category },
+    });
+  } catch (err) {
+    console.error("Admin create category error:", err);
+    res.status(500).json({ status: "error", message: "Failed to create category" });
+  }
+});
+
+adminRouter.put("/categories/:id", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const parseResult = updateCategorySchema.safeParse(req.body);
+
+    if (!parseResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid category update payload",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const category = await prisma.category.findUnique({ where: { id } });
+    if (!category) {
+      res.status(404).json({ status: "error", message: "Category not found" });
+      return;
+    }
+
+    const updated = await prisma.category.update({
+      where: { id },
+      data: parseResult.data,
+    });
+
+    // Invalidate categories and opportunities cache
+    await cacheService.del("cache:admin:categories");
+    await cacheService.invalidatePrefix("cache:opportunities");
+
+    await persistAdminAuditLog({
+      actorId: req.user?.userId || "UNKNOWN",
+      action: "CATEGORY_UPDATE",
+      entityType: "CATEGORY",
+      entityId: id,
+      reason: `Category updated: ${updated.name}`,
+    });
+
+    res.status(200).json({
+      status: "ok",
+      message: "Category updated successfully",
+      data: { category: updated },
+    });
+  } catch (err) {
+    console.error("Admin update category error:", err);
+    res.status(500).json({ status: "error", message: "Failed to update category" });
+  }
+});
+
+adminRouter.delete("/categories/:id", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const category = await prisma.category.findUnique({ where: { id } });
+
+    if (!category) {
+      res.status(404).json({ status: "error", message: "Category not found" });
+      return;
+    }
+
+    await prisma.category.delete({ where: { id } });
+
+    // Invalidate categories and opportunities cache
+    await cacheService.del("cache:admin:categories");
+    await cacheService.invalidatePrefix("cache:opportunities");
+
+    await persistAdminAuditLog({
+      actorId: req.user?.userId || "UNKNOWN",
+      action: "CATEGORY_DELETE",
+      entityType: "CATEGORY",
+      entityId: id,
+      reason: `Category deleted: ${category.name}`,
+    });
+
+    res.status(200).json({
+      status: "ok",
+      message: "Category deleted successfully",
+    });
+  } catch (err) {
+    console.error("Admin delete category error:", err);
+    res.status(500).json({ status: "error", message: "Failed to delete category" });
+  }
+});
+
+
+// =========================================================================
+// 13. PLATFORM SETTINGS
+// =========================================================================
+
+adminRouter.get("/settings", async (_req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const cacheKey = "cache:platform:settings";
+    const cached = await cacheService.get<{ settings: any[] }>(cacheKey);
+    if (cached) {
+      res.status(200).json({
+        status: "ok",
+        data: cached,
+      });
+      return;
+    }
+
+    const settings = await prisma.platformSetting.findMany({
+      orderBy: { key: "asc" },
+    });
+
+    const payload = { settings };
+    await cacheService.set(cacheKey, payload, 900); // 15 mins
+
+    res.status(200).json({
+      status: "ok",
+      data: payload,
+    });
+  } catch (err) {
+    console.error("Admin settings error:", err);
+    res.status(500).json({ status: "error", message: "Failed to retrieve platform settings" });
+  }
+});
+
+adminRouter.put("/settings/:key", requireViceAdmin, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const key = Array.isArray(req.params.key) ? req.params.key[0] : req.params.key;
+    const parseResult = updatePlatformSettingSchema.safeParse(req.body);
+
+    if (!parseResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid setting payload",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const { value, description } = parseResult.data;
+
+    const setting = await prisma.platformSetting.upsert({
+      where: { key },
+      create: {
+        key,
+        value,
+        description: description || null,
+      },
+      update: {
+        value,
+        ...(description !== undefined ? { description } : {}),
+      },
+    });
+
+    // Invalidate settings cache
+    await cacheService.del("cache:platform:settings");
+
+    await persistAdminAuditLog({
+      actorId: req.user?.userId || "UNKNOWN",
+      action: "PLATFORM_SETTING_UPDATE",
+
+      entityType: "PLATFORM_SETTING",
+      entityId: key,
+      reason: `Platform setting updated: ${key}`,
+    });
+
+    res.status(200).json({
+      status: "ok",
+      message: "Platform setting updated successfully",
+      data: { setting },
+    });
+  } catch (err) {
+    console.error("Admin update setting error:", err);
+    res.status(500).json({ status: "error", message: "Failed to update platform setting" });
+  }
+});
+
+// =========================================================================
+// 14. AUDIT LOGS QUERY
+// =========================================================================
+
+adminRouter.get("/audit-logs", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const { action, entityType, actorId, page, limit } = req.query;
+
+    const where: any = {};
+    if (action && typeof action === "string") where.action = { contains: action, mode: "insensitive" };
+    if (entityType && typeof entityType === "string") where.entityType = entityType;
+    if (actorId && typeof actorId === "string") where.actorId = actorId;
+
+    const pageNum = page ? Math.max(1, parseInt(String(page), 10) || 1) : 1;
+    const takeNum = limit ? Math.min(100, Math.max(1, parseInt(String(limit), 10) || 20)) : 50;
+    const skipNum = (pageNum - 1) * takeNum;
+
+    const [total, logs] = await Promise.all([
+      prisma.adminAuditLog.count({ where }),
+      prisma.adminAuditLog.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        skip: skipNum,
+        take: takeNum,
+      }),
+    ]);
+
+    res.status(200).json({
+      status: "ok",
+      data: {
+        logs,
+        pagination: {
+          total,
+          page: pageNum,
+          limit: takeNum,
+          totalPages: Math.ceil(total / takeNum),
+        },
+      },
+    });
+  } catch (err) {
+    console.error("Admin audit logs error:", err);
+    res.status(500).json({ status: "error", message: "Failed to retrieve audit logs" });
+  }
+});
+

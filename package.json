@@ -5,18 +5,22 @@
   "description": "Riyadah Elite - Clean PERN Stack Monorepo",
   "workspaces": [
     "client",
-    "server"
+    "server",
+    "mobile"
   ],
   "scripts": {
     "dev": "npm run dev --workspaces --if-present",
     "dev:client": "npm run dev --workspace=client",
     "dev:server": "npm run dev --workspace=server",
+    "dev:mobile": "npm run start --workspace=mobile",
     "build": "npm run build --workspaces --if-present",
     "build:client": "npm run build --workspace=client",
     "build:server": "npm run build --workspace=server",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "typecheck:client": "npm run typecheck --workspace=client",
     "typecheck:server": "npm run typecheck --workspace=server",
+    "typecheck:mobile": "npm run typecheck --workspace=mobile",
+
     "lint": "npm run lint --workspaces --if-present",
     "lint:client": "npm run lint --workspace=client",
     "lint:server": "npm run lint --workspace=server",
@@ -30,6 +34,8 @@
     "prisma:studio": "prisma studio --schema=server/prisma/schema.prisma"
   },
   "dependencies": {
+    "@neon/config": "^1.8.4",
+    "@neon/env": "^1.5.1",
     "@prisma/client": "^6.4.1",
     "prisma": "^6.4.1"
   },

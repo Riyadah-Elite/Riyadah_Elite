@@ -6,8 +6,15 @@ import {
   updateProfileSchema,
   updatePasswordSchema,
   submitApplicationSchema,
+  createBugReportSchema,
+  createFileMediaSchema,
+  presignedUrlRequestSchema,
 } from "../schemas/player.schemas.js";
 import { verifyPassword, hashPassword } from "../lib/security.js";
+import { storageService, FileCategory } from "../services/storage.service.js";
+import { cacheService } from "../services/cache.service.js";
+import { queueService } from "../services/queue.service.js";
+
 
 export const playerRouter = Router();
 
@@ -18,7 +25,7 @@ export const playerRouter = Router();
 // List active game testing opportunities with filtering
 playerRouter.get("/opportunities", async (req, res: Response): Promise<void> => {
   try {
-    const { platform, genre, stage, search } = req.query;
+    const { platform, genre, stage, search, categoryId, page, limit } = req.query;
 
     const where: Prisma.GameOpportunityWhereInput = {
       status: "ACTIVE",
@@ -36,6 +43,10 @@ playerRouter.get("/opportunities", async (req, res: Response): Promise<void> => 
       where.stage = { contains: stage, mode: "insensitive" };
     }
 
+    if (categoryId && typeof categoryId === "string") {
+      where.categoryId = categoryId;
+    }
+
     if (search && typeof search === "string" && search.trim()) {
       where.OR = [
         { title: { contains: search.trim(), mode: "insensitive" } },
@@ -44,20 +55,60 @@ playerRouter.get("/opportunities", async (req, res: Response): Promise<void> => 
       ];
     }
 
+    const pageNum = page ? Math.max(1, parseInt(String(page), 10) || 1) : 1;
+    const takeNum = limit ? Math.min(100, Math.max(1, parseInt(String(limit), 10) || 20)) : 50;
+    const skipNum = page ? (pageNum - 1) * takeNum : 0;
+
+    const cacheKey = `cache:opportunities:${JSON.stringify(req.query)}`;
+    const cached = await cacheService.get<{ opportunities: any[]; pagination: any }>(cacheKey);
+    if (cached) {
+      res.status(200).json({
+        status: "ok",
+        data: cached,
+      });
+      return;
+    }
+
     const opportunities = await prisma.gameOpportunity.findMany({
       where,
       orderBy: { createdAt: "desc" },
+      skip: page ? skipNum : undefined,
+      take: page ? takeNum : undefined,
       include: {
+        category: true,
         _count: {
           select: { applications: true },
         },
       },
     });
 
+    let total = opportunities.length;
+    if (page || limit) {
+      try {
+        total = await prisma.gameOpportunity.count({ where });
+      } catch {
+        total = opportunities.length;
+      }
+    }
+
+    const responsePayload = {
+      opportunities,
+      pagination: {
+        total,
+        page: pageNum,
+        limit: takeNum,
+        totalPages: Math.ceil(total / takeNum),
+      },
+    };
+
+    // Cache with 5 minute TTL (300s)
+    await cacheService.set(cacheKey, responsePayload, 300);
+
     res.status(200).json({
       status: "ok",
-      data: { opportunities },
+      data: responsePayload,
     });
+
   } catch (error) {
     console.error("Failed to list opportunities:", error);
     res.status(500).json({
@@ -642,3 +693,328 @@ playerRouter.get("/tournaments", requireAuth, async (req: AuthenticatedRequest, 
     });
   }
 });
+
+// ==========================================
+// 4. BUG REPORTING & QA EVIDENCE
+// ==========================================
+
+// Submit a bug report for a testing opportunity
+playerRouter.post("/bugs", requireAuth, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const userId = req.user!.userId;
+    const parseResult = createBugReportSchema.safeParse(req.body);
+
+    if (!parseResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid bug report submission",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const {
+      opportunityId,
+      title,
+      summary,
+      description,
+      severity,
+      reproductionSteps,
+      systemSpecs,
+      mediaUrls,
+    } = parseResult.data;
+
+    // Verify opportunity exists
+    const opportunity = await prisma.gameOpportunity.findUnique({
+      where: { id: opportunityId },
+    });
+
+    if (!opportunity) {
+      res.status(404).json({
+        status: "error",
+        message: "Game testing opportunity not found",
+      });
+      return;
+    }
+
+    const bugReport = await prisma.bugReport.create({
+      data: {
+        userId,
+        opportunityId,
+        title,
+        summary: summary || null,
+        description,
+        severity,
+        status: "OPEN",
+        reproductionSteps: reproductionSteps || null,
+        systemSpecs: systemSpecs ? (systemSpecs as never) : undefined,
+        mediaUrls: mediaUrls || [],
+      },
+      include: {
+        opportunity: {
+          select: {
+            id: true,
+            title: true,
+            studio: true,
+          },
+        },
+      },
+    });
+
+    // Publish asynchronous notification event to RabbitMQ
+    await queueService.publish("notification_queue", "BUG_REPORT_CREATED", {
+      bugReportId: bugReport.id,
+      opportunityId: bugReport.opportunityId,
+      opportunityTitle: bugReport.opportunity.title,
+      userId,
+      severity: bugReport.severity,
+      title: bugReport.title,
+    });
+
+    res.status(201).json({
+      status: "ok",
+      message: "Bug report submitted successfully",
+      data: { bugReport },
+    });
+  } catch (error) {
+    console.error("Failed to submit bug report:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error submitting bug report",
+    });
+  }
+});
+
+// List tester's submitted bug reports
+playerRouter.get("/bugs", requireAuth, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const userId = req.user!.userId;
+    const { opportunityId, status, page, limit } = req.query;
+
+    const where: Prisma.BugReportWhereInput = {
+      userId,
+    };
+
+    if (opportunityId && typeof opportunityId === "string") {
+      where.opportunityId = opportunityId;
+    }
+
+    if (status && typeof status === "string") {
+      where.status = status as any;
+    }
+
+    const pageNum = page ? Math.max(1, parseInt(String(page), 10) || 1) : 1;
+    const takeNum = limit ? Math.min(100, Math.max(1, parseInt(String(limit), 10) || 20)) : 50;
+    const skipNum = (pageNum - 1) * takeNum;
+
+    const [total, bugReports] = await Promise.all([
+      prisma.bugReport.count({ where }),
+      prisma.bugReport.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        skip: skipNum,
+        take: takeNum,
+        include: {
+          opportunity: {
+            select: {
+              id: true,
+              title: true,
+              studio: true,
+            },
+          },
+        },
+      }),
+    ]);
+
+    res.status(200).json({
+      status: "ok",
+      data: {
+        bugReports,
+        pagination: {
+          total,
+          page: pageNum,
+          limit: takeNum,
+          totalPages: Math.ceil(total / takeNum),
+        },
+      },
+    });
+  } catch (error) {
+    console.error("Failed to list bug reports:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error fetching bug reports",
+    });
+  }
+});
+
+// ==========================================
+// 5. MEDIA / FILE METADATA MANAGEMENT
+// ==========================================
+
+// Register uploaded media / file metadata (S3/storage abstraction)
+playerRouter.post("/media", requireAuth, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const userId = req.user!.userId;
+    const parseResult = createFileMediaSchema.safeParse(req.body);
+
+    if (!parseResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid file metadata payload",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const { filename, storageKey, url, mimeType, size, fileType, description } = parseResult.data;
+
+    const file = await prisma.fileMedia.create({
+      data: {
+        userId,
+        filename,
+        storageKey,
+        url,
+        mimeType,
+        size,
+        fileType,
+        description: description || null,
+      },
+    });
+
+    res.status(201).json({
+      status: "ok",
+      message: "Media metadata registered successfully",
+      data: { file },
+    });
+  } catch (error) {
+    console.error("Failed to register file media:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error registering file media",
+    });
+  }
+});
+
+// List user's registered files
+playerRouter.get("/media", requireAuth, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const userId = req.user!.userId;
+    const { fileType } = req.query;
+
+    const where: Prisma.FileMediaWhereInput = {
+      userId,
+    };
+
+    if (fileType && typeof fileType === "string") {
+      where.fileType = fileType;
+    }
+
+    const files = await prisma.fileMedia.findMany({
+      where,
+      orderBy: { createdAt: "desc" },
+      take: 50,
+    });
+
+    res.status(200).json({
+      status: "ok",
+      data: { files },
+    });
+  } catch (error) {
+    console.error("Failed to list media files:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error fetching media files",
+    });
+  }
+});
+
+// Request secure presigned upload URL directly to MinIO/S3
+playerRouter.post("/media/presigned-url", requireAuth, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const userId = req.user!.userId;
+    const parseResult = presignedUrlRequestSchema.safeParse(req.body);
+
+    if (!parseResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid presigned URL request",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const { filename, category, mimeType } = parseResult.data;
+
+    // Generate safe unique storage key scoped by category and user
+    const storageKey = storageService.generateStorageKey(category as FileCategory, filename, userId);
+
+    // Generate presigned PUT URL (valid 15 minutes)
+    const presignedData = await storageService.getPresignedUploadUrl(storageKey, mimeType, 900);
+
+    res.status(200).json({
+      status: "ok",
+      data: {
+        uploadUrl: presignedData.uploadUrl,
+        storageKey: presignedData.storageKey,
+        publicUrl: presignedData.publicUrl,
+        expiresInSeconds: presignedData.expiresInSeconds,
+      },
+    });
+  } catch (error) {
+    console.error("Failed to generate presigned upload URL:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error generating upload URL",
+    });
+  }
+});
+
+// Delete media file and its object storage content
+playerRouter.delete("/media/:id", requireAuth, async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const userId = req.user!.userId;
+    const mediaId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+
+    const file = await prisma.fileMedia.findUnique({
+      where: { id: mediaId },
+    });
+
+    if (!file) {
+      res.status(404).json({
+        status: "error",
+        message: "Media file not found",
+      });
+      return;
+    }
+
+    // Ownership check: only owner or ADMIN may delete
+    if (file.userId !== userId && req.user!.role !== "ADMIN") {
+      res.status(403).json({
+        status: "error",
+        message: "Forbidden: You do not own this file",
+      });
+      return;
+    }
+
+    // Delete from MinIO/S3 object storage
+    await storageService.deleteFile(file.storageKey);
+
+    // Delete metadata row from PostgreSQL
+    await prisma.fileMedia.delete({
+      where: { id: mediaId },
+    });
+
+    res.status(200).json({
+      status: "ok",
+      message: "Media file and metadata deleted successfully",
+    });
+  } catch (error) {
+    console.error("Failed to delete media file:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error deleting media file",
+    });
+  }
+});
+
+

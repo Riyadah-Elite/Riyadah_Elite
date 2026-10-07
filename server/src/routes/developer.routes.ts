@@ -4,13 +4,19 @@ import { prisma } from "../lib/prisma.js";
 import { requireAuth, requireDeveloper, AuthenticatedRequest } from "../middleware/auth.middleware.js";
 import {
   createGameSchema,
+  updateGameSchema,
   createCampaignSchema,
+  updateCampaignSchema,
+  updateTesterStatusSchema,
+  updateBugStatusSchema,
   updateDeveloperProfileSchema,
   createSupportTicketSchema,
   submitVerificationSchema,
 } from "../schemas/developer.schemas.js";
+import { cacheService } from "../services/cache.service.js";
 
 export const developerRouter = Router();
+
 
 // Enforce authentication & developer role on all developer endpoints
 developerRouter.use(requireAuth);
@@ -218,6 +224,9 @@ developerRouter.post("/games", async (req: AuthenticatedRequest, res: Response):
       },
     });
 
+    // Invalidate cached opportunity listings
+    await cacheService.invalidatePrefix("cache:opportunities");
+
     res.status(201).json({
       status: "ok",
       data: { game: newGame },
@@ -277,6 +286,118 @@ developerRouter.get("/games/:id", async (req: AuthenticatedRequest, res: Respons
   } catch (error) {
     console.error("Get game details error:", error);
     res.status(500).json({ status: "error", message: "Internal server error" });
+  }
+});
+
+// PUT /api/v1/developer/games/:id
+developerRouter.put("/games/:id", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const id = String(req.params.id);
+    const userId = req.user!.userId;
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+
+    if (!user) {
+      res.status(404).json({ status: "error", message: "User not found" });
+      return;
+    }
+
+    const existing = await prisma.gameOpportunity.findFirst({
+      where: { OR: [{ id }, { slug: id }] },
+    });
+
+    if (!existing) {
+      res.status(404).json({ status: "error", message: "Game not found" });
+      return;
+    }
+
+    if (existing.studio !== user.username && existing.studio !== user.fullName) {
+      res.status(403).json({ status: "error", message: "Unauthorized to update this game" });
+      return;
+    }
+
+    const parseResult = updateGameSchema.safeParse(req.body);
+    if (!parseResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid game update payload",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const data = parseResult.data;
+    const updateData: Prisma.GameOpportunityUpdateInput = {};
+
+    if (data.title !== undefined) updateData.title = data.title;
+    if (data.genre !== undefined) updateData.genre = data.genre;
+    if (data.platform !== undefined) updateData.platform = data.platform;
+    if (data.stage !== undefined) updateData.stage = data.stage;
+    if (data.version !== undefined) updateData.version = data.version;
+    if (data.description !== undefined) updateData.description = data.description;
+    if (data.focusAreas !== undefined) updateData.focusAreas = data.focusAreas;
+    if (data.requirements !== undefined) updateData.requirements = data.requirements;
+    if (data.capacity !== undefined) updateData.capacity = data.capacity;
+    if (data.rewardText !== undefined) updateData.rewardText = data.rewardText;
+    if (data.imageUrl !== undefined) updateData.imageUrl = data.imageUrl;
+    if (data.externalLink !== undefined) updateData.externalLink = data.externalLink;
+    if (data.status !== undefined) updateData.status = data.status;
+    if (data.categoryId !== undefined) {
+      updateData.category = data.categoryId ? { connect: { id: data.categoryId } } : { disconnect: true };
+    }
+
+    const updated = await prisma.gameOpportunity.update({
+      where: { id: existing.id },
+      data: updateData,
+    });
+
+    res.status(200).json({
+      status: "ok",
+      message: "Game updated successfully",
+      data: { game: updated },
+    });
+  } catch (error) {
+    console.error("Update game error:", error);
+    res.status(500).json({ status: "error", message: "Internal server error updating game" });
+  }
+});
+
+// DELETE /api/v1/developer/games/:id
+developerRouter.delete("/games/:id", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const id = String(req.params.id);
+    const userId = req.user!.userId;
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+
+    if (!user) {
+      res.status(404).json({ status: "error", message: "User not found" });
+      return;
+    }
+
+    const existing = await prisma.gameOpportunity.findFirst({
+      where: { OR: [{ id }, { slug: id }] },
+    });
+
+    if (!existing) {
+      res.status(404).json({ status: "error", message: "Game not found" });
+      return;
+    }
+
+    if (existing.studio !== user.username && existing.studio !== user.fullName) {
+      res.status(403).json({ status: "error", message: "Unauthorized to delete this game" });
+      return;
+    }
+
+    await prisma.gameOpportunity.delete({
+      where: { id: existing.id },
+    });
+
+    res.status(200).json({
+      status: "ok",
+      message: "Game deleted successfully",
+    });
+  } catch (error) {
+    console.error("Delete game error:", error);
+    res.status(500).json({ status: "error", message: "Internal server error deleting game" });
   }
 });
 
@@ -431,6 +552,121 @@ developerRouter.get("/campaigns/:id", async (req: AuthenticatedRequest, res: Res
   }
 });
 
+// PUT /api/v1/developer/campaigns/:id
+developerRouter.put("/campaigns/:id", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const rawId = String(req.params.id);
+    const gameId = rawId.startsWith("camp-") ? rawId.replace("camp-", "") : rawId;
+    const userId = req.user!.userId;
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+
+    if (!user) {
+      res.status(404).json({ status: "error", message: "User not found" });
+      return;
+    }
+
+    const game = await prisma.gameOpportunity.findFirst({
+      where: { OR: [{ id: gameId }, { slug: gameId }] },
+    });
+
+    if (!game) {
+      res.status(404).json({ status: "error", message: "Campaign not found" });
+      return;
+    }
+
+    if (game.studio !== user.username && game.studio !== user.fullName) {
+      res.status(403).json({ status: "error", message: "Unauthorized to update this campaign" });
+      return;
+    }
+
+    const parseResult = updateCampaignSchema.safeParse(req.body);
+    if (!parseResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid campaign update payload",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const data = parseResult.data;
+    const updateData: Prisma.GameOpportunityUpdateInput = {};
+
+    if (data.targetTesters !== undefined) updateData.capacity = data.targetTesters;
+    if (data.rewardPool !== undefined) updateData.rewardText = data.rewardPool;
+    if (data.status !== undefined) updateData.status = data.status;
+    if (data.externalLink !== undefined) updateData.externalLink = data.externalLink;
+    if (data.startDate !== undefined) updateData.startDate = new Date(data.startDate);
+    if (data.endDate !== undefined) updateData.endDate = new Date(data.endDate);
+
+    const updated = await prisma.gameOpportunity.update({
+      where: { id: game.id },
+      data: updateData,
+    });
+
+    res.status(200).json({
+      status: "ok",
+      message: "Campaign updated successfully",
+      data: {
+        campaign: {
+          id: `camp-${updated.id}`,
+          gameId: updated.id,
+          title: data.title || `${updated.title} Playtest`,
+          targetTesters: updated.capacity,
+          status: updated.status,
+          rewardPool: updated.rewardText,
+        },
+      },
+    });
+  } catch (error) {
+    console.error("Update campaign error:", error);
+    res.status(500).json({ status: "error", message: "Internal server error updating campaign" });
+  }
+});
+
+// DELETE /api/v1/developer/campaigns/:id
+developerRouter.delete("/campaigns/:id", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const rawId = String(req.params.id);
+    const gameId = rawId.startsWith("camp-") ? rawId.replace("camp-", "") : rawId;
+    const userId = req.user!.userId;
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+
+    if (!user) {
+      res.status(404).json({ status: "error", message: "User not found" });
+      return;
+    }
+
+    const game = await prisma.gameOpportunity.findFirst({
+      where: { OR: [{ id: gameId }, { slug: gameId }] },
+    });
+
+    if (!game) {
+      res.status(404).json({ status: "error", message: "Campaign not found" });
+      return;
+    }
+
+    if (game.studio !== user.username && game.studio !== user.fullName) {
+      res.status(403).json({ status: "error", message: "Unauthorized to delete this campaign" });
+      return;
+    }
+
+    // Set campaign status to CLOSED
+    await prisma.gameOpportunity.update({
+      where: { id: game.id },
+      data: { status: "CLOSED" },
+    });
+
+    res.status(200).json({
+      status: "ok",
+      message: "Campaign closed successfully",
+    });
+  } catch (error) {
+    console.error("Delete campaign error:", error);
+    res.status(500).json({ status: "error", message: "Internal server error deleting campaign" });
+  }
+});
+
 // ==========================================
 // D. TESTERS & ENROLLED ROSTER
 // ==========================================
@@ -460,11 +696,12 @@ developerRouter.get("/testers", async (req: AuthenticatedRequest, res: Response)
 
     const testers = applications.map((app) => ({
       id: app.id,
-      // Pseudonymized tag: username with masked privacy or generated tester tag
+      applicationId: app.id,
       testerTag: app.user?.username || `Tester_${app.id.slice(0, 6)}`,
       campaignTitle: `${app.opportunity.title} Playtest`,
       enrolledDate: app.createdAt.toISOString().split("T")[0],
-      status: app.status === "ACCEPTED" ? "ACTIVE" : app.status === "COMPLETED" ? "COMPLETED" : "ACTIVE",
+      status: app.status === "ACCEPTED" ? "ACTIVE" : app.status === "COMPLETED" ? "COMPLETED" : app.status,
+      applicationStatus: app.status,
       platform: app.platform || "PC Windows",
       bugsReported: 0,
       hoursPlayed: 0,
@@ -481,18 +718,183 @@ developerRouter.get("/testers", async (req: AuthenticatedRequest, res: Response)
   }
 });
 
-// ==========================================
-// E. FEEDBACK & RESULTS
-// ==========================================
-developerRouter.get("/feedback", async (_req: AuthenticatedRequest, res: Response): Promise<void> => {
+// PATCH /api/v1/developer/testers/:applicationId (Approve/Reject tester application)
+developerRouter.patch("/testers/:applicationId", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
   try {
-    // Return legitimate empty feedback queue
+    const applicationId = String(req.params.applicationId);
+    const userId = req.user!.userId;
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+
+    if (!user) {
+      res.status(404).json({ status: "error", message: "User not found" });
+      return;
+    }
+
+    const application = await prisma.gameTestingApplication.findUnique({
+      where: { id: applicationId },
+      include: { opportunity: true },
+    });
+
+    if (!application) {
+      res.status(404).json({ status: "error", message: "Tester application not found" });
+      return;
+    }
+
+    if (application.opportunity.studio !== user.username && application.opportunity.studio !== user.fullName) {
+      res.status(403).json({ status: "error", message: "Unauthorized to update this application" });
+      return;
+    }
+
+    const parseResult = updateTesterStatusSchema.safeParse(req.body);
+    if (!parseResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid status payload",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const updated = await prisma.gameTestingApplication.update({
+      where: { id: applicationId },
+      data: { status: parseResult.data.status },
+    });
+
     res.status(200).json({
       status: "ok",
-      data: { feedback: [] },
+      message: `Tester application marked as ${parseResult.data.status}`,
+      data: { application: updated },
+    });
+  } catch (error) {
+    console.error("Update tester status error:", error);
+    res.status(500).json({ status: "error", message: "Internal server error" });
+  }
+});
+
+// ==========================================
+// E. FEEDBACK & BUG REPORTS (Core QA Feature)
+// ==========================================
+developerRouter.get("/feedback", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const userId = req.user!.userId;
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+
+    if (!user) {
+      res.status(404).json({ status: "error", message: "User not found" });
+      return;
+    }
+
+    const { status, severity, gameId } = req.query;
+
+    const where: Prisma.BugReportWhereInput = {
+      opportunity: {
+        OR: [{ studio: user.username }, { studio: user.fullName }],
+      },
+    };
+
+    if (gameId && typeof gameId === "string") {
+      where.opportunityId = gameId;
+    }
+
+    if (status && typeof status === "string") {
+      where.status = status as any;
+    }
+
+    if (severity && typeof severity === "string") {
+      where.severity = severity as any;
+    }
+
+    const bugReports = await prisma.bugReport.findMany({
+      where,
+      include: {
+        opportunity: {
+          select: { id: true, title: true, slug: true },
+        },
+        user: {
+          select: { id: true, username: true },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    const feedback = bugReports.map((b) => ({
+      id: b.id,
+      bugId: b.id,
+      gameTitle: b.opportunity.title,
+      campaignTitle: `${b.opportunity.title} Playtest`,
+      testerTag: b.user.username,
+      category: "BUG" as const,
+      severity: b.severity,
+      title: b.title,
+      summary: b.summary,
+      details: b.description,
+      reproductionSteps: b.reproductionSteps,
+      mediaUrls: b.mediaUrls,
+      systemSpecs: b.systemSpecs,
+      rating: 5,
+      submittedAt: b.createdAt.toISOString(),
+      status: b.status,
+    }));
+
+    res.status(200).json({
+      status: "ok",
+      data: { feedback },
     });
   } catch (error) {
     console.error("Feedback list error:", error);
+    res.status(500).json({ status: "error", message: "Internal server error" });
+  }
+});
+
+// PATCH /api/v1/developer/feedback/:bugId (Update bug report status)
+developerRouter.patch("/feedback/:bugId", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const bugId = String(req.params.bugId);
+    const userId = req.user!.userId;
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+
+    if (!user) {
+      res.status(404).json({ status: "error", message: "User not found" });
+      return;
+    }
+
+    const bug = await prisma.bugReport.findUnique({
+      where: { id: bugId },
+      include: { opportunity: true },
+    });
+
+    if (!bug) {
+      res.status(404).json({ status: "error", message: "Bug report not found" });
+      return;
+    }
+
+    if (bug.opportunity.studio !== user.username && bug.opportunity.studio !== user.fullName) {
+      res.status(403).json({ status: "error", message: "Unauthorized to update this bug report" });
+      return;
+    }
+
+    const parseResult = updateBugStatusSchema.safeParse(req.body);
+    if (!parseResult.success) {
+      res.status(400).json({
+        status: "error",
+        message: "Invalid bug status payload",
+        errors: parseResult.error.flatten().fieldErrors,
+      });
+      return;
+    }
+
+    const updated = await prisma.bugReport.update({
+      where: { id: bugId },
+      data: { status: parseResult.data.status },
+    });
+
+    res.status(200).json({
+      status: "ok",
+      message: `Bug report status updated to ${parseResult.data.status}`,
+      data: { bugReport: updated },
+    });
+  } catch (error) {
+    console.error("Update bug report error:", error);
     res.status(500).json({ status: "error", message: "Internal server error" });
   }
 });

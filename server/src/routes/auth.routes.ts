@@ -15,8 +15,10 @@ import {
 } from "../schemas/auth.schema.js";
 import { requireAuth, AuthenticatedRequest } from "../middleware/auth.middleware.js";
 import { authRateLimiter, forgotPasswordRateLimiter } from "../middleware/rateLimit.middleware.js";
+import { queueService } from "../services/queue.service.js";
 
 export const authRouter = Router();
+
 
 // POST /api/v1/auth/signup
 authRouter.post("/signup", authRateLimiter, async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -87,6 +89,14 @@ authRouter.post("/signup", authRateLimiter, async (req: Request, res: Response, 
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
+    // Publish asynchronous welcome/verification email task to RabbitMQ
+    await queueService.publish("email_queue", "USER_REGISTERED", {
+      userId: user.id,
+      email: user.email,
+      fullName: user.fullName,
+      username: user.username,
+    });
+
     res.status(201).json({
       status: "ok",
       message: "Account created successfully",
@@ -95,6 +105,7 @@ authRouter.post("/signup", authRateLimiter, async (req: Request, res: Response, 
         token,
       },
     });
+
   } catch (error) {
     next(error);
   }

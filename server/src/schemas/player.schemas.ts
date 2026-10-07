@@ -12,6 +12,7 @@ export const updateProfileSchema = z.object({
   hardwareRam: z.string().max(50).optional().nullable(),
   hardwareOs: z.string().max(50).optional().nullable(),
   discordHandle: z.string().max(50).optional().nullable(),
+  avatarUrl: z.string().url("Must be a valid URL").optional().nullable(),
 });
 
 export const updatePasswordSchema = z
@@ -47,3 +48,34 @@ export const submitApplicationSchema = z.object({
     errorMap: () => ({ message: "You must authorize telemetry logging" }),
   }),
 });
+
+export const createBugReportSchema = z.object({
+  opportunityId: z.string().min(1, "Opportunity ID is required"),
+  title: z.string().min(3, "Title must be at least 3 characters").max(150),
+  summary: z.string().max(300).optional().nullable(),
+  description: z.string().min(10, "Description must be at least 10 characters").max(5000),
+  severity: z.enum(["LOW", "MEDIUM", "HIGH", "CRITICAL"]).default("MEDIUM"),
+  reproductionSteps: z.string().max(3000).optional().nullable(),
+  systemSpecs: z.record(z.any()).optional().nullable(),
+  mediaUrls: z.array(z.string().url()).max(10).default([]),
+});
+
+export const createFileMediaSchema = z.object({
+  filename: z.string().min(1, "Filename is required").max(255),
+  storageKey: z.string().min(1, "Storage key is required").max(500),
+  url: z.string().url("Valid URL or storage URI required"),
+  mimeType: z.string().min(3).max(100),
+  size: z.number().int().min(1, "File size must be greater than 0"),
+  fileType: z.enum(["AVATAR", "EVIDENCE", "BANNER", "DOCUMENT"]).default("EVIDENCE"),
+  description: z.string().max(500).optional().nullable(),
+});
+
+export const presignedUrlRequestSchema = z.object({
+  filename: z.string().min(1, "Filename is required").max(255),
+  category: z.enum(["avatars", "evidence", "banners", "documents"]).default("evidence"),
+  mimeType: z.string().regex(/^(image\/(jpeg|png|webp|gif)|video\/(mp4|webm)|application\/pdf|text\/plain)$/i, {
+    message: "Invalid file type. Allowed: images (jpeg, png, webp, gif), videos (mp4, webm), pdf, or text files",
+  }),
+  size: z.number().int().positive("Size must be positive").max(50 * 1024 * 1024, "File size exceeds 50MB limit"),
+});
+

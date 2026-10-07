@@ -346,4 +346,124 @@ describe("Internal Admin Workspace Backend API Endpoints (Phase 5B)", () => {
       expect(res.body.services[0].status).toBe("HEALTHY");
     });
   });
+
+  describe("9. Category Management, Platform Settings & Audit Logs", () => {
+    it("updates user role and records audit log", async () => {
+      vi.spyOn(prisma.user, "findUnique").mockResolvedValue({
+        id: "usr-player-55",
+        role: "PLAYER",
+        username: "salman_player",
+      } as any);
+
+      vi.spyOn(prisma.user, "update").mockResolvedValue({
+        id: "usr-player-55",
+        role: "DEVELOPER",
+      } as any);
+
+      const res = await request(app)
+        .patch("/api/v1/admin/users/usr-player-55/role")
+        .set("Authorization", `Bearer ${viceToken}`)
+        .send({
+          role: "DEVELOPER",
+          reason: "Approved independent game studio partner",
+        });
+
+      expect(res.status).toBe(200);
+      expect(res.body.status).toBe("ok");
+      expect(res.body.role).toBe("DEVELOPER");
+    });
+
+    it("creates a new game testing category", async () => {
+      vi.spyOn(prisma.category, "findFirst").mockResolvedValue(null);
+      vi.spyOn(prisma.category, "create").mockResolvedValue({
+        id: "cat-rpg",
+        name: "Action RPG",
+        slug: "action-rpg",
+        description: "Action-oriented role-playing games",
+        isActive: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      } as any);
+
+      const res = await request(app)
+        .post("/api/v1/admin/categories")
+        .set("Authorization", `Bearer ${generalAdminToken}`)
+        .send({
+          name: "Action RPG",
+          description: "Action-oriented role-playing games",
+        });
+
+      expect(res.status).toBe(201);
+      expect(res.body.status).toBe("ok");
+      expect(res.body.data.category.name).toBe("Action RPG");
+    });
+
+    it("lists categories with opportunity counts", async () => {
+      vi.spyOn(prisma.category, "findMany").mockResolvedValue([
+        {
+          id: "cat-fps",
+          name: "First Person Shooter",
+          slug: "fps",
+          description: null,
+          isActive: true,
+          _count: { opportunities: 5 },
+        },
+      ] as any);
+
+      const res = await request(app)
+        .get("/api/v1/admin/categories")
+        .set("Authorization", `Bearer ${generalAdminToken}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.data.categories).toHaveLength(1);
+      expect(res.body.data.categories[0].opportunitiesCount).toBe(5);
+    });
+
+    it("upserts platform settings with Vice Admin authorization", async () => {
+      vi.spyOn(prisma.platformSetting, "upsert").mockResolvedValue({
+        id: "ps-1",
+        key: "max_testers_per_cohort",
+        value: 500,
+        description: "Platform cohort limit",
+        updatedAt: new Date(),
+      } as any);
+
+      const res = await request(app)
+        .put("/api/v1/admin/settings/max_testers_per_cohort")
+        .set("Authorization", `Bearer ${viceToken}`)
+        .send({
+          value: 500,
+          description: "Platform cohort limit",
+        });
+
+      expect(res.status).toBe(200);
+      expect(res.body.status).toBe("ok");
+      expect(res.body.data.setting.key).toBe("max_testers_per_cohort");
+    });
+
+    it("retrieves paginated audit logs", async () => {
+      vi.spyOn(prisma.adminAuditLog, "count").mockResolvedValue(1);
+      vi.spyOn(prisma.adminAuditLog, "findMany").mockResolvedValue([
+        {
+          id: "log-1",
+          actorId: founderUser.userId,
+          action: "CATEGORY_CREATE",
+          entityType: "CATEGORY",
+          entityId: "cat-1",
+          reason: "New category",
+          metadata: null,
+          createdAt: new Date(),
+        },
+      ] as any);
+
+      const res = await request(app)
+        .get("/api/v1/admin/audit-logs")
+        .set("Authorization", `Bearer ${generalAdminToken}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.status).toBe("ok");
+      expect(res.body.data.logs).toHaveLength(1);
+      expect(res.body.data.pagination.total).toBe(1);
+    });
+  });
 });

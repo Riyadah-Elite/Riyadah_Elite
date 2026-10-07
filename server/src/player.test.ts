@@ -278,4 +278,76 @@ describe("Player Workspace API Endpoints", () => {
       expect(res.body.status).toBe("error");
     });
   });
+
+  describe("Bug Reporting and File Media Endpoints", () => {
+    it("submits a bug report with severity, reproduction steps, and media URLs", async () => {
+      vi.spyOn(prisma.gameOpportunity, "findUnique").mockResolvedValue(mockOpportunity as any);
+      vi.spyOn(prisma.bugReport, "create").mockResolvedValue({
+        id: "bug-123",
+        userId: testUser.userId,
+        opportunityId: mockOpportunity.id,
+        title: "Crash on DX12 reload",
+        summary: "VRAM overflow",
+        description: "Game crashes whenever weapon reload triggers particle FX",
+        severity: "HIGH",
+        status: "OPEN",
+        reproductionSteps: "1. Equip rifle\n2. Fire\n3. Press R",
+        mediaUrls: ["https://example.com/screenshot1.png"],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        opportunity: { id: mockOpportunity.id, title: mockOpportunity.title, studio: mockOpportunity.studio },
+      } as any);
+
+      const res = await request(app)
+        .post("/api/v1/player/bugs")
+        .set("Authorization", `Bearer ${validToken}`)
+        .send({
+          opportunityId: mockOpportunity.id,
+          title: "Crash on DX12 reload",
+          summary: "VRAM overflow",
+          description: "Game crashes whenever weapon reload triggers particle FX",
+          severity: "HIGH",
+          reproductionSteps: "1. Equip rifle\n2. Fire\n3. Press R",
+          mediaUrls: ["https://example.com/screenshot1.png"],
+        });
+
+      expect(res.status).toBe(201);
+      expect(res.body.status).toBe("ok");
+      expect(res.body.data.bugReport.title).toBe("Crash on DX12 reload");
+      expect(res.body.data.bugReport.severity).toBe("HIGH");
+    });
+
+    it("registers file media metadata cleanly", async () => {
+      vi.spyOn(prisma.fileMedia, "create").mockResolvedValue({
+        id: "file-99",
+        userId: testUser.userId,
+        filename: "crash_log.png",
+        storageKey: "evidence/crash_log.png",
+        url: "https://storage.riyadahelite.com/evidence/crash_log.png",
+        mimeType: "image/png",
+        size: 204800,
+        fileType: "EVIDENCE",
+        description: "Screenshot of GPU fault",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      } as any);
+
+      const res = await request(app)
+        .post("/api/v1/player/media")
+        .set("Authorization", `Bearer ${validToken}`)
+        .send({
+          filename: "crash_log.png",
+          storageKey: "evidence/crash_log.png",
+          url: "https://storage.riyadahelite.com/evidence/crash_log.png",
+          mimeType: "image/png",
+          size: 204800,
+          fileType: "EVIDENCE",
+          description: "Screenshot of GPU fault",
+        });
+
+      expect(res.status).toBe(201);
+      expect(res.body.status).toBe("ok");
+      expect(res.body.data.file.filename).toBe("crash_log.png");
+    });
+  });
 });

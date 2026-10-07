@@ -8,6 +8,11 @@ import { developerRouter } from "./routes/developer.routes.js";
 import { hostRouter } from "./routes/host.routes.js";
 import { adminRouter } from "./routes/admin.routes.js";
 
+import { databaseService } from "./services/database.service.js";
+import { storageService } from "./services/storage.service.js";
+import { cacheService } from "./services/cache.service.js";
+import { queueService } from "./services/queue.service.js";
+
 export const app = express();
 
 app.use(
@@ -19,15 +24,34 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-// Versioned health check route
-app.get("/api/v1/health", (_req: Request, res: Response) => {
-  res.status(200).json({
-    status: "ok",
+// Versioned health & readiness check route
+app.get("/api/v1/health", async (_req: Request, res: Response) => {
+  const [dbHealth, storageHealth, cacheHealth, queueHealth] = await Promise.all([
+    databaseService.checkHealth(),
+    storageService.checkHealth(),
+    cacheService.checkHealth(),
+    queueService.checkHealth(),
+  ]);
+
+  // In test or environments without DATABASE_URL configured, report status as ok for basic liveness
+  const isCoreHealthy = dbHealth.status === "HEALTHY" || !process.env.DATABASE_URL;
+  const statusCode = isCoreHealthy ? 200 : 503;
+
+  res.status(statusCode).json({
+    status: isCoreHealthy ? "ok" : "degraded",
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     service: "riyadah-elite-server",
+    infrastructure: {
+      database: dbHealth,
+      storage: storageHealth,
+      cache: cacheHealth,
+      queue: queueHealth,
+    },
   });
 });
+
+
 
 // Authentication endpoints
 app.use("/api/v1/auth", authRouter);

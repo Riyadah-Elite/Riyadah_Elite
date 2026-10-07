@@ -13,9 +13,15 @@ export const createGameSchema = z.object({
   capacity: z.number().int().min(1).max(10000).default(100),
   rewardText: z.string().max(200).optional().nullable(),
   imageUrl: z.string().url().optional().nullable(),
+  externalLink: z.string().url("Official download/test link must be a valid URL").optional().nullable(),
+  compensationAmount: z.number().positive().optional().nullable(),
+  currency: z.string().max(10).default("SAR"),
+  categoryId: z.string().optional().nullable(),
 });
 
-export const updateGameSchema = createGameSchema.partial();
+export const updateGameSchema = createGameSchema.partial().extend({
+  status: z.enum(["DRAFT", "ACTIVE", "PAUSED", "CLOSED"]).optional(),
+});
 
 export const createCampaignSchema = z.object({
   gameId: z.string().min(1, "Game ID is required"),
@@ -25,6 +31,20 @@ export const createCampaignSchema = z.object({
   startDate: z.string().optional(),
   endDate: z.string().optional(),
   rewardPool: z.string().max(100).optional().nullable(),
+  externalLink: z.string().url().optional().nullable(),
+  compensationAmount: z.number().positive().optional().nullable(),
+});
+
+export const updateCampaignSchema = createCampaignSchema.partial().extend({
+  status: z.enum(["DRAFT", "ACTIVE", "PAUSED", "CLOSED"]).optional(),
+});
+
+export const updateTesterStatusSchema = z.object({
+  status: z.enum(["PENDING", "UNDER_REVIEW", "ACCEPTED", "REJECTED", "COMPLETED"]),
+});
+
+export const updateBugStatusSchema = z.object({
+  status: z.enum(["OPEN", "INVESTIGATING", "CONFIRMED", "RESOLVED", "WONT_FIX"]),
 });
 
 export const updateDeveloperProfileSchema = z.object({

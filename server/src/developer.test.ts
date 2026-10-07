@@ -349,5 +349,103 @@ describe("Developer Workspace Backend API Endpoints (Phase 3B)", () => {
       expect(res.body.data.status).toBe("OPEN");
     });
   });
+
+  describe("G. Game Update/Delete & QA Feedback Endpoints", () => {
+    it("updates a game with ownership verification", async () => {
+      vi.spyOn(prisma.user, "findUnique").mockResolvedValue({ id: devUser.userId, username: devUser.username, fullName: "CyberNova" } as any);
+      vi.spyOn(prisma.gameOpportunity, "findFirst").mockResolvedValue({ ...mockGame, studio: devUser.username } as any);
+      vi.spyOn(prisma.gameOpportunity, "update").mockResolvedValue({ ...mockGame, title: "Cyber Strike Remastered" } as any);
+
+      const res = await request(app)
+        .put(`/api/v1/developer/games/${mockGame.id}`)
+        .set("Authorization", `Bearer ${devToken}`)
+        .send({ title: "Cyber Strike Remastered" });
+
+      expect(res.status).toBe(200);
+      expect(res.body.status).toBe("ok");
+      expect(res.body.data.game.title).toBe("Cyber Strike Remastered");
+    });
+
+    it("rejects game update if not the owning studio", async () => {
+      vi.spyOn(prisma.user, "findUnique").mockResolvedValue({ id: devUser.userId, username: devUser.username, fullName: "CyberNova" } as any);
+      vi.spyOn(prisma.gameOpportunity, "findFirst").mockResolvedValue({ ...mockGame, studio: "other_studio" } as any);
+
+      const res = await request(app)
+        .put(`/api/v1/developer/games/${mockGame.id}`)
+        .set("Authorization", `Bearer ${devToken}`)
+        .send({ title: "Hack Attempt" });
+
+      expect(res.status).toBe(403);
+    });
+
+    it("updates tester application status (approve tester)", async () => {
+      vi.spyOn(prisma.user, "findUnique").mockResolvedValue({ id: devUser.userId, username: devUser.username, fullName: "CyberNova" } as any);
+      vi.spyOn(prisma.gameTestingApplication, "findUnique").mockResolvedValue({
+        id: "app-101",
+        opportunity: { studio: devUser.username },
+      } as any);
+      vi.spyOn(prisma.gameTestingApplication, "update").mockResolvedValue({
+        id: "app-101",
+        status: "ACCEPTED",
+      } as any);
+
+      const res = await request(app)
+        .patch("/api/v1/developer/testers/app-101")
+        .set("Authorization", `Bearer ${devToken}`)
+        .send({ status: "ACCEPTED" });
+
+      expect(res.status).toBe(200);
+      expect(res.body.data.application.status).toBe("ACCEPTED");
+    });
+
+    it("retrieves bug feedback reports for the developer's game", async () => {
+      vi.spyOn(prisma.user, "findUnique").mockResolvedValue({ id: devUser.userId, username: devUser.username, fullName: "CyberNova" } as any);
+      vi.spyOn(prisma.bugReport, "findMany").mockResolvedValue([
+        {
+          id: "bug-42",
+          title: "Memory leak during boss fight",
+          summary: "VRAM climbing",
+          description: "VRAM climbs from 4GB to 12GB during phase 2",
+          severity: "CRITICAL",
+          status: "OPEN",
+          reproductionSteps: "Enter arena with RTX 3080",
+          mediaUrls: [],
+          systemSpecs: null,
+          createdAt: new Date(),
+          opportunity: { id: mockGame.id, title: mockGame.title, slug: mockGame.slug },
+          user: { id: "u-1", username: "apex_tester" },
+        },
+      ] as any);
+
+      const res = await request(app)
+        .get("/api/v1/developer/feedback")
+        .set("Authorization", `Bearer ${devToken}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.data.feedback).toHaveLength(1);
+      expect(res.body.data.feedback[0].title).toBe("Memory leak during boss fight");
+      expect(res.body.data.feedback[0].severity).toBe("CRITICAL");
+    });
+
+    it("updates bug report status (e.g. to INVESTIGATING)", async () => {
+      vi.spyOn(prisma.user, "findUnique").mockResolvedValue({ id: devUser.userId, username: devUser.username, fullName: "CyberNova" } as any);
+      vi.spyOn(prisma.bugReport, "findUnique").mockResolvedValue({
+        id: "bug-42",
+        opportunity: { studio: devUser.username },
+      } as any);
+      vi.spyOn(prisma.bugReport, "update").mockResolvedValue({
+        id: "bug-42",
+        status: "INVESTIGATING",
+      } as any);
+
+      const res = await request(app)
+        .patch("/api/v1/developer/feedback/bug-42")
+        .set("Authorization", `Bearer ${devToken}`)
+        .send({ status: "INVESTIGATING" });
+
+      expect(res.status).toBe(200);
+      expect(res.body.data.bugReport.status).toBe("INVESTIGATING");
+    });
+  });
 });
 

@@ -12,9 +12,13 @@ out/
 # Environment variables
 .env
 .env.local
+.env.development
 .env.development.local
 .env.test.local
+.env.production
 .env.production.local
+.env.*.local
+!.env.example
 
 # Logs
 npm-debug.log*
@@ -43,3 +47,26 @@ Thumbs.db
 .eslintcache
 .cache/
 tmp/
+
+# React Native / Expo / Mobile Build Artifacts
+.expo/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+[a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9][a-f0-9]*.js
+*.metro.js
+web-build/
+.expo-shared/
+
+# Android generated
+mobile/android/
+*.apk
+*.aab
+
+# iOS generated
+mobile/ios/
+*.ipa
+

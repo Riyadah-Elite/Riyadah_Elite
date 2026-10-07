@@ -55,6 +55,20 @@ export const tournamentBaseSchema = z.object({
     .max(100)
     .optional()
     .nullable(),
+  prizeAmount: z
+    .number()
+    .positive()
+    .optional()
+    .nullable(),
+  currency: z
+    .string()
+    .max(10)
+    .default("SAR"),
+  externalLink: z
+    .string()
+    .url("External registration link must be a valid URL")
+    .optional()
+    .nullable(),
   startDate: z
     .string()
     .refine((val) => !isNaN(Date.parse(val)), "Valid start date is required"),

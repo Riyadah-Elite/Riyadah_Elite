@@ -12,8 +12,10 @@ import {
   updateHostProfileSchema,
   updateMatchResultSchema,
 } from "../schemas/host.schemas.js";
+import { cacheService } from "../services/cache.service.js";
 
 export const hostRouter = Router();
+
 
 // Enforce authentication & Host role on all /api/v1/host endpoints
 hostRouter.use(requireAuth);
@@ -231,6 +233,9 @@ hostRouter.post("/tournaments", async (req: AuthenticatedRequest, res: Response)
       },
     });
 
+    // Invalidate tournament discovery caches
+    await cacheService.invalidatePrefix("cache:tournaments");
+
     res.status(201).json({
       status: "ok",
       message: "Tournament created successfully",
@@ -392,6 +397,55 @@ hostRouter.put("/tournaments/:id", async (req: AuthenticatedRequest, res: Respon
   } catch (error) {
     console.error("Host update tournament error:", error);
     res.status(500).json({ status: "error", message: "Internal server error updating tournament" });
+  }
+});
+
+// DELETE /api/v1/host/tournaments/:id
+hostRouter.delete("/tournaments/:id", async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+  try {
+    const userId = req.user!.userId;
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+
+    if (!user) {
+      res.status(404).json({ status: "error", message: "Host account not found" });
+      return;
+    }
+
+    const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const existing = await prisma.tournament.findUnique({ where: { id } });
+
+    if (!existing) {
+      res.status(404).json({ status: "error", message: "Tournament not found" });
+      return;
+    }
+
+    if (existing.organizer !== user.username && existing.organizer !== user.fullName) {
+      res.status(403).json({
+        status: "error",
+        message: "You are not authorized to delete this tournament",
+      });
+      return;
+    }
+
+    if (existing.status === "ONGOING") {
+      res.status(400).json({
+        status: "error",
+        message: "Cannot delete an ongoing tournament. Cancel the event first.",
+      });
+      return;
+    }
+
+    await prisma.tournament.delete({
+      where: { id },
+    });
+
+    res.status(200).json({
+      status: "ok",
+      message: "Tournament deleted successfully",
+    });
+  } catch (error) {
+    console.error("Host delete tournament error:", error);
+    res.status(500).json({ status: "error", message: "Internal server error deleting tournament" });
   }
 });
 

@@ -558,5 +558,49 @@ describe("Tournament Host Workspace Backend API Endpoints (Phase 4B)", () => {
       expect(res.body.data.profile.organizationName).toBe("Saudi Collegiate Gaming Association");
       expect(res.body.data.profile.city).toBe("Jeddah");
     });
+
+    it("deletes a tournament when authorized", async () => {
+      vi.spyOn(prisma.user, "findUnique").mockResolvedValue({
+        id: hostUser.userId,
+        username: hostUser.username,
+        fullName: "Tariq Al-Mansoor",
+      } as any);
+
+      vi.spyOn(prisma.tournament, "findUnique").mockResolvedValue({
+        id: mockTournament.id,
+        organizer: hostUser.username,
+        status: "REGISTRATION_OPEN",
+      } as any);
+
+      vi.spyOn(prisma.tournament, "delete").mockResolvedValue(mockTournament as any);
+
+      const res = await request(app)
+        .delete(`/api/v1/host/tournaments/${mockTournament.id}`)
+        .set("Authorization", `Bearer ${hostToken}`);
+
+      expect(res.status).toBe(200);
+      expect(res.body.status).toBe("ok");
+      expect(res.body.message).toMatch(/deleted successfully/i);
+    });
+
+    it("rejects tournament deletion if not the organizer", async () => {
+      vi.spyOn(prisma.user, "findUnique").mockResolvedValue({
+        id: otherHostUser.userId,
+        username: otherHostUser.username,
+        fullName: "Rival Host",
+      } as any);
+
+      vi.spyOn(prisma.tournament, "findUnique").mockResolvedValue({
+        id: mockTournament.id,
+        organizer: hostUser.username,
+        status: "REGISTRATION_OPEN",
+      } as any);
+
+      const res = await request(app)
+        .delete(`/api/v1/host/tournaments/${mockTournament.id}`)
+        .set("Authorization", `Bearer ${otherHostToken}`);
+
+      expect(res.status).toBe(403);
+    });
   });
 });

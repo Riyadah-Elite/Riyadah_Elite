@@ -3,6 +3,8 @@ dotenv.config();
 
 import { app } from "./app.js";
 import { prisma } from "./lib/prisma.js";
+import { cacheService } from "./services/cache.service.js";
+import { queueService } from "./services/queue.service.js";
 
 const PORT = process.env.PORT || 5000;
 
@@ -20,6 +22,18 @@ const handleShutdown = async (signal: string) => {
   server.close(async () => {
     console.log("HTTP server closed.");
     try {
+      await cacheService.disconnect();
+      console.log("Redis cache disconnected.");
+    } catch (err) {
+      console.error("Error disconnecting Redis:", err);
+    }
+    try {
+      await queueService.disconnect();
+      console.log("RabbitMQ queue disconnected.");
+    } catch (err) {
+      console.error("Error disconnecting RabbitMQ:", err);
+    }
+    try {
       await prisma.$disconnect();
       console.log("Database connection disconnected.");
     } catch (err) {
@@ -28,6 +42,7 @@ const handleShutdown = async (signal: string) => {
     process.exit(0);
   });
 };
+
 
 process.on("SIGTERM", () => void handleShutdown("SIGTERM"));
 process.on("SIGINT", () => void handleShutdown("SIGINT"));

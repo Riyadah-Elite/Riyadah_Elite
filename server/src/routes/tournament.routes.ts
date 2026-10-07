@@ -3,6 +3,7 @@ import { Prisma } from "@prisma/client";
 import { prisma } from "../lib/prisma.js";
 import { requireAuth, AuthenticatedRequest } from "../middleware/auth.middleware.js";
 import { tournamentRegistrationSchema } from "../schemas/tournament.schemas.js";
+import { cacheService } from "../services/cache.service.js";
 
 export const tournamentRouter = Router();
 
@@ -15,6 +16,16 @@ export const tournamentRouter = Router();
 tournamentRouter.get("/", async (req, res: Response): Promise<void> => {
   try {
     const { game, platform, status, search } = req.query;
+
+    const cacheKey = `cache:tournaments:${JSON.stringify(req.query)}`;
+    const cached = await cacheService.get<{ tournaments: any[] }>(cacheKey);
+    if (cached) {
+      res.status(200).json({
+        status: "ok",
+        data: cached,
+      });
+      return;
+    }
 
     const where: Prisma.TournamentWhereInput = {};
 
@@ -52,15 +63,21 @@ tournamentRouter.get("/", async (req, res: Response): Promise<void> => {
       },
     });
 
+    const payload = {
+      tournaments: tournaments.map((t) => ({
+        ...t,
+        participantCount: t._count.registrations,
+      })),
+    };
+
+    // Cache with 3 minute TTL (180s)
+    await cacheService.set(cacheKey, payload, 180);
+
     res.status(200).json({
       status: "ok",
-      data: {
-        tournaments: tournaments.map((t) => ({
-          ...t,
-          participantCount: t._count.registrations,
-        })),
-      },
+      data: payload,
     });
+
   } catch (error) {
     console.error("Failed to list tournaments:", error);
     res.status(500).json({
