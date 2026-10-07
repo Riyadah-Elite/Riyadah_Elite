@@ -37,7 +37,9 @@ last_mapped_at: 2026-10-03
 - **Framework**: Express (`express` `^4.21.2`, `@types/express` `^5.0.0`)
 - **Execution & Watcher**: `tsx` (`^4.19.3`) for high-performance TypeScript execution in dev
 - **HTTP Middleware**: `cors` (`^2.8.5`), `express.json()`
-- **Database ORM**: Prisma (`@prisma/client` `^6.4.1`, `prisma` `^6.4.1`)
+- **Database & ORM**: Neon PostgreSQL with Prisma (`@prisma/client` `^6.4.1`, `prisma` `^6.4.1`)
+- **Hosting / Deployment**: Render (Frontend Static Site + Backend Web Service)
+- **Optional/Future Infrastructure**: AWS (S3 object storage or cloud services, currently optional/not required)
 - **Testing**: Vitest (`vitest` `^3.0.7`), `supertest` (`^7.0.0`)
 
 ---

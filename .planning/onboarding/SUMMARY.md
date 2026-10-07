@@ -10,8 +10,8 @@ Riyadah Elite is a PERN-stack monorepo targeting a professional esports and game
 ## Codebase Map Summary
 
 The codebase has been analyzed and mapped into `.planning/codebase/`:
-- [STACK.md](file:///d:/website/Riyadah%20Elite/Riyadah_Elite/.planning/codebase/STACK.md): React 19, TypeScript, Vite, Tailwind CSS v4, Express, Prisma ORM, PostgreSQL.
-- [INTEGRATIONS.md](file:///d:/website/Riyadah%20Elite/Riyadah_Elite/.planning/codebase/INTEGRATIONS.md): Baseline PostgreSQL HealthCheck model; Express REST API.
+- [STACK.md](file:///d:/website/Riyadah%20Elite/Riyadah_Elite/.planning/codebase/STACK.md): React 19, TypeScript, Vite, Tailwind CSS v4, Express, Prisma ORM, Neon PostgreSQL.
+- [INTEGRATIONS.md](file:///d:/website/Riyadah%20Elite/Riyadah_Elite/.planning/codebase/INTEGRATIONS.md): Neon PostgreSQL Prisma datasource; Express REST API.
 - [ARCHITECTURE.md](file:///d:/website/Riyadah%20Elite/Riyadah_Elite/.planning/codebase/ARCHITECTURE.md): Shared `PublicLayout` route pattern with single responsive `PublicNavbar` and `PublicFooter`.
 - [STRUCTURE.md](file:///d:/website/Riyadah%20Elite/Riyadah_Elite/.planning/codebase/STRUCTURE.md): Monorepo directory structure across `client/`, `server/`, and `Design_Stitch_Organized/`.
 - [CONVENTIONS.md](file:///d:/website/Riyadah%20Elite/Riyadah_Elite/.planning/codebase/CONVENTIONS.md): Strict TypeScript, Prettier, ESLint flat config, established design tokens.

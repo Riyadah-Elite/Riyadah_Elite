@@ -8,19 +8,21 @@ last_mapped_at: 2026-10-03
 
 ## Architectural Pattern
 
-The project is structured as a **clean PERN monorepo** with separated presentation and backend concerns:
-
-```text
-[ Client (Vite + React 19 SPA) ]
-                |
-           REST / JSON
-                v
- [ Server (Node.js + Express API) ]
-                |
-           Prisma ORM
-                v
-     [ PostgreSQL Database ]
-```
+The project is structured as a **clean PERN monorepo** with separated presentation and backend concerns, deployed via Render:
+ 
+ ```text
+ [ Client (Vite + React 19 SPA) ] -> Deployed on Render (Static Site)
+                 |
+            REST / JSON
+                 v
+  [ Server (Node.js + Express API) ] -> Deployed on Render (Web Service)
+                 |
+            Prisma ORM
+                 v
+      [ Neon PostgreSQL ] (Serverless Postgres with pooled and direct URLs)
+ ```
+ 
+ *(Note: AWS is purely optional/future infrastructure for auxiliary asset storage, not part of the core deployment).*
 
 ## Frontend Architecture (`client/`)
 

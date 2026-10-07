@@ -8,11 +8,15 @@ last_mapped_at: 2026-10-03
 
 ## Database Integration
 
-- **Database Engine**: PostgreSQL
+- **Database Engine**: Neon PostgreSQL (Serverless Postgres)
 - **ORM**: Prisma Client (`server/prisma/schema.prisma`)
-- **Connection Configuration**: Configured via `DATABASE_URL` in `server/.env`
+- **Connection Configuration**: 
+  - `DATABASE_URL`: Neon pooled connection string for runtime queries (e.g., `postgresql://...neon.tech/neondb?sslmode=require`)
+  - `DIRECT_URL`: Neon direct unpooled connection string for migrations and schema pushes
+- **Target Deployment Platform**: Render Web Service (backend API) and Render Static Site (frontend)
+- **Optional/Future Services**: AWS (optional object storage or cloud utilities, not required for core MVP)
 - **Current Models**:
-  - `HealthCheck`: UUID identifier, status string, and creation timestamp
+  - `HealthCheck`, `User`, `PlayerProfile`, `DeveloperProfile`, `HostProfile`, `Game`, `TestingCampaign`, `GameTestingApplication`, `Tournament`, `TournamentRegistration`, `AuditLog`, `PlatformSetting`
 
 ## Network & API Interfaces
 

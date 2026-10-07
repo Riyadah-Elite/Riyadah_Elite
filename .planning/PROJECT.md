@@ -10,9 +10,10 @@ Riyadah Elite is a modern PERN-stack competitive gaming and playtesting platform
 4. **Platform Operations**: Internal administration workspaces for trust & safety, verification, arbitration, and platform health.
 
 ## Core Technical Foundation
-- **Frontend**: React 19, TypeScript, Vite, Tailwind CSS v4, React Router v7 layout pattern.
-- **Backend**: Node.js, Express, TypeScript, REST API (`/api/v1/...`).
-- **Database**: PostgreSQL with Prisma ORM.
+- **Frontend**: React 19, TypeScript, Vite, Tailwind CSS v4, React Router v7 layout pattern (deployed on Render).
+- **Backend**: Node.js, Express, TypeScript, REST API (`/api/v1/...`) (deployed on Render).
+- **Database**: Neon PostgreSQL with Prisma ORM (`DATABASE_URL` pooled, `DIRECT_URL` direct).
+- **Architecture**: Monolithic full-stack monorepo (`client/` and `server/` workspaces).
 - **Visual Design Reference**: Google Stitch Design Archive (`Design_Stitch_Organized/` groups 01–09).
 - **Core Visual Tokens**: Dark cyber tactical theme (`#050A30`, `#0A0F35`), Electric Blue (`#233DFF`), Primary Sky Blue (`#5CB6F9`), Soft White (`#DFE0FF`).
 

@@ -41,7 +41,7 @@ Riyadah_Elite/
 
 - **Node.js**: v20+ (tested on v24.19.0)
 - **npm**: v10+ (tested on v12.0.2)
-- **PostgreSQL**: Local or remote instance (required for database migrations)
+- **PostgreSQL**: Neon PostgreSQL in production, or local/remote instance for development
 
 ---
 
@@ -63,10 +63,14 @@ Copy `.env.example` to `.env`:
 cp .env.example .env
 ```
 
-Ensure `DATABASE_URL` points to your PostgreSQL instance:
+Ensure `DATABASE_URL` and `DIRECT_URL` point to your PostgreSQL / Neon instance:
 
 ```env
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/riyadah_elite?schema=public"
+# Neon PostgreSQL pooled connection (for application queries)
+DATABASE_URL="postgresql://user:password@ep-xyz-pooler.region.aws.neon.tech/neondb?sslmode=require"
+
+# Neon PostgreSQL direct connection (for migrations)
+DIRECT_URL="postgresql://user:password@ep-xyz.region.aws.neon.tech/neondb?sslmode=require"
 ```
 
 ### 3. Generate Prisma Client
@@ -75,7 +79,7 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/riyadah_elite?schema
 npm run prisma:generate
 ```
 
-_Note: If PostgreSQL is running locally, apply migrations with `npm run prisma:migrate`._
+_Note: To apply migrations, run `npm run prisma:migrate`._
 
 ---
 
