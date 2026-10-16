@@ -3,7 +3,7 @@
  */
 
 import "./config/config.js";
-import express from "express";
+import express, { Request, Response } from "express";
 import "reflect-metadata";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
@@ -14,6 +14,7 @@ import { TYPES } from "./config/types.js";
 import { IDatabase } from "./types/database.types.js";
 import { requestContextMiddleware } from "./middlewares/requestContext.middleware.js";
 import cors from "cors";
+import type { Express } from "express";
 
 const server = new InversifyExpressServer(container);
 
@@ -26,7 +27,7 @@ try {
   process.exit(1);
 }
 
-server.setConfig((app) => {
+server.setConfig((app: Express ) => {
   /*
    * First, so every later log line — including the body parsers and
    * morgan — carries the request id.
@@ -48,7 +49,7 @@ server.setConfig((app) => {
 
 const app = server.build();
 
-app.get("/api/v1/health", (req, res) => {
+app.get("/api/v1/health", (req: Request, res: Response) => {
   res.send("OK");
 });
 
