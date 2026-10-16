@@ -1,9 +1,8 @@
 /**
  * @author aliasgarbootwala3@gmial.com
-
  */
 
-import "dotenv/config";
+import "./src/config/config.js";
 import { defineConfig } from "prisma/config";
 
 export default defineConfig({
