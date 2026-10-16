@@ -14,7 +14,7 @@ import { TYPES } from "./config/types.js";
 import { IDatabase } from "./types/database.types.js";
 import { requestContextMiddleware } from "./middlewares/requestContext.middleware.js";
 import cors from "cors";
-import type { Express } from "express";
+import type { Application } from "express";
 
 const server = new InversifyExpressServer(container);
 
@@ -27,7 +27,7 @@ try {
   process.exit(1);
 }
 
-server.setConfig((app: Express ) => {
+server.setConfig((app: Application ) => {
   /*
    * First, so every later log line — including the body parsers and
    * morgan — carries the request id.
