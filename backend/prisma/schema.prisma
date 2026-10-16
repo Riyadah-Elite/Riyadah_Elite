@@ -1,0 +1,44 @@
+/**
+ * @author aliasgarbootwala3@gmial.com
+
+ */
+
+generator client {
+  provider               = "prisma-client"
+  output                 = "../src/generated/prisma"
+  moduleFormat           = "esm"
+  generatedFileExtension = "ts"
+  importFileExtension    = "js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String
+  email     String   @unique
+  password  String
+  avatar    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  blacklistedTokens BlacklistToken[]
+
+  @@map("users")
+}
+
+model BlacklistToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("blacklist_tokens")
+}
