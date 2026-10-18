@@ -4,7 +4,7 @@
 import { Request } from "express";
 import { FileFilterCallback } from "multer";
 import ApiError from "../utils/apiError.js";
-import { STATUS_CODE } from "../constants/statusCode.js";
+import { STATUS_CODE } from "../constants/constants.js";
 import { Extensions, allowedMimeTypes } from "../constants/multerFile.js";
 
 export const multerConfig = {

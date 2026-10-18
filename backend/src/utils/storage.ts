@@ -8,7 +8,7 @@ import { TYPES } from "../config/types.js";
 import Logger from "./logger.js";
 import { IStorage } from "../types/storage.types.js";
 import ApiError from "./apiError.js";
-import { STATUS_CODE } from "../constants/statusCode.js";
+import { STATUS_CODE } from "../constants/constants.js";
 
 @injectable()
 export default class StorageService implements IStorage {

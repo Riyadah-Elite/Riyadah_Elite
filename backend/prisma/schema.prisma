@@ -1,6 +1,5 @@
 /**
- * @author aliasgarbootwala3@gmial.com
-
+ * @author aliasgarbootwala3@gmail.com
  */
 
 generator client {
@@ -15,30 +14,320 @@ datasource db {
   provider = "postgresql"
 }
 
+// ==========================================
+// ENUMS
+// ==========================================
+
+enum Role {
+  ADMIN
+  USER
+  ORG
+  DEVELOPER
+}
+
+enum TestingStatus {
+  pending
+  inprogress
+  completed
+  failure
+}
+
+enum TournamentStatus {
+  pending
+  inprogress
+  completed
+  failure
+}
+
+enum ListingStatus {
+  active
+  inactive
+}
+
+enum Platform {
+  android
+  web
+  ios
+  windows
+  console
+  linux
+  macos
+}
+
+enum BugStatus {
+  open
+  inprogress
+  resolved
+  closed
+}
+
+enum Currency {
+  USD
+  INR
+  QAR
+  SDG
+  EUR
+}
+
+enum NotificationType {
+  system
+  promotion
+  event
+}
+
+// ==========================================
+// 1. USER
+// ==========================================
+
 model User {
-  id        String   @id @default(uuid())
-  username  String
-  email     String   @unique
-  password  String
-  avatar    String
+  id                    String            @id @default(cuid())
+  username              String            @unique
+  email                 String            @unique
+  password              String
+  role                  Role
+  testingStatus         TestingStatus?    @default(pending)
+  exitReason            String?
+  tournamentStatus      TournamentStatus? @default(pending)
+  testingPoints         Float?            @default(0)
+  testingRank           String?
+  isNotificationAllowed Boolean           @default(false)
+  avatarId              String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  blacklistedTokens BlacklistToken[]
-
-  @@map("users")
+  // Relationships
+  avatar             File?               @relation("UserAvatar", fields: [avatarId], references: [id], onDelete: SetNull)
+  blacklistedTokens  BlacklistToken[]
+  files              File[]              @relation("UserFiles")
+  categories         Category[]          @relation("CategoryAdmin")
+  gameListings       GameListing[]       @relation("GameListingOwner")
+  tournamentListings TournamentListing[] @relation("TournamentListingOwner")
+  bugReports         BugReport[]         @relation("BugReportUser")
+  notifications      Notification[]      @relation("NotificationUser")
+  chatMessages       ChatMessage[]       @relation("ChatMessageUser")
 }
+
+// ==========================================
+// 2. BLACKLIST TOKEN
+// ==========================================
 
 model BlacklistToken {
   id        String   @id @default(uuid())
   token     String   @unique
   expiresAt DateTime
+  userId    String
+
   createdAt DateTime @default(now())
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // Relationships
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([expiresAt])
-  @@map("blacklist_tokens")
+}
+
+// ==========================================
+// 3. FILE
+// ==========================================
+
+model File {
+  id            String  @id @default(cuid())
+  userId        String
+  imageUrl      String?
+  description   String?
+  fileUrl       String?
+  gameListingId String?
+  tournamentId  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  user           User   @relation("UserFiles", fields: [userId], references: [id], onDelete: Cascade)
+  avatarForUsers User[] @relation("UserAvatar")
+
+  gameListing GameListing?       @relation("GameListingFiles", fields: [gameListingId], references: [id], onDelete: SetNull)
+  tournament  TournamentListing? @relation("TournamentFiles", fields: [tournamentId], references: [id], onDelete: SetNull)
+
+  gameListingImage GameListing[] @relation("GameListingImage")
+  gameListingFile  GameListing[] @relation("GameListingAttachment")
+
+  tournamentImage TournamentListing[] @relation("TournamentImage")
+  tournamentFile  TournamentListing[] @relation("TournamentAttachment")
+
+  bugReportImage BugReport[] @relation("BugReportImage")
+  bugReportFile  BugReport[] @relation("BugReportAttachment")
+}
+
+// ==========================================
+// 4. CATEGORY
+// ==========================================
+
+model Category {
+  id           String  @id @default(cuid())
+  categoryName String  @unique
+  adminId      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  admin        User?         @relation("CategoryAdmin", fields: [adminId], references: [id], onDelete: SetNull)
+  gameListings GameListing[]
+}
+
+// ==========================================
+// 5. AMOUNT
+// ==========================================
+
+model Amount {
+  id       String   @id @default(cuid())
+  amount   Float    @default(0)
+  currency Currency
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  gameListings       GameListing[]
+  tournamentListings TournamentListing[]
+}
+
+// ==========================================
+// 6. GAME LISTING
+// ==========================================
+
+model GameListing {
+  id                  String        @id @default(cuid())
+  gameName            String
+  categoryId          String
+  userId              String
+  status              ListingStatus @default(active)
+  maxEntry            Float         @default(0)
+  minEntry            Float         @default(0)
+  description         String?
+  bugsListing         String?
+  guides              String?
+  platform            Platform?
+  gameUrl             String?
+  imageId             String?
+  amountId            String?
+  fileId              String?
+  registrationEndDate DateTime
+  testingDeadline     DateTime
+  scheduling          DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  category Category @relation(fields: [categoryId], references: [id])
+  user     User     @relation("GameListingOwner", fields: [userId], references: [id])
+  amount   Amount?  @relation(fields: [amountId], references: [id], onDelete: SetNull)
+
+  image      File? @relation("GameListingImage", fields: [imageId], references: [id], onDelete: SetNull)
+  attachment File? @relation("GameListingAttachment", fields: [fileId], references: [id], onDelete: SetNull)
+
+  files       File[]              @relation("GameListingFiles")
+  tournaments TournamentListing[]
+  bugReports  BugReport[]
+}
+
+// ==========================================
+// 7. TOURNAMENT LISTING
+// ==========================================
+
+model TournamentListing {
+  id                  String        @id @default(cuid())
+  tournamentName      String
+  gameListingId       String
+  userId              String
+  description         String?
+  tournamentDate      DateTime?
+  tournamentTime      DateTime?
+  maxEntry            Float         @default(0)
+  minEntry            Float         @default(0)
+  teamSize            Int           @default(1)
+  status              ListingStatus @default(active)
+  amountId            String?
+  imageId             String?
+  tournamentUrl       String?
+  fileId              String?
+  registrationEndDate DateTime?
+  scheduling          DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  gameListing GameListing @relation(fields: [gameListingId], references: [id])
+  user        User        @relation("TournamentListingOwner", fields: [userId], references: [id])
+  amount      Amount?     @relation(fields: [amountId], references: [id], onDelete: SetNull)
+
+  image      File? @relation("TournamentImage", fields: [imageId], references: [id], onDelete: SetNull)
+  attachment File? @relation("TournamentAttachment", fields: [fileId], references: [id], onDelete: SetNull)
+
+  files File[] @relation("TournamentFiles")
+}
+
+// ==========================================
+// 8. BUG REPORT
+// ==========================================
+
+model BugReport {
+  id             String    @id @default(cuid())
+  userId         String
+  gameListingId  String
+  bugDescription String
+  imageId        String?
+  fileId         String?
+  status         BugStatus @default(open)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  user        User        @relation("BugReportUser", fields: [userId], references: [id])
+  gameListing GameListing @relation(fields: [gameListingId], references: [id])
+
+  image      File? @relation("BugReportImage", fields: [imageId], references: [id], onDelete: SetNull)
+  attachment File? @relation("BugReportAttachment", fields: [fileId], references: [id], onDelete: SetNull)
+}
+
+// ==========================================
+// 9. NOTIFICATION
+// ==========================================
+
+model Notification {
+  id         String           @id @default(cuid())
+  userId     String
+  message    String
+  markAsRead Boolean          @default(false)
+  type       NotificationType
+
+  createdAt DateTime @default(now())
+
+  // Relationships
+  user User @relation("NotificationUser", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, markAsRead])
+}
+
+// ==========================================
+// 10. CHAT MESSAGE
+// ==========================================
+
+model ChatMessage {
+  id      String @id @default(cuid())
+  userId  String
+  message String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relationships
+  user User @relation("ChatMessageUser", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
 }

@@ -2,7 +2,7 @@
  * @author aliasgarbootwala3@gmial.com
  */
 
-import { STATUS_CODE } from "../constants/statusCode.js";
+import { STATUS_CODE } from "../constants/constants.js";
 import ApiError from "../utils/apiError.js";
 import { Response } from "express";
 

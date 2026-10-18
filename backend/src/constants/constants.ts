@@ -1,0 +1,70 @@
+/**
+ * @author aliasgarbootwala3@gmial.com
+ */
+
+export const STATUS_CODE = {
+  OK: 200,
+  CREATED: 201,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  CONFLICT: 409,
+  NOT_FOUND: 404,
+  INTERNAL_SERVER_ERROR: 500,
+};
+
+export const USER_ROLE = {
+  ADMIN: "ADMIN",
+  USER: "USER",
+  ORG: "ORG",
+  DEVELOPER: "DEVELOPER",
+} as const;
+
+export const TESTING_STATUS = {
+  PENDING: "pending",
+  INPROGRESS: "inprogress",
+  COMPLETED: "completed",
+  FAILURE: "failure",
+} as const;
+
+export const TOURNAMENT_STATUS = {
+  PENDING: "pending",
+  INPROGRESS: "inprogress",
+  COMPLETED: "completed",
+  FAILURE: "failure",
+} as const;
+
+export const LISTING_STATUS = {
+  ACTIVE: "active",
+  INACTIVE: "inactive",
+} as const;
+
+export const PLATFORM = {
+  ANDROID: "android",
+  WEB: "web",
+  IOS: "ios",
+  WINDOWS: "windows",
+  CONSOLE: "console",
+  LINUX: "linux",
+  MACOS: "macos"
+} as const;
+
+export const BUG_STATUS = {
+  OPEN: "open",
+  INPROGRESS: "inprogress",
+  RESOLVED: "resolved",
+  CLOSED: "closed",
+} as const;
+
+export const CURRENCY = {
+  USD: "USD",
+  INR: "INR",
+  QAR: "QAR",
+  SDG: "SDG",
+  EUR: "EUR",
+} as const;
+
+export const NOTIFICATION_TYPE = {
+  SYSTEM: "system",
+  PROMOTION: "promotion",
+  EVENT: "event",
+} as const;

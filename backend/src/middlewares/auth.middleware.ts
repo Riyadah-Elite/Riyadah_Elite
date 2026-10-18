@@ -4,7 +4,7 @@
 
 import { Request, Response, NextFunction } from "express";
 import { verifyToken } from "../utils/token.js";
-import { STATUS_CODE } from "../constants/statusCode.js";
+import { STATUS_CODE } from "../constants/constants.js";
 import { setRequestUserId } from "../utils/requestContext.js";
 
 export interface AuthRequest extends Request {

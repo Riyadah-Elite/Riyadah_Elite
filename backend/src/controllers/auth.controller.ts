@@ -6,7 +6,7 @@ import { httpPost, controller, httpGet } from "inversify-express-utils";
 import { inject } from "inversify";
 import { TYPES } from "../config/types.js";
 import BaseController from "./base.controller.js";
-import { STATUS_CODE } from "../constants/statusCode.js";
+import { STATUS_CODE } from "../constants/constants.js";
 import { loginSchema, registerSchema } from "../validators/auth.validator.js";
 import { Request, Response } from "express";
 import AuthService from "../services/auth.service.js";
