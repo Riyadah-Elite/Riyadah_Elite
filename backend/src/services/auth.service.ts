@@ -11,10 +11,18 @@ import {
   LoginUserInput,
   LogoutUserInput,
   ProfileUserInput,
-} from "../types/auth.types.js";
+  PublicUser,
+  PaginatedUsers,
+  UpdateUserDetailsInput,
+  UserListQuery,
+  UserProfile,
+  UserRole,
+  TestingStatus,
+  TournamentStatus,
+} from "../types/user.types.js";
 import Logger from "../utils/logger.js";
 import AuthRepository from "../repositories/auth.repository.js";
-import { STATUS_CODE } from "../constants/constants.js";
+import { STATUS_CODE, USER_ROLE } from "../constants/constants.js";
 import ApiError from "../utils/apiError.js";
 import StorageService from "../utils/storage.js";
 import path from "path";
@@ -34,7 +42,7 @@ export default class AuthService {
   apiError!: ApiError;
 
   async register(userData: RegisterUserInput) {
-    this.logger.info("Registering user", { email: userData.email });
+    this.logger.info("Registering user:", { email: userData.email });
 
     const existingUser = await this.authRepository.findByEmail(userData.email);
 
@@ -49,30 +57,28 @@ export default class AuthService {
     const extension = path.extname(userData.avatarPath);
     const avatarKey = `avatra/${Date.now()}-${userData.username.toLocaleLowerCase().replace(/\s+/g, "-")}${extension}`;
 
-    let avatarUrl = await this.storageService.put(
+    /*
+     * The URL is what the File row stores. The old code read the object back
+     * out of MinIO and kept a base64 data URI instead, but `imageUrl` is a URL
+     * column - clients can fetch it directly from object storage.
+     */
+    const avatarUrl = await this.storageService.put(
       avatarKey,
       userData.avatarPath,
       userData.avatarMimeType,
     );
 
-    // avatar url to key
-
-    const avatarKeyView = avatarKey.replace(`${process.env.S3_ENDPOINT!}/${process.env.S3_BUCKET!}/`, "");
-    
-    const { buffer, mimeType } = await this.storageService.get(avatarKeyView);
-
-    const avatar = `data:${mimeType};base64,${buffer.toString("base64")}`;
-
-    avatarUrl = avatar;
-
     const hashedPassword = await bcrypt.hash(userData.password, 10);
 
-    const user = await this.authRepository.createUser({
-      username: userData.username,
-      email: userData.email,
-      password: hashedPassword,
-      avatar: avatarUrl,
-    });
+    const user = await this.authRepository.createUser(
+      {
+        username: userData.username,
+        email: userData.email,
+        password: hashedPassword,
+        role: userData.role ?? USER_ROLE.USER,
+      },
+      { imageUrl: avatarUrl },
+    );
 
     const checknewUser = await this.authRepository.findUserById(user.id);
 
@@ -91,12 +97,14 @@ export default class AuthService {
 
     const token = generateToken({
       userId: user.id,
+      userRole: user.role
     });
 
     return { user: checknewUser, token };
   }
 
   async login(userData: LoginUserInput) {
+    
     this.logger.info("login try ", { email: userData.email });
     
     const user = await this.authRepository.findByEmail(userData.email);
@@ -124,6 +132,7 @@ export default class AuthService {
 
     const token = generateToken({
       userId: user.id,
+      userRole: user.role
     });
 
     /* findByEmail opts back into `password`; the response must not. */
@@ -157,7 +166,11 @@ export default class AuthService {
       throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
     }
 
-    return { user };
+    /*
+     * Same shaping as GET /me, so profile cannot drift into returning a wider
+     * row than the dedicated endpoint does.
+     */
+    return { user: this.toProfile(user) };
   }
 
   async logout(token: LogoutUserInput) {
@@ -189,6 +202,205 @@ export default class AuthService {
     );
 
     return result;
+  }
+
+  /**
+   * Paginated users.
+   *
+   * `skip`/`take` arrive already computed from the validated page and limit,
+   * so the service never does arithmetic on a raw query string.
+   */
+  async listUsers(query: UserListQuery): Promise<PaginatedUsers> {
+    this.logger.info("listing users", {
+      page: query.page,
+      limit: query.limit,
+    });
+
+    const { users, total } = await this.authRepository.listUsers(query);
+
+    const totalPages = Math.ceil(total / query.limit);
+
+    return {
+      users: users.map((user) => this.toPublicUser(user)),
+      pagination: {
+        page: query.page,
+        limit: query.limit,
+        total,
+        totalPages,
+        hasNextPage: query.page < totalPages,
+        hasPreviousPage: query.page > 1,
+      },
+    };
+  }
+
+  // ===========================================================================
+  // USER MUTATION
+  // ===========================================================================
+
+  /**
+   * Update another user's details.
+   *
+   * Two rules live here rather than in the controller or the repository:
+   * a caller may only touch their own account unless they are an ADMIN, and
+   * only an ADMIN may change a role. The repository has no idea who is calling.
+   */
+  async updateUserDetails(
+    requesterId: string,
+    input: UpdateUserDetailsInput,
+  ): Promise<UserProfile> {
+    this.logger.info("updating user details", { userId: input.userId });
+
+    await this.assertExists(input.userId);
+
+    const requester = await this.assertExists(requesterId);
+
+    const isAdmin = requester.role === USER_ROLE.ADMIN;
+
+    if (requesterId !== input.userId && !isAdmin) {
+      throw new ApiError(
+        "You are not allowed to update another user",
+        STATUS_CODE.FORBIDDEN,
+      );
+    }
+
+    if (input.role && !isAdmin) {
+      throw new ApiError(
+        "Only an admin can change a role",
+        STATUS_CODE.FORBIDDEN,
+      );
+    }
+
+    /* A user may not hand themselves a role through their own profile. */
+    const { userId, ...changes } = input;
+
+    if (input.username) {
+      const taken = await this.authRepository.findByUsername(input.username);
+
+      if (taken && taken.id !== input.userId) {
+        throw new ApiError("Username is already taken", STATUS_CODE.CONFLICT);
+      }
+    }
+
+    const updated = await this.authRepository.updateUser(input.userId, changes);
+
+    this.logger.info("user details updated", { userId: input.userId });
+
+    return this.toProfile(updated);
+  }
+
+  /**
+   * Delete a user.
+   *
+   * Game listings, tournament listings and bug reports are *required*
+   * relations, so Postgres refuses the delete while any exist. Rather than
+   * silently cascading away other people's content, the conflict is reported
+   * and the caller decides what to do with those records first.
+   */
+  async deleteUser(requesterId: string, userId: string): Promise<void> {
+    this.logger.info("deleting user", { userId });
+
+    const target = await this.assertExists(userId);
+
+    /* Deleting yourself: the row already in hand is also the requester. */
+    const requester =
+      requesterId === userId ? target : await this.assertExists(requesterId);
+
+    const isAdmin = requester.role === USER_ROLE.ADMIN;
+
+    if (requesterId !== userId && !isAdmin) {
+      throw new ApiError(
+        "You are not allowed to delete another user",
+        STATUS_CODE.FORBIDDEN,
+      );
+    }
+
+    const blocking = await this.authRepository.countBlockingRecords(userId);
+
+    if (
+      blocking &&
+      (blocking.gameListings > 0 ||
+        blocking.tournamentListings > 0 ||
+        blocking.bugReports > 0)
+    ) {
+      throw new ApiError(
+        `User owns ${blocking.gameListings} game listing(s), ${blocking.tournamentListings} tournament listing(s) and ${blocking.bugReports} bug report(s). Remove or reassign them first.`,
+        STATUS_CODE.CONFLICT,
+      );
+    }
+
+    /* Any session still open on that account must stop working immediately. */
+    await this.authRepository.deleteBlacklistedTokens(userId);
+
+    await this.authRepository.deleteUser(userId);
+
+    this.logger.info("user deleted", { userId });
+  }
+
+  // ===========================================================================
+  // HELPERS
+  // ===========================================================================
+
+  private async assertExists(userId: string) {
+    const user = await this.authRepository.findUserById(userId);
+
+    if (!user) {
+      throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
+    }
+
+    return user;
+  }
+
+  /** Flattens the avatar relation into a single URL the API can return. */
+  private toPublicUser(user: {
+    id: string;
+    username: string;
+    role: UserRole;
+    createdAt: Date;
+    avatar: { imageUrl: string | null } | null;
+  }): PublicUser {
+    return {
+      id: user.id,
+      username: user.username,
+      role: user.role,
+      avatarUrl: user.avatar?.imageUrl ?? null,
+      createdAt: user.createdAt,
+    };
+  }
+
+  /**
+   * The signed-in user's own shape. One method for /me, /profile and PATCH so
+   * the three can never disagree about which fields are returned.
+   */
+  private toProfile(user: {
+    id: string;
+    username: string;
+    email: string;
+    role: UserRole;
+    isNotificationAllowed: boolean;
+    testingStatus: TestingStatus | null;
+    testingPoints: number | null;
+    testingRank: string | null;
+    tournamentStatus: TournamentStatus | null;
+    exitReason: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    avatar: { imageUrl: string | null } | null;
+  }): UserProfile {
+    return {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      avatarUrl: user.avatar?.imageUrl ?? null,
+      isNotificationAllowed: user.isNotificationAllowed,
+      testingStatus: user.testingStatus,
+      testingPoints: user.testingPoints,
+      testingRank: user.testingRank,
+      tournamentStatus: user.tournamentStatus,
+      exitReason: user.exitReason,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    };
   }
   
 }

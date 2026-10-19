@@ -7,10 +7,19 @@ export const STATUS_CODE = {
   CREATED: 201,
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,
-  CONFLICT: 409,
+  FORBIDDEN: 403,
   NOT_FOUND: 404,
+  CONFLICT: 409,
+  INPROCESSABLE_ENTITY: 422,
   INTERNAL_SERVER_ERROR: 500,
 };
+
+/** Page size ceiling so one request cannot ask for the whole table. */
+export const PAGINATION = {
+  DEFAULT_PAGE: 1,
+  DEFAULT_LIMIT: 20,
+  MAX_LIMIT: 100,
+} as const;
 
 export const USER_ROLE = {
   ADMIN: "ADMIN",
