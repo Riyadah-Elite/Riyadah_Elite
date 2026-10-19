@@ -1,4 +1,7 @@
 import { Client as MinioClient } from "minio";
+import dotenv from "dotenv";
+
+dotenv.config({ path: "./.env" });
 
 const S3_ENDPOINT = process.env.S3_ENDPOINT ?? "http://localhost:9000";
 
@@ -6,7 +9,7 @@ const S3_ACCESS_KEY = process.env.S3_ACCESS_KEY ?? "minioadmin";
 
 const S3_SECRET_KEY = process.env.S3_SECRET_KEY ?? "minioadmin";
 
-const S3_BUCKET = process.env.S3_BUCKET ?? "yt-comments";
+const S3_BUCKET = process.env.S3_BUCKET ?? "games";
 
 async function clearBucket(): Promise<void> {
   try {

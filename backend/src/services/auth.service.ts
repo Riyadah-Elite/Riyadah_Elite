@@ -58,15 +58,19 @@ export default class AuthService {
     const avatarKey = `avatra/${Date.now()}-${userData.username.toLocaleLowerCase().replace(/\s+/g, "-")}${extension}`;
 
     /*
-     * The URL is what the File row stores. The old code read the object back
-     * out of MinIO and kept a base64 data URI instead, but `imageUrl` is a URL
-     * column - clients can fetch it directly from object storage.
+     * The avatar object is still stored in MinIO, but the DB keeps a base64
+     * data URL so the frontend can render it directly without a second fetch
+     * from object storage.
      */
-    const avatarUrl = await this.storageService.put(
+    const { buffer } = await this.storageService.put(
       avatarKey,
       userData.avatarPath,
       userData.avatarMimeType,
     );
+
+    const imageUrl = `data:${userData.avatarMimeType};base64,${buffer.toString("base64")}`;
+
+    const avatarUrl = imageUrl;
 
     const hashedPassword = await bcrypt.hash(userData.password, 10);
 

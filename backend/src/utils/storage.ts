@@ -42,7 +42,21 @@ export default class StorageService implements IStorage {
     this.logger = logger;
   }
 
-  async put(key: string, filePath: string, mimeType: string): Promise<string> {
+  private static formatError(error: unknown): string {
+    if (error instanceof Error) {
+      const code = (error as NodeJS.ErrnoException).code;
+
+      return code ? `${code}: ${error.message}` : error.message;
+    }
+
+    return String(error);
+  }
+
+  async put(
+    key: string,
+    filePath: string,
+    mimeType: string,
+  ): Promise<{ url: string; buffer: Buffer }> {
     try {
       // 1. Make sure bucket exists
       await this.ensureBucket();
@@ -69,8 +83,11 @@ export default class StorageService implements IStorage {
       // 4. Delete temporary file
       await this.deleteTempFile(filePath);
 
-      // 5. Return MinIO URL
-      return `${this.endpoint}/${this.bucket}/${key}`;
+      // 5. Return MinIO URL and buffer
+      return {
+        url: `${this.endpoint}/${this.bucket}/${key}`,
+        buffer: fileBuffer,
+      };
     } catch (error) {
       // Upload failed, but we still
       // need to remove the temporary file.
@@ -79,11 +96,11 @@ export default class StorageService implements IStorage {
       this.logger.error("Failed to upload file to MinIO", {
         filePath,
         key,
-        error: error instanceof Error ? error.message : String(error),
+        error: StorageService.formatError(error),
       });
 
       throw new ApiError(
-        error instanceof Error ? error.message : String(error),
+        StorageService.formatError(error),
         STATUS_CODE.INTERNAL_SERVER_ERROR,
       );
     }
