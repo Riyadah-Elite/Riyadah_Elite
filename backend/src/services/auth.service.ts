@@ -97,7 +97,8 @@ export default class AuthService {
 
     const token = generateToken({
       userId: user.id,
-      userRole: user.role
+      userRole: user.role,
+      tokenVersion: user.tokenVersion,
     });
 
     return { user: checknewUser, token };
@@ -117,6 +118,17 @@ export default class AuthService {
       throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
     }
 
+    if (user.isDeleted) {
+      this.logger.warn("Login rejected: account has been deleted", {
+        userId: user.id,
+      });
+
+      throw new ApiError(
+        "This account has been deleted",
+        STATUS_CODE.FORBIDDEN,
+      );
+    }
+
     const isPasswordValid = await bcrypt.compare(
       userData.password,
       user.password,
@@ -132,7 +144,8 @@ export default class AuthService {
 
     const token = generateToken({
       userId: user.id,
-      userRole: user.role
+      userRole: user.role,
+      tokenVersion: user.tokenVersion,
     });
 
     /* findByEmail opts back into `password`; the response must not. */
@@ -166,10 +179,6 @@ export default class AuthService {
       throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
     }
 
-    /*
-     * Same shaping as GET /me, so profile cannot drift into returning a wider
-     * row than the dedicated endpoint does.
-     */
     return { user: this.toProfile(user) };
   }
 
@@ -288,18 +297,19 @@ export default class AuthService {
     return this.toProfile(updated);
   }
 
-  /**
-   * Delete a user.
-   *
-   * Game listings, tournament listings and bug reports are *required*
-   * relations, so Postgres refuses the delete while any exist. Rather than
-   * silently cascading away other people's content, the conflict is reported
-   * and the caller decides what to do with those records first.
-   */
+  /** Soft-deletes the account and invalidates all access tokens. */
   async deleteUser(requesterId: string, userId: string): Promise<void> {
     this.logger.info("deleting user", { userId });
 
-    const target = await this.assertExists(userId);
+    const target = await this.authRepository.findUserByIdIncludingDeleted(userId);
+
+    if (!target) {
+      throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
+    }
+
+    if (target.isDeleted && requesterId === userId) {
+      return;
+    }
 
     /* Deleting yourself: the row already in hand is also the requester. */
     const requester =
@@ -314,31 +324,40 @@ export default class AuthService {
       );
     }
 
-    const blocking = await this.authRepository.countBlockingRecords(userId);
-
-    if (
-      blocking &&
-      (blocking.gameListings > 0 ||
-        blocking.tournamentListings > 0 ||
-        blocking.bugReports > 0)
-    ) {
-      throw new ApiError(
-        `User owns ${blocking.gameListings} game listing(s), ${blocking.tournamentListings} tournament listing(s) and ${blocking.bugReports} bug report(s). Remove or reassign them first.`,
-        STATUS_CODE.CONFLICT,
-      );
+    if (target.isDeleted) {
+      return;
     }
 
-    /* Any session still open on that account must stop working immediately. */
-    await this.authRepository.deleteBlacklistedTokens(userId);
-
-    await this.authRepository.deleteUser(userId);
+    await this.authRepository.softDeleteUser(userId);
 
     this.logger.info("user deleted", { userId });
   }
 
-  // ===========================================================================
-  // HELPERS
-  // ===========================================================================
+  async restoreUser(requesterId: string, userId: string): Promise<UserProfile> {
+    const requester = await this.assertExists(requesterId);
+
+    if (requester.role !== USER_ROLE.ADMIN) {
+      throw new ApiError(
+        "Only an admin can restore a user",
+        STATUS_CODE.FORBIDDEN,
+      );
+    }
+
+    const target = await this.authRepository.findUserByIdIncludingDeleted(userId);
+
+    if (!target) {
+      throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
+    }
+
+    if (target.isDeleted) {
+      await this.authRepository.restoreUser(userId);
+    }
+
+    const restored = await this.assertExists(userId);
+    this.logger.info("user restored", { userId, requesterId });
+
+    return this.toProfile(restored);
+  }
 
   private async assertExists(userId: string) {
     const user = await this.authRepository.findUserById(userId);
@@ -367,10 +386,7 @@ export default class AuthService {
     };
   }
 
-  /**
-   * The signed-in user's own shape. One method for /me, /profile and PATCH so
-   * the three can never disagree about which fields are returned.
-   */
+  /** The signed-in user's profile shape, shared by profile reads and updates. */
   private toProfile(user: {
     id: string;
     username: string;
@@ -404,4 +420,3 @@ export default class AuthService {
   }
   
 }
-

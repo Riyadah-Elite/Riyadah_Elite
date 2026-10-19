@@ -5,7 +5,8 @@
 import {
   TESTING_STATUS,
   TOURNAMENT_STATUS,
-  USER_ROLE,
+  USER_ROLES,
+  type UserRole,
 } from "../constants/constants.js";
 
 /*
@@ -18,14 +19,14 @@ import {
  * repository is where the two meet.
  */
 
-export type UserRole = (typeof USER_ROLE)[keyof typeof USER_ROLE];
+export type { UserRole } from "../constants/constants.js";
 export type TestingStatus =
   (typeof TESTING_STATUS)[keyof typeof TESTING_STATUS];
 export type TournamentStatus =
   (typeof TOURNAMENT_STATUS)[keyof typeof TOURNAMENT_STATUS];
 
 /** Enum values, handy for Joi's `valid()` which needs a spreadable list. */
-export const USER_ROLES = Object.values(USER_ROLE) as UserRole[];
+export { USER_ROLES };
 export const TESTING_STATUSES = Object.values(
   TESTING_STATUS,
 ) as TestingStatus[];
@@ -45,6 +46,9 @@ export interface User {
   username: string;
   email: string;
   role: UserRole;
+  isDeleted: boolean;
+  deletedAt: Date | null;
+  tokenVersion: number;
   testingStatus: TestingStatus | null;
   exitReason: string | null;
   tournamentStatus: TournamentStatus | null;

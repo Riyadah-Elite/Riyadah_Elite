@@ -6,7 +6,11 @@ import { httpPost, controller, httpGet, httpDelete, httpPatch } from "inversify-
 import { inject } from "inversify";
 import { TYPES } from "../config/types.js";
 import BaseController from "./base.controller.js";
-import { STATUS_CODE } from "../constants/constants.js";
+import {
+  ALL_USER_ROLES,
+  STATUS_CODE,
+  USER_ROLE,
+} from "../constants/constants.js";
 import {
   loginSchema,
   registerSchema,
@@ -52,6 +56,12 @@ export default class AuthController extends BaseController {
       });
       return this.success(res, user, STATUS_CODE.CREATED);
     } catch (error) {
+      this.logger.error(
+        "register: request failed",
+        error instanceof Error
+          ? { error: error.message, stack: error.stack }
+          : { error: String(error) },
+      );
       return this.handleError(res, error);
     }
   }
@@ -74,10 +84,13 @@ export default class AuthController extends BaseController {
     }
   }
 
-  @httpGet("/profile", authMiddleware)
+  @httpGet("/profile", authMiddleware(ALL_USER_ROLES))
   async profile(req: Request, res: Response) {
     try {
-      const { token } = req.cookies;
+      const token =
+        req.cookies?.token ??
+        req.headers.authorization?.slice("Bearer ".length) ??
+        "";
 
       const user = await this.authService.profile({
         userId: req.user!.userId,
@@ -89,11 +102,14 @@ export default class AuthController extends BaseController {
     }
   }
 
-  @httpGet("/logout", authMiddleware)
+  @httpGet("/logout", authMiddleware(ALL_USER_ROLES))
   async logout(req: Request, res: Response) {
     this.logger.info("requesting logout", { userId: req.user?.userId });
     try {
-      const { token } = req.cookies;
+      const token =
+        req.cookies?.token ??
+        req.headers.authorization?.slice("Bearer ".length) ??
+        "";
 
       await this.authService.logout({ token, userId: req.user!.userId });
 
@@ -113,8 +129,20 @@ export default class AuthController extends BaseController {
     }
   }
 
+  @httpPatch("/restore/:userId", authMiddleware(USER_ROLE.ADMIN))
+  async restore(req: Request, res: Response) {
+    try {
+      const { userId } = validateOrThrow(userIdParamsSchema, req.params);
+      const user = await this.authService.restoreUser(req.user!.userId, userId);
+
+      return this.success(res, user, STATUS_CODE.OK);
+    } catch (error) {
+      return this.handleError(res, error);
+    }
+  }
+
   /** GET /api/v1/user?page=1&limit=20&search=ali&role=USER */
-  @httpGet("/", authMiddleware)
+  @httpGet("/", authMiddleware(ALL_USER_ROLES))
   async list(req: Request, res: Response) {
     try {
       const query = validateOrThrow(userListQuerySchema, req.query);
@@ -141,7 +169,7 @@ export default class AuthController extends BaseController {
   }
 
   /** PATCH /api/v1/user/:userId */
-  @httpPatch("/:userId", authMiddleware)
+  @httpPatch("/:userId", authMiddleware(ALL_USER_ROLES))
   async update(req: Request, res: Response) {
     try {
       const { userId } = validateOrThrow(userIdParamsSchema, req.params);
@@ -159,7 +187,7 @@ export default class AuthController extends BaseController {
   }
 
   /** DELETE /api/v1/user/:userId */
-  @httpDelete("/:userId", authMiddleware)
+  @httpDelete("/:userId", authMiddleware(ALL_USER_ROLES))
   async remove(req: Request, res: Response) {
     try {
       const { userId } = validateOrThrow(userIdParamsSchema, req.params);

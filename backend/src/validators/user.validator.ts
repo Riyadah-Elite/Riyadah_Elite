@@ -3,12 +3,16 @@
  */
 
 import Joi from "joi";
-import { PAGINATION, STATUS_CODE, USER_ROLE } from "../constants/constants.js";
+import {
+  PAGINATION,
+  STATUS_CODE,
+  USER_ROLE,
+  USER_ROLES,
+} from "../constants/constants.js";
 import ApiError from "../utils/apiError.js";
 import {
   TESTING_STATUSES,
   TOURNAMENT_STATUSES,
-  USER_ROLES,
 } from "../types/user.types.js";
 
 /*
@@ -99,8 +103,7 @@ export function firstErrorMessage(error: Joi.ValidationError): string {
  */
 export const userIdParamsSchema = Joi.object({
   userId: Joi.string()
-    .pattern(/^[a-z0-9]+$/i)
-    .max(64)
+    .pattern(/^c[a-z0-9]{24}$/)
     .required(),
 });
 

@@ -9,6 +9,7 @@ declare global {
     interface Request {
       user?: {
         userId: string;
+        role: import("./user.types.js").UserRole;
       };
     }
   }

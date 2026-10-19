@@ -89,8 +89,33 @@ export default class AuthRepository {
 
   async findUserById(id: string) {
     return await this.db.user.findUnique({
+      where: { id, isDeleted: false },
+      include: { avatar: { select: { imageUrl: true } } },
+    });
+  }
+
+  async findUserByIdIncludingDeleted(id: string) {
+    return await this.db.user.findUnique({
       where: { id },
       include: { avatar: { select: { imageUrl: true } } },
+    });
+  }
+
+  async findUserForAuthorization(id: string) {
+    return await this.db.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        role: true,
+        isDeleted: true,
+        tokenVersion: true,
+      },
+    });
+  }
+
+  async isTokenBlacklisted(token: string) {
+    return await this.db.blacklistToken.findUnique({
+      where: { token },
     });
   }
 
@@ -106,6 +131,7 @@ export default class AuthRepository {
         ? { username: { contains: query.search, mode: "insensitive" as const } }
         : {}),
       ...(query.role ? { role: query.role } : {}),
+      isDeleted: false,
     };
 
     const [users, total] = await this.db.$transaction([
@@ -123,8 +149,8 @@ export default class AuthRepository {
   }
 
   async findByUsername(username: string) {
-    return await this.db.user.findUnique({
-      where: { username },
+    return await this.db.user.findFirst({
+      where: { username, isDeleted: false },
       select: { id: true, email: true, role: true },
     });
   }
@@ -180,40 +206,22 @@ export default class AuthRepository {
     });
   }
 
-  /**
-   * Counts the records that would block a delete. `blacklistedTokens`, `files`,
-   * `notifications` and `chatMessages` cascade in the database, but listings
-   * and bug reports are required relations and Postgres would refuse the delete.
-   */
-  async countBlockingRecords(id: string) {
-    const user = await this.db.user.findUnique({
-      where: { id },
-      select: {
-        _count: {
-          select: {
-            gameListings: true,
-            tournamentListings: true,
-            bugReports: true,
-          },
-        },
+  /** Invalidates every previously issued access token and soft-deletes once. */
+  async softDeleteUser(id: string) {
+    return await this.db.user.updateMany({
+      where: { id, isDeleted: false },
+      data: {
+        isDeleted: true,
+        deletedAt: new Date(),
+        tokenVersion: { increment: 1 },
       },
     });
-
-    return user?._count ?? null;
   }
 
-  /** Revokes every outstanding token for a user - used when deleting/updating. */
-  async deleteBlacklistedTokens(userId: string) {
-    return await this.db.blacklistToken.deleteMany({ where: { userId } });
-  }
-
-  async deleteUser(id: string) {
-    return await this.db.user.delete({ where: { id } });
-  }
-
-  async isTokenBlacklisted(token: string) {
-    return await this.db.blacklistToken.findUnique({
-      where: { token },
+  async restoreUser(id: string) {
+    return await this.db.user.updateMany({
+      where: { id, isDeleted: true },
+      data: { isDeleted: false, deletedAt: null },
     });
   }
 
