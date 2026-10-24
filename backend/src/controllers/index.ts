@@ -3,3 +3,6 @@
  */
 
 import "./auth.controller.js";
+import "./file.controller.js";
+import "./category.controller.js";
+import "./listing.controller.js";

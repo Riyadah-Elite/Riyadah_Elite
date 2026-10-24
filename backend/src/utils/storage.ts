@@ -9,6 +9,7 @@ import Logger from "./logger.js";
 import { IStorage } from "../types/storage.types.js";
 import ApiError from "./apiError.js";
 import { STATUS_CODE } from "../constants/constants.js";
+import { FILE_ERRORS } from "../constants/error.js";
 
 @injectable()
 export default class StorageService implements IStorage {
@@ -100,7 +101,7 @@ export default class StorageService implements IStorage {
       });
 
       throw new ApiError(
-        StorageService.formatError(error),
+        FILE_ERRORS.UPLOAD_FAILED,
         STATUS_CODE.INTERNAL_SERVER_ERROR,
       );
     }

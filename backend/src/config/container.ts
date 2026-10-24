@@ -8,9 +8,15 @@ import { TYPES } from "./types.js";
 
 // service
 import AuthService from "../services/auth.service.js";
+import FileService from "../services/file.service.js";
+import CategoryService from "../services/category.service.js";
+import ListingService from "../services/listing.service.js";
 
 // repository
 import AuthRepository from "../repositories/auth.repository.js";
+import FileRepository from "../repositories/file.repository.js";
+import CategoryRepository from "../repositories/category.repository.js";
+import ListingRepository from "../repositories/listing.repository.js";
 
 // infrastructure
 import Logger from "../utils/logger.js";
@@ -48,9 +54,15 @@ container
 
 // Service bindings
 container.bind(TYPES.AuthService).to(AuthService).inSingletonScope();
+container.bind(TYPES.FileService).to(FileService).inSingletonScope();
+container.bind(TYPES.CategoryService).to(CategoryService).inSingletonScope();
+container.bind(TYPES.ListingService).to(ListingService).inSingletonScope();
 
 // Repository bindings
 container.bind(TYPES.AuthRepository).to(AuthRepository).inSingletonScope();
+container.bind(TYPES.FileRepository).to(FileRepository).inSingletonScope();
+container.bind(TYPES.CategoryRepository).to(CategoryRepository).inSingletonScope();
+container.bind(TYPES.ListingRepository).to(ListingRepository).inSingletonScope();
 
 // Logger bindings
 container.bind(TYPES.Logger).to(Logger).inSingletonScope();

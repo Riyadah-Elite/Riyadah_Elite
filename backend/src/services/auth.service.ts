@@ -23,6 +23,7 @@ import {
 import Logger from "../utils/logger.js";
 import AuthRepository from "../repositories/auth.repository.js";
 import { STATUS_CODE, USER_ROLE } from "../constants/constants.js";
+import { AUTH_ERRORS, USER_ERRORS } from "../constants/error.js";
 import ApiError from "../utils/apiError.js";
 import StorageService from "../utils/storage.js";
 import path from "path";
@@ -51,7 +52,7 @@ export default class AuthService {
         email: userData.email,
       });
 
-      throw new ApiError("User already exists", STATUS_CODE.CONFLICT);
+      throw new ApiError(USER_ERRORS.EMAIL_ALREADY_EXISTS, STATUS_CODE.CONFLICT);
     }
     
     const extension = path.extname(userData.avatarPath);
@@ -92,7 +93,7 @@ export default class AuthService {
       });
 
       throw new ApiError(
-        "Something went wrong while registering",
+        USER_ERRORS.REGISTRATION_FAILED,
         STATUS_CODE.INTERNAL_SERVER_ERROR,
       );
     }
@@ -119,7 +120,7 @@ export default class AuthService {
         userEmail: userData.email,
       });
 
-      throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
+      throw new ApiError(USER_ERRORS.NOT_FOUND, STATUS_CODE.NOT_FOUND);
     }
 
     if (user.isDeleted) {
@@ -128,7 +129,7 @@ export default class AuthService {
       });
 
       throw new ApiError(
-        "This account has been deleted",
+        USER_ERRORS.ACCOUNT_DELETED,
         STATUS_CODE.FORBIDDEN,
       );
     }
@@ -143,7 +144,7 @@ export default class AuthService {
         userId: user.id,
       });
 
-      throw new ApiError("Invalid password", STATUS_CODE.UNAUTHORIZED);
+      throw new ApiError(AUTH_ERRORS.INVALID_PASSWORD, STATUS_CODE.UNAUTHORIZED);
     }
 
     const token = generateToken({
@@ -170,7 +171,7 @@ export default class AuthService {
         userId: UserData.userId,
       });
 
-      throw new ApiError("token is not valid", STATUS_CODE.UNAUTHORIZED);
+      throw new ApiError(AUTH_ERRORS.TOKEN_INVALID, STATUS_CODE.UNAUTHORIZED);
     }
 
     const user = await this.authRepository.findUserById(UserData.userId);
@@ -180,7 +181,7 @@ export default class AuthService {
         userId: UserData.userId,
       });
 
-      throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
+      throw new ApiError(USER_ERRORS.NOT_FOUND, STATUS_CODE.NOT_FOUND);
     }
 
     return { user: this.toProfile(user) };
@@ -197,7 +198,7 @@ export default class AuthService {
       this.logger.warn("Logout rejected: token is already blacklisted");
 
       throw new ApiError(
-        "token is already blacklisted",
+        AUTH_ERRORS.TOKEN_ALREADY_BLACKLISTED,
         STATUS_CODE.UNAUTHORIZED,
       );
     }
@@ -271,14 +272,14 @@ export default class AuthService {
 
     if (requesterId !== input.userId && !isAdmin) {
       throw new ApiError(
-        "You are not allowed to update another user",
+        USER_ERRORS.UPDATE_FORBIDDEN,
         STATUS_CODE.FORBIDDEN,
       );
     }
 
     if (input.role && !isAdmin) {
       throw new ApiError(
-        "Only an admin can change a role",
+        USER_ERRORS.ROLE_CHANGE_FORBIDDEN,
         STATUS_CODE.FORBIDDEN,
       );
     }
@@ -290,7 +291,7 @@ export default class AuthService {
       const taken = await this.authRepository.findByUsername(input.username);
 
       if (taken && taken.id !== input.userId) {
-        throw new ApiError("Username is already taken", STATUS_CODE.CONFLICT);
+        throw new ApiError(USER_ERRORS.USERNAME_ALREADY_EXISTS, STATUS_CODE.CONFLICT);
       }
     }
 
@@ -308,7 +309,7 @@ export default class AuthService {
     const target = await this.authRepository.findUserByIdIncludingDeleted(userId);
 
     if (!target) {
-      throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
+      throw new ApiError(USER_ERRORS.NOT_FOUND, STATUS_CODE.NOT_FOUND);
     }
 
     if (target.isDeleted && requesterId === userId) {
@@ -323,7 +324,7 @@ export default class AuthService {
 
     if (requesterId !== userId && !isAdmin) {
       throw new ApiError(
-        "You are not allowed to delete another user",
+        USER_ERRORS.DELETE_FORBIDDEN,
         STATUS_CODE.FORBIDDEN,
       );
     }
@@ -342,7 +343,7 @@ export default class AuthService {
 
     if (requester.role !== USER_ROLE.ADMIN) {
       throw new ApiError(
-        "Only an admin can restore a user",
+        USER_ERRORS.RESTORE_FORBIDDEN,
         STATUS_CODE.FORBIDDEN,
       );
     }
@@ -350,7 +351,7 @@ export default class AuthService {
     const target = await this.authRepository.findUserByIdIncludingDeleted(userId);
 
     if (!target) {
-      throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
+      throw new ApiError(USER_ERRORS.NOT_FOUND, STATUS_CODE.NOT_FOUND);
     }
 
     if (target.isDeleted) {
@@ -367,7 +368,7 @@ export default class AuthService {
     const user = await this.authRepository.findUserById(userId);
 
     if (!user) {
-      throw new ApiError("User not found", STATUS_CODE.NOT_FOUND);
+      throw new ApiError(USER_ERRORS.NOT_FOUND, STATUS_CODE.NOT_FOUND);
     }
 
     return user;

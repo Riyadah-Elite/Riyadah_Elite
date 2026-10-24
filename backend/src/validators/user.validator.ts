@@ -3,17 +3,13 @@
  */
 
 import Joi from "joi";
-import {
-  PAGINATION,
-  STATUS_CODE,
-  USER_ROLE,
-  USER_ROLES,
-} from "../constants/constants.js";
-import ApiError from "../utils/apiError.js";
+import { PAGINATION, USER_ROLE, USER_ROLES } from "../constants/constants.js";
 import {
   TESTING_STATUSES,
   TOURNAMENT_STATUSES,
 } from "../types/user.types.js";
+
+export { firstErrorMessage, validateOrThrow } from "./validate.js";
 
 /*
  * Boundary validation for everything the User model accepts. The allowed enum
@@ -87,15 +83,6 @@ export const avatarMetadataSchema = Joi.object({
 });
 
 /**
- * Throws the first validation error as a message string, or returns null when
- * the payload is valid. Keeps controllers to a single `if` instead of making
- * them unpack `error.details`.
- */
-export function firstErrorMessage(error: Joi.ValidationError): string {
-  return error.details[0]?.message ?? "Invalid request";
-}
-
-/**
  * `:userId` route params.
  *
  * Ids are cuid (or a uuid for tokens), so the pattern rejects anything else
@@ -133,28 +120,3 @@ export const updateUserDetailsSchema = Joi.object({
   role: Joi.string().valid(...USER_ROLES),
   isNotificationAllowed: Joi.boolean(),
 }).min(1);
-
-/**
- * Runs a schema and returns the coerced value, or throws an ApiError the
- * controller already knows how to turn into a 400.
- *
- * `stripUnknown` drops fields the schema does not declare instead of failing,
- * so an older client sending extra keys is not rejected - but those keys can
- * never reach the service either.
- */
-export function validateOrThrow<TSchema extends Joi.Schema>(
-  schema: TSchema,
-  payload: unknown,
-): Joi.UnwrapSchemaLikeWithoutArray<TSchema> {
-  const { error, value } = schema.validate(payload, {
-    abortEarly: true,
-    stripUnknown: true,
-    convert: true,
-  });
-
-  if (error) {
-    throw new ApiError(error.details[0]?.message ?? "Invalid request", STATUS_CODE.BAD_REQUEST);
-  }
-
-  return value as Joi.UnwrapSchemaLikeWithoutArray<TSchema>;
-}

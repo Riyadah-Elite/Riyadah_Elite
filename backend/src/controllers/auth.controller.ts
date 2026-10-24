@@ -11,14 +11,15 @@ import {
   STATUS_CODE,
   USER_ROLE,
 } from "../constants/constants.js";
+import { FILE_ERRORS } from "../constants/error.js";
 import {
   loginSchema,
   registerSchema,
   updateUserDetailsSchema,
   userIdParamsSchema,
   userListQuerySchema,
-  validateOrThrow,
 } from "../validators/user.validator.js";
+import { validateOrThrow } from "../validators/validate.js";
 import { Request, Response } from "express";
 import AuthService from "../services/auth.service.js";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
@@ -40,7 +41,7 @@ export default class AuthController extends BaseController {
       const body = validateOrThrow(registerSchema, req.body);
 
       if (!req.file) {
-        return this.error(res, "Avatar is required", STATUS_CODE.BAD_REQUEST);
+        return this.error(res, FILE_ERRORS.REQUIRED, STATUS_CODE.BAD_REQUEST);
       }
 
       const user = await this.authService.register({

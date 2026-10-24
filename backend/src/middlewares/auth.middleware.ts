@@ -5,6 +5,7 @@
 import type { NextFunction, Request, Response } from "express";
 import { ALL_USER_ROLES, STATUS_CODE } from "../constants/constants.js";
 import type { UserRole } from "../constants/constants.js";
+import { AUTH_ERRORS } from "../constants/error.js";
 import container from "../config/container.js";
 import { TYPES } from "../config/types.js";
 import type AuthRepository from "../repositories/auth.repository.js";
@@ -32,7 +33,7 @@ export const authMiddleware = (
     if (!token) {
       return res
         .status(STATUS_CODE.UNAUTHORIZED)
-        .json({ message: "Authentication required" });
+        .json({ message: AUTH_ERRORS.REQUIRED });
     }
 
     let decoded;
@@ -42,7 +43,7 @@ export const authMiddleware = (
     } catch {
       return res
         .status(STATUS_CODE.UNAUTHORIZED)
-        .json({ message: "Invalid token" });
+        .json({ message: AUTH_ERRORS.INVALID_TOKEN });
     }
 
     try {
@@ -55,13 +56,13 @@ export const authMiddleware = (
       if (!user) {
         return res
           .status(STATUS_CODE.UNAUTHORIZED)
-          .json({ message: "Invalid token" });
+          .json({ message: AUTH_ERRORS.INVALID_TOKEN });
       }
 
       if (user.isDeleted) {
         return res
           .status(STATUS_CODE.FORBIDDEN)
-          .json({ message: "This account has been deleted" });
+          .json({ message: AUTH_ERRORS.ACCOUNT_DELETED });
       }
 
       if (
@@ -71,13 +72,13 @@ export const authMiddleware = (
       ) {
         return res
           .status(STATUS_CODE.UNAUTHORIZED)
-          .json({ message: "Invalid token" });
+          .json({ message: AUTH_ERRORS.INVALID_TOKEN });
       }
 
       if (!allowedRoles.includes(user.role)) {
         return res
           .status(STATUS_CODE.FORBIDDEN)
-          .json({ message: "You are not allowed to access this resource" });
+          .json({ message: AUTH_ERRORS.FORBIDDEN });
       }
 
       req.user = { userId: user.id, role: user.role };
