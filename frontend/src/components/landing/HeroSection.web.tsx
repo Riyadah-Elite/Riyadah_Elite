@@ -132,7 +132,7 @@ export function HeroSection() {
       ref={heroContainerRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="relative w-full min-h-[780px] lg:min-h-[860px] flex items-center justify-center overflow-hidden bg-[#F4FAFE] pt-24 pb-16 select-none"
+      className="relative w-full min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden bg-[#F4FAFE] pt-20 pb-12 select-none"
     >
       {/* 1. Atmospheric Esports Arena Environment (Light-first ambient lighting + technical grid) */}
       <div
@@ -236,37 +236,37 @@ export function HeroSection() {
 
             {/* Headline */}
             <div ref={headlineRef}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[66px] font-black text-[#14283A] tracking-tight leading-[1.05] mb-6">
-                Play. Test. Compete.{' '}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black text-[#14283A] tracking-tight leading-[1.08] mb-4">
+                Discover Games.{' '}
                 <span className="block mt-1 text-transparent bg-clip-text bg-gradient-to-r from-[#08A8C8] via-[#0284C7] to-[#8057F5]">
-                  Built for What’s Next.
+                  Join the Competition.
                 </span>
               </h1>
             </div>
 
             {/* Description */}
             <div ref={descRef}>
-              <p className="text-base sm:text-lg text-[#647B91] font-normal leading-relaxed max-w-xl mb-8">
-                The premier competitive gaming and quality assurance ecosystem uniting verified game studios, elite squads, and dedicated playtesters across the Middle East. Stress-test pre-release builds with real-time frame telemetry and compete in official tournament ladders.
+              <p className="text-base sm:text-lg text-[#647B91] font-normal leading-relaxed max-w-xl mb-6">
+                Explore games, join playtests, compete in tournaments, and help studios build better gaming experiences.
               </p>
             </div>
 
             {/* CTAs */}
-            <div ref={ctaRef} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            <div ref={ctaRef} className="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
               <a
-                href="#testing"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm tracking-wide bg-[#08A8C8] hover:bg-[#068EA9] text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group cursor-pointer"
+                href="#games"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider bg-[#08A8C8] hover:bg-[#068EA9] text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group cursor-pointer"
               >
-                <span>Explore Playtest Waves</span>
-                <Ionicons name="arrow-forward" size={17} color="white" />
+                <Ionicons name="game-controller-outline" size={17} color="white" />
+                <span>Explore Games</span>
               </a>
 
               <a
                 href="#tournaments"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm tracking-wide bg-white/95 hover:bg-white text-[#14283A] border border-[#DCE8F0] hover:border-cyan-300 shadow-xs backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group cursor-pointer"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider bg-white/95 hover:bg-white text-[#14283A] border border-[#DCE8F0] hover:border-cyan-300 shadow-xs backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group cursor-pointer"
               >
-                <Ionicons name="trophy-outline" size={18} color="#8057F5" />
-                <span>Championship Brackets</span>
+                <Ionicons name="trophy-outline" size={17} color="#8057F5" />
+                <span>View Tournaments</span>
               </a>
             </div>
 
@@ -276,19 +276,19 @@ export function HeroSection() {
             {/* Capability Row (Verified Technical Facts) */}
             <div
               ref={statsRef}
-              className="grid grid-cols-3 gap-6 pt-8 mt-6 border-t border-[#DCE8F0] w-full max-w-lg text-left"
+              className="grid grid-cols-3 gap-6 pt-6 mt-6 border-t border-[#DCE8F0] w-full max-w-lg text-left"
             >
               <div>
-                <p className="text-lg sm:text-xl font-black text-[#14283A] tracking-tight">Telemetry QA</p>
-                <p className="text-[11px] font-mono text-[#647B91] font-medium mt-0.5">Frame Diagnostics</p>
+                <p className="text-base sm:text-lg font-black text-[#14283A] tracking-tight">Verified Builds</p>
+                <p className="text-[11px] font-mono text-[#647B91] font-medium mt-0.5">Alpha & Beta Access</p>
               </div>
               <div>
-                <p className="text-lg sm:text-xl font-black text-[#14283A] tracking-tight">Studio Builds</p>
-                <p className="text-[11px] font-mono text-[#647B91] font-medium mt-0.5">Verified Alphas</p>
+                <p className="text-base sm:text-lg font-black text-[#14283A] tracking-tight">Telemetry QA</p>
+                <p className="text-[11px] font-mono text-[#647B91] font-medium mt-0.5">Direct Feedback</p>
               </div>
               <div>
-                <p className="text-lg sm:text-xl font-black text-[#14283A] tracking-tight">Escrow Vault</p>
-                <p className="text-[11px] font-mono text-[#647B91] font-medium mt-0.5">Verified Rewards</p>
+                <p className="text-base sm:text-lg font-black text-[#14283A] tracking-tight">Tiered Ladders</p>
+                <p className="text-[11px] font-mono text-[#647B91] font-medium mt-0.5">Official Brackets</p>
               </div>
             </div>
           </div>
@@ -297,70 +297,7 @@ export function HeroSection() {
           <div className="hidden lg:flex lg:col-span-6 flex-col items-end justify-center pointer-events-none" />
         </div>
 
-        {/* Category Quick-Nav Dock (Interactive Arena Portal Navigation) */}
-        <div className="mt-14 pt-8 border-t border-[#DCE8F0]/80 pointer-events-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a
-              href="#explore"
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-[#DCE8F0] hover:border-cyan-300 shadow-2xs hover:shadow-md transition-all group cursor-pointer"
-            >
-              <div className="w-10 h-10 rounded-xl bg-cyan-50 text-[#08A8C8] flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Ionicons name="game-controller-outline" size={20} color="#08A8C8" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xs font-black text-[#14283A] uppercase tracking-wide group-hover:text-[#08A8C8] transition-colors">
-                  Games Hub
-                </span>
-                <span className="text-[11px] text-[#647B91] font-medium">Curated Alpha Builds</span>
-              </div>
-            </a>
 
-            <a
-              href="#testing"
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-[#DCE8F0] hover:border-cyan-300 shadow-2xs hover:shadow-md transition-all group cursor-pointer"
-            >
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Ionicons name="shield-checkmark-outline" size={20} color="#10B981" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xs font-black text-[#14283A] uppercase tracking-wide group-hover:text-emerald-700 transition-colors">
-                  QA Bounties
-                </span>
-                <span className="text-[11px] text-[#647B91] font-medium">Telemetry Logging</span>
-              </div>
-            </a>
-
-            <a
-              href="#tournaments"
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-[#DCE8F0] hover:border-violet-300 shadow-2xs hover:shadow-md transition-all group cursor-pointer"
-            >
-              <div className="w-10 h-10 rounded-xl bg-violet-50 text-[#8057F5] flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Ionicons name="trophy-outline" size={20} color="#8057F5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xs font-black text-[#14283A] uppercase tracking-wide group-hover:text-[#8057F5] transition-colors">
-                  Tournaments
-                </span>
-                <span className="text-[11px] text-[#647B91] font-medium">Weekly Tiered Cups</span>
-              </div>
-            </a>
-
-            <a
-              href="#rewards"
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-[#DCE8F0] hover:border-amber-300 shadow-2xs hover:shadow-md transition-all group cursor-pointer"
-            >
-              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Ionicons name="gift-outline" size={20} color="#D97706" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xs font-black text-[#14283A] uppercase tracking-wide group-hover:text-amber-700 transition-colors">
-                  Rewards
-                </span>
-                <span className="text-[11px] text-[#647B91] font-medium">Keys & Contributor XP</span>
-              </div>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );

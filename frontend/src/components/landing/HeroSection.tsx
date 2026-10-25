@@ -11,38 +11,38 @@ export function HeroSection() {
       </View>
 
       <Text style={styles.headline}>
-        Play. Test. Compete.{'\n'}
-        <Text style={styles.headlineHighlight}>{"Built for What's Next."}</Text>
+        Discover Games.{'\n'}
+        <Text style={styles.headlineHighlight}>Join the Competition.</Text>
       </Text>
 
       <Text style={styles.subtitle}>
-        Uniting verified game studios, elite competitive squads, and precision playtesters in an all-in-one esports arena.
+        Explore games, join playtests, compete in tournaments, and help studios build better gaming experiences.
       </Text>
 
       <View style={styles.ctaRow}>
         <TouchableOpacity style={styles.primaryBtn} activeOpacity={0.85}>
-          <Text style={styles.primaryBtnText}>Explore Playtest Waves</Text>
-          <Ionicons name="arrow-forward" size={18} color="white" />
+          <Ionicons name="game-controller-outline" size={18} color="white" />
+          <Text style={styles.primaryBtnText}>Explore Games</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.secondaryBtn} activeOpacity={0.85}>
           <Ionicons name="trophy-outline" size={18} color="#08A8C8" />
-          <Text style={styles.secondaryBtnText}>Championship Brackets</Text>
+          <Text style={styles.secondaryBtnText}>View Tournaments</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.statsRow}>
         <View style={styles.statBox}>
+          <Text style={styles.statVal}>Verified Builds</Text>
+          <Text style={styles.statLabel}>Alpha & Beta</Text>
+        </View>
+        <View style={styles.statBox}>
           <Text style={styles.statVal}>Telemetry QA</Text>
-          <Text style={styles.statLabel}>Frame Diagnostics</Text>
+          <Text style={styles.statLabel}>Direct Dev Logs</Text>
         </View>
         <View style={styles.statBox}>
-          <Text style={styles.statVal}>Studio Builds</Text>
-          <Text style={styles.statLabel}>Verified Alphas</Text>
-        </View>
-        <View style={styles.statBox}>
-          <Text style={styles.statVal}>Escrow Vault</Text>
-          <Text style={styles.statLabel}>Verified Rewards</Text>
+          <Text style={styles.statVal}>Tiered Ladders</Text>
+          <Text style={styles.statLabel}>Official Brackets</Text>
         </View>
       </View>
     </View>
