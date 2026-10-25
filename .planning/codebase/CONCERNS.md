@@ -1,18 +1,26 @@
 # Concerns & Technical Debt
 
-## Critical Architectural Considerations
+**Analysis Date:** 2026-10-25
 
-1. **Git Sparse Checkout Active**:
-   - The workspace currently has sparse checkout enabled restricting local files to `frontend/`.
-   - The remote repository contains backend services (`server/` with Prisma migrations, auth routes, developer/host/player routes) which are currently excluded from the local working directory.
-   - Any full-stack feature development or end-to-end integration testing against the backend will require either broadening the sparse-checkout patterns or running the backend containerized.
+## Technical Considerations & Risk Areas
 
-2. **Incomplete Client Screens**:
-   - The frontend was recently rewritten into React Native / Expo SDK 58. Currently, only the baseline `index.tsx` screen and `auth.ts` service exist.
-   - Tournament, player opportunity, bug reporting, and host management screens from the original specification need to be re-implemented.
+### 1. Git Sparse-Checkout Scope
+- **Issue**: The local repository checkout is in sparse-checkout mode covering `frontend/`.
+- **Impact**: Backend code (`server/`), database seeds, Prisma schemas, and Docker backend containers reside in the wider repository or on remote.
+- **Remediation**: Frontend developers can develop autonomously with mock responses or point `EXPO_PUBLIC_API_URL` to a deployed staging backend or local Docker instance.
 
-3. **Backend Service Mocking / Availability**:
-   - `API_BASE_URL` points to `http://localhost:5000` by default. When testing on physical mobile devices, `localhost` resolves to the phone itself. Developers must configure `EXPO_PUBLIC_API_URL` to point to their machine's LAN IP address or a hosted staging environment.
+### 2. WebGL Performance on Lower-End Devices
+- **Issue**: The 3D Nexus uses Three.js with multiple meshes, contact shadows, and three preloaded GLB models.
+- **Current Mitigations**:
+  - Clamped DPR `[1, 1.5]` to avoid 3x retina over-rendering.
+  - Assets strictly optimized from 102.7 MB down to 28.1 MB total (hero payload <14 MB).
+  - Headless Khronos glTF 2.0 conformance validator in place.
+- **Recommendations**: Continue monitoring frame times; provide a static CSS hero fallback for low-power or WebGL-unsupported environments.
 
-4. **Security & Credential Management**:
-   - Verify that all `.env` and environment variables intended for `EXPO_PUBLIC_*` do not expose sensitive API keys or credentials, as they are inlined into client-side JS bundles.
+### 3. Modal / Navigation Flow Completion (Phase 1 Target)
+- **Issue**: The Navbar "Sign In" and "Join Now" CTA buttons currently display alert prompts linking to the underlying endpoints (`/api/v1/user/login` and `/api/v1/user/register`).
+- **Next Phase**: Phase 1 is scheduled to build interactive authentication modals, persistent auth token state, and authenticated user navigation drawers.
+
+### 4. ESLint R3F JSX Warnings
+- **Issue**: ESLint flags `@react-three/fiber` declarative props (e.g., `position`, `rotation`, `intensity`, `args`) as unknown DOM properties (`react/no-unknown-property`).
+- **Remediation**: Configure `eslint-plugin-react` `ignore` list for standard Three.js R3F element attributes to achieve zero warnings.

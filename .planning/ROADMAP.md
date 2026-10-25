@@ -1,5 +1,13 @@
 # Roadmap
 
+## Phase 0: Landing Page & Interactive 3D Web Rebuild (Complete)
+- [x] Stage A: Repository audit, safe frontend backup (`backups/frontend_backup_20261024`), asset extraction (`public/models/`), and obsolete frame removal.
+- [x] Stage B: Compatible web 3D & animation foundation (Three.js, @react-three/fiber, @react-three/drei, gsap, lucide-react-native).
+- [x] Stage C: Riyadah Elite theme tokens, global typography, and responsive page shell.
+- [x] Stage D: Interactive 3D Hero (`HeroSection.web.tsx`, `HeroScene3D.web.tsx` with PlayStation controller, responsive staging, and native fallback).
+- [x] Stage E: Full landing-page component suite (Navbar, FeatureCards, FeaturedGames, PlatformStats, GameTesting, Tournaments, Rewards, About, Community, Newsletter, Footer).
+- [x] Stage F: Web & native verification (TypeScript, lint, responsive views, reduced motion, fallback handling, production web export).
+
 ## Phase 1: Authentication & Navigation Shell
 - [ ] Implement Auth Screens (Login, Register with avatar picker).
 - [ ] Setup Persistent Auth Context / State with session tokens.

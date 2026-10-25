@@ -7,6 +7,37 @@ import { HeroScene3D } from '@/components/3d/HeroScene3D.web';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { gsap } from 'gsap';
 
+interface SceneErrorBoundaryProps {
+  children: React.ReactNode;
+  fallback: React.ReactNode;
+}
+
+interface SceneErrorBoundaryState {
+  hasError: boolean;
+}
+
+class SceneErrorBoundary extends React.Component<SceneErrorBoundaryProps, SceneErrorBoundaryState> {
+  constructor(props: SceneErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: unknown) {
+    console.warn('[HeroSection] WebGL/3D scene error handled gracefully:', error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
+
 export function HeroSection() {
   const headlineRef = useRef<HTMLDivElement | null>(null);
   const badgeRef = useRef<HTMLDivElement | null>(null);
@@ -108,46 +139,64 @@ export function HeroSection() {
       <div className="absolute -top-12 left-10 w-[450px] h-[350px] bg-sky-100/20 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-[#F8FCFF] to-transparent pointer-events-none z-10" />
 
-      {/* 2. Full-Bleed 3D Controller Canvas */}
+      {/* 2. Full-Bleed 3D Controller Canvas with Graceful Error Boundary */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
-        <Suspense
+        <SceneErrorBoundary
           fallback={
-            <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-cyan-700 pointer-events-auto">
-              <ActivityIndicator size="large" color="#0891B2" />
-              <span className="text-xs font-semibold text-neutral-400">Loading Riyadah Nexus...</span>
+            <div
+              className="w-full h-full flex items-center justify-center pointer-events-none"
+              style={{ transform: `translateX(${isMobile ? 0 : 25}%)` }}
+            >
+              <div className="relative w-72 h-72 sm:w-88 sm:h-88 flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400/25 via-sky-300/15 to-transparent rounded-full blur-2xl" />
+                <img
+                  src="/assets/hardware/handheld_console.png"
+                  alt="Riyadah Gaming Nexus"
+                  className="w-56 sm:w-64 object-contain drop-shadow-2xl opacity-90"
+                />
+              </div>
             </div>
           }
         >
-          <Canvas
-            camera={{ position: [0, 0.04, 3.8], fov: isMobile ? 54 : 45 }}
-            dpr={[1, 1.5]}
-            gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-            style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
+          <Suspense
+            fallback={
+              <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-cyan-700 pointer-events-auto">
+                <ActivityIndicator size="large" color="#0891B2" />
+                <span className="text-xs font-semibold text-neutral-400">Loading Riyadah Nexus...</span>
+              </div>
+            }
           >
-            {/* Studio-Grade Lighting tuned for DualSense materials */}
-            <ambientLight intensity={1.25} />
-            <directionalLight position={[4, 6, 5]} intensity={1.8} color="#FFFFFF" />
-            <directionalLight position={[-4, 1, 3]} intensity={0.7} color="#BAE6FD" />
-            <directionalLight position={[0, 4, -4]} intensity={0.85} color="#E0E7FF" />
-            <pointLight position={[controllerX, isMobile ? -0.3 : 0.5, 1.5]} intensity={0.5} color="#38BDF8" />
+            <Canvas
+              camera={{ position: [0, 0.04, 3.8], fov: isMobile ? 54 : 45 }}
+              dpr={[1, 1.5]}
+              gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+              style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
+            >
+              {/* Studio-Grade Lighting tuned for DualSense materials */}
+              <ambientLight intensity={1.25} />
+              <directionalLight position={[4, 6, 5]} intensity={1.8} color="#FFFFFF" />
+              <directionalLight position={[-4, 1, 3]} intensity={0.7} color="#BAE6FD" />
+              <directionalLight position={[0, 4, -4]} intensity={0.85} color="#E0E7FF" />
+              <pointLight position={[controllerX, isMobile ? -0.3 : 0.5, 1.5]} intensity={0.5} color="#38BDF8" />
 
-            <HeroScene3D
-              scrollProgress={scrollProgress}
-              isMobile={isMobile}
-              pointerRef={pointerRef}
-            />
+              <HeroScene3D
+                scrollProgress={scrollProgress}
+                isMobile={isMobile}
+                pointerRef={pointerRef}
+              />
 
-            {/* Soft, realistic floor shadow directly under controller grips */}
-            <ContactShadows
-              position={[controllerX, isMobile ? -0.98 : -0.42, 0]}
-              opacity={0.32}
-              scale={isMobile ? 2.2 : 2.4}
-              blur={2.2}
-              far={2.2}
-              color="#0B192C"
-            />
-          </Canvas>
-        </Suspense>
+              {/* Soft, realistic floor shadow directly under controller grips */}
+              <ContactShadows
+                position={[controllerX, isMobile ? -0.98 : -0.42, 0]}
+                opacity={0.32}
+                scale={isMobile ? 2.2 : 2.4}
+                blur={2.2}
+                far={2.2}
+                color="#0B192C"
+              />
+            </Canvas>
+          </Suspense>
+        </SceneErrorBoundary>
       </div>
 
       {/* 3. Protected Content Layer (Left Typography, Center/Right Controller space) */}
