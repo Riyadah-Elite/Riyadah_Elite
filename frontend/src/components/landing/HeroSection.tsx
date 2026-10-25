@@ -2,49 +2,47 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-
 export function HeroSection() {
   return (
     <View style={styles.container}>
       <View style={styles.badge}>
         <View style={styles.badgeDot} />
-        <Text style={styles.badgeText}>NEXT-GEN GAMING ECOSYSTEM</Text>
+        <Text style={styles.badgeText}>RIYADAH ARENA • ESPORTS & QA ECOSYSTEM</Text>
       </View>
 
       <Text style={styles.headline}>
-        Play. Test.{' '}
-        <Text style={styles.headlineHighlight}>Compete.</Text>{' '}
-        Create.
+        Play. Test. Compete.{'\n'}
+        <Text style={styles.headlineHighlight}>{"Built for What's Next."}</Text>
       </Text>
 
       <Text style={styles.subtitle}>
-        Join Riyadah Elite — the home for game testing, tournaments, and creative gaming experiences across the region and beyond.
+        Uniting verified game studios, elite competitive squads, and precision playtesters in an all-in-one esports arena.
       </Text>
 
       <View style={styles.ctaRow}>
         <TouchableOpacity style={styles.primaryBtn} activeOpacity={0.85}>
-          <Text style={styles.primaryBtnText}>Join the Community</Text>
+          <Text style={styles.primaryBtnText}>Explore Playtest Waves</Text>
           <Ionicons name="arrow-forward" size={18} color="white" />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.secondaryBtn} activeOpacity={0.85}>
-          <Ionicons name="game-controller-outline" size={20} color="#0891B2" />
-          <Text style={styles.secondaryBtnText}>Explore Games</Text>
+          <Ionicons name="trophy-outline" size={18} color="#08A8C8" />
+          <Text style={styles.secondaryBtnText}>Championship Brackets</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.statsRow}>
         <View style={styles.statBox}>
-          <Text style={styles.statVal}>100%</Text>
-          <Text style={styles.statLabel}>Verified Studios</Text>
+          <Text style={styles.statVal}>Telemetry QA</Text>
+          <Text style={styles.statLabel}>Frame Diagnostics</Text>
         </View>
         <View style={styles.statBox}>
-          <Text style={styles.statVal}>Real-Time</Text>
-          <Text style={styles.statLabel}>Bug Reporting</Text>
+          <Text style={styles.statVal}>Studio Builds</Text>
+          <Text style={styles.statLabel}>Verified Alphas</Text>
         </View>
         <View style={styles.statBox}>
-          <Text style={styles.statVal}>Direct</Text>
-          <Text style={styles.statLabel}>Dev Feedback</Text>
+          <Text style={styles.statVal}>Escrow Vault</Text>
+          <Text style={styles.statLabel}>Verified Rewards</Text>
         </View>
       </View>
     </View>
@@ -54,15 +52,17 @@ export function HeroSection() {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 24,
-    paddingTop: 60,
+    paddingTop: 48,
     paddingBottom: 40,
-    backgroundColor: '#F8FCFF',
+    backgroundColor: '#F4FAFE',
   },
   badge: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
-    backgroundColor: '#CFFAFE',
+    backgroundColor: 'rgba(8, 168, 200, 0.10)',
+    borderWidth: 1,
+    borderColor: 'rgba(8, 168, 200, 0.25)',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 20,
@@ -72,38 +72,39 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#0891B2',
+    backgroundColor: '#08A8C8',
     marginRight: 8,
   },
   badgeText: {
     fontSize: 11,
-    fontWeight: '700',
-    color: '#0E7490',
+    fontWeight: '800',
+    color: '#08A8C8',
     letterSpacing: 0.5,
   },
   headline: {
-    fontSize: 38,
+    fontSize: 36,
     fontWeight: '900',
-    color: '#172B3A',
+    color: '#14283A',
     lineHeight: 44,
     marginBottom: 16,
+    letterSpacing: -0.5,
   },
   headlineHighlight: {
-    color: '#0891B2',
+    color: '#08A8C8',
   },
   subtitle: {
-    fontSize: 16,
-    color: '#5B7083',
+    fontSize: 15,
+    color: '#647B91',
     lineHeight: 24,
     marginBottom: 28,
   },
   ctaRow: {
     flexDirection: 'column',
     gap: 12,
-    marginBottom: 36,
+    marginBottom: 32,
   },
   primaryBtn: {
-    backgroundColor: '#0891B2',
+    backgroundColor: '#08A8C8',
     paddingVertical: 14,
     paddingHorizontal: 24,
     borderRadius: 14,
@@ -111,16 +112,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
+    shadowColor: '#08A8C8',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 3,
   },
   primaryBtnText: {
     color: '#FFFFFF',
-    fontWeight: '700',
-    fontSize: 16,
+    fontWeight: '800',
+    fontSize: 15,
   },
   secondaryBtn: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: '#DCE8F0',
     paddingVertical: 14,
     paddingHorizontal: 24,
     borderRadius: 14,
@@ -130,28 +136,30 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   secondaryBtnText: {
-    color: '#172B3A',
+    color: '#14283A',
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 15,
   },
   statsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 24,
+    paddingTop: 20,
     borderTopWidth: 1,
-    borderTopColor: '#E2E8F0',
+    borderTopColor: '#DCE8F0',
   },
   statBox: {
     flex: 1,
   },
   statVal: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: '900',
-    color: '#172B3A',
+    color: '#14283A',
   },
   statLabel: {
-    fontSize: 12,
-    color: '#5B7083',
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#647B91',
     marginTop: 2,
   },
 });
+

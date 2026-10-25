@@ -124,7 +124,7 @@ export function HeroSection() {
   };
 
   // Normalized controller world position
-  const controllerX = isMobile ? 0 : 1.35;
+  const controllerX = isMobile ? 0 : 1.30;
 
   return (
     <section
@@ -132,12 +132,24 @@ export function HeroSection() {
       ref={heroContainerRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="relative w-full min-h-[760px] lg:min-h-[850px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#F8FCFF] via-[#F1F7FD] to-[#F8FCFF] pt-24 pb-16 select-none"
+      className="relative w-full min-h-[780px] lg:min-h-[860px] flex items-center justify-center overflow-hidden bg-[#F4FAFE] pt-24 pb-16 select-none"
     >
-      {/* 1. Atmospheric Ambient Lighting (Continuous light-first gradient, subtle depth) */}
-      <div className="absolute top-1/4 right-1/4 w-[650px] h-[550px] bg-gradient-to-br from-cyan-100/25 via-sky-100/15 to-transparent blur-3xl pointer-events-none" />
-      <div className="absolute -top-12 left-10 w-[450px] h-[350px] bg-sky-100/20 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-[#F8FCFF] to-transparent pointer-events-none z-10" />
+      {/* 1. Atmospheric Esports Arena Environment (Light-first ambient lighting + technical grid) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-40"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, rgba(8, 168, 200, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(8, 168, 200, 0.05) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+          maskImage: 'radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%)',
+        }}
+      />
+
+      {/* Arena Cyan & Violet Spotlight Spill */}
+      <div className="absolute top-1/4 right-[15%] w-[680px] h-[580px] bg-gradient-to-br from-cyan-300/20 via-sky-200/15 to-violet-300/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-16 left-8 w-[480px] h-[380px] bg-cyan-100/30 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#F4FAFE] to-transparent pointer-events-none z-10" />
 
       {/* 2. Full-Bleed 3D Controller Canvas with Graceful Error Boundary */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
@@ -148,11 +160,11 @@ export function HeroSection() {
               style={{ transform: `translateX(${isMobile ? 0 : 25}%)` }}
             >
               <div className="relative w-72 h-72 sm:w-88 sm:h-88 flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400/25 via-sky-300/15 to-transparent rounded-full blur-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400/25 via-sky-300/15 to-violet-400/15 rounded-full blur-2xl" />
                 <img
                   src="/assets/hardware/handheld_console.png"
-                  alt="Riyadah Gaming Nexus"
-                  className="w-56 sm:w-64 object-contain drop-shadow-2xl opacity-90"
+                  alt="Riyadah Gaming Arena Controller"
+                  className="w-56 sm:w-68 object-contain drop-shadow-2xl opacity-90"
                 />
               </div>
             </div>
@@ -161,8 +173,8 @@ export function HeroSection() {
           <Suspense
             fallback={
               <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-cyan-700 pointer-events-auto">
-                <ActivityIndicator size="large" color="#0891B2" />
-                <span className="text-xs font-semibold text-neutral-400">Loading Riyadah Nexus...</span>
+                <ActivityIndicator size="large" color="#08A8C8" />
+                <span className="text-xs font-semibold text-neutral-400">Initializing Arena Stage...</span>
               </div>
             }
           >
@@ -172,12 +184,16 @@ export function HeroSection() {
               gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
               style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
             >
-              {/* Studio-Grade Lighting tuned for DualSense materials */}
-              <ambientLight intensity={1.25} />
-              <directionalLight position={[4, 6, 5]} intensity={1.8} color="#FFFFFF" />
-              <directionalLight position={[-4, 1, 3]} intensity={0.7} color="#BAE6FD" />
-              <directionalLight position={[0, 4, -4]} intensity={0.85} color="#E0E7FF" />
-              <pointLight position={[controllerX, isMobile ? -0.3 : 0.5, 1.5]} intensity={0.5} color="#38BDF8" />
+              {/* Studio-Grade Arena Lighting tuned for DualSense materials */}
+              <ambientLight intensity={1.15} color="#EBF5FF" />
+              {/* Key Front-Right Spotlight */}
+              <directionalLight position={[4.5, 6.0, 5.0]} intensity={2.2} color="#FFFFFF" />
+              {/* Electric Cyan Rim Highlight on left grip/triggers */}
+              <directionalLight position={[-4.2, 1.8, 3.2]} intensity={1.35} color="#36D9EE" />
+              {/* Restrained Violet Back-Accent for subtle warm-cool contrast */}
+              <directionalLight position={[3.2, -1.5, -3.2]} intensity={1.1} color="#8057F5" />
+              {/* Localized subtle controller glow */}
+              <pointLight position={[controllerX, isMobile ? -0.3 : 0.5, 1.5]} intensity={0.6} color="#08A8C8" />
 
               <HeroScene3D
                 scrollProgress={scrollProgress}
@@ -187,12 +203,12 @@ export function HeroSection() {
 
               {/* Soft, realistic floor shadow directly under controller grips */}
               <ContactShadows
-                position={[controllerX, isMobile ? -0.98 : -0.42, 0]}
-                opacity={0.32}
-                scale={isMobile ? 2.2 : 2.4}
-                blur={2.2}
-                far={2.2}
-                color="#0B192C"
+                position={[controllerX, isMobile ? -0.96 : -0.42, 0]}
+                opacity={0.34}
+                scale={isMobile ? 2.2 : 2.5}
+                blur={2.4}
+                far={2.4}
+                color="#0B1A2C"
               />
             </Canvas>
           </Suspense>
@@ -204,32 +220,34 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Side: Headline, Intro, CTAs, Statistics */}
           <div className="lg:col-span-6 flex flex-col items-start pr-0 lg:pr-6 pointer-events-auto">
-            {/* Badge */}
+            {/* Eyebrow Arena Badge */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <div
                 ref={badgeRef}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-100/90 border border-cyan-200/80 text-cyan-900 text-xs font-bold uppercase tracking-wider shadow-xs backdrop-blur-sm"
+                className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-950 text-xs font-mono font-bold uppercase tracking-wider shadow-xs backdrop-blur-md"
               >
-                <span className="w-2 h-2 rounded-full bg-[#0891B2] animate-pulse" />
-                THE RIYADAH NEXUS • NEXT-GEN ESPORTS & QA
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#08A8C8]" />
+                </span>
+                RIYADAH ARENA • ESPORTS & QA ECOSYSTEM
               </div>
             </div>
 
             {/* Headline */}
             <div ref={headlineRef}>
-              <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-[#172B3A] tracking-tight leading-[1.06] mb-6 drop-shadow-xs">
-                Play. Test.{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0891B2] via-cyan-500 to-[#8B5CF6]">
-                  Compete.
-                </span>{' '}
-                Create.
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[66px] font-black text-[#14283A] tracking-tight leading-[1.05] mb-6">
+                Play. Test. Compete.{' '}
+                <span className="block mt-1 text-transparent bg-clip-text bg-gradient-to-r from-[#08A8C8] via-[#0284C7] to-[#8057F5]">
+                  Built for What’s Next.
+                </span>
               </h1>
             </div>
 
             {/* Description */}
             <div ref={descRef}>
-              <p className="text-lg sm:text-xl text-[#5B7083] font-normal leading-relaxed max-w-xl mb-8 drop-shadow-xs">
-                Join Riyadah Elite — the premier regional esports and game-testing ecosystem uniting players, developers, and studios through real-time telemetry feedback and high-stakes tournaments.
+              <p className="text-base sm:text-lg text-[#647B91] font-normal leading-relaxed max-w-xl mb-8">
+                The premier competitive gaming and quality assurance ecosystem uniting verified game studios, elite squads, and dedicated playtesters across the Middle East. Stress-test pre-release builds with real-time frame telemetry and compete in official tournament ladders.
               </p>
             </div>
 
@@ -237,40 +255,40 @@ export function HeroSection() {
             <div ref={ctaRef} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
               <a
                 href="#testing"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base bg-[#0891B2] hover:bg-[#0E7490] text-white shadow-lg shadow-cyan-600/25 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm tracking-wide bg-[#08A8C8] hover:bg-[#068EA9] text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group cursor-pointer"
               >
-                <span>Explore Playtests</span>
-                <Ionicons name="arrow-forward" size={18} color="white" />
+                <span>Explore Playtest Waves</span>
+                <Ionicons name="arrow-forward" size={17} color="white" />
               </a>
 
               <a
-                href="#explore"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base bg-white/95 hover:bg-white text-[#172B3A] border border-neutral-200/80 shadow-sm backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2"
+                href="#tournaments"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm tracking-wide bg-white/95 hover:bg-white text-[#14283A] border border-[#DCE8F0] hover:border-cyan-300 shadow-xs backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group cursor-pointer"
               >
-                <Ionicons name="game-controller-outline" size={20} color="#0891B2" />
-                <span>Browse Games</span>
+                <Ionicons name="trophy-outline" size={18} color="#8057F5" />
+                <span>Championship Brackets</span>
               </a>
             </div>
 
             {/* Mobile visual space slot to allow the 3D controller to breathe between buttons and stats */}
             <div className="block lg:hidden h-72 w-full my-4 pointer-events-none" />
 
-            {/* Statistics Strip */}
+            {/* Capability Row (Verified Technical Facts) */}
             <div
               ref={statsRef}
-              className="grid grid-cols-3 gap-6 pt-8 mt-6 border-t border-neutral-200/80 w-full max-w-md text-left"
+              className="grid grid-cols-3 gap-6 pt-8 mt-6 border-t border-[#DCE8F0] w-full max-w-lg text-left"
             >
               <div>
-                <p className="text-2xl font-black text-[#172B3A]">100%</p>
-                <p className="text-xs text-[#5B7083] font-medium">Verified Studios</p>
+                <p className="text-lg sm:text-xl font-black text-[#14283A] tracking-tight">Telemetry QA</p>
+                <p className="text-[11px] font-mono text-[#647B91] font-medium mt-0.5">Frame Diagnostics</p>
               </div>
               <div>
-                <p className="text-2xl font-black text-[#172B3A]">Instant</p>
-                <p className="text-xs text-[#5B7083] font-medium">Telemetry QA</p>
+                <p className="text-lg sm:text-xl font-black text-[#14283A] tracking-tight">Studio Builds</p>
+                <p className="text-[11px] font-mono text-[#647B91] font-medium mt-0.5">Verified Alphas</p>
               </div>
               <div>
-                <p className="text-2xl font-black text-[#172B3A]">Direct</p>
-                <p className="text-xs text-[#5B7083] font-medium">Escrow Rewards</p>
+                <p className="text-lg sm:text-xl font-black text-[#14283A] tracking-tight">Escrow Vault</p>
+                <p className="text-[11px] font-mono text-[#647B91] font-medium mt-0.5">Verified Rewards</p>
               </div>
             </div>
           </div>
@@ -279,66 +297,66 @@ export function HeroSection() {
           <div className="hidden lg:flex lg:col-span-6 flex-col items-end justify-center pointer-events-none" />
         </div>
 
-        {/* Category Quick-Nav Dock (inspired by gradient-gaming-competition-landing-page) */}
-        <div className="mt-14 pt-8 border-t border-cyan-100/80 pointer-events-auto">
+        {/* Category Quick-Nav Dock (Interactive Arena Portal Navigation) */}
+        <div className="mt-14 pt-8 border-t border-[#DCE8F0]/80 pointer-events-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <a
               href="#explore"
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-neutral-200/80 hover:border-cyan-300 shadow-2xs hover:shadow-md transition-all group"
+              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-[#DCE8F0] hover:border-cyan-300 shadow-2xs hover:shadow-md transition-all group cursor-pointer"
             >
-              <div className="w-10 h-10 rounded-xl bg-cyan-50 text-[#0891B2] flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Ionicons name="game-controller-outline" size={20} color="#0891B2" />
+              <div className="w-10 h-10 rounded-xl bg-cyan-50 text-[#08A8C8] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Ionicons name="game-controller-outline" size={20} color="#08A8C8" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xs font-black text-[#172B3A] uppercase tracking-wide group-hover:text-[#0891B2] transition-colors">
+                <span className="text-xs font-black text-[#14283A] uppercase tracking-wide group-hover:text-[#08A8C8] transition-colors">
                   Games Hub
                 </span>
-                <span className="text-[11px] text-[#5B7083] font-medium">Curated Alpha Builds</span>
+                <span className="text-[11px] text-[#647B91] font-medium">Curated Alpha Builds</span>
               </div>
             </a>
 
             <a
               href="#testing"
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-neutral-200/80 hover:border-cyan-300 shadow-2xs hover:shadow-md transition-all group"
+              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-[#DCE8F0] hover:border-cyan-300 shadow-2xs hover:shadow-md transition-all group cursor-pointer"
             >
               <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Ionicons name="shield-checkmark-outline" size={20} color="#10B981" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xs font-black text-[#172B3A] uppercase tracking-wide group-hover:text-emerald-700 transition-colors">
+                <span className="text-xs font-black text-[#14283A] uppercase tracking-wide group-hover:text-emerald-700 transition-colors">
                   QA Bounties
                 </span>
-                <span className="text-[11px] text-[#5B7083] font-medium">Telemetry Logging</span>
+                <span className="text-[11px] text-[#647B91] font-medium">Telemetry Logging</span>
               </div>
             </a>
 
             <a
               href="#tournaments"
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-neutral-200/80 hover:border-violet-300 shadow-2xs hover:shadow-md transition-all group"
+              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-[#DCE8F0] hover:border-violet-300 shadow-2xs hover:shadow-md transition-all group cursor-pointer"
             >
-              <div className="w-10 h-10 rounded-xl bg-violet-50 text-[#8B5CF6] flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Ionicons name="trophy-outline" size={20} color="#8B5CF6" />
+              <div className="w-10 h-10 rounded-xl bg-violet-50 text-[#8057F5] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Ionicons name="trophy-outline" size={20} color="#8057F5" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xs font-black text-[#172B3A] uppercase tracking-wide group-hover:text-[#8B5CF6] transition-colors">
+                <span className="text-xs font-black text-[#14283A] uppercase tracking-wide group-hover:text-[#8057F5] transition-colors">
                   Tournaments
                 </span>
-                <span className="text-[11px] text-[#5B7083] font-medium">Weekly Tiered Cups</span>
+                <span className="text-[11px] text-[#647B91] font-medium">Weekly Tiered Cups</span>
               </div>
             </a>
 
             <a
               href="#rewards"
-              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-neutral-200/80 hover:border-amber-300 shadow-2xs hover:shadow-md transition-all group"
+              className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/80 hover:bg-white border border-[#DCE8F0] hover:border-amber-300 shadow-2xs hover:shadow-md transition-all group cursor-pointer"
             >
               <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Ionicons name="gift-outline" size={20} color="#D97706" />
               </div>
               <div className="flex flex-col">
-                <span className="text-xs font-black text-[#172B3A] uppercase tracking-wide group-hover:text-amber-700 transition-colors">
+                <span className="text-xs font-black text-[#14283A] uppercase tracking-wide group-hover:text-amber-700 transition-colors">
                   Rewards
                 </span>
-                <span className="text-[11px] text-[#5B7083] font-medium">Keys & Contributor XP</span>
+                <span className="text-[11px] text-[#647B91] font-medium">Keys & Contributor XP</span>
               </div>
             </a>
           </div>

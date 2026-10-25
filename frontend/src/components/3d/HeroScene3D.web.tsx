@@ -41,8 +41,18 @@ export function HeroScene3D({
   // Load the optimized PlayStation 5 controller model (6.58 MB)
   const controllerGLTF = useGLTF('/models/ps5_controller.optimized.glb');
 
-  // Clone scene once to ensure isolated instance
-  const controllerScene = useMemo(() => controllerGLTF.scene.clone(true), [controllerGLTF.scene]);
+  // Clone scene once to ensure isolated instance and ensure crisp esports material definition
+  const controllerScene = useMemo(() => {
+    const cloned = controllerGLTF.scene.clone(true);
+    cloned.traverse((child) => {
+      if ((child as THREE.Mesh).isMesh) {
+        const mesh = child as THREE.Mesh;
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+      }
+    });
+    return cloned;
+  }, [controllerGLTF.scene]);
 
   // Target vectors for camera interpolation
   const currentCamPos = useMemo(() => new THREE.Vector3(0, 0.04, 3.8), []);
@@ -59,11 +69,11 @@ export function HeroScene3D({
 
   // Flattering 3/4 resting Euler rotation
   // Tilted backward and slightly turned so face buttons, both analog sticks,
-  // touchpad, and ergonomic curves are clearly visible.
+  // touchpad, and ergonomic curves are clearly visible in the arena spotlight.
   const restingRotation = useMemo(() => ({
-    x: -0.26, // Tilt backward to angle sticks and face buttons up
-    y: -0.38, // 3/4 yaw towards center-left
-    z: 0.05,  // Subtle dynamic roll
+    x: -0.22, // Subtle pitch backward to angle sticks and face buttons up
+    y: -0.36, // 3/4 yaw towards center-left
+    z: 0.04,  // Subtle dynamic roll
   }), []);
 
   useFrame((state, delta) => {
@@ -76,8 +86,8 @@ export function HeroScene3D({
     const rawX = (!prefersReducedMotion && pointerRef?.current?.active) ? (pointerRef.current.x ?? 0) : 0;
     const rawY = (!prefersReducedMotion && pointerRef?.current?.active) ? (pointerRef.current.y ?? 0) : 0;
 
-    smoothPointer.current.x = THREE.MathUtils.damp(smoothPointer.current.x, rawX, 4.0, delta);
-    smoothPointer.current.y = THREE.MathUtils.damp(smoothPointer.current.y, rawY, 4.0, delta);
+    smoothPointer.current.x = THREE.MathUtils.damp(smoothPointer.current.x, rawX, 3.5, delta);
+    smoothPointer.current.y = THREE.MathUtils.damp(smoothPointer.current.y, rawY, 3.5, delta);
 
     const px = smoothPointer.current.x;
     const py = smoothPointer.current.y;
@@ -146,62 +156,62 @@ export function HeroScene3D({
     // ==========================================
     // 3. WHOLE-CONTROLLER POINTER INTERACTION & IDLE
     // ==========================================
-    // Gentle idle floating animation
-    const idleFloat = Math.sin(t * 1.4) * 0.02;
-    const idleSway = Math.sin(t * 0.9) * 0.014;
+    // Gentle idle floating animation (respects prefersReducedMotion)
+    const idleFloat = prefersReducedMotion ? 0 : Math.sin(t * 1.1) * 0.016;
+    const idleSway = prefersReducedMotion ? 0 : Math.sin(t * 0.7) * 0.010;
 
     // Responsive Controller Rotation (Yaw, Pitch, Roll)
     if (controllerRotGroupRef.current) {
-      const targetPitch = restingRotation.x + (-py * 0.10) + Math.cos(t * 0.7) * 0.01;
-      const targetYaw = restingRotation.y + (px * 0.16) + idleSway;
-      const targetRoll = restingRotation.z + (px * 0.035);
+      const targetPitch = restingRotation.x + (-py * 0.08) + (prefersReducedMotion ? 0 : Math.cos(t * 0.6) * 0.008);
+      const targetYaw = restingRotation.y + (px * 0.14) + idleSway;
+      const targetRoll = restingRotation.z + (px * 0.025);
 
       controllerRotGroupRef.current.rotation.x = THREE.MathUtils.damp(
         controllerRotGroupRef.current.rotation.x,
         targetPitch,
-        4.0,
+        3.5,
         delta
       );
       controllerRotGroupRef.current.rotation.y = THREE.MathUtils.damp(
         controllerRotGroupRef.current.rotation.y,
         targetYaw,
-        4.0,
+        3.5,
         delta
       );
       controllerRotGroupRef.current.rotation.z = THREE.MathUtils.damp(
         controllerRotGroupRef.current.rotation.z,
         targetRoll,
-        4.0,
+        3.5,
         delta
       );
     }
 
     // Responsive Controller Position Parallax
     if (controllerPosGroupRef.current) {
-      const targetPosX = px * 0.05;
-      const targetPosY = idleFloat + (py * 0.03);
+      const targetPosX = px * 0.04;
+      const targetPosY = idleFloat + (py * 0.025);
 
       controllerPosGroupRef.current.position.x = THREE.MathUtils.damp(
         controllerPosGroupRef.current.position.x,
         targetPosX,
-        3.5,
+        3.0,
         delta
       );
       controllerPosGroupRef.current.position.y = THREE.MathUtils.damp(
         controllerPosGroupRef.current.position.y,
         targetPosY,
-        3.5,
+        3.0,
         delta
       );
     }
   });
 
   // Normalized Staging Group Position & Scale
-  // Desktop: scale 0.54 yields 1.08m width (approx. 38% desktop hero width), positioned at x: 1.35
-  // Mobile: scale 0.45 yields 0.90m width, centered at x: 0, y: -0.68 inside the dedicated mobile slot
-  const groupX = isMobile ? 0 : 1.35;
-  const groupY = isMobile ? -0.68 : 0.0;
-  const mainScale = isMobile ? 0.45 : 0.54;
+  // Desktop: scale 0.52 yields 1.04m width, positioned at x: 1.30, y: 0.02
+  // Mobile: scale 0.44 yields 0.88m width, centered at x: 0, y: -0.62 inside dedicated mobile slot
+  const groupX = isMobile ? 0 : 1.30;
+  const groupY = isMobile ? -0.62 : 0.02;
+  const mainScale = isMobile ? 0.44 : 0.52;
 
   return (
     <group ref={mainGroupRef} position={[groupX, groupY, 0]} scale={mainScale}>
