@@ -27,7 +27,25 @@ interface AuthContextValue {
   closeAuthModal: () => void;
 }
 
-const AuthContext = createContext<AuthContextValue | null>(null);
+export const defaultAuthValue: AuthContextValue = {
+  user: null,
+  isAuthenticated: false,
+  isLoading: false,
+  authError: null,
+  clearError: () => {},
+  login: async () => false,
+  registerUser: async () => false,
+  logout: async () => {},
+  authModal: {
+    isOpen: false,
+    mode: 'login',
+    tournamentContext: null,
+  },
+  openAuthModal: () => {},
+  closeAuthModal: () => {},
+};
+
+const AuthContext = createContext<AuthContextValue>(defaultAuthValue);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -207,10 +225,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function useAuth() {
+export function useAuth(): AuthContextValue {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+  return context || defaultAuthValue;
 }

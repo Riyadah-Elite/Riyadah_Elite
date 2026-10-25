@@ -20,16 +20,16 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <AuthProvider>
-        <ThemeProvider value={theme}>
+      <ThemeProvider value={theme}>
+        <AuthProvider>
           <Stack
             screenOptions={{
               headerShown: false,
               contentStyle: { backgroundColor: theme.colors.background },
             }}
           />
-        </ThemeProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }
