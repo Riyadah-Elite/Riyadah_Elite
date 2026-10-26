@@ -26,6 +26,8 @@ import { STATUS_CODE, USER_ROLE } from "../constants/constants.js";
 import { AUTH_ERRORS, USER_ERRORS } from "../constants/error.js";
 import ApiError from "../utils/apiError.js";
 import StorageService from "../utils/storage.js";
+import { notifySystem } from "../utils/notification.js";
+import { NOTIFICATION_MESSAGES } from "../constants/notification.js";
 import path from "path";
 
 @injectable()
@@ -99,6 +101,8 @@ export default class AuthService {
     }
 
     this.logger.info("User registered", { userId: user.id });
+
+    await notifySystem(user.id, NOTIFICATION_MESSAGES.WELCOME);
 
     const token = generateToken({
       userId: user.id,
@@ -335,6 +339,8 @@ export default class AuthService {
 
     await this.authRepository.softDeleteUser(userId);
 
+    await notifySystem(userId, NOTIFICATION_MESSAGES.ACCOUNT_DELETED);
+
     this.logger.info("user deleted", { userId });
   }
 
@@ -356,6 +362,7 @@ export default class AuthService {
 
     if (target.isDeleted) {
       await this.authRepository.restoreUser(userId);
+      await notifySystem(userId, NOTIFICATION_MESSAGES.ACCOUNT_RESTORED);
     }
 
     const restored = await this.assertExists(userId);

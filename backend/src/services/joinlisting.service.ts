@@ -6,6 +6,8 @@ import { inject, injectable } from "inversify";
 import { TYPES } from "../config/types.js";
 import { LISTING_STATUS, STATUS_CODE } from "../constants/constants.js";
 import { JOIN_LISTING_ERRORS } from "../constants/error.js";
+import { NOTIFICATION_MESSAGES } from "../constants/notification.js";
+import { notifyEvent } from "../utils/notification.js";
 import ApiError from "../utils/apiError.js";
 import Logger from "../utils/logger.js";
 import JoinListingRepository from "../repositories/joinlisting.repository.js";
@@ -53,6 +55,18 @@ export default class JoinListingService {
       listingId,
     );
 
+    const user = await this.joinListingRepository.findUser(userId);
+
+    if (listing.userId) {
+      await notifyEvent(
+        listing.userId,
+        NOTIFICATION_MESSAGES.USER_JOINED_GAME_TESTING(
+          user?.username ?? "A user",
+          listing.gameName,
+        ),
+      );
+    }
+
     this.logger.info("user joined game listing", { userId, listingId });
 
     return join;
@@ -89,10 +103,54 @@ export default class JoinListingService {
       );
     }
 
+    /*
+     * `TournamentListing.maxEntry` is treated as capacity when it is positive;
+     * 0 keeps the tournament unlimited.
+     */
+    const currentJoins =
+      await this.joinListingRepository.countTournamentJoins(tournamentId);
+
+    const capacity = tournament.maxEntry;
+    const isFull = capacity > 0 && currentJoins >= capacity;
+
+    if (isFull) {
+      if (tournament.userId) {
+        await notifyEvent(
+          tournament.userId,
+          NOTIFICATION_MESSAGES.TOURNAMENT_FULL(tournament.tournamentName),
+        );
+      }
+
+      throw new ApiError(
+        JOIN_LISTING_ERRORS.TOURNAMENT_FULL,
+        STATUS_CODE.CONFLICT,
+      );
+    }
+
     const join = await this.joinListingRepository.createTournamentJoin(
       userId,
       tournamentId,
     );
+
+    const user = await this.joinListingRepository.findUser(userId);
+
+    if (tournament.userId) {
+      await notifyEvent(
+        tournament.userId,
+        NOTIFICATION_MESSAGES.USER_JOINED_TOURNAMENT(
+          user?.username ?? "A user",
+          tournament.tournamentName,
+        ),
+      );
+
+      /* The join that fills the last slot also tells the org it is full. */
+      if (capacity > 0 && currentJoins + 1 >= capacity) {
+        await notifyEvent(
+          tournament.userId,
+          NOTIFICATION_MESSAGES.TOURNAMENT_FULL(tournament.tournamentName),
+        );
+      }
+    }
 
     this.logger.info("user joined tournament", { userId, tournamentId });
 

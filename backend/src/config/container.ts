@@ -12,6 +12,7 @@ import FileService from "../services/file.service.js";
 import CategoryService from "../services/category.service.js";
 import ListingService from "../services/listing.service.js";
 import JoinListingService from "../services/joinlisting.service.js";
+import NotificationService from "../services/notification.service.js";
 
 // repository
 import AuthRepository from "../repositories/auth.repository.js";
@@ -19,12 +20,14 @@ import FileRepository from "../repositories/file.repository.js";
 import CategoryRepository from "../repositories/category.repository.js";
 import ListingRepository from "../repositories/listing.repository.js";
 import JoinListingRepository from "../repositories/joinlisting.repository.js";
+import NotificationRepository from "../repositories/notification.repository.js";
 
 // infrastructure
 import Logger from "../utils/logger.js";
 import ApiError from "../utils/apiError.js";
 import StorageService from "../utils/storage.js";
 import PrismaDatabase from "./database.js";
+import { setNotificationService } from "../utils/notification.js";
 
 
 const container = new Container();
@@ -60,6 +63,7 @@ container.bind(TYPES.FileService).to(FileService).inSingletonScope();
 container.bind(TYPES.CategoryService).to(CategoryService).inSingletonScope();
 container.bind(TYPES.ListingService).to(ListingService).inSingletonScope();
 container.bind(TYPES.JoinListingService).to(JoinListingService).inSingletonScope();
+container.bind(TYPES.NotificationService).to(NotificationService).inSingletonScope();
 
 // Repository bindings
 container.bind(TYPES.AuthRepository).to(AuthRepository).inSingletonScope();
@@ -67,6 +71,7 @@ container.bind(TYPES.FileRepository).to(FileRepository).inSingletonScope();
 container.bind(TYPES.CategoryRepository).to(CategoryRepository).inSingletonScope();
 container.bind(TYPES.ListingRepository).to(ListingRepository).inSingletonScope();
 container.bind(TYPES.JoinListingRepository).to(JoinListingRepository).inSingletonScope();
+container.bind(TYPES.NotificationRepository).to(NotificationRepository).inSingletonScope();
 
 // Logger bindings
 container.bind(TYPES.Logger).to(Logger).inSingletonScope();
@@ -77,5 +82,12 @@ container.bind(TYPES.ApiError).to(ApiError).inSingletonScope();
 // Storage bindings
 container.bind(TYPES.StorageService).to(StorageService).inSingletonScope();
 
+/*
+ * Make the notification utility usable from plain functions/services without
+ * importing the container (which would create a module cycle).
+ */
+setNotificationService(() =>
+  container.get<NotificationService>(TYPES.NotificationService),
+);
 
 export default container;

@@ -22,14 +22,27 @@ export default class JoinListingRepository {
   async findGameListing(id: string) {
     return await this.db.gameListing.findUnique({
       where: { id },
-      select: { id: true, status: true },
+      select: { id: true, status: true, gameName: true, userId: true },
     });
   }
 
   async findTournament(id: string) {
     return await this.db.tournamentListing.findUnique({
       where: { id },
-      select: { id: true, status: true },
+      select: {
+        id: true,
+        status: true,
+        tournamentName: true,
+        userId: true,
+        maxEntry: true,
+      },
+    });
+  }
+
+  async findUser(userId: string) {
+    return await this.db.user.findUnique({
+      where: { id: userId },
+      select: { id: true, username: true },
     });
   }
 
@@ -69,6 +82,12 @@ export default class JoinListingRepository {
 
   async deleteJoin(joinId: string) {
     return await this.db.joinListing.delete({ where: { id: joinId } });
+  }
+
+  async countTournamentJoins(tournamentListingId: string) {
+    return await this.db.joinListing.count({
+      where: { tournamentListingId },
+    });
   }
 
   // -------------------------------------------------------------------------

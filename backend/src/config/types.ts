@@ -16,6 +16,7 @@ export const TYPES = {
   CategoryService: Symbol.for("CategoryService"),
   ListingService: Symbol.for("ListingService"),
   JoinListingService: Symbol.for("JoinListingService"),
+  NotificationService: Symbol.for("NotificationService"),
 
   // Repository Types
   AuthRepository: Symbol.for("AuthRepository"),
@@ -23,6 +24,7 @@ export const TYPES = {
   CategoryRepository: Symbol.for("CategoryRepository"),
   ListingRepository: Symbol.for("ListingRepository"),
   JoinListingRepository: Symbol.for("JoinListingRepository"),
+  NotificationRepository: Symbol.for("NotificationRepository"),
 
 
   // Infrastructure Types

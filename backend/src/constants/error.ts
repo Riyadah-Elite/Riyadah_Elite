@@ -77,6 +77,7 @@ export const JOIN_LISTING_ERRORS = {
   LISTING_NOT_ACTIVE: "This listing is not accepting joins",
   ALREADY_JOINED: "You have already joined this listing",
   JOIN_NOT_FOUND: "Join record not found",
+  TOURNAMENT_FULL: "This tournament is full",
 } as const;
 
 export const ORG_ERRORS = {

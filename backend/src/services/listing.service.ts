@@ -4,11 +4,13 @@
 
 import { inject, injectable } from "inversify";
 import { TYPES } from "../config/types.js";
-import { STATUS_CODE } from "../constants/constants.js";
+import { STATUS_CODE, USER_ROLE } from "../constants/constants.js";
 import {
   LISTING_ERRORS,
   TOURNAMENT_ERRORS,
 } from "../constants/error.js";
+import { NOTIFICATION_MESSAGES } from "../constants/notification.js";
+import { notifyRole } from "../utils/notification.js";
 import ApiError from "../utils/apiError.js";
 import Logger from "../utils/logger.js";
 import ListingRepository from "../repositories/listing.repository.js";
@@ -56,6 +58,11 @@ export default class ListingService {
     });
 
     this.logger.info("game listing created", { listingId: listing.id });
+
+    await notifyRole(
+      USER_ROLE.USER,
+      NOTIFICATION_MESSAGES.GAME_LISTING_CREATED(listing.gameName),
+    );
 
     return listing;
   }
@@ -155,6 +162,11 @@ export default class ListingService {
     });
 
     this.logger.info("tournament created", { tournamentId: tournament.id });
+
+    await notifyRole(
+      USER_ROLE.USER,
+      NOTIFICATION_MESSAGES.TOURNAMENT_CREATED(tournament.tournamentName),
+    );
 
     return tournament;
   }
