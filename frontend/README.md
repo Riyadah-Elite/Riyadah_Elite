@@ -1,56 +1,98 @@
-# Welcome to your Expo app 👋
+# Riyadah Elite — Mobile Frontend
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is the cross-platform mobile frontend for **Riyadah Elite** (Game Testing & Tournaments), built with **React Native 0.88**, **Expo SDK 58**, **Expo Router**, and **NativeWind (Tailwind CSS v4)**.
 
-## Get started
+---
 
-1. Install dependencies
+## Prerequisites
 
-   ```bash
-   npm install
-   ```
+- [Node.js](https://nodejs.org/) (v18 or v20+ recommended)
+- [npm](https://www.npmjs.com/) (or `bun` / `pnpm` / `yarn`)
+- (Optional for mobile preview) [Expo Go](https://expo.dev/go) app installed on your physical device (iOS or Android), or an Android Studio Emulator / iOS Simulator (macOS only).
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## Quick Start / How to Run
 
-In the output, you'll find options to open the app in a
+### 1. Install Dependencies
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Navigate into the `frontend` folder and install packages:
 
 ```bash
-npm run reset-project
+cd frontend
+npm install
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+### 2. Configure Environment Variables (Optional)
 
-### Other setup steps
+By default, the app looks for the backend API at `http://localhost:5000`.
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+To change this (e.g. when testing on a physical phone using your machine's local Wi-Fi IP):
+Create a `.env` file inside `frontend/`:
 
-## Learn more
+```env
+EXPO_PUBLIC_API_URL=http://<YOUR_LOCAL_IP>:5000
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+> **Note:** On a physical phone, `localhost` refers to the mobile device itself. Use your machine's LAN IP address (e.g. `http://192.168.1.50:5000`).
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 3. Start the Development Server
 
-## Join the community
+You can run any of the following commands:
 
-Join our community of developers creating universal apps.
+```bash
+# Start dev server (Expo Metro bundler)
+npm run dev
+# or
+npm start
+# or
+npx expo start
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 4. Open the App
+
+Once the development server starts, a QR code and interactive menu will appear in your terminal:
+
+- **Web Browser**: Press <kbd>w</kbd> (or run `npm run web`) to launch in your browser.
+- **Android Device / Emulator**: Press <kbd>a</kbd> (or run `npm run android`).
+- **iOS Simulator**: Press <kbd>i</kbd> (or run `npm run ios`).
+- **Physical Phone with Expo Go**: Scan the QR code shown in the terminal using the Expo Go app (Android) or the Camera app (iOS).
+
+---
+
+## Available NPM Scripts
+
+| Command | Description |
+| :--- | :--- |
+| `npm run dev` | Starts the Expo dev server (Metro bundler) |
+| `npm start` | Alias to start the Expo dev server |
+| `npm run web` | Starts the app directly in the web browser |
+| `npm run android` | Starts the app and opens the Android emulator |
+| `npm run ios` | Starts the app and opens the iOS simulator |
+| `npm run lint` | Runs `expo lint` for code quality checks |
+| `npx tsc --noEmit` | Runs TypeScript type checking |
+
+---
+
+## Project Architecture & Routing
+
+- **Routing (`src/app/`)**: File-based routing powered by [Expo Router](https://docs.expo.dev/router/introduction).
+  - `src/app/_layout.tsx`: Root layout provider, theme container, and stack navigation.
+  - `src/app/index.tsx`: Initial entry screen.
+- **Components (`src/components/`)**: Reusable UI components styled with NativeWind.
+- **Services (`src/services/`)**: API integration modules (e.g., `auth.ts`).
+- **Constants (`src/constants/`)**: API route endpoints and color definitions.
+- **Lib (`src/lib/`)**: Shared utilities like `api-client.ts` and `cn.ts`.
+
+---
+
+## Troubleshooting
+
+- **Clear Metro Bundler Cache**:
+  ```bash
+  npx expo start -c
+  ```
+- **Diagnose Dependency Issues**:
+  ```bash
+  npx expo-doctor
+  ```
