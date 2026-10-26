@@ -71,6 +71,14 @@ export const TOURNAMENT_ERRORS = {
     "Registration end date must be on or before the tournament date",
 } as const;
 
+export const JOIN_LISTING_ERRORS = {
+  GAME_NOT_FOUND: "Game listing not found",
+  TOURNAMENT_NOT_FOUND: "Tournament not found",
+  LISTING_NOT_ACTIVE: "This listing is not accepting joins",
+  ALREADY_JOINED: "You have already joined this listing",
+  JOIN_NOT_FOUND: "Join record not found",
+} as const;
+
 export const ORG_ERRORS = {
   ROLE_REQUIRED: "Only an organization can access this resource",
 } as const;

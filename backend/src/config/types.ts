@@ -8,18 +8,21 @@ export const TYPES = {
   FileController: Symbol.for("FileController"),
   CategoryController: Symbol.for("CategoryController"),
   ListingController: Symbol.for("ListingController"),
+  JoinListingController: Symbol.for("JoinListingController"),
 
   // Service Types
   AuthService: Symbol.for("AuthService"),
   FileService: Symbol.for("FileService"),
   CategoryService: Symbol.for("CategoryService"),
   ListingService: Symbol.for("ListingService"),
+  JoinListingService: Symbol.for("JoinListingService"),
 
   // Repository Types
   AuthRepository: Symbol.for("AuthRepository"),
   FileRepository: Symbol.for("FileRepository"),
   CategoryRepository: Symbol.for("CategoryRepository"),
   ListingRepository: Symbol.for("ListingRepository"),
+  JoinListingRepository: Symbol.for("JoinListingRepository"),
 
 
   // Infrastructure Types

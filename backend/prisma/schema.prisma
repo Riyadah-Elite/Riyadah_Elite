@@ -109,6 +109,7 @@ model User {
   bugReports         BugReport[]         @relation("BugReportUser")
   notifications      Notification[]      @relation("NotificationUser")
   chatMessages       ChatMessage[]       @relation("ChatMessageUser")
+  joinListings       JoinListing[]       @relation("JoinListingUser")
 
   @@index([isDeleted, createdAt])
 }
@@ -207,7 +208,7 @@ model GameListing {
   id                  String        @id @default(cuid())
   gameName            String
   categoryId          String
-  userId              String
+  userId              String?
   status              ListingStatus @default(active)
   maxEntry            Float         @default(0)
   minEntry            Float         @default(0)
@@ -228,15 +229,16 @@ model GameListing {
 
   // Relationships
   category Category @relation(fields: [categoryId], references: [id])
-  user     User     @relation("GameListingOwner", fields: [userId], references: [id])
+  user     User?    @relation("GameListingOwner", fields: [userId], references: [id], onDelete: SetNull)
   amount   Amount?  @relation(fields: [amountId], references: [id], onDelete: SetNull)
 
   image      File? @relation("GameListingImage", fields: [imageId], references: [id], onDelete: SetNull)
   attachment File? @relation("GameListingAttachment", fields: [fileId], references: [id], onDelete: SetNull)
 
-  files       File[]              @relation("GameListingFiles")
-  tournaments TournamentListing[]
-  bugReports  BugReport[]
+  files        File[]              @relation("GameListingFiles")
+  tournaments  TournamentListing[]
+  bugReports   BugReport[]
+  joinListings JoinListing[]       @relation("JoinListingGame")
 }
 
 // ==========================================
@@ -247,7 +249,7 @@ model TournamentListing {
   id                  String        @id @default(cuid())
   tournamentName      String
   gameListingId       String
-  userId              String
+  userId              String?
   description         String?
   tournamentDate      DateTime?
   tournamentTime      DateTime?
@@ -267,13 +269,15 @@ model TournamentListing {
 
   // Relationships
   gameListing GameListing @relation(fields: [gameListingId], references: [id])
-  user        User        @relation("TournamentListingOwner", fields: [userId], references: [id])
+  user        User?       @relation("TournamentListingOwner", fields: [userId], references: [id], onDelete: SetNull)
   amount      Amount?     @relation(fields: [amountId], references: [id], onDelete: SetNull)
 
   image      File? @relation("TournamentImage", fields: [imageId], references: [id], onDelete: SetNull)
   attachment File? @relation("TournamentAttachment", fields: [fileId], references: [id], onDelete: SetNull)
 
   files File[] @relation("TournamentFiles")
+
+  joinListings JoinListing[] @relation("JoinListingTournament")
 }
 
 // ==========================================
@@ -335,4 +339,28 @@ model ChatMessage {
   user User @relation("ChatMessageUser", fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, createdAt])
+}
+
+// ==========================================
+// 11. JOIN LISTING (USER ENROLLMENT)
+// ==========================================
+
+model JoinListing {
+  id                  String   @id @default(cuid())
+  userId              String
+  gameListingId       String?
+  tournamentListingId String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  // Relationships
+  user              User               @relation("JoinListingUser", fields: [userId], references: [id], onDelete: Cascade)
+  gameListing       GameListing?       @relation("JoinListingGame", fields: [gameListingId], references: [id], onDelete: Cascade)
+  tournamentListing TournamentListing? @relation("JoinListingTournament", fields: [tournamentListingId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, gameListingId])
+  @@unique([userId, tournamentListingId])
+  @@index([userId])
+  @@index([gameListingId])
+  @@index([tournamentListingId])
 }
