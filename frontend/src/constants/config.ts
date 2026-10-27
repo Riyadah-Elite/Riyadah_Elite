@@ -1,20 +1,45 @@
 /**
  * Runtime configuration.
  *
- * EXPO_PUBLIC_* variables are inlined into the bundle by Metro, so anything
- * here is public. Never put a secret in this file.
+ * Resolves the appropriate backend API base URL across local development,
+ * preview environments, and production hosting on Render.
  */
 
-/**
- * Base URL of the Express backend.
- *
- * On a physical device localhost points at the phone, not your machine - use
- * your LAN IP (for example http://192.168.1.10:5000) or the deployed host.
- */
-export const API_BASE_URL =
-  process.env.EXPO_PUBLIC_API_URL ?? "http://localhost:5000";
+export function resolveApiBaseUrl(): string {
+  // 1. Explicit build-time or runtime environment override
+  if (process.env.EXPO_PUBLIC_API_URL) {
+    return process.env.EXPO_PUBLIC_API_URL.replace(/\/+$/, "");
+  }
 
-/** API routes exposed by the backend, typed in one place. */
+  // 2. Browser runtime detection
+  if (typeof window !== "undefined" && window.location) {
+    const { hostname, protocol } = window.location;
+
+    // Production Render deployment or external HTTPS host
+    if (
+      hostname === "riyadah-elite-frontend.onrender.com" ||
+      (protocol === "https:" && hostname !== "localhost" && hostname !== "127.0.0.1")
+    ) {
+      return "https://riyadah-elite-backend.onrender.com";
+    }
+
+    // Local development in browser
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return "http://localhost:5000";
+    }
+  }
+
+  // 3. Static build / SSR default: use production backend in production mode, localhost in development
+  if (process.env.NODE_ENV === "production") {
+    return "https://riyadah-elite-backend.onrender.com";
+  }
+
+  return "http://localhost:5000";
+}
+
+export const API_BASE_URL = resolveApiBaseUrl();
+
+/** API routes exposed by the backend, supporting both current and legacy endpoints. */
 export const API_ROUTES = {
   health: "/api/v1/health",
   user: {
@@ -23,4 +48,10 @@ export const API_ROUTES = {
     profile: "/api/v1/user/profile",
     logout: "/api/v1/user/logout",
   },
-} as const;
+  auth: {
+    register: "/api/v1/auth/signup",
+    login: "/api/v1/auth/login",
+    profile: "/api/v1/auth/me",
+    logout: "/api/v1/auth/logout",
+  },
+} as const;

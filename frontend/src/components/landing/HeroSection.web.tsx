@@ -38,6 +38,19 @@ class SceneErrorBoundary extends React.Component<SceneErrorBoundaryProps, SceneE
   }
 }
 
+function checkWebGLSupported(): boolean {
+  if (typeof window === 'undefined') return true;
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(
+      window.WebGLRenderingContext &&
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+    );
+  } catch {
+    return false;
+  }
+}
+
 export function HeroSection() {
   const headlineRef = useRef<HTMLDivElement | null>(null);
   const badgeRef = useRef<HTMLDivElement | null>(null);
@@ -48,6 +61,7 @@ export function HeroSection() {
 
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [webGLAvailable] = useState(() => checkWebGLSupported());
 
   // Mutable pointer ref for 60fps tracking without triggering React re-renders
   const pointerRef = useRef({ x: 0, y: 0, active: false });
@@ -60,6 +74,8 @@ export function HeroSection() {
     };
     handleResize();
     window.addEventListener('resize', handleResize, { passive: true });
+
+
 
     const prefersReducedMotion =
       typeof window !== 'undefined' &&
@@ -153,67 +169,84 @@ export function HeroSection() {
 
       {/* 2. Full-Bleed 3D Controller Canvas with Graceful Error Boundary */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
-        <SceneErrorBoundary
-          fallback={
-            <div
-              className="w-full h-full flex items-center justify-center pointer-events-none"
-              style={{ transform: `translateX(${isMobile ? 0 : 25}%)` }}
-            >
-              <div className="relative w-72 h-72 sm:w-88 sm:h-88 flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400/25 via-sky-300/15 to-violet-400/15 rounded-full blur-2xl" />
-                <img
-                  src="/assets/hardware/handheld_console.png"
-                  alt="Riyadah Gaming Arena Controller"
-                  className="w-56 sm:w-68 object-contain drop-shadow-2xl opacity-90"
-                />
-              </div>
+        {!webGLAvailable ? (
+          <div
+            className="w-full h-full flex items-center justify-center pointer-events-none"
+            style={{ transform: `translateX(${isMobile ? 0 : 25}%)` }}
+          >
+            <div className="relative w-72 h-72 sm:w-88 sm:h-88 flex items-center justify-center">
+              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400/25 via-sky-300/15 to-violet-400/15 rounded-full blur-2xl" />
+              <img
+                src="/assets/hardware/handheld_console.png"
+                alt="Riyadah Gaming Arena Controller"
+                className="w-56 sm:w-68 object-contain drop-shadow-2xl opacity-90"
+              />
             </div>
-          }
-        >
-          <Suspense
+          </div>
+        ) : (
+          <SceneErrorBoundary
             fallback={
-              <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-cyan-700 pointer-events-auto">
-                <ActivityIndicator size="large" color="#08A8C8" />
-                <span className="text-xs font-semibold text-neutral-400">Initializing Arena Stage...</span>
+              <div
+                className="w-full h-full flex items-center justify-center pointer-events-none"
+                style={{ transform: `translateX(${isMobile ? 0 : 25}%)` }}
+              >
+                <div className="relative w-72 h-72 sm:w-88 sm:h-88 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-cyan-400/25 via-sky-300/15 to-violet-400/15 rounded-full blur-2xl" />
+                  <img
+                    src="/assets/hardware/handheld_console.png"
+                    alt="Riyadah Gaming Arena Controller"
+                    className="w-56 sm:w-68 object-contain drop-shadow-2xl opacity-90"
+                  />
+                </div>
               </div>
             }
           >
-            <Canvas
-              camera={{ position: [0, 0.04, 3.8], fov: isMobile ? 54 : 45 }}
-              dpr={[1, 1.5]}
-              gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-              style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
+            <Suspense
+              fallback={
+                <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-cyan-700 pointer-events-auto">
+                  <ActivityIndicator size="large" color="#08A8C8" />
+                  <span className="text-xs font-semibold text-neutral-400">Initializing Arena Stage...</span>
+                </div>
+              }
             >
-              {/* Studio-Grade Arena Lighting tuned for DualSense materials */}
-              <ambientLight intensity={1.15} color="#EBF5FF" />
-              {/* Key Front-Right Spotlight */}
-              <directionalLight position={[4.5, 6.0, 5.0]} intensity={2.2} color="#FFFFFF" />
-              {/* Electric Cyan Rim Highlight on left grip/triggers */}
-              <directionalLight position={[-4.2, 1.8, 3.2]} intensity={1.35} color="#36D9EE" />
-              {/* Restrained Violet Back-Accent for subtle warm-cool contrast */}
-              <directionalLight position={[3.2, -1.5, -3.2]} intensity={1.1} color="#8057F5" />
-              {/* Localized subtle controller glow */}
-              <pointLight position={[controllerX, isMobile ? -0.3 : 0.5, 1.5]} intensity={0.6} color="#08A8C8" />
+              <Canvas
+                camera={{ position: [0, 0.04, 3.8], fov: isMobile ? 54 : 45 }}
+                dpr={[1, 1.5]}
+                gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+                style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
+              >
+                {/* Studio-Grade Arena Lighting tuned for DualSense materials */}
+                <ambientLight intensity={1.15} color="#EBF5FF" />
+                {/* Key Front-Right Spotlight */}
+                <directionalLight position={[4.5, 6.0, 5.0]} intensity={2.2} color="#FFFFFF" />
+                {/* Electric Cyan Rim Highlight on left grip/triggers */}
+                <directionalLight position={[-4.2, 1.8, 3.2]} intensity={1.35} color="#36D9EE" />
+                {/* Restrained Violet Back-Accent for subtle warm-cool contrast */}
+                <directionalLight position={[3.2, -1.5, -3.2]} intensity={1.1} color="#8057F5" />
+                {/* Localized subtle controller glow */}
+                <pointLight position={[controllerX, isMobile ? -0.3 : 0.5, 1.5]} intensity={0.6} color="#08A8C8" />
 
-              <HeroScene3D
-                scrollProgress={scrollProgress}
-                isMobile={isMobile}
-                pointerRef={pointerRef}
-              />
+                <HeroScene3D
+                  scrollProgress={scrollProgress}
+                  isMobile={isMobile}
+                  pointerRef={pointerRef}
+                />
 
-              {/* Soft, realistic floor shadow directly under controller grips */}
-              <ContactShadows
-                position={[controllerX, isMobile ? -0.96 : -0.42, 0]}
-                opacity={0.34}
-                scale={isMobile ? 2.2 : 2.5}
-                blur={2.4}
-                far={2.4}
-                color="#0B1A2C"
-              />
-            </Canvas>
-          </Suspense>
-        </SceneErrorBoundary>
+                {/* Soft, realistic floor shadow directly under controller grips */}
+                <ContactShadows
+                  position={[controllerX, isMobile ? -0.96 : -0.42, 0]}
+                  opacity={0.34}
+                  scale={isMobile ? 2.2 : 2.5}
+                  blur={2.4}
+                  far={2.4}
+                  color="#0B1A2C"
+                />
+              </Canvas>
+            </Suspense>
+          </SceneErrorBoundary>
+        )}
       </div>
+
 
       {/* 3. Protected Content Layer (Left Typography, Center/Right Controller space) */}
       <div className="max-w-7xl mx-auto w-full px-6 md:px-12 relative z-20 pointer-events-none">
