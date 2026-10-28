@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import type { User, LoginInput, RegisterInput } from '@/types/auth';
 import { login as apiLogin, register as apiRegister, fetchProfile, logout as apiLogout } from '@/services/auth';
+import { ApiError } from '@/lib/api-client';
 
 interface AuthModalState {
   isOpen: boolean;
@@ -13,6 +14,7 @@ interface AuthContextValue {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  backendAvailable: boolean;
   authError: string | null;
   clearError: () => void;
   login: (input: LoginInput) => Promise<boolean>;
@@ -31,6 +33,7 @@ export const defaultAuthValue: AuthContextValue = {
   user: null,
   isAuthenticated: false,
   isLoading: false,
+  backendAvailable: true,
   authError: null,
   clearError: () => {},
   login: async () => false,
@@ -50,6 +53,7 @@ const AuthContext = createContext<AuthContextValue>(defaultAuthValue);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [backendAvailable, setBackendAvailable] = useState<boolean>(true);
   const [authError, setAuthError] = useState<string | null>(null);
   const [authModal, setAuthModal] = useState<AuthModalState>({
     isOpen: false,
@@ -63,13 +67,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     async function checkAuth() {
       try {
         const response = await fetchProfile();
-        if (isMounted && response?.user) {
-          setUser(response.user);
-        }
-      } catch {
-        // Unauthenticated or backend unavailable - visitor remains guest
         if (isMounted) {
-          setUser(null);
+          setUser(response.user ?? null);
+          setBackendAvailable(true);
+        }
+      } catch (err: unknown) {
+        if (!isMounted) return;
+        setUser(null);
+
+        if (err instanceof ApiError) {
+          if (err.status === 401) {
+            // Expected normal unauthenticated state for guest visitors
+            setBackendAvailable(true);
+          } else if (err.isNetworkError) {
+            // Backend offline, unreachable, or CORS failure
+            setBackendAvailable(false);
+            console.warn('[AuthContext] Backend server unreachable; continuing in guest mode:', err.message);
+          } else {
+            // Server error (5xx, etc.)
+            setBackendAvailable(false);
+            console.warn(`[AuthContext] Backend returned status ${err.status}; continuing in guest mode:`, err.message);
+          }
+        } else {
+          setBackendAvailable(false);
+          console.warn('[AuthContext] Profile verification error; continuing in guest mode:', err);
         }
       } finally {
         if (isMounted) {
@@ -77,7 +98,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       }
     }
+
     checkAuth();
+
     return () => {
       isMounted = false;
     };
@@ -118,6 +141,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const response = await apiLogin(input);
       if (response?.user) {
         setUser(response.user);
+        setBackendAvailable(true);
         if (authModal.onAuthenticated) {
           authModal.onAuthenticated();
         }
@@ -126,7 +150,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       return false;
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Login failed. Please check credentials.';
+      let msg = 'Login failed. Please check credentials.';
+      if (err instanceof ApiError) {
+        if (err.isNetworkError) {
+          msg = 'Unable to reach the authentication server. Please check your connection and try again.';
+        } else if (err.status === 401) {
+          msg = 'Invalid email or password.';
+        } else {
+          msg = err.message || msg;
+        }
+      } else if (err instanceof Error) {
+        msg = err.message;
+      }
       setAuthError(msg);
       return false;
     } finally {
@@ -176,6 +211,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (response?.user) {
         setUser(response.user);
+        setBackendAvailable(true);
         if (authModal.onAuthenticated) {
           authModal.onAuthenticated();
         }
@@ -184,7 +220,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       return false;
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Registration failed. Please check your details.';
+      let msg = 'Registration failed. Please check your details.';
+      if (err instanceof ApiError) {
+        if (err.isNetworkError) {
+          msg = 'Unable to reach the authentication server. Please check your connection and try again.';
+        } else {
+          msg = err.message || msg;
+        }
+      } else if (err instanceof Error) {
+        msg = err.message;
+      }
       setAuthError(msg);
       return false;
     } finally {
@@ -196,8 +241,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsLoading(true);
     try {
       await apiLogout();
-    } catch {
-      // Ignore errors on logout
+    } catch (err: unknown) {
+      console.warn('[AuthContext] Logout exception:', err);
     } finally {
       setUser(null);
       setIsLoading(false);
@@ -210,6 +255,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         user,
         isAuthenticated: !!user,
         isLoading,
+        backendAvailable,
         authError,
         clearError,
         login,
@@ -229,3 +275,4 @@ export function useAuth(): AuthContextValue {
   const context = useContext(AuthContext);
   return context || defaultAuthValue;
 }
+
