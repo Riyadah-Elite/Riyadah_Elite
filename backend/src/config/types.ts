@@ -9,6 +9,8 @@ export const TYPES = {
   CategoryController: Symbol.for("CategoryController"),
   ListingController: Symbol.for("ListingController"),
   JoinListingController: Symbol.for("JoinListingController"),
+  BugReportController: Symbol.for("BugReportController"),
+  NotificationController: Symbol.for("NotificationController"),
 
   // Service Types
   AuthService: Symbol.for("AuthService"),
@@ -17,6 +19,9 @@ export const TYPES = {
   ListingService: Symbol.for("ListingService"),
   JoinListingService: Symbol.for("JoinListingService"),
   NotificationService: Symbol.for("NotificationService"),
+  ListingStatusService: Symbol.for("ListingStatusService"),
+  BugReportService: Symbol.for("BugReportService"),
+  UserProgressService: Symbol.for("UserProgressService"),
 
   // Repository Types
   AuthRepository: Symbol.for("AuthRepository"),
@@ -25,6 +30,8 @@ export const TYPES = {
   ListingRepository: Symbol.for("ListingRepository"),
   JoinListingRepository: Symbol.for("JoinListingRepository"),
   NotificationRepository: Symbol.for("NotificationRepository"),
+  BugReportRepository: Symbol.for("BugReportRepository"),
+  UserProgressRepository: Symbol.for("UserProgressRepository"),
 
 
   // Infrastructure Types

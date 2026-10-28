@@ -21,6 +21,7 @@ import {
   joinGameListingParamsSchema,
   joinListingIdParamsSchema,
   joinTournamentParamsSchema,
+  leaveJoinSchema,
 } from "../validators/joinlisting.validator.js";
 
 /**
@@ -97,8 +98,13 @@ export default class JoinListingController extends BaseController {
   async leave(req: Request, res: Response) {
     try {
       const { joinId } = validateOrThrow(joinListingIdParamsSchema, req.params);
+      const body = validateOrThrow(leaveJoinSchema, req.body ?? {});
 
-      await this.joinListingService.leave(req.user!.userId, joinId);
+      await this.joinListingService.leave(
+        req.user!.userId,
+        joinId,
+        body.exitReason ?? null,
+      );
 
       return this.success(res, { message: "Left listing" }, STATUS_CODE.OK);
     } catch (error) {

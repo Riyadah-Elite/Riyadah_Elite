@@ -98,6 +98,13 @@ export default class ListingRepository {
     });
   }
 
+  async findOpenGameListing(id: string) {
+    return await this.db.gameListing.findFirst({
+      where: { id, status: "active" },
+      include: LISTING_INCLUDE,
+    });
+  }
+
   async findOwnedGameListing(id: string, userId: string) {
     return await this.db.gameListing.findFirst({
       where: { id, userId },
@@ -109,6 +116,34 @@ export default class ListingRepository {
     const where = {
       userId,
       ...(query.status ? { status: query.status } : {}),
+      ...(query.platform ? { platform: query.platform } : {}),
+      ...(query.categoryId ? { categoryId: query.categoryId } : {}),
+      ...(query.search
+        ? { gameName: { contains: query.search, mode: "insensitive" as const } }
+        : {}),
+    };
+
+    const [items, total] = await this.db.$transaction([
+      this.db.gameListing.findMany({
+        where,
+        include: LISTING_INCLUDE,
+        orderBy: { createdAt: "desc" },
+        skip: query.skip,
+        take: query.take,
+      }),
+      this.db.gameListing.count({ where }),
+    ]);
+
+    return { items, total };
+  }
+
+  /**
+   * Listings a USER may browse: only open (active) ones. Unlike the owner view
+   * this is not scoped to a single developer.
+   */
+  async listOpenGameListings(query: GameListingQuery) {
+    const where = {
+      status: "active" as const,
       ...(query.platform ? { platform: query.platform } : {}),
       ...(query.categoryId ? { categoryId: query.categoryId } : {}),
       ...(query.search
@@ -203,6 +238,13 @@ export default class ListingRepository {
     });
   }
 
+  async findOpenTournament(id: string) {
+    return await this.db.tournamentListing.findFirst({
+      where: { id, status: "active" },
+      include: TOURNAMENT_INCLUDE,
+    });
+  }
+
   async findOwnedTournament(id: string, userId: string) {
     return await this.db.tournamentListing.findFirst({
       where: { id, userId },
@@ -214,6 +256,37 @@ export default class ListingRepository {
     const where = {
       userId,
       ...(query.status ? { status: query.status } : {}),
+      ...(query.gameListingId
+        ? { gameListingId: query.gameListingId }
+        : {}),
+      ...(query.search
+        ? {
+            tournamentName: {
+              contains: query.search,
+              mode: "insensitive" as const,
+            },
+          }
+        : {}),
+    };
+
+    const [items, total] = await this.db.$transaction([
+      this.db.tournamentListing.findMany({
+        where,
+        include: TOURNAMENT_INCLUDE,
+        orderBy: { createdAt: "desc" },
+        skip: query.skip,
+        take: query.take,
+      }),
+      this.db.tournamentListing.count({ where }),
+    ]);
+
+    return { items, total };
+  }
+
+  /** Open tournaments a USER may browse. */
+  async listOpenTournaments(query: TournamentQuery) {
+    const where = {
+      status: "active" as const,
       ...(query.gameListingId
         ? { gameListingId: query.gameListingId }
         : {}),
@@ -267,6 +340,67 @@ export default class ListingRepository {
 
   async deleteTournament(id: string) {
     return await this.db.tournamentListing.delete({ where: { id } });
+  }
+
+  // -------------------------------------------------------------------------
+  // Time-based lifecycle
+  // -------------------------------------------------------------------------
+
+  /**
+   * Applies the time-driven listing transitions:
+   *
+   * - A scheduled listing opens once `scheduling` is reached.
+   * - Game testing closes once `testingDeadline` passes.
+   * - Tournament registration closes once `registrationEndDate` passes.
+   *
+   * User progress is applied separately by `UserProgressService` so each tester
+   * can be notified when their own status changes.
+   *
+   * It is intentionally idempotent, so it can run on every relevant request.
+   */
+  async syncListingStatuses(now: Date) {
+    const [openedGames, openedTournaments] = await this.db.$transaction([
+      this.db.gameListing.updateMany({
+        where: {
+          scheduling: { lte: now },
+          testingDeadline: { gt: now },
+          status: "inactive",
+        },
+        data: { status: "active" },
+      }),
+      this.db.tournamentListing.updateMany({
+        where: {
+          scheduling: { lte: now },
+          status: "inactive",
+          OR: [
+            { registrationEndDate: null },
+            { registrationEndDate: { gt: now } },
+          ],
+        },
+        data: { status: "active" },
+      }),
+    ]);
+
+    const [closedGames, closedTournaments] = await this.db.$transaction([
+      this.db.gameListing.updateMany({
+        where: { testingDeadline: { lte: now }, status: "active" },
+        data: { status: "inactive" },
+      }),
+      this.db.tournamentListing.updateMany({
+        where: {
+          registrationEndDate: { lte: now },
+          status: "active",
+        },
+        data: { status: "inactive" },
+      }),
+    ]);
+
+    return {
+      openedGames: openedGames.count,
+      openedTournaments: openedTournaments.count,
+      closedGames: closedGames.count,
+      closedTournaments: closedTournaments.count,
+    };
   }
 
   // -------------------------------------------------------------------------

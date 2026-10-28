@@ -11,6 +11,8 @@ import { notifyEvent } from "../utils/notification.js";
 import ApiError from "../utils/apiError.js";
 import Logger from "../utils/logger.js";
 import JoinListingRepository from "../repositories/joinlisting.repository.js";
+import ListingStatusService from "./listingstatus.service.js";
+import UserProgressService from "./userprogress.service.js";
 import type { EnrollmentRecord } from "../types/joinlisting.types.js";
 
 @injectable()
@@ -18,10 +20,19 @@ export default class JoinListingService {
   @inject(TYPES.JoinListingRepository)
   joinListingRepository!: JoinListingRepository;
 
+  @inject(TYPES.ListingStatusService)
+  listingStatusService!: ListingStatusService;
+
+  @inject(TYPES.UserProgressService)
+  userProgressService!: UserProgressService;
+
   @inject(TYPES.Logger)
   logger!: Logger;
 
   async joinGameListing(userId: string, listingId: string) {
+    await this.listingStatusService.syncStatuses();
+    await this.userProgressService.syncStatuses(userId);
+
     const listing = await this.joinListingRepository.findGameListing(listingId);
 
     if (!listing) {
@@ -55,6 +66,8 @@ export default class JoinListingService {
       listingId,
     );
 
+    await this.userProgressService.markGamePending(userId, listing.gameName);
+
     const user = await this.joinListingRepository.findUser(userId);
 
     if (listing.userId) {
@@ -73,6 +86,9 @@ export default class JoinListingService {
   }
 
   async joinTournament(userId: string, tournamentId: string) {
+    await this.listingStatusService.syncStatuses();
+    await this.userProgressService.syncStatuses(userId);
+
     const tournament = await this.joinListingRepository.findTournament(
       tournamentId,
     );
@@ -132,6 +148,11 @@ export default class JoinListingService {
       tournamentId,
     );
 
+    await this.userProgressService.markTournamentPending(
+      userId,
+      tournament.tournamentName,
+    );
+
     const user = await this.joinListingRepository.findUser(userId);
 
     if (tournament.userId) {
@@ -157,7 +178,11 @@ export default class JoinListingService {
     return join;
   }
 
-  async leave(userId: string, joinId: string): Promise<void> {
+  async leave(
+    userId: string,
+    joinId: string,
+    exitReason?: string | null,
+  ): Promise<void> {
     const join = await this.joinListingRepository.findUserJoin(joinId, userId);
 
     if (!join) {
@@ -169,10 +194,28 @@ export default class JoinListingService {
 
     await this.joinListingRepository.deleteJoin(joinId);
 
+    if (join.gameListing) {
+      await this.userProgressService.markGameFailure(
+        userId,
+        join.gameListing.gameName,
+      );
+    }
+
+    if (join.tournamentListing) {
+      await this.userProgressService.markTournamentFailure(
+        userId,
+        join.tournamentListing.tournamentName,
+        exitReason,
+      );
+    }
+
     this.logger.info("user left listing", { userId, joinId });
   }
 
   async listUserEnrollments(userId: string): Promise<EnrollmentRecord[]> {
+    await this.listingStatusService.syncStatuses();
+    await this.userProgressService.syncStatuses(userId);
+
     this.logger.info("listing user enrollments", { userId });
 
     return await this.joinListingRepository.listUserEnrollments(userId);

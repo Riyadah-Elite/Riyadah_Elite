@@ -28,6 +28,9 @@ import ApiError from "../utils/apiError.js";
 import StorageService from "../utils/storage.js";
 import { notifySystem } from "../utils/notification.js";
 import { NOTIFICATION_MESSAGES } from "../constants/notification.js";
+import { rankForPoints } from "../utils/rank.js";
+import UserProgressService from "./userprogress.service.js";
+import NotificationService from "./notification.service.js";
 import path from "path";
 
 @injectable()
@@ -37,6 +40,12 @@ export default class AuthService {
 
   @inject(TYPES.StorageService)
   storageService!: StorageService;
+
+  @inject(TYPES.UserProgressService)
+  userProgressService!: UserProgressService;
+
+  @inject(TYPES.NotificationService)
+  notificationService!: NotificationService;
 
   @inject(TYPES.Logger)
   logger!: Logger;
@@ -178,6 +187,9 @@ export default class AuthService {
       throw new ApiError(AUTH_ERRORS.TOKEN_INVALID, STATUS_CODE.UNAUTHORIZED);
     }
 
+    await this.userProgressService.syncStatuses(UserData.userId);
+    await this.userProgressService.ensureRank(UserData.userId);
+
     const user = await this.authRepository.findUserById(UserData.userId);
 
     if (!user) {
@@ -289,7 +301,7 @@ export default class AuthService {
     }
 
     /* A user may not hand themselves a role through their own profile. */
-    const { userId, ...changes } = input;
+    const { userId, isNotificationAllowed, ...changes } = input;
 
     if (input.username) {
       const taken = await this.authRepository.findByUsername(input.username);
@@ -299,7 +311,17 @@ export default class AuthService {
       }
     }
 
-    const updated = await this.authRepository.updateUser(input.userId, changes);
+    if (isNotificationAllowed !== undefined) {
+      await this.notificationService.setNotificationAllowed(
+        input.userId,
+        isNotificationAllowed,
+      );
+    }
+
+    const updated =
+      Object.keys(changes).length > 0
+        ? await this.authRepository.updateUser(input.userId, changes)
+        : await this.assertExists(input.userId);
 
     this.logger.info("user details updated", { userId: input.userId });
 
@@ -423,7 +445,7 @@ export default class AuthService {
       isNotificationAllowed: user.isNotificationAllowed,
       testingStatus: user.testingStatus,
       testingPoints: user.testingPoints,
-      testingRank: user.testingRank,
+      testingRank: user.testingRank ?? rankForPoints(user.testingPoints),
       tournamentStatus: user.tournamentStatus,
       exitReason: user.exitReason,
       createdAt: user.createdAt,

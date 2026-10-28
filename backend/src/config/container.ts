@@ -13,6 +13,9 @@ import CategoryService from "../services/category.service.js";
 import ListingService from "../services/listing.service.js";
 import JoinListingService from "../services/joinlisting.service.js";
 import NotificationService from "../services/notification.service.js";
+import ListingStatusService from "../services/listingstatus.service.js";
+import BugReportService from "../services/bugreport.service.js";
+import UserProgressService from "../services/userprogress.service.js";
 
 // repository
 import AuthRepository from "../repositories/auth.repository.js";
@@ -21,6 +24,8 @@ import CategoryRepository from "../repositories/category.repository.js";
 import ListingRepository from "../repositories/listing.repository.js";
 import JoinListingRepository from "../repositories/joinlisting.repository.js";
 import NotificationRepository from "../repositories/notification.repository.js";
+import BugReportRepository from "../repositories/bugreport.repository.js";
+import UserProgressRepository from "../repositories/userprogress.repository.js";
 
 // infrastructure
 import Logger from "../utils/logger.js";
@@ -64,6 +69,9 @@ container.bind(TYPES.CategoryService).to(CategoryService).inSingletonScope();
 container.bind(TYPES.ListingService).to(ListingService).inSingletonScope();
 container.bind(TYPES.JoinListingService).to(JoinListingService).inSingletonScope();
 container.bind(TYPES.NotificationService).to(NotificationService).inSingletonScope();
+container.bind(TYPES.ListingStatusService).to(ListingStatusService).inSingletonScope();
+container.bind(TYPES.BugReportService).to(BugReportService).inSingletonScope();
+container.bind(TYPES.UserProgressService).to(UserProgressService).inSingletonScope();
 
 // Repository bindings
 container.bind(TYPES.AuthRepository).to(AuthRepository).inSingletonScope();
@@ -72,6 +80,8 @@ container.bind(TYPES.CategoryRepository).to(CategoryRepository).inSingletonScope
 container.bind(TYPES.ListingRepository).to(ListingRepository).inSingletonScope();
 container.bind(TYPES.JoinListingRepository).to(JoinListingRepository).inSingletonScope();
 container.bind(TYPES.NotificationRepository).to(NotificationRepository).inSingletonScope();
+container.bind(TYPES.BugReportRepository).to(BugReportRepository).inSingletonScope();
+container.bind(TYPES.UserProgressRepository).to(UserProgressRepository).inSingletonScope();
 
 // Logger bindings
 container.bind(TYPES.Logger).to(Logger).inSingletonScope();

@@ -3,7 +3,7 @@
  */
 
 import type { ListingStatus } from "./listing.types.js";
-import type { TestingStatus } from "./user.types.js";
+import type { TestingStatus, TournamentStatus } from "./user.types.js";
 
 export type EnrollmentType = "game" | "tournament";
 
@@ -20,8 +20,8 @@ export interface EnrollmentRecord {
   listingId: string;
   name: string;
   joinedAt: Date;
-  /** Game enrollments: the tester's TestingStatus. Tournaments: ListingStatus. */
-  status: TestingStatus | ListingStatus;
+  /** The user's current TestingStatus / TournamentStatus for this enrollment. */
+  status: TestingStatus | TournamentStatus;
   /** Current status of the underlying game/tournament listing. */
   listingStatus: ListingStatus;
   /** Number of bug reports this user filed for the joined game. */

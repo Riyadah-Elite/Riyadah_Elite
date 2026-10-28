@@ -11,6 +11,7 @@ import {
   UpdateUserProgressInput,
   UserListQuery,
 } from "../types/user.types.js";
+import { INITIAL_TESTING_RANK } from "../utils/rank.js";
 
 /**
  * The columns any caller may see. Kept as one object so the "public" rule is
@@ -49,6 +50,7 @@ export default class AuthRepository {
           email: userData.email,
           password: userData.password,
           role: userData.role,
+          testingRank: INITIAL_TESTING_RANK,
           ...(userData.avatarId ? { avatarId: userData.avatarId } : {}),
         },
         include: { avatar: { select: { imageUrl: true } } },

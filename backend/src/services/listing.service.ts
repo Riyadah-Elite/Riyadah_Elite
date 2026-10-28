@@ -4,20 +4,29 @@
 
 import { inject, injectable } from "inversify";
 import { TYPES } from "../config/types.js";
-import { STATUS_CODE, USER_ROLE } from "../constants/constants.js";
+import {
+  LISTING_STATUS,
+  STATUS_CODE,
+  USER_ROLE,
+  type UserRole,
+} from "../constants/constants.js";
 import {
   LISTING_ERRORS,
   TOURNAMENT_ERRORS,
 } from "../constants/error.js";
 import { NOTIFICATION_MESSAGES } from "../constants/notification.js";
 import { notifyRole } from "../utils/notification.js";
+import { rankForPoints } from "../utils/rank.js";
 import ApiError from "../utils/apiError.js";
 import Logger from "../utils/logger.js";
 import ListingRepository from "../repositories/listing.repository.js";
+import ListingStatusService from "./listingstatus.service.js";
+import UserProgressService from "./userprogress.service.js";
 import {
   CreateGameListingInput,
   CreateTournamentInput,
   GameListingQuery,
+  ListingStatus,
   TournamentQuery,
   UserTrackingQuery,
   PaginatedResult,
@@ -31,6 +40,12 @@ import type { PaginationMeta } from "../types/user.types.js";
 export default class ListingService {
   @inject(TYPES.ListingRepository)
   listingRepository!: ListingRepository;
+
+  @inject(TYPES.ListingStatusService)
+  listingStatusService!: ListingStatusService;
+
+  @inject(TYPES.UserProgressService)
+  userProgressService!: UserProgressService;
 
   @inject(TYPES.Logger)
   logger!: Logger;
@@ -54,6 +69,7 @@ export default class ListingService {
 
     const listing = await this.listingRepository.createGameListing({
       ...input,
+      status: this.resolveInitialStatus(input.scheduling, input.status),
       userId: ownerId,
     });
 
@@ -67,11 +83,17 @@ export default class ListingService {
     return listing;
   }
 
-  async listGameListings(ownerId: string, query: GameListingQuery) {
-    const { items, total } = await this.listingRepository.listGameListings(
-      ownerId,
-      query,
-    );
+  async listGameListings(
+    requesterId: string,
+    role: UserRole,
+    query: GameListingQuery,
+  ) {
+    await this.listingStatusService.syncStatuses();
+
+    const { items, total } =
+      role === USER_ROLE.DEVELOPER
+        ? await this.listingRepository.listGameListings(requesterId, query)
+        : await this.listingRepository.listOpenGameListings(query);
 
     return {
       items,
@@ -79,8 +101,24 @@ export default class ListingService {
     };
   }
 
-  async getGameListing(ownerId: string, listingId: string) {
-    return await this.assertOwnedGameListing(ownerId, listingId);
+  async getGameListing(
+    requesterId: string,
+    role: UserRole,
+    listingId: string,
+  ) {
+    await this.listingStatusService.syncStatuses();
+
+    if (role === USER_ROLE.DEVELOPER) {
+      return await this.assertOwnedGameListing(requesterId, listingId);
+    }
+
+    const listing = await this.listingRepository.findOpenGameListing(listingId);
+
+    if (!listing) {
+      throw new ApiError(LISTING_ERRORS.NOT_FOUND, STATUS_CODE.NOT_FOUND);
+    }
+
+    return listing;
   }
 
   async updateGameListing(
@@ -111,9 +149,18 @@ export default class ListingService {
       input.testingDeadline ?? existing.testingDeadline,
     );
 
+    const changes: UpdateGameListingInput = { ...input };
+
+    const scheduling =
+      input.scheduling !== undefined ? input.scheduling : existing.scheduling;
+
+    if (scheduling && scheduling.getTime() > Date.now()) {
+      changes.status = LISTING_STATUS.INACTIVE;
+    }
+
     const listing = await this.listingRepository.updateGameListing(
       listingId,
-      input,
+      changes,
     );
 
     this.logger.info("game listing updated", { ownerId, listingId });
@@ -158,6 +205,7 @@ export default class ListingService {
 
     const tournament = await this.listingRepository.createTournament({
       ...input,
+      status: this.resolveInitialStatus(input.scheduling, input.status),
       userId: ownerId,
     });
 
@@ -171,11 +219,17 @@ export default class ListingService {
     return tournament;
   }
 
-  async listTournaments(ownerId: string, query: TournamentQuery) {
-    const { items, total } = await this.listingRepository.listTournaments(
-      ownerId,
-      query,
-    );
+  async listTournaments(
+    requesterId: string,
+    role: UserRole,
+    query: TournamentQuery,
+  ) {
+    await this.listingStatusService.syncStatuses();
+
+    const { items, total } =
+      role === USER_ROLE.ORG
+        ? await this.listingRepository.listTournaments(requesterId, query)
+        : await this.listingRepository.listOpenTournaments(query);
 
     return {
       items,
@@ -183,8 +237,26 @@ export default class ListingService {
     };
   }
 
-  async getTournament(ownerId: string, tournamentId: string) {
-    return await this.assertOwnedTournament(ownerId, tournamentId);
+  async getTournament(
+    requesterId: string,
+    role: UserRole,
+    tournamentId: string,
+  ) {
+    await this.listingStatusService.syncStatuses();
+
+    if (role === USER_ROLE.ORG) {
+      return await this.assertOwnedTournament(requesterId, tournamentId);
+    }
+
+    const tournament = await this.listingRepository.findOpenTournament(
+      tournamentId,
+    );
+
+    if (!tournament) {
+      throw new ApiError(TOURNAMENT_ERRORS.NOT_FOUND, STATUS_CODE.NOT_FOUND);
+    }
+
+    return tournament;
   }
 
   async updateTournament(
@@ -215,9 +287,18 @@ export default class ListingService {
       input.tournamentDate ?? existing.tournamentDate,
     );
 
+    const changes: UpdateTournamentInput = { ...input };
+
+    const scheduling =
+      input.scheduling !== undefined ? input.scheduling : existing.scheduling;
+
+    if (scheduling && scheduling.getTime() > Date.now()) {
+      changes.status = LISTING_STATUS.INACTIVE;
+    }
+
     const tournament = await this.listingRepository.updateTournament(
       tournamentId,
-      input,
+      changes,
     );
 
     this.logger.info("tournament updated", { ownerId, tournamentId });
@@ -241,6 +322,9 @@ export default class ListingService {
     ownerId: string,
     query: UserTrackingQuery,
   ): Promise<PaginatedResult<TrackedUser>> {
+    await this.listingStatusService.syncStatuses();
+    await this.userProgressService.syncStatuses();
+
     this.logger.info("listing tracked users", { ownerId });
 
     const { rows, total } = await this.listingRepository.listTrackedUsers(query);
@@ -251,7 +335,7 @@ export default class ListingService {
       role: row.role,
       testingStatus: row.testingStatus,
       testingPoints: row.testingPoints,
-      testingRank: row.testingRank,
+      testingRank: row.testingRank ?? rankForPoints(row.testingPoints),
       tournamentStatus: row.tournamentStatus,
       reportCount: row._count.bugReports,
       createdAt: row.createdAt,
@@ -266,6 +350,21 @@ export default class ListingService {
   // ===========================================================================
   // HELPERS
   // ===========================================================================
+
+  /**
+   * A listing scheduled for the future is created closed. The lifecycle sync
+   * flips it to active when `scheduling` is reached.
+   */
+  private resolveInitialStatus(
+    scheduling: Date | null | undefined,
+    status: ListingStatus | undefined,
+  ): ListingStatus {
+    if (scheduling && scheduling.getTime() > Date.now()) {
+      return LISTING_STATUS.INACTIVE;
+    }
+
+    return status ?? LISTING_STATUS.ACTIVE;
+  }
 
   private async assertOwnedGameListing(ownerId: string, listingId: string) {
     const listing = await this.listingRepository.findOwnedGameListing(

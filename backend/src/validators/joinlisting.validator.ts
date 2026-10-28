@@ -17,3 +17,7 @@ export const joinTournamentParamsSchema = Joi.object({
 export const joinListingIdParamsSchema = Joi.object({
   joinId: cuid.required(),
 });
+
+export const leaveJoinSchema = Joi.object({
+  exitReason: Joi.string().trim().allow(null, "").max(500),
+});
