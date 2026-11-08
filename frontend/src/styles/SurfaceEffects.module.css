@@ -1,0 +1,133 @@
+/**
+ * SurfaceEffects.module.css
+ * Scoped CSS Module encapsulating the Four Official Riyadah Elite Tactile Surface Systems:
+ * 1. Bauhaus (Architectural hard-offset shadow blocks & spectrum bars)
+ * 2. Glassmorphism (Frosted backdrop-filter headers, drawers & HUD cards with @supports fallback)
+ * 3. Neumorphism (Dual-cast extruded & recessed notification wells)
+ * 4. Claymorphism (3-layer inner highlight + inner shadow + outer depth cards, tables, podiums & inputs)
+ */
+
+/* 1. BAUHAUS ARCHITECTURAL SURFACES */
+.bauhausCard {
+  background-color: var(--bauhaus-card-bg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--bauhaus-shadow);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 180ms ease;
+}
+
+.bauhausCardInteractive:hover {
+  box-shadow: var(--bauhaus-shadow-hover);
+}
+
+.bauhausSpectrumBar {
+  background-image: var(--brand-gradient);
+}
+
+/* 2. GLASSMORPHISM SURFACES (With @supports Progressive Enhancement) */
+.glassNavHeader {
+  background-color: var(--glass-nav-bg);
+  border-bottom: 1px solid var(--glass-nav-border);
+  box-shadow: var(--glass-nav-shadow);
+}
+
+.glassMobileDrawer {
+  background-color: var(--glass-drawer-bg);
+  border-bottom: 1px solid var(--glass-nav-border);
+  box-shadow: var(--glass-nav-shadow);
+}
+
+.glassFloatingHud {
+  background-color: var(--glass-floating-bg);
+  border: 1px solid var(--glass-floating-border);
+  box-shadow: var(--glass-floating-shadow);
+}
+
+.glassPillControl {
+  background-color: var(--glass-pill-bg);
+  border: 1px solid var(--glass-pill-border);
+  box-shadow: var(--glass-pill-shadow);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glassNavHeader,
+  .glassMobileDrawer {
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+  }
+
+  .glassFloatingHud,
+  .glassPillControl {
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+  }
+}
+
+/* 3. NEUMORPHISM TACTILE SURFACES (NEXUS Notifications Center) */
+.neuShell {
+  background-color: var(--neu-shell-bg);
+  border: 1px solid var(--neu-shell-border);
+  box-shadow: var(--neu-shell-shadow);
+}
+
+.neuUnreadRaised {
+  background-color: var(--neu-raised-bg);
+  border: 1px solid var(--neu-raised-border);
+  box-shadow: var(--neu-raised-shadow);
+}
+
+.neuReadInset {
+  background-color: var(--neu-inset-bg);
+  border: 1px solid var(--neu-inset-border);
+  box-shadow: var(--neu-inset-shadow);
+}
+
+.neuIconWell {
+  background-color: var(--neu-well-bg);
+  border: 1px solid var(--neu-well-border);
+  box-shadow: var(--neu-well-shadow);
+}
+
+.neuTactileBtn {
+  background-color: var(--neu-btn-bg);
+  border: 1px solid var(--neu-btn-border);
+  box-shadow: var(--neu-btn-shadow);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.neuTactileBtn:active {
+  box-shadow: var(--neu-well-shadow);
+  transform: translateY(1px);
+}
+
+/* 4. CLAYMORPHISM 3D TACTILE SURFACES (Catalogs, Leaderboards & Bug Workbench) */
+.clayCard {
+  background-color: var(--clay-card-bg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--clay-card-shadow);
+}
+
+.clayTableContainer {
+  background-color: var(--clay-table-bg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--clay-table-shadow);
+}
+
+.clayPodiumCard {
+  background-image: var(--clay-podium-bg);
+  border: 1px solid var(--clay-podium-border);
+  box-shadow: var(--clay-podium-shadow);
+}
+
+.clayInputField {
+  background-color: var(--clay-input-bg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--clay-input-shadow);
+}
+
+.clayFilterBar {
+  background-color: var(--clay-filter-bg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--clay-filter-shadow);
+}

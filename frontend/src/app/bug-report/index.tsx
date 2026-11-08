@@ -1,14 +1,6 @@
 import React from 'react';
-import { AppShell } from '../../shared/components/AppShell';
-import { DesktopBugReportScreen } from '../../desktop/screens/DesktopBugReportScreen';
-import { MobileBugReportScreen } from '../../mobile/screens/MobileBugReportScreen';
+import App from '../index';
 
-export default function BugReportPage() {
-  return (
-    <AppShell
-      desktop={<DesktopBugReportScreen />}
-      mobile={<MobileBugReportScreen />}
-    />
-  );
+export default function BugReportRoute() {
+  return <App initialContext="nexus" initialNexusRoute="bug-reports" />;
 }
-

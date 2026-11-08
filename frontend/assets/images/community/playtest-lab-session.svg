@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" fill="none">
+  <rect width="800" height="500" rx="16" fill="#11141C" />
+  <!-- Dual Monitor Playtest Workstation -->
+  <rect x="70" y="70" width="310" height="195" rx="10" fill="#181C26" stroke="#8B5CF6" stroke-width="2.5" />
+  <rect x="410" y="70" width="320" height="195" rx="10" fill="#181C26" stroke="#22D3EE" stroke-width="2.5" />
+  <!-- Frame-Time Graph & Bug Telemetry -->
+  <polyline points="95,210 140,185 185,195 230,130 275,165 320,145 355,155" stroke="#22D3EE" stroke-width="3" fill="none" />
+  <rect x="435" y="100" width="190" height="16" rx="4" fill="#8B5CF6" opacity="0.6" />
+  <rect x="435" y="130" width="250" height="12" rx="4" fill="#334155" />
+  <rect x="435" y="154" width="220" height="12" rx="4" fill="#334155" />
+  <rect x="435" y="190" width="120" height="28" rx="6" fill="#22D3EE" opacity="0.25" stroke="#22D3EE" stroke-width="1.5" />
+  <!-- Collaborative Tester Nodes -->
+  <rect x="110" y="320" width="580" height="115" rx="12" fill="#181C26" stroke="#262C3A" stroke-width="2" />
+  <circle cx="175" cy="378" r="28" fill="#8B5CF6" opacity="0.3" stroke="#8B5CF6" stroke-width="2" />
+  <circle cx="400" cy="378" r="28" fill="#22D3EE" opacity="0.25" stroke="#22D3EE" stroke-width="2" />
+  <circle cx="625" cy="378" r="28" fill="#3B82F6" opacity="0.25" stroke="#3B82F6" stroke-width="2" />
+  <line x1="205" y1="378" x2="370" y2="378" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="6 6" />
+  <line x1="430" y1="378" x2="595" y2="378" stroke="#3B82F6" stroke-width="2" stroke-dasharray="6 6" />
+</svg>

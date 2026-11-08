@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" fill="none">
+  <defs>
+    <radialGradient id="skyGlowViolet" cx="50%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.36" />
+      <stop offset="55%" stop-color="#1E163B" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#0B0D12" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="coreGlowCyan" cx="50%" cy="46%" r="32%">
+      <stop offset="0%" stop-color="#22D3EE" stop-opacity="0.28" />
+      <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.14" />
+      <stop offset="100%" stop-color="#0B0D12" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="horizonFloor" x1="800" y1="520" x2="800" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#11141C" stop-opacity="0.2" />
+      <stop offset="65%" stop-color="#0B0D12" stop-opacity="0.88" />
+      <stop offset="100%" stop-color="#0B0D12" stop-opacity="1" />
+    </linearGradient>
+    <linearGradient id="beamViolet" x1="800" y1="80" x2="800" y2="680" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0" />
+      <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.24" />
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.06" />
+    </linearGradient>
+    <linearGradient id="mistLayer" x1="800" y1="680" x2="800" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#11141C" stop-opacity="0" />
+      <stop offset="55%" stop-color="#11141C" stop-opacity="0.78" />
+      <stop offset="100%" stop-color="#0B0D12" stop-opacity="0.98" />
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Obsidian Skybox -->
+  <rect width="1600" height="1000" fill="#0B0D12" />
+  <rect width="1600" height="1000" fill="url(#skyGlowViolet)" />
+  <circle cx="800" cy="460" r="420" fill="url(#coreGlowCyan)" />
+
+  <!-- Volumetric Light Beams -->
+  <polygon points="620,0 740,0 920,660 500,660" fill="url(#beamViolet)" />
+  <polygon points="980,0 1080,0 1220,660 840,660" fill="url(#beamViolet)" opacity="0.65" />
+
+  <!-- Distant Bauhaus Orbital Geometry -->
+  <circle cx="800" cy="450" r="340" stroke="#8B5CF6" stroke-opacity="0.22" stroke-width="1.5" stroke-dasharray="8 8" />
+  <circle cx="800" cy="450" r="250" stroke="#3B82F6" stroke-opacity="0.28" stroke-width="1.5" />
+  <circle cx="800" cy="450" r="165" stroke="#22D3EE" stroke-opacity="0.34" stroke-width="2" stroke-dasharray="14 6" />
+
+  <!-- Background Silhouette Towers (Arena Skyline) -->
+  <g opacity="0.55">
+    <rect x="140" y="340" width="90" height="320" fill="#11141C" stroke="#252B3B" stroke-width="1.5" />
+    <rect x="250" y="280" width="110" height="380" fill="#141824" stroke="#2E364F" stroke-width="1.5" />
+    <polygon points="390,660 440,240 530,240 560,660" fill="#151A28" stroke="#8B5CF6" stroke-opacity="0.35" stroke-width="1.5" />
+    <polygon points="1040,660 1070,240 1160,240 1210,660" fill="#151A28" stroke="#3B82F6" stroke-opacity="0.35" stroke-width="1.5" />
+    <rect x="1240" y="280" width="110" height="380" fill="#141824" stroke="#2E364F" stroke-width="1.5" />
+    <rect x="1370" y="340" width="90" height="320" fill="#11141C" stroke="#252B3B" stroke-width="1.5" />
+  </g>
+
+  <!-- Central Futuristic NEXUS Testing & Tournament Citadel -->
+  <g>
+    <!-- Left Wing: Playtesting & QA Lab Citadel -->
+    <polygon points="470,640 540,350 690,390 670,640" fill="#161B29" stroke="#8B5CF6" stroke-width="2" stroke-opacity="0.65" />
+    <line x1="555" y1="410" x2="665" y2="435" stroke="#A78BFA" stroke-width="2" stroke-opacity="0.5" />
+    <line x1="540" y1="465" x2="660" y2="485" stroke="#3B82F6" stroke-width="2" stroke-opacity="0.5" />
+    <line x1="525" y1="520" x2="655" y2="535" stroke="#22D3EE" stroke-width="2" stroke-opacity="0.5" />
+
+    <!-- Right Wing: Competitive Tournament Broadcast Spire -->
+    <polygon points="1130,640 1060,350 910,390 930,640" fill="#161B29" stroke="#3B82F6" stroke-width="2" stroke-opacity="0.65" />
+    <line x1="1045" y1="410" x2="935" y2="435" stroke="#3B82F6" stroke-width="2" stroke-opacity="0.5" />
+    <line x1="1060" y1="465" x2="940" y2="485" stroke="#22D3EE" stroke-width="2" stroke-opacity="0.5" />
+    <line x1="1075" y1="520" x2="945" y2="535" stroke="#8B5CF6" stroke-width="2" stroke-opacity="0.5" />
+
+    <!-- Central Core Monolith & Energy Diamond -->
+    <polygon points="690,650 735,250 865,250 910,650" fill="#181E2E" stroke="#22D3EE" stroke-width="2.2" stroke-opacity="0.75" />
+    <polygon points="800,295 865,385 800,475 735,385" fill="#121622" stroke="#8B5CF6" stroke-width="2.5" />
+    <polygon points="800,330 840,385 800,440 760,385" fill="#8B5CF6" fill-opacity="0.35" stroke="#22D3EE" stroke-width="2" />
+    <circle cx="800" cy="385" r="14" fill="#22D3EE" />
+  </g>
+
+  <!-- Perspective Terrain & Telemetry Grid Floor -->
+  <rect x="0" y="640" width="1600" height="360" fill="url(#horizonFloor)" />
+  <g stroke="#8B5CF6" stroke-opacity="0.28" stroke-width="1.2">
+    <line x1="0" y1="640" x2="1600" y2="640" stroke="#3B82F6" stroke-opacity="0.5" stroke-width="2" />
+    <line x1="0" y1="685" x2="1600" y2="685" />
+    <line x1="0" y1="740" x2="1600" y2="740" />
+    <line x1="0" y1="810" x2="1600" y2="810" />
+    <line x1="0" y1="895" x2="1600" y2="895" />
+    <!-- Perspective Converging Rays -->
+    <line x1="800" y1="640" x2="100" y2="1000" />
+    <line x1="800" y1="640" x2="350" y2="1000" />
+    <line x1="800" y1="640" x2="600" y2="1000" />
+    <line x1="800" y1="640" x2="800" y2="1000" stroke="#22D3EE" stroke-opacity="0.45" />
+    <line x1="800" y1="640" x2="1000" y2="1000" />
+    <line x1="800" y1="640" x2="1250" y2="1000" />
+    <line x1="800" y1="640" x2="1500" y2="1000" />
+  </g>
+
+  <!-- Lower Atmospheric Cloud / Mist Transition Veil -->
+  <rect x="0" y="680" width="1600" height="320" fill="url(#mistLayer)" />
+</svg>

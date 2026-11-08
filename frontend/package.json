@@ -1,16 +1,24 @@
 {
-  "name": "frontend",
+  "name": "riyadah-elite-frontend",
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
-    "start": "expo start",
+    "start": "expo start --web",
+    "dev:all": "expo start --web --clear",
+    "dev:concurrent": "concurrently -n \"MOBILE,DESKTOP\" -c \"magenta.bold,cyan.bold\" \"expo start --clear\" \"expo start --web --port 8082\"",
+    "dev:mobile": "expo start --clear",
+    "dev:web": "expo start --web",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "build:web": "expo export --output-dir dist --clear",
+    "test": "node --test src/utils/ecosystemRules.test.ts",
+    "lint": "tsc --noEmit",
+    "assets:verify": "node --test src/utils/ecosystemRules.test.ts"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
+    "@types/three": "^0.187.0",
     "expo": "~58.0.12",
     "expo-constants": "~58.0.12",
     "expo-font": "~58.0.8",
@@ -19,18 +27,24 @@
     "expo-splash-screen": "~58.0.9",
     "expo-status-bar": "~58.0.3",
     "expo-system-ui": "~58.0.6",
+    "lucide-react": "^0.546.0",
+    "motion": "^14.10.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-native": "0.88.0",
     "react-native-safe-area-context": "~5.10.1",
     "react-native-screens": "~4.30.0",
-    "react-native-web": "~0.21.4"
+    "react-native-web": "~0.21.4",
+    "tailwindcss": "^4.3.5",
+    "three": "^0.187.0"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.3.5",
+    "@types/node": "^22.14.0",
     "@types/react": "~19.3.0",
-    "eslint": "^9.0.0",
-    "eslint-config-expo": "~58.0.4",
-    "typescript": "~6.0.3"
+    "@types/react-dom": "~19.3.0",
+    "concurrently": "^10.0.7",
+    "typescript": "^7.0.2"
   },
   "private": true
 }

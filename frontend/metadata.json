@@ -1,0 +1,6 @@
+{
+  "name": "Riyadah Elite — Competitive Gaming & Playtesting Ecosystem",
+  "description": "Next-generation gaming ecosystem connecting gamers, playtesters, developers, and esports organizations through game discovery, structured playtesting, bug reporting, tournaments, and verified player progression.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

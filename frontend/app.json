@@ -1,43 +1,39 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "Riyadah Elite",
+    "slug": "riyadah-elite",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "frontend",
-    "userInterfaceStyle": "automatic",
+    "icon": "./public/assets/generated/characters/tariq-kestrel-playtester.png",
+    "scheme": "riyadah-elite",
+    "userInterfaceStyle": "dark",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "supportsTablet": true,
+      "bundleIdentifier": "com.riyadahelite.app"
     },
     "android": {
+      "package": "com.riyadahelite.app",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "backgroundColor": "#0B0D12"
       },
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "output": "static",
+      "output": "single",
       "bundler": "metro",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./public/assets/generated/characters/tariq-kestrel-playtester.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "backgroundColor": "#0B0D12"
         }
       ]
     ],
     "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
+      "typedRoutes": true
     }
   }
 }

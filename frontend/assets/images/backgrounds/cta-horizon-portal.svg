@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" fill="none">
+  <defs>
+    <radialGradient id="portalGlow" cx="72%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.42" />
+      <stop offset="45%" stop-color="#3B82F6" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#0B0D12" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1440" height="600" fill="#0B0D12" />
+  <rect width="1440" height="600" fill="url(#portalGlow)" />
+  <circle cx="1040" cy="300" r="260" stroke="#22D3EE" stroke-opacity="0.32" stroke-width="2" />
+  <circle cx="1040" cy="300" r="190" stroke="#8B5CF6" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="10 6" />
+  <circle cx="1040" cy="300" r="120" stroke="#3B82F6" stroke-opacity="0.5" stroke-width="2" />
+  <polygon points="1040,210 1120,300 1040,390 960,300" fill="#8B5CF6" fill-opacity="0.2" stroke="#22D3EE" stroke-width="2" />
+  <circle cx="1040" cy="300" r="24" fill="#22D3EE" />
+</svg>
