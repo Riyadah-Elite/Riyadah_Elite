@@ -179,7 +179,7 @@ export default function App({
         )}
 
         <div
-          className={`${theme.spacing.maxContainerWidth} ${theme.spacing.containerPaddingX} h-16 flex items-center justify-between gap-8`}
+          className={`${theme.spacing.maxContainerWidth} ${theme.spacing.containerPaddingX} h-16 relative flex items-center justify-between gap-4`}
         >
           {/* Zone 1: Single Text Element Wordmark */}
           <a
@@ -189,66 +189,59 @@ export default function App({
               setViewContext('landing');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className={`font-display text-lg font-extrabold tracking-tight whitespace-nowrap shrink-0 ${t.classes.textPrimary}`}
+            className={`font-display text-lg font-extrabold tracking-tight whitespace-nowrap shrink-0 flex items-center gap-2.5 ${t.classes.textPrimary}`}
           >
-            Riyadah Elite
+            <span className="w-2.5 h-2.5 rounded-full bg-[#8B5CF6] shadow-[0_0_12px_#8B5CF6]" aria-hidden="true" />
+            <span>Riyadah Elite</span>
           </a>
 
-          {/* Zone 2: 5 Single-Line Navigation Links */}
+          {/* Zone 2: Centered Floating Navigation Pill (4 Links: Ecosystem, Games, Tournaments, Rankings) */}
           <nav
             aria-label="Primary Navigation"
-            className={`hidden md:flex items-center gap-6 text-sm font-medium ${t.classes.textSecondary}`}
+            className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center"
           >
-            <a
-              href="#section-03-platform-overview"
-              onClick={(e) => {
-                e.preventDefault();
-                handleScrollToSection('section-03-platform-overview');
-              }}
-              className="hover:text-accent-violet transition-colors whitespace-nowrap shrink-0"
-            >
-              Ecosystem
-            </a>
-            <a
-              href="#section-08-games"
-              onClick={(e) => {
-                e.preventDefault();
-                handleScrollToSection('section-08-games');
-              }}
-              className="hover:text-accent-violet transition-colors whitespace-nowrap shrink-0"
-            >
-              Games
-            </a>
-            <a
-              href="#section-09-tournaments"
-              onClick={(e) => {
-                e.preventDefault();
-                handleScrollToSection('section-09-tournaments');
-              }}
-              className="hover:text-accent-violet transition-colors whitespace-nowrap shrink-0"
-            >
-              Tournaments
-            </a>
-            <a
-              href="#section-10-rankings"
-              onClick={(e) => {
-                e.preventDefault();
-                handleScrollToSection('section-10-rankings');
-              }}
-              className="hover:text-accent-violet transition-colors whitespace-nowrap shrink-0"
-            >
-              Rankings
-            </a>
-            <a
-              href="#section-12-faq"
-              onClick={(e) => {
-                e.preventDefault();
-                handleScrollToSection('section-12-faq');
-              }}
-              className="hover:text-accent-violet transition-colors whitespace-nowrap shrink-0"
-            >
-              FAQ
-            </a>
+            <div className="flex items-center gap-6 px-6 py-1.5 rounded-full bg-[#11141C]/80 border border-[#181C26] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
+              <a
+                href="#section-03-platform-overview"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScrollToSection('section-03-platform-overview');
+                }}
+                className="text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors whitespace-nowrap"
+              >
+                Ecosystem
+              </a>
+              <a
+                href="#section-08-games"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScrollToSection('section-08-games');
+                }}
+                className="text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors whitespace-nowrap"
+              >
+                Games
+              </a>
+              <a
+                href="#section-09-tournaments"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScrollToSection('section-09-tournaments');
+                }}
+                className="text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors whitespace-nowrap"
+              >
+                Tournaments
+              </a>
+              <a
+                href="#section-10-rankings"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScrollToSection('section-10-rankings');
+                }}
+                className="text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors whitespace-nowrap"
+              >
+                Rankings
+              </a>
+            </div>
           </nav>
 
           {/* Zone 3: Log In & Sign Up Actions on Desktop + Mobile Drawer Button */}
@@ -259,7 +252,7 @@ export default function App({
                 setAuthModalOpen(true);
               }}
               testID="header-login-btn"
-              className={`px-3.5 py-2 rounded-xl text-xs font-display font-semibold whitespace-nowrap shrink-0 ${t.classes.secondaryBtn}`}
+              className={`px-4 py-2 rounded-xl text-xs font-display font-semibold whitespace-nowrap shrink-0 ${t.classes.secondaryBtn}`}
             >
               Log In
             </Pressable>
@@ -362,12 +355,12 @@ export default function App({
             {[
               { label: '01 · Hero', id: 'section-01-hero' },
               { label: '02 · About', id: 'section-02-about' },
-              { label: '03 · Pillars', id: 'section-03-platform-overview' },
+              { label: '03 · Ecosystem', id: 'section-03-platform-overview' },
               { label: '06 · How It Works', id: 'section-06-how-it-works' },
               { label: '08 · Games', id: 'section-08-games' },
               { label: '09 · Tournaments', id: 'section-09-tournaments' },
               { label: '10 · Rankings', id: 'section-10-rankings' },
-              { label: '12 · FAQ', id: 'section-12-faq' },
+              { label: '13 · Join Portal', id: 'section-13-cta-horizon' },
             ].map((item) => (
               <Pressable
                 key={item.id}
