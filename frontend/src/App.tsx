@@ -179,35 +179,37 @@ export default function App({
         )}
 
         <div
-          className={`${theme.spacing.maxContainerWidth} ${theme.spacing.containerPaddingX} h-16 relative flex items-center justify-between gap-4`}
+          className={`${theme.spacing.maxContainerWidth} ${theme.spacing.containerPaddingX} ${surfaceStyles.headerThreeZone}`}
         >
-          {/* Zone 1: Single Text Element Wordmark */}
-          <a
-            href="#section-01-hero"
-            onClick={(e) => {
-              e.preventDefault();
-              setViewContext('landing');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className={`font-display text-lg font-extrabold tracking-tight whitespace-nowrap shrink-0 flex items-center gap-2.5 ${t.classes.textPrimary}`}
-          >
-            <span className="w-2.5 h-2.5 rounded-full bg-[#8B5CF6] shadow-[0_0_12px_#8B5CF6]" aria-hidden="true" />
-            <span>Riyadah Elite</span>
-          </a>
+          {/* Zone 1: Left Zone (Logo / Wordmark) */}
+          <div className={surfaceStyles.headerZoneLeft}>
+            <a
+              href="#section-01-hero"
+              onClick={(e) => {
+                e.preventDefault();
+                setViewContext('landing');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`font-display text-lg font-extrabold tracking-tight whitespace-nowrap shrink-0 flex items-center gap-2.5 ${t.classes.textPrimary}`}
+            >
+              <span className="w-2.5 h-2.5 rounded-full bg-[#8B5CF6] shadow-[0_0_12px_#8B5CF6]" aria-hidden="true" />
+              <span>Riyadah Elite</span>
+            </a>
+          </div>
 
-          {/* Zone 2: Centered Floating Navigation Pill (4 Links: Ecosystem, Games, Tournaments, Rankings) */}
+          {/* Zone 2: Center Zone (Floating Navigation Pill with 4 Links) */}
           <nav
             aria-label="Primary Navigation"
-            className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center"
+            className={surfaceStyles.headerZoneCenter}
           >
-            <div className="flex items-center gap-6 px-6 py-1.5 rounded-full bg-[#11141C]/80 border border-[#181C26] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.35)]">
+            <div className={surfaceStyles.centerNavPill}>
               <a
                 href="#section-03-platform-overview"
                 onClick={(e) => {
                   e.preventDefault();
                   handleScrollToSection('section-03-platform-overview');
                 }}
-                className="text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors whitespace-nowrap"
+                className={surfaceStyles.centerNavPillLink}
               >
                 Ecosystem
               </a>
@@ -217,7 +219,7 @@ export default function App({
                   e.preventDefault();
                   handleScrollToSection('section-08-games');
                 }}
-                className="text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors whitespace-nowrap"
+                className={surfaceStyles.centerNavPillLink}
               >
                 Games
               </a>
@@ -227,7 +229,7 @@ export default function App({
                   e.preventDefault();
                   handleScrollToSection('section-09-tournaments');
                 }}
-                className="text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors whitespace-nowrap"
+                className={surfaceStyles.centerNavPillLink}
               >
                 Tournaments
               </a>
@@ -237,15 +239,15 @@ export default function App({
                   e.preventDefault();
                   handleScrollToSection('section-10-rankings');
                 }}
-                className="text-xs font-medium text-[#94A3B8] hover:text-[#F8FAFC] transition-colors whitespace-nowrap"
+                className={surfaceStyles.centerNavPillLink}
               >
                 Rankings
               </a>
             </div>
           </nav>
 
-          {/* Zone 3: Log In & Sign Up Actions on Desktop + Mobile Drawer Button */}
-          <div className="flex items-center gap-2.5 shrink-0">
+          {/* Zone 3: Right Zone (Log In & Sign Up Actions on Desktop + Mobile Drawer Button) */}
+          <div className={surfaceStyles.headerZoneRight}>
             <Pressable
               onPress={() => {
                 setAuthMode('login');
