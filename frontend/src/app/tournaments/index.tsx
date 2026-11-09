@@ -1,14 +1,6 @@
 import React from 'react';
-import { AppShell } from '../../shared/components/AppShell';
-import { DesktopTournamentListScreen } from '../../desktop/screens/DesktopTournamentListScreen';
-import { MobileTournamentListScreen } from '../../mobile/screens/MobileTournamentListScreen';
+import App from '../index';
 
-export default function TournamentsPage() {
-  return (
-    <AppShell
-      desktop={<DesktopTournamentListScreen />}
-      mobile={<MobileTournamentListScreen />}
-    />
-  );
+export default function TournamentsRoute() {
+  return <App initialContext="nexus" initialNexusRoute="tournaments" />;
 }
-

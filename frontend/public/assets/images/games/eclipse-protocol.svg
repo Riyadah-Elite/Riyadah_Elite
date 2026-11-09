@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" fill="none">
+  <defs>
+    <linearGradient id="epBg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B0D12" />
+      <stop offset="50%" stop-color="#191330" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <radialGradient id="epOrb" cx="65%" cy="40%" r="40%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.55" />
+      <stop offset="65%" stop-color="#6D28D9" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#0B0D12" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#epBg)" />
+  <rect width="800" height="450" fill="url(#epOrb)" />
+  <!-- Eclipse Planet & Orbital Station -->
+  <circle cx="510" cy="185" r="115" fill="#090B10" stroke="#8B5CF6" stroke-width="3" />
+  <ellipse cx="510" cy="185" rx="185" ry="42" transform="rotate(-18 510 185)" stroke="#3B82F6" stroke-width="2" stroke-opacity="0.7" />
+  <!-- Tactical Recon Silhouettes -->
+  <polygon points="120,450 210,260 285,295 340,450" fill="#141824" stroke="#8B5CF6" stroke-width="2" />
+  <polygon points="225,280 265,280 255,296 218,296" fill="#22D3EE" />
+  <path d="M0 390 L800 350 L800 450 L0 450 Z" fill="#0B0D12" opacity="0.75" />
+</svg>

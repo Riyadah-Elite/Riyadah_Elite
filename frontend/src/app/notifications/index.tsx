@@ -1,14 +1,6 @@
 import React from 'react';
-import { AppShell } from '../../shared/components/AppShell';
-import { DesktopNotificationsScreen } from '../../desktop/screens/DesktopNotificationsScreen';
-import { MobileNotificationsScreen } from '../../mobile/screens/MobileNotificationsScreen';
+import App from '../index';
 
-export default function NotificationsPage() {
-  return (
-    <AppShell
-      desktop={<DesktopNotificationsScreen />}
-      mobile={<MobileNotificationsScreen />}
-    />
-  );
+export default function NotificationsRoute() {
+  return <App initialContext="nexus" initialNexusRoute="notifications" />;
 }
-

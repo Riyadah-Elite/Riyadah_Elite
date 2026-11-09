@@ -1,0 +1,131 @@
+/**
+ * CinematicStage.module.css
+ * Scoped CSS Module for multi-stop volumetric lighting, architectural grid-line masks,
+ * Hero-to-About atmospheric mist bridges, and Section 13 Horizon Portal backdrops.
+ */
+
+.heroArenaAtmosphere {
+  position: relative;
+  isolation: isolate;
+}
+
+.heroArenaAtmosphere::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(139, 92, 246, 0.16) 0%, transparent 48%),
+    radial-gradient(circle at 82% 28%, rgba(34, 211, 238, 0.14) 0%, transparent 46%),
+    radial-gradient(circle at 52% 78%, rgba(59, 130, 246, 0.12) 0%, transparent 54%);
+}
+
+.architecturalGridBackdrop {
+  position: relative;
+}
+
+.architecturalGridBackdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-size: 44px 44px;
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--border-subtle) 32%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--border-subtle) 32%, transparent) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 35%, transparent 100%);
+  opacity: 0.55;
+}
+
+.heroVisualStageFrame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: #0B0D12;
+  box-shadow:
+    0 22px 52px -12px rgba(0, 0, 0, 0.72),
+    0 0 0 1px rgba(139, 92, 246, 0.32),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+}
+
+.mistHorizonBridge {
+  position: relative;
+  z-index: 20;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(17, 20, 28, 0.45) 45%,
+    rgba(11, 13, 18, 0.95) 100%
+  );
+  border-bottom: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 4px 20px -2px rgba(139, 92, 246, 0.12);
+}
+
+.horizonPortalStage {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(34, 211, 238, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 16% 80%, rgba(139, 92, 246, 0.28) 0%, transparent 50%),
+    linear-gradient(100deg, #0B0D12 0%, #141828 52%, #11141C 100%);
+  box-shadow:
+    10px 10px 0px 0px rgba(34, 211, 238, 0.22),
+    0 24px 48px -12px rgba(11, 13, 18, 0.65);
+}
+
+.shutterCurtainOverlay {
+  background: var(--shutter-curtain-bg);
+}
+
+.mosaicShutterTile {
+  background-color: var(--mosaic-tile-bg);
+  border: 1px solid var(--mosaic-tile-border);
+}
+
+.layeredSceneStage {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.volumetricRaysOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.65;
+  z-index: 2;
+}
+
+.particlesOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  z-index: 3;
+}
+
+.foregroundArchOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0.72;
+}
+
+.characterLayerStage {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" fill="none">
+  <defs>
+    <linearGradient id="vdBg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0D111A" />
+      <stop offset="60%" stop-color="#182232" />
+      <stop offset="100%" stop-color="#0B0D12" />
+    </linearGradient>
+    <linearGradient id="speedLine" x1="80" y1="260" x2="720" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22D3EE" />
+      <stop offset="55%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#vdBg)" />
+  <!-- Speed Track & Telemetry Arcs -->
+  <path d="M-40 380 Q 340 240 840 160" stroke="url(#speedLine)" stroke-width="6" opacity="0.85" />
+  <path d="M-20 420 Q 380 280 840 220" stroke="#8B5CF6" stroke-width="3" opacity="0.5" />
+  <!-- Futuristic Aero Chassis -->
+  <g transform="translate(210, 175) rotate(-8)">
+    <polygon points="40,95 155,40 340,45 410,85 375,115 65,115" fill="#161B28" stroke="#22D3EE" stroke-width="2.5" />
+    <polygon points="165,48 295,50 325,78 140,78" fill="#8B5CF6" fill-opacity="0.4" stroke="#8B5CF6" stroke-width="1.5" />
+    <circle cx="115" cy="112" r="28" fill="#0B0D12" stroke="#3B82F6" stroke-width="4" />
+    <circle cx="325" cy="112" r="28" fill="#0B0D12" stroke="#22D3EE" stroke-width="4" />
+  </g>
+</svg>

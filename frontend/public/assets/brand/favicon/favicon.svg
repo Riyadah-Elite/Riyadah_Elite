@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <defs>
+    <linearGradient id="reMarkGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="55%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#22D3EE" />
+    </linearGradient>
+    <linearGradient id="reInnerGlow" x1="12" y1="8" x2="52" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22D3EE" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#0B0D12" stroke="url(#reMarkGrad)" stroke-width="2.5" />
+  <path d="M18 46V18H33.5C39.5 18 43.5 21.5 43.5 26.8C43.5 30.8 41.1 33.8 37.2 34.9L44.5 46H37.2L30.8 35.6H24.2V46H18ZM24.2 30.4H32.8C35.8 30.4 37.3 29 37.3 26.8C37.3 24.6 35.8 23.2 32.8 23.2H24.2V30.4Z" fill="#F8FAFC" />
+  <path d="M40 16L48 21V27L40 22V16Z" fill="url(#reInnerGlow)" />
+  <circle cx="46" cy="44" r="3" fill="#22D3EE" />
+</svg>
