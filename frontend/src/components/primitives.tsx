@@ -243,7 +243,7 @@ export const ActivityIndicator: React.FC<{ size?: 'sm' | 'md' | 'lg'; label?: st
 
 export const SafeAreaView: React.FC<ViewProps> = ({ className = '', children, ...rest }) => (
   <div
-    className={`w-full max-w-full overflow-x-hidden pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)] pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] ${className}`}
+    className={`w-full max-w-full overflow-x-clip pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)] pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)] ${className}`}
     {...rest}
   >
     {children}

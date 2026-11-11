@@ -13,7 +13,7 @@ html, body {
   color: #F8FAFC !important;
   min-height: 100% !important;
   height: auto !important;
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
   overflow-y: auto !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -26,7 +26,34 @@ html, body {
   background-color: #0B0D12 !important;
   color: #F8FAFC !important;
   overflow-y: visible !important;
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
+}
+
+/* Explicit Sticky and Viewport Navigation Controls */
+.sticky {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+}
+
+.top-0 {
+  top: 0 !important;
+}
+
+.z-40 {
+  z-index: 40 !important;
+}
+
+.z-50 {
+  z-index: 50 !important;
+}
+
+.fixed {
+  position: fixed !important;
+}
+
+.inset-x-0 {
+  left: 0 !important;
+  right: 0 !important;
 }
 
 /*! tailwindcss v4.3.5 | MIT License | https://tailwindcss.com */

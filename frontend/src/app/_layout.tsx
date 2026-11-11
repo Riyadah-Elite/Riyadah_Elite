@@ -23,14 +23,14 @@ export default function RootLayout() {
       root.classList.add('dark');
       root.style.setProperty('background-color', '#0B0D12', 'important');
       root.style.setProperty('color', '#F8FAFC', 'important');
-      root.style.setProperty('overflow-x', 'hidden', 'important');
+      root.style.setProperty('overflow-x', 'clip', 'important');
       root.style.setProperty('overflow-y', 'auto', 'important');
       root.style.setProperty('height', 'auto', 'important');
       root.style.setProperty('min-height', '100%', 'important');
 
       document.body.style.setProperty('background-color', '#0B0D12', 'important');
       document.body.style.setProperty('color', '#F8FAFC', 'important');
-      document.body.style.setProperty('overflow-x', 'hidden', 'important');
+      document.body.style.setProperty('overflow-x', 'clip', 'important');
       document.body.style.setProperty('overflow-y', 'auto', 'important');
       document.body.style.setProperty('min-height', '100vh', 'important');
       document.body.style.setProperty('height', 'auto', 'important');
@@ -43,7 +43,7 @@ export default function RootLayout() {
         rootEl.style.setProperty('background-color', '#0B0D12', 'important');
         rootEl.style.setProperty('color', '#F8FAFC', 'important');
         rootEl.style.setProperty('overflow-y', 'visible', 'important');
-        rootEl.style.setProperty('overflow-x', 'hidden', 'important');
+        rootEl.style.setProperty('overflow-x', 'clip', 'important');
       }
 
       // Remove React Native Web default scroll locking style tag if injected
@@ -56,7 +56,7 @@ export default function RootLayout() {
 
   if (Platform.OS === 'web') {
     return (
-      <div className="w-full min-h-screen bg-[#0B0D12] text-[#F8FAFC] overflow-y-auto overflow-x-hidden selection:bg-accent-violet selection:text-white">
+      <div className="w-full min-h-screen bg-[#0B0D12] text-[#F8FAFC] selection:bg-accent-violet selection:text-white">
         <Slot />
       </div>
     );

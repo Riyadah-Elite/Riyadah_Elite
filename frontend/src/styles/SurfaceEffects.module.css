@@ -27,9 +27,18 @@
 
 /* 2. GLASSMORPHISM SURFACES (With @supports Progressive Enhancement) */
 .glassNavHeader {
-  background-color: var(--glass-nav-bg);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: rgba(11, 13, 18, 0.85);
   border-bottom: 1px solid var(--glass-nav-border);
-  box-shadow: var(--glass-nav-shadow);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
 }
 
 .glassMobileDrawer {

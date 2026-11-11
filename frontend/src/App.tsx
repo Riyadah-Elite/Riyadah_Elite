@@ -163,7 +163,7 @@ export default function App({
       {/* =====================================================================
           GLASSMORPHIC STICKY TOP BAR + DESKTOP SCROLL PROGRESS INDICATOR
       ====================================================================== */}
-      <header className={`sticky top-0 z-40 ${surfaceStyles.glassNavHeader} ${t.styles.glass.navHeader}`}>
+      <header className={`sticky top-0 z-50 ${surfaceStyles.glassNavHeader} ${t.styles.glass.navHeader}`}>
         {/* Desktop Scroll-Progress Bar */}
         {viewContext === 'landing' && (
           <div
