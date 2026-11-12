@@ -19,6 +19,7 @@ import {
   UserRole,
   TestingStatus,
   TournamentStatus,
+  LeaderboardEntry,
 } from "../types/user.types.js";
 import Logger from "../utils/logger.js";
 import AuthRepository from "../repositories/auth.repository.js";
@@ -260,6 +261,34 @@ export default class AuthService {
         hasNextPage: query.page < totalPages,
         hasPreviousPage: query.page > 1,
       },
+    };
+  }
+
+  // ===========================================================================
+  // PUBLIC LADDER
+  // ===========================================================================
+
+  /**
+   * Top slice of the testing ladder. This is the only public user read, so it
+   * exposes nothing beyond the columns a scoreboard needs - no email, no
+   * account flags and no progress internals.
+   */
+  async leaderboard(limit: number): Promise<{ items: LeaderboardEntry[] }> {
+    this.logger.info("loading public leaderboard", { limit });
+
+    const rows = await this.authRepository.listLeaderboard(limit);
+
+    return {
+      items: rows.map((row, index) => ({
+        position: index + 1,
+        id: row.id,
+        username: row.username,
+        role: row.role,
+        avatarUrl: row.avatar?.imageUrl ?? null,
+        testingPoints: row.testingPoints ?? 0,
+        testingRank: row.testingRank ?? rankForPoints(row.testingPoints),
+        createdAt: row.createdAt,
+      })),
     };
   }
 

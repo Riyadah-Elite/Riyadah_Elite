@@ -112,6 +112,15 @@ export const userListQuerySchema = Joi.object({
 });
 
 /**
+ * Query string for the public leaderboard. The ladder is intentionally small:
+ * the landing page only needs the top slice, and an unbounded limit would let
+ * anyone dump the whole user table.
+ */
+export const leaderboardQuerySchema = Joi.object({
+  limit: Joi.number().integer().min(1).max(50).default(10),
+});
+
+/**
  * Body for updating another user. Every field is optional but at least one must
  * be present, otherwise PATCH /:userId would silently succeed doing nothing.
  */

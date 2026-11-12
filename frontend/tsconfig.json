@@ -1,48 +1,21 @@
 {
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "allowJs": true,
-    "jsx": "react-jsx",
+    "strict": true,
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "@/assets/*": [
+        "./assets/*"
       ]
-    },
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "types": [
-      "node"
-    ]
+    }
   },
   "include": [
-    "src/ambient.d.ts",
-    "src/app/**/*",
-    "src/components/**/*",
-    "src/landing/**/*",
-    "src/services/**/*",
-    "src/theme/**/*",
-    "src/utils/**/*",
-    "src/App.tsx",
+    "**/*.ts",
+    "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "src/desktop/**/*",
-    "src/mobile/**/*",
-    "src/shared/**/*",
-    "scripts/**/*"
-  ],
-  "extends": "expo/tsconfig.base"
+    "expo-env.d.ts",
+    "nativewind-env.d.ts"
+  ]
 }

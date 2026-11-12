@@ -150,6 +150,31 @@ export default class AuthRepository {
     return { users, total };
   }
 
+  /**
+   * The public testing ladder, highest points first. Ties fall back to the
+   * earliest account so the order is stable between requests. Rows without a
+   * point total sort last instead of being dropped.
+   */
+  async listLeaderboard(limit: number) {
+    return await this.db.user.findMany({
+      where: { isDeleted: false },
+      select: {
+        id: true,
+        username: true,
+        role: true,
+        testingPoints: true,
+        testingRank: true,
+        createdAt: true,
+        avatar: { select: { imageUrl: true } },
+      },
+      orderBy: [
+        { testingPoints: { sort: "desc", nulls: "last" } },
+        { createdAt: "asc" },
+      ],
+      take: limit,
+    });
+  }
+
   async findByUsername(username: string) {
     return await this.db.user.findFirst({
       where: { username, isDeleted: false },
