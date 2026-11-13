@@ -77,6 +77,13 @@ export default class JoinListingRepository {
   async findUserJoin(joinId: string, userId: string) {
     return await this.db.joinListing.findFirst({
       where: { id: joinId, userId },
+      select: {
+        id: true,
+        gameListingId: true,
+        tournamentListingId: true,
+        gameListing: { select: { gameName: true } },
+        tournamentListing: { select: { tournamentName: true } },
+      },
     });
   }
 
@@ -97,8 +104,7 @@ export default class JoinListingRepository {
   /**
    * Returns every listing the user has joined, with the status shown to the
    * caller. Game status comes from `User.testingStatus`; tournament status comes
-   * from the tournament listing itself, so an external site changing it is
-   * reflected on the next request. `bugReportCount` is pulled from BugReport so
+   * from `User.tournamentStatus`. `bugReportCount` is pulled from BugReport so
    * game-testing progress can be shown next to the enrollment.
    */
   async listUserEnrollments(userId: string): Promise<EnrollmentRecord[]> {
@@ -130,11 +136,12 @@ export default class JoinListingRepository {
         tl.id                              AS "listingId",
         tl."tournamentName"                AS "name",
         jl."createdAt"                     AS "joinedAt",
-        tl.status::text                    AS "status",
+        COALESCE(u."tournamentStatus"::text, 'pending') AS "status",
         tl.status::text                    AS "listingStatus",
         0                                  AS "bugReportCount"
       FROM "JoinListing" jl
       INNER JOIN "TournamentListing" tl ON tl.id = jl."tournamentListingId"
+      INNER JOIN "User" u ON u.id = jl."userId"
       WHERE jl."userId" = ${userId}
 
       ORDER BY "joinedAt" DESC

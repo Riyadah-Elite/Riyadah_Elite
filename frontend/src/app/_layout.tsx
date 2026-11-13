@@ -1,76 +1,78 @@
-import React, { useEffect } from 'react';
-import { Platform } from 'react-native';
-import { Stack, Slot } from 'expo-router';
+import { useFonts } from 'expo-font';
+import { DefaultTheme, Stack, ThemeProvider } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { theme } from '../theme/theme';
-import '../index.css';
+
+import { AuthModalHost } from '@/components/auth/auth-modal';
+import { Palette } from '@/constants/design';
+import { AuthModalProvider } from '@/providers/auth-modal-provider';
+import { AuthProvider } from '@/providers/auth-provider';
+import { NotificationProvider } from '@/providers/notification-provider';
+import { ToastProvider } from '@/providers/toast-provider';
+
+void SplashScreen.preventAutoHideAsync();
+
+const navigationTheme = {
+  ...DefaultTheme,
+  dark: false,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: Palette.primary,
+    background: Palette.canvas,
+    card: Palette.surface,
+    text: Palette.text,
+    border: Palette.border,
+    notification: Palette.primary,
+  },
+};
 
 export default function RootLayout() {
+  const [fontsLoaded, fontError] = useFonts({
+    Sora: require('@/assets/fonts/Sora.ttf'),
+    Geist: require('@/assets/fonts/Geist.ttf'),
+  });
+
   useEffect(() => {
-    if (typeof document !== 'undefined') {
-      // Ensure Google Fonts stylesheet link is registered (Sora, Inter, JetBrains Mono, DM Sans)
-      const fontLinkId = 'riyadah-elite-google-fonts';
-      if (!document.getElementById(fontLinkId)) {
-        const link = document.createElement('link');
-        link.id = fontLinkId;
-        link.rel = 'stylesheet';
-        link.href =
-          'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap';
-        document.head.appendChild(link);
-      }
-
-      const root = document.documentElement;
-      root.classList.add('dark');
-      root.style.setProperty('background-color', '#0B0D12', 'important');
-      root.style.setProperty('color', '#F8FAFC', 'important');
-      root.style.setProperty('overflow-x', 'clip', 'important');
-      root.style.setProperty('overflow-y', 'auto', 'important');
-      root.style.setProperty('height', 'auto', 'important');
-      root.style.setProperty('min-height', '100%', 'important');
-
-      document.body.style.setProperty('background-color', '#0B0D12', 'important');
-      document.body.style.setProperty('color', '#F8FAFC', 'important');
-      document.body.style.setProperty('overflow-x', 'clip', 'important');
-      document.body.style.setProperty('overflow-y', 'auto', 'important');
-      document.body.style.setProperty('min-height', '100vh', 'important');
-      document.body.style.setProperty('height', 'auto', 'important');
-
-      const rootEl = document.getElementById('root');
-      if (rootEl) {
-        rootEl.style.setProperty('display', 'block', 'important');
-        rootEl.style.setProperty('min-height', '100vh', 'important');
-        rootEl.style.setProperty('height', 'auto', 'important');
-        rootEl.style.setProperty('background-color', '#0B0D12', 'important');
-        rootEl.style.setProperty('color', '#F8FAFC', 'important');
-        rootEl.style.setProperty('overflow-y', 'visible', 'important');
-        rootEl.style.setProperty('overflow-x', 'clip', 'important');
-      }
-
-      // Remove React Native Web default scroll locking style tag if injected
-      const rnReset = document.getElementById('expo-reset');
-      if (rnReset && rnReset.id !== 'riyadah-elite-scroller-fix') {
-        rnReset.remove();
-      }
+    if (fontsLoaded || fontError) {
+      void SplashScreen.hideAsync();
     }
-  }, []);
+  }, [fontError, fontsLoaded]);
 
-  if (Platform.OS === 'web') {
-    return (
-      <div className="w-full min-h-screen bg-[#0B0D12] text-[#F8FAFC] selection:bg-accent-violet selection:text-white">
-        <Slot />
-      </div>
-    );
+  if (!fontsLoaded && !fontError) {
+    return null;
   }
 
   return (
     <SafeAreaProvider>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { backgroundColor: theme.dark.backgrounds.canvas },
-        }}
-      />
+      <ThemeProvider value={navigationTheme}>
+        <ToastProvider>
+          <AuthProvider>
+            <NotificationProvider>
+              <AuthModalProvider>
+                <StatusBar style="dark" />
+
+                <Stack
+                  screenOptions={{
+                    headerShown: false,
+                    contentStyle: { backgroundColor: Palette.canvas },
+                    animation: 'fade',
+                  }}>
+                  <Stack.Screen name="index" />
+                  <Stack.Screen name="auth/login" options={{ animation: 'slide_from_bottom' }} />
+                  <Stack.Screen name="auth/register" options={{ animation: 'slide_from_bottom' }} />
+                  <Stack.Screen name="tournaments" />
+                  <Stack.Screen name="game-testing" />
+                  <Stack.Screen name="bug-report" />
+                </Stack>
+
+                <AuthModalHost />
+              </AuthModalProvider>
+            </NotificationProvider>
+          </AuthProvider>
+        </ToastProvider>
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }
-

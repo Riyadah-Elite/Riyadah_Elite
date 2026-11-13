@@ -83,3 +83,30 @@ export const NOTIFICATION_TYPE = {
   PROMOTION: "promotion",
   EVENT: "event",
 } as const;
+
+export const TESTING_RANKS = [
+  "bronze 3",
+  "bronze 2",
+  "bronze 1",
+  "silver 3",
+  "silver 2",
+  "silver 1",
+  "gold 3",
+  "gold 2",
+  "gold 1",
+  "platinum 3",
+  "platinum 2",
+  "platinum 1",
+  "diamond 3",
+  "diamond 2",
+  "diamond 1",
+] as const;
+
+export const POINTS_PER_RANK = 100;
+
+export const RANK_THRESHOLDS = [
+  0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300,
+  1500,
+] as const;
+
+export const POINTS_PER_COMPLETED_BUG_REPORT = 100;

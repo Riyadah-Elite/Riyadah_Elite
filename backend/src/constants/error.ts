@@ -80,7 +80,20 @@ export const JOIN_LISTING_ERRORS = {
   TOURNAMENT_FULL: "This tournament is full",
 } as const;
 
+export const BUG_REPORT_ERRORS = {
+  NOT_FOUND: "Bug report not found",
+  GAME_LISTING_NOT_FOUND: "Game listing not found",
+  NOT_ENROLLED: "Join the game testing before reporting bugs",
+  TESTING_ENDED: "Testing for this game has ended",
+  IMAGE_NOT_FOUND: "Image not found",
+  ATTACHMENT_NOT_FOUND: "Attachment not found",
+} as const;
+
 export const ORG_ERRORS = {
   ROLE_REQUIRED: "Only an organization can access this resource",
+} as const;
+
+export const NOTIFICATION_ERRORS = {
+  NOT_FOUND: "Notification not found",
 } as const;
 

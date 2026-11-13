@@ -7,3 +7,5 @@ import "./file.controller.js";
 import "./category.controller.js";
 import "./listing.controller.js";
 import "./joinlisting.controller.js";
+import "./bugreport.controller.js";
+import "./notification.controller.js";

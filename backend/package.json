@@ -10,6 +10,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "clear": "tsx scripts/db/minio.clear.ts",
+    "seed:admin": "tsx scripts/db/seed-admin.ts",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:migrate:deploy": "prisma migrate deploy",

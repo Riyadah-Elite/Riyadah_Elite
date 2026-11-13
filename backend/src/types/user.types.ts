@@ -201,11 +201,24 @@ export interface PaginatedUsers {
   pagination: PaginationMeta;
 }
 
+/** One row of the public testing ladder. */
+export interface LeaderboardEntry {
+  position: number;
+  id: string;
+  username: string;
+  role: UserRole;
+  avatarUrl: string | null;
+  testingPoints: number;
+  testingRank: string;
+  createdAt: Date;
+}
+
 /** Fields an ADMIN may change on another account. */
 export interface UpdateUserDetailsInput {
   userId: string;
   username?: string;
   role?: UserRole;
   isNotificationAllowed?: boolean;
+  avatarId?: string | null;
   avatarUrl?: string;
 }

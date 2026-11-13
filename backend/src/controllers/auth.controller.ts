@@ -13,6 +13,7 @@ import {
 } from "../constants/constants.js";
 import { FILE_ERRORS } from "../constants/error.js";
 import {
+  leaderboardQuerySchema,
   loginSchema,
   registerSchema,
   updateUserDetailsSchema,
@@ -98,6 +99,20 @@ export default class AuthController extends BaseController {
         token,
       });
       return this.success(res, user, STATUS_CODE.OK);
+    } catch (error) {
+      return this.handleError(res, error);
+    }
+  }
+
+  /** Public ladder used by the landing page scoreboard. */
+  @httpGet("/leaderboard")
+  async leaderboard(req: Request, res: Response) {
+    try {
+      const query = validateOrThrow(leaderboardQuerySchema, req.query);
+
+      const result = await this.authService.leaderboard(Number(query.limit));
+
+      return this.success(res, result, STATUS_CODE.OK);
     } catch (error) {
       return this.handleError(res, error);
     }

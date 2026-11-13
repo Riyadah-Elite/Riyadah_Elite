@@ -21,6 +21,7 @@ import {
   joinGameListingParamsSchema,
   joinListingIdParamsSchema,
   joinTournamentParamsSchema,
+  leaveJoinSchema,
 } from "../validators/joinlisting.validator.js";
 
 /**
@@ -39,7 +40,7 @@ export default class JoinListingController extends BaseController {
   logger!: Logger;
 
   /** POST /api/v1/joinlisting/game/:listingId */
-  @httpPost("/game/:listingId", authMiddleware(USER_ROLE.USER))
+  @httpPost("/game/:listingId", authMiddleware([USER_ROLE.USER, USER_ROLE.ORG]))
   async joinGame(req: Request, res: Response) {
     try {
       const { listingId } = validateOrThrow(
@@ -59,7 +60,7 @@ export default class JoinListingController extends BaseController {
   }
 
   /** POST /api/v1/joinlisting/tournament/:tournamentId */
-  @httpPost("/tournament/:tournamentId", authMiddleware(USER_ROLE.USER))
+  @httpPost("/tournament/:tournamentId", authMiddleware([USER_ROLE.USER, USER_ROLE.DEVELOPER]))
   async joinTournament(req: Request, res: Response) {
     try {
       const { tournamentId } = validateOrThrow(
@@ -79,7 +80,7 @@ export default class JoinListingController extends BaseController {
   }
 
   /** GET /api/v1/joinlisting */
-  @httpGet("/", authMiddleware(USER_ROLE.USER))
+  @httpGet("/", authMiddleware([USER_ROLE.USER, USER_ROLE.ORG]))
   async myEnrollments(req: Request, res: Response) {
     try {
       const enrollments = await this.joinListingService.listUserEnrollments(
@@ -93,12 +94,17 @@ export default class JoinListingController extends BaseController {
   }
 
   /** DELETE /api/v1/joinlisting/:joinId */
-  @httpDelete("/:joinId", authMiddleware(USER_ROLE.USER))
+  @httpDelete("/:joinId", authMiddleware([USER_ROLE.USER, USER_ROLE.ORG]))
   async leave(req: Request, res: Response) {
     try {
       const { joinId } = validateOrThrow(joinListingIdParamsSchema, req.params);
+      const body = validateOrThrow(leaveJoinSchema, req.body ?? {});
 
-      await this.joinListingService.leave(req.user!.userId, joinId);
+      await this.joinListingService.leave(
+        req.user!.userId,
+        joinId,
+        body.exitReason ?? null,
+      );
 
       return this.success(res, { message: "Left listing" }, STATUS_CODE.OK);
     } catch (error) {

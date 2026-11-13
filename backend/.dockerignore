@@ -1,0 +1,28 @@
+# Dependencies and build output are created inside the image.
+node_modules
+dist
+src/generated/prisma
+
+# Local secrets and machine-specific configuration.
+.env
+.env.*
+!.env.example
+
+# Runtime uploads, logs and caches.
+public/temp
+*.log
+npm-debug.log*
+.npm
+.cache
+coverage
+
+# Editor and VCS metadata.
+.git
+.gitignore
+.vscode
+.idea
+*.tsbuildinfo
+
+# Documentation and files the backend does not need at build/runtime.
+README.md
+scripts

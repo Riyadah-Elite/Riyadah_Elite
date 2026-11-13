@@ -2,7 +2,7 @@
  * @author aliasgarbootwala3@gmial.com
  */
 
-import { LISTING_STATUS, PLATFORM } from "../constants/constants.js";
+import { CURRENCY, LISTING_STATUS, PLATFORM } from "../constants/constants.js";
 import type {
   PaginationMeta,
   TestingStatus,
@@ -13,9 +13,11 @@ import type {
 export type ListingStatus =
   (typeof LISTING_STATUS)[keyof typeof LISTING_STATUS];
 export type Platform = (typeof PLATFORM)[keyof typeof PLATFORM];
+export type Currency = (typeof CURRENCY)[keyof typeof CURRENCY];
 
 export const LISTING_STATUSES = Object.values(LISTING_STATUS) as ListingStatus[];
 export const PLATFORMS = Object.values(PLATFORM) as Platform[];
+export const CURRENCIES = Object.values(CURRENCY) as Currency[];
 
 // ---------------------------------------------------------------------------
 // Game listing
@@ -31,6 +33,8 @@ export interface CreateGameListingInput {
   gameUrl?: string | null;
   imageId?: string | null;
   amountId?: string | null;
+  amount?: number | null;
+  currency?: Currency | null;
   fileId?: string | null;
   maxEntry?: number;
   minEntry?: number;
@@ -57,6 +61,8 @@ export interface CreateTournamentInput {
   teamSize?: number;
   status?: ListingStatus;
   amountId?: string | null;
+  amount?: number | null;
+  currency?: Currency | null;
   imageId?: string | null;
   tournamentUrl?: string | null;
   fileId?: string | null;

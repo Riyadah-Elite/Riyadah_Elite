@@ -39,9 +39,22 @@ server.setConfig((app: Application ) => {
   app.use(morgan("dev"));
   app.use(cookieParser());
   app.use(express.static("public"));
+
+  /*
+   * `credentials: true` and a wildcard origin are mutually exclusive in the
+   * browser: the response must echo the caller's origin for cookies to be
+   * accepted. A literal "*" therefore means "reflect the origin"; a
+   * comma-separated list narrows it for production.
+   */
+  const configuredOrigin = process.env.CORS_ORIGIN?.trim() || "*";
+  const allowedOrigins =
+    configuredOrigin === "*"
+      ? true
+      : configuredOrigin.split(",").map((origin) => origin.trim());
+
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN,
+      origin: allowedOrigins,
       credentials: true,
     }),
   );

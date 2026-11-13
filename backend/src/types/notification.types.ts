@@ -3,6 +3,7 @@
  */
 
 import { NOTIFICATION_TYPE } from "../constants/constants.js";
+import type { PaginationMeta } from "./user.types.js";
 
 export type NotificationType =
   (typeof NOTIFICATION_TYPE)[keyof typeof NOTIFICATION_TYPE];
@@ -24,4 +25,17 @@ export interface NotificationRecord {
   markAsRead: boolean;
   type: NotificationType;
   createdAt: Date;
+}
+
+export interface NotificationQuery {
+  page: number;
+  limit: number;
+  skip: number;
+  take: number;
+}
+
+export interface PaginatedNotifications {
+  items: NotificationRecord[];
+  pagination: PaginationMeta;
+  unreadCount: number;
 }

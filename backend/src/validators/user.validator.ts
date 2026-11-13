@@ -38,9 +38,9 @@ export const registerSchema = Joi.object({
   username: username.required(),
   email: email.required(),
   password: password.required(),
-  // Defaults to the least-privileged role; a client cannot self-assign ADMIN.
+  // Client can register as USER, DEVELOPER, or ORG; ADMIN is strictly script-seeded only.
   role: Joi.string()
-    .valid(...USER_ROLES)
+    .valid(USER_ROLE.USER, USER_ROLE.DEVELOPER, USER_ROLE.ORG)
     .default(USER_ROLE.USER),
 });
 
@@ -112,6 +112,15 @@ export const userListQuerySchema = Joi.object({
 });
 
 /**
+ * Query string for the public leaderboard. The ladder is intentionally small:
+ * the landing page only needs the top slice, and an unbounded limit would let
+ * anyone dump the whole user table.
+ */
+export const leaderboardQuerySchema = Joi.object({
+  limit: Joi.number().integer().min(1).max(50).default(10),
+});
+
+/**
  * Body for updating another user. Every field is optional but at least one must
  * be present, otherwise PATCH /:userId would silently succeed doing nothing.
  */
@@ -119,4 +128,5 @@ export const updateUserDetailsSchema = Joi.object({
   username,
   role: Joi.string().valid(...USER_ROLES),
   isNotificationAllowed: Joi.boolean(),
+  avatarId: Joi.string().allow(null, ""),
 }).min(1);
