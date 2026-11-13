@@ -3,13 +3,28 @@ import { Platform } from 'react-native';
 /**
  * Where the Express API lives.
  *
- * Set EXPO_PUBLIC_API_URL for device builds (a LAN IP or hosted API). The
- * Android emulator cannot reach the host through localhost, so it gets the
- * standard 10.0.2.2 bridge address.
+ * Supports:
+ * - Explicit EXPO_PUBLIC_API_URL (safely stripping trailing /api/v1 if included)
+ * - Render cloud deployments (matching riyadah-elite-backend.onrender.com)
+ * - Android emulator 10.0.2.2 loopback bridge
+ * - Localhost development (http://localhost:5000)
  */
-const fallback = Platform.select({
-  android: 'http://10.0.2.2:5000',
-  default: 'http://localhost:5000',
-});
+function resolveDefaultApiUrl(): string {
+  if (process.env.EXPO_PUBLIC_API_URL) {
+    return process.env.EXPO_PUBLIC_API_URL.replace(/\/api\/v1\/?$/, '').replace(/\/+$/, '');
+  }
 
-export const API_URL = (process.env.EXPO_PUBLIC_API_URL ?? fallback).replace(/\/+$/, '');
+  if (Platform.OS === 'web' && typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host.includes('onrender.com')) {
+      return 'https://riyadah-elite-backend.onrender.com';
+    }
+  }
+
+  return Platform.select({
+    android: 'http://10.0.2.2:5000',
+    default: 'http://localhost:5000',
+  });
+}
+
+export const API_URL = resolveDefaultApiUrl();

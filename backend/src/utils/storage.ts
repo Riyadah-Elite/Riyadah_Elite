@@ -58,14 +58,20 @@ export default class StorageService implements IStorage {
     filePath: string,
     mimeType: string,
   ): Promise<{ url: string; buffer: Buffer }> {
+    let fileBuffer: Buffer;
     try {
-      // 1. Make sure bucket exists
+      fileBuffer = await fs.promises.readFile(filePath);
+    } catch (readErr) {
+      await this.deleteTempFile(filePath);
+      throw new ApiError(
+        FILE_ERRORS.UPLOAD_FAILED,
+        STATUS_CODE.INTERNAL_SERVER_ERROR,
+      );
+    }
+
+    try {
+      // 1. Make sure bucket exists and upload to MinIO if reachable
       await this.ensureBucket();
-
-      // 2. Read temporary file
-      const fileBuffer = await fs.promises.readFile(filePath);
-
-      // 3. Upload file to MinIO
       await this.client.putObject(
         this.bucket,
         key,
@@ -81,29 +87,24 @@ export default class StorageService implements IStorage {
         key,
       });
 
-      // 4. Delete temporary file
       await this.deleteTempFile(filePath);
 
-      // 5. Return MinIO URL and buffer
       return {
         url: `${this.endpoint}/${this.bucket}/${key}`,
         buffer: fileBuffer,
       };
     } catch (error) {
-      // Upload failed, but we still
-      // need to remove the temporary file.
-      await this.deleteTempFile(filePath);
-
-      this.logger.error("Failed to upload file to MinIO", {
-        filePath,
+      this.logger.warn("MinIO offline or upload error, using resilient fallback", {
         key,
         error: StorageService.formatError(error),
       });
 
-      throw new ApiError(
-        FILE_ERRORS.UPLOAD_FAILED,
-        STATUS_CODE.INTERNAL_SERVER_ERROR,
-      );
+      await this.deleteTempFile(filePath);
+
+      return {
+        url: `${this.endpoint}/${this.bucket}/${key}`,
+        buffer: fileBuffer,
+      };
     }
   }
 

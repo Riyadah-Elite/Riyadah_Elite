@@ -111,6 +111,52 @@ export async function pickImage(): Promise<PickedAvatar | null> {
   };
 }
 
+/**
+ * Creates an operative cyber avatar on Web or Native fallback if no custom image was provided.
+ */
+export function createDefaultAvatar(label = 'OP'): PickedAvatar {
+  const safeName = (label || 'OP').replace(/[^a-zA-Z0-9]/g, '').slice(0, 4) || 'OP';
+  if (typeof document !== 'undefined') {
+    const canvas = document.createElement('canvas');
+    canvas.width = 128;
+    canvas.height = 128;
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, 128, 128);
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(4, 4, 120, 120);
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = 'bold 48px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(safeName.slice(0, 2).toUpperCase(), 64, 64);
+    }
+    const dataUrl = canvas.toDataURL('image/png');
+    const arr = dataUrl.split(',');
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    const file = new File([u8arr], `${safeName.toLowerCase()}-avatar.png`, { type: 'image/png' });
+    return {
+      uri: dataUrl,
+      mimeType: 'image/png',
+      fileName: `${safeName.toLowerCase()}-avatar.png`,
+      file,
+    };
+  }
+
+  return {
+    uri: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+    mimeType: 'image/png',
+    fileName: `${safeName.toLowerCase()}-avatar.png`,
+  };
+}
+
 export interface RegistrationPayload {
   username: string;
   email: string;

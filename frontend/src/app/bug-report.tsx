@@ -32,6 +32,7 @@ import {
 } from '@/lib/telemetry-api';
 import type { BugReportItem, BugReportStatus, GameListingItem } from '@/lib/types';
 import { useAuth } from '@/providers/auth-provider';
+import { useAuthModal } from '@/providers/auth-modal-provider';
 import { useToast } from '@/providers/toast-provider';
 
 const STATUS_METAS: Record<
@@ -47,6 +48,7 @@ const STATUS_METAS: Record<
 export default function BugReportScreen() {
   const { isMobile } = useResponsive();
   const { user } = useAuth();
+  const { openAuth } = useAuthModal();
   const { showToast } = useToast();
 
   const role = user?.role ?? 'USER';
@@ -76,6 +78,12 @@ export default function BugReportScreen() {
 
   // Load Reports
   const loadReports = useCallback(async () => {
+    if (!user) {
+      setReports([]);
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       const res = await fetchBugReportsRequest({
@@ -95,7 +103,7 @@ export default function BugReportScreen() {
     } finally {
       setLoading(false);
     }
-  }, [page, statusFilter, search, showToast]);
+  }, [user, page, statusFilter, search, showToast]);
 
   useEffect(() => {
     void loadReports();
@@ -103,7 +111,7 @@ export default function BugReportScreen() {
 
   // Load Enrolled Games for USER report form
   useEffect(() => {
-    if (!isDev && !isAdmin) {
+    if (user && !isDev && !isAdmin) {
       void (async () => {
         try {
           const [enrollments, listingsRes] = await Promise.all([
@@ -111,7 +119,7 @@ export default function BugReportScreen() {
             fetchGameListingsRequest({ page: 1, limit: 50 }).catch(() => ({ items: [] })),
           ]);
 
-          const enrolledIds = new Set(enrollments.map((e) => e.gameListingId).filter(Boolean));
+          const enrolledIds = new Set(enrollments.map((e) => e.gameListingId || (e as any).listingId).filter(Boolean));
           const matched = listingsRes.items.filter((item) => enrolledIds.has(item.id));
           setEnrolledGames(matched);
           if (matched[0] && !selectedGameId) {
@@ -122,7 +130,7 @@ export default function BugReportScreen() {
         }
       })();
     }
-  }, [isDev, isAdmin, selectedGameId]);
+  }, [user, isDev, isAdmin, selectedGameId]);
 
   // Pick Screenshot Evidence
   async function handlePickScreenshot() {
@@ -234,27 +242,73 @@ export default function BugReportScreen() {
 
   return (
     <AppShell eyebrow="Anomaly intake & telemetry" title="Bug Reports">
-      <AuthGate
-        copy="Bug intake and telemetry triage are reserved for enlisted operatives and game developers. Sign in to view reports."
-        icon="bug"
-        title="Telemetry is session-gated">
-        <View style={styles.page}>
-          <SectionHeading
-            description="Submit reproducible telemetry with evidence, triage incoming anomalies, and earn testing ladder points."
-            eyebrow="Quality telemetry"
-            title={
-              isDev
+      <View style={styles.page}>
+        <SectionHeading
+          description="Submit reproducible telemetry with evidence, triage incoming anomalies, and earn testing ladder points."
+          eyebrow="Quality telemetry"
+          title={
+            !user
+              ? 'Operative Anomaly Intake'
+              : isDev
                 ? 'Developer Triage Queue'
                 : isAdmin
                   ? 'Global Platform Anomaly Deck'
                   : 'Operative Anomaly Intake & History'
-            }
-          />
+          }
+        />
 
-          {/* ================================================================= */}
-          {/* USER VIEW: Top Form to Submit Anomaly Report                      */}
-          {/* ================================================================= */}
-          {!isDev && !isAdmin && (
+        {/* ================================================================= */}
+        {/* GUEST VIEW: Clean prompt card with Submit Bug Report auth trigger */}
+        {/* ================================================================= */}
+        {!user ? (
+          <ClayCard style={styles.submitCard} padded={false}>
+            <View style={styles.formInner}>
+              <View style={styles.formHeader}>
+                <View style={styles.formIcon}>
+                  <Ionicons name="bug" size={18} color={Palette.secondary} />
+                </View>
+                <View>
+                  <Text style={styles.formTitle}>Submit Anomaly Telemetry</Text>
+                  <Text style={styles.formSubtitle}>
+                    Record gameplay bugs with screenshot proof to advance your testing rank
+                  </Text>
+                </View>
+              </View>
+
+              <View style={styles.warningBox}>
+                <Ionicons name="shield-checkmark-outline" size={20} color={Palette.primary} />
+                <Text style={styles.warningText}>
+                  Bug reporting requires an active test flight assignment. Enlist in games on the
+                  testing floor, run telemetry builds, and report verified issues to earn ladder points.
+                </Text>
+              </View>
+
+              <View style={{ flexDirection: 'row', gap: 12, marginTop: 12, flexWrap: 'wrap' }}>
+                <Button
+                  icon="log-in-outline"
+                  label="Submit Bug Report"
+                  onPress={() => {
+                    openAuth('login');
+                    showToast({
+                      title: 'Authentication Required',
+                      message: 'Please sign in or create an account to submit bug telemetry.',
+                      variant: 'info',
+                    });
+                  }}
+                  size="lg"
+                  variant="lime"
+                />
+                <Button
+                  icon="person-add-outline"
+                  label="Create Account"
+                  onPress={() => openAuth('register')}
+                  size="lg"
+                  variant="dark"
+                />
+              </View>
+            </View>
+          </ClayCard>
+        ) : !isDev && !isAdmin ? (
             <ClayCard style={styles.submitCard} padded={false}>
               <View style={styles.formInner}>
                 <View style={styles.formHeader}>
@@ -359,12 +413,13 @@ export default function BugReportScreen() {
                 </Tooltip>
               </View>
             </ClayCard>
-          )}
+          ) : null}
 
           {/* ================================================================= */}
-          {/* REPORTS FEED / TRIAGE QUEUE (Role-Adaptive)                       */}
+          {/* REPORTS FEED / TRIAGE QUEUE (Role-Adaptive - Signed-in Operatives) */}
           {/* ================================================================= */}
-          <Panel padded={false}>
+          {user && (
+            <Panel padded={false}>
             <View style={styles.panelHeader}>
               <View>
                 <Text style={styles.panelTitle}>
@@ -587,8 +642,8 @@ export default function BugReportScreen() {
               </View>
             )}
           </Panel>
-        </View>
-      </AuthGate>
+        )}
+      </View>
 
       {/* CLAYMORPHIC MODAL: Image Evidence Preview */}
       <ClayModal

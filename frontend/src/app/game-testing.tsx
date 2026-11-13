@@ -37,6 +37,7 @@ import {
 } from '@/lib/telemetry-api';
 import type { CategoryItem, GameListingItem } from '@/lib/types';
 import { useAuth } from '@/providers/auth-provider';
+import { useAuthModal } from '@/providers/auth-modal-provider';
 import { useToast } from '@/providers/toast-provider';
 
 const PLATFORMS_LIST = [
@@ -53,6 +54,7 @@ const PLATFORMS_LIST = [
 export default function GameTestingScreen() {
   const { isMobile } = useResponsive();
   const { user } = useAuth();
+  const { openAuth } = useAuthModal();
   const { showToast } = useToast();
 
   const role = user?.role ?? 'USER';
@@ -136,7 +138,7 @@ export default function GameTestingScreen() {
           platform: platformFilter === 'all' ? undefined : platformFilter,
         }),
         fetchCategoriesRequest().catch(() => []),
-        !isDev && !isAdmin ? fetchUserEnrollmentsRequest().catch(() => []) : Promise.resolve([]),
+        user && !isDev && !isAdmin ? fetchUserEnrollmentsRequest().catch(() => []) : Promise.resolve([]),
       ]);
 
       setGames(listingsRes.items);
@@ -150,7 +152,8 @@ export default function GameTestingScreen() {
       if (enrollmentsRes.length > 0) {
         const enrolled = new Set<string>();
         enrollmentsRes.forEach((e) => {
-          if (e.gameListingId) enrolled.add(e.gameListingId);
+          const id = e.gameListingId || (e as any).listingId;
+          if (id) enrolled.add(id);
         });
         setEnrolledIds(enrolled);
       }
@@ -171,6 +174,16 @@ export default function GameTestingScreen() {
 
   // Join Game Test (USER / ORG)
   async function handleJoinGame(listing: GameListingItem) {
+    if (!user) {
+      openAuth('login');
+      showToast({
+        title: 'Authentication Required',
+        message: 'Please sign in or create an account to join this testing program.',
+        variant: 'info',
+      });
+      return;
+    }
+
     try {
       setJoiningId(listing.id);
       await joinGameListingRequest(listing.id);
@@ -404,11 +417,7 @@ export default function GameTestingScreen() {
 
   return (
     <AppShell eyebrow="Telemetry programmes" title="Game Testing">
-      <AuthGate
-        copy="Testing programmes are assigned to enlisted operatives. Sign in to see your build, status and credited points."
-        icon="game-controller"
-        title="Programmes are session-gated">
-        <View style={styles.page}>
+      <View style={styles.page}>
           <SectionHeading
             description="Play assigned builds, record anomalies, submit verified reports, and convert telemetry into ladder rank."
             eyebrow="Testing floor"
@@ -1047,7 +1056,6 @@ export default function GameTestingScreen() {
             </View>
           )}
         </View>
-      </AuthGate>
 
       {/* CLAYMORPHIC MODAL: Enrolled Testers Tracking (DEVELOPER) */}
       <ClayModal

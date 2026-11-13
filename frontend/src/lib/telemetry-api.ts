@@ -77,11 +77,26 @@ export async function joinGameListingRequest(listingId: string): Promise<{ id: s
   return data.data.enrollment;
 }
 
-export async function fetchUserEnrollmentsRequest(): Promise<Array<{ id: string; gameListingId?: string }>> {
-  const { data } = await api.get<ApiEnvelope<{ enrollments: Array<{ id: string; gameListingId?: string }> }>>(
+export interface UserEnrollment {
+  joinId?: string;
+  id?: string;
+  listingId?: string;
+  gameListingId?: string;
+  type?: string;
+  name?: string;
+  status?: string;
+}
+
+export async function fetchUserEnrollmentsRequest(): Promise<UserEnrollment[]> {
+  const { data } = await api.get<ApiEnvelope<{ enrollments: UserEnrollment[] }>>(
     '/api/v1/joinlisting',
   );
-  return data.data?.enrollments ?? [];
+  const raw = data.data?.enrollments ?? [];
+  return raw.map((e) => ({
+    ...e,
+    id: e.joinId || e.id,
+    gameListingId: e.gameListingId || (e.type === 'game' ? e.listingId : undefined) || e.listingId,
+  }));
 }
 
 export async function fetchBugReportsRequest(params?: {

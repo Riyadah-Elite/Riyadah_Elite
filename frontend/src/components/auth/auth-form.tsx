@@ -6,7 +6,7 @@ import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View } from '
 
 import { Fonts, Palette, Radius, Space, Typography, clayShadow, neoButtonHoverShadow, neoButtonPressedShadow, neoButtonShadow } from '@/constants/design';
 import { getApiErrorMessage } from '@/lib/api';
-import { pickAvatar, type PickedAvatar } from '@/lib/media';
+import { pickAvatar, createDefaultAvatar, type PickedAvatar } from '@/lib/media';
 import {
   loginSchema,
   registerSchema,
@@ -164,17 +164,11 @@ export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
       return;
     }
 
-    const chosenAvatar = avatar;
+    let chosenAvatar = avatar;
 
     if (mode === 'register' && !chosenAvatar) {
-      const msg = 'A profile image is required to enlist.';
-      setAvatarError(msg);
-      showToast({
-        title: 'Avatar Required',
-        message: msg,
-        variant: 'error',
-      });
-      return;
+      chosenAvatar = createDefaultAvatar(values.username || 'OP');
+      setAvatar(chosenAvatar);
     }
 
     setSubmitting(true);

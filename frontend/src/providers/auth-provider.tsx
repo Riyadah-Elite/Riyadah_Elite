@@ -81,9 +81,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     async function bootstrap() {
       try {
-        const token = Platform.OS === 'web' ? null : await getStoredToken();
+        const token = await getStoredToken();
 
-        if (Platform.OS !== 'web' && !token) {
+        if (!token && Platform.OS !== 'web') {
           if (!cancelled) setStatus('anonymous');
           return;
         }
