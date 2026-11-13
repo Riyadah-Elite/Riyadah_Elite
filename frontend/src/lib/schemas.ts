@@ -7,7 +7,7 @@ import { z } from 'zod';
  * before a request leaves the device and to give each field an inline message.
  */
 export const loginSchema = z.object({
-  email: z.email({ error: 'Enter a valid email address.' }),
+  email: z.string().trim().min(2, { error: 'Enter your email or username.' }),
   password: z.string().min(1, { error: 'Password is required.' }),
 });
 

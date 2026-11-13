@@ -431,16 +431,16 @@ export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
 
             <TextField
               autoCapitalize="none"
-              autoComplete="email"
+              autoComplete={mode === 'login' ? 'username' : 'email'}
               error={errors.email}
-              icon="mail-outline"
-              inputMode="email"
-              keyboardType="email-address"
-              label="Email"
+              icon={mode === 'login' ? 'person-outline' : 'mail-outline'}
+              inputMode={mode === 'login' ? 'text' : 'email'}
+              keyboardType={mode === 'login' ? 'default' : 'email-address'}
+              label={mode === 'login' ? 'Email or Username' : 'Email'}
               onChangeText={(value) => update('email', value)}
-              placeholder="operative@riyadah.gg"
+              placeholder={mode === 'login' ? 'operative@riyadah.gg or Admin' : 'operative@riyadah.gg'}
               returnKeyType="next"
-              textContentType="emailAddress"
+              textContentType={mode === 'login' ? 'username' : 'emailAddress'}
               value={values.email}
             />
 

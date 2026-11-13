@@ -24,8 +24,8 @@ async function getPrismaClient() {
 
 async function main() {
   const email = (process.env.ADMIN_EMAIL || "admin@riyadahelite.com").trim().toLowerCase();
-  const username = (process.env.ADMIN_USERNAME || "admin").trim();
-  const password = process.env.ADMIN_PASSWORD || "Admin@123456";
+  const username = (process.env.ADMIN_USERNAME || "Admin").trim();
+  const password = process.env.ADMIN_PASSWORD || "Admin@123.";
 
   console.log(`[Seed Admin] Initializing admin seed for ${email}...`);
   const ClientClass = await getPrismaClient();

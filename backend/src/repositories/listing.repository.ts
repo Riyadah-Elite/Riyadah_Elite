@@ -412,7 +412,7 @@ export default class ListingRepository {
    * It is intentionally idempotent, so it can run on every relevant request.
    */
   async syncListingStatuses(now: Date) {
-    const [openedGames, openedTournaments] = await this.db.$transaction([
+    const [openedGames, openedTournaments] = await Promise.all([
       this.db.gameListing.updateMany({
         where: {
           scheduling: { lte: now },
@@ -434,7 +434,7 @@ export default class ListingRepository {
       }),
     ]);
 
-    const [closedGames, closedTournaments] = await this.db.$transaction([
+    const [closedGames, closedTournaments] = await Promise.all([
       this.db.gameListing.updateMany({
         where: { testingDeadline: { lte: now }, status: "active" },
         data: { status: "inactive" },

@@ -50,7 +50,7 @@ export const registerSchema = Joi.object({
  * out anyone whose password is already stored from before the policy changed.
  */
 export const loginSchema = Joi.object({
-  email: email.required(),
+  email: Joi.string().trim().min(2).max(100).required(),
   password: Joi.string().required(),
 });
 

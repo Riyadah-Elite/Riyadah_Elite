@@ -125,13 +125,13 @@ export default class AuthService {
 
   async login(userData: LoginUserInput) {
     
-    this.logger.info("login try ", { email: userData.email });
+    this.logger.info("login try ", { identifier: userData.email });
     
-    const user = await this.authRepository.findByEmail(userData.email);
+    const user = await this.authRepository.findByEmailOrUsername(userData.email);
 
     if (!user) {
-      this.logger.warn("Login rejected: no account for that email", {
-        userEmail: userData.email,
+      this.logger.warn("Login rejected: no account for that email or username", {
+        identifier: userData.email,
       });
 
       throw new ApiError(USER_ERRORS.NOT_FOUND, STATUS_CODE.NOT_FOUND);

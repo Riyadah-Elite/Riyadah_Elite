@@ -89,6 +89,20 @@ export default class AuthRepository {
     });
   }
 
+  async findByEmailOrUsername(identifier: string) {
+    const trimmed = identifier.trim();
+    return await this.db.user.findFirst({
+      where: {
+        OR: [
+          { email: trimmed.toLowerCase() },
+          { username: { equals: trimmed, mode: "insensitive" } },
+        ],
+      },
+      omit: { password: false },
+      include: { avatar: { select: { imageUrl: true } } },
+    });
+  }
+
   async findUserById(id: string) {
     return await this.db.user.findUnique({
       where: { id, isDeleted: false },

@@ -422,9 +422,9 @@ export default function GameTestingScreen() {
           />
 
           {/* ================================================================= */}
-          {/* 1. DEVELOPER VIEW: Compact Publish Form + Published History */}
+          {/* 1. DEVELOPER / ADMIN VIEW: Compact Publish Form + Published History */}
           {/* ================================================================= */}
-          {isDev && (
+          {(isDev || isAdmin) && (
             <View style={styles.roleContainer}>
               <ClayCard style={styles.publishCard} padded={false}>
                 <View style={styles.formContainer}>

@@ -14,7 +14,6 @@ import {
 
 import { SectionHeading } from '@/components/landing/section-heading';
 import { AppShell } from '@/components/layout/app-shell';
-import { AuthGate } from '@/components/layout/auth-gate';
 import { StatusBadge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ClayCard, ClayModal, Panel } from '@/components/ui/card';
@@ -47,11 +46,13 @@ import type {
   TournamentItem,
 } from '@/lib/types';
 import { useAuth } from '@/providers/auth-provider';
+import { useAuthModal } from '@/providers/auth-modal-provider';
 import { useToast } from '@/providers/toast-provider';
 
 export default function TournamentsScreen() {
   const { isMobile } = useResponsive();
   const { user } = useAuth();
+  const { openAuth } = useAuthModal();
   const { showToast } = useToast();
 
   const [tournaments, setTournaments] = useState<TournamentItem[]>([]);
@@ -135,11 +136,9 @@ export default function TournamentsScreen() {
   }, [formGameId]);
 
   useEffect(() => {
-    if (user) {
-      void loadTournaments(1, search);
-      if (canPublish) {
-        void loadGames();
-      }
+    void loadTournaments(1, search);
+    if (user && canPublish) {
+      void loadGames();
     }
   }, [canPublish, loadGames, loadTournaments, user]);
 
@@ -213,6 +212,16 @@ export default function TournamentsScreen() {
   }
 
   async function handleJoin(item: TournamentItem) {
+    if (!user) {
+      openAuth('login');
+      showToast({
+        title: 'Authentication Required',
+        message: 'Please sign in or create an account to join this tournament.',
+        variant: 'info',
+      });
+      return;
+    }
+
     try {
       await joinTournamentRequest(item.id);
       setEnrolledIds((prev) => new Set(prev).add(item.id));
@@ -333,11 +342,7 @@ export default function TournamentsScreen() {
 
   return (
     <AppShell eyebrow="Tournament Brackets" title="Tournaments">
-      <AuthGate
-        copy="Tournament brackets are reserved for enlisted operatives and verified organizers. Sign in to browse or publish tournaments."
-        icon="trophy"
-        title="Brackets are session-gated">
-        <View style={styles.page}>
+      <View style={styles.page}>
           {/* Shared Top Hero */}
           <SectionHeading
             action={
@@ -747,7 +752,6 @@ export default function TournamentsScreen() {
             )}
           </Panel>
         </View>
-      </AuthGate>
 
       {/* Claymorphic Edit Modal */}
       <ClayModal
