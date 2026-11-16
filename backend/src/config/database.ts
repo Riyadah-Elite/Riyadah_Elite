@@ -11,6 +11,7 @@
  */
 
 import { inject, injectable } from "inversify";
+import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../generated/prisma/client.js";
 import { IDatabase, DbClient, OMITTED_FIELDS } from "../types/database.types.js";
@@ -21,22 +22,36 @@ import Logger from "../utils/logger.js";
 export default class PrismaDatabase implements IDatabase {
   
   private readonly client: DbClient;
+  private readonly pool: Pool;
   private readonly logger: Logger;
   private readonly connectionString: string;
   private connected = false;
 
   constructor(@inject(TYPES.Logger) logger: Logger) {
-    const connectionString = process.env.DATABASE_URL;
+    let connectionString = process.env.DATABASE_URL;
 
     if (!connectionString) {
       throw new Error("DATABASE_URL is not defined");
+    }
+
+    // Eliminate pg-connection-string warning by preferring verify-full
+    if (connectionString.includes("sslmode=require") && !connectionString.includes("uselibpqcompat")) {
+      connectionString = connectionString.replace("sslmode=require", "sslmode=verify-full");
     }
 
     this.logger = logger;
 
     this.connectionString = connectionString;
 
-    const adapter = new PrismaPg({ connectionString });
+    const pool = new Pool({
+      connectionString,
+      max: 20,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 10000,
+    });
+    this.pool = pool;
+
+    const adapter = new PrismaPg(pool);
 
     /*
      * `OMITTED_FIELDS` is the equivalent of the old mongoose setup:
@@ -147,6 +162,12 @@ export default class PrismaDatabase implements IDatabase {
 
   async disconnect(): Promise<void> {
     await this.client.$disconnect();
+
+    try {
+      await this.pool.end();
+    } catch {
+      // ignore
+    }
 
     this.connected = false;
 

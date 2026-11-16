@@ -149,7 +149,7 @@ export default class ListingRepository {
         : {}),
     };
 
-    const [items, total] = await this.db.$transaction([
+    const [items, total] = await Promise.all([
       this.db.gameListing.findMany({
         where,
         include: LISTING_INCLUDE,
@@ -176,7 +176,7 @@ export default class ListingRepository {
         : {}),
     };
 
-    const [items, total] = await this.db.$transaction([
+    const [items, total] = await Promise.all([
       this.db.gameListing.findMany({
         where,
         include: LISTING_INCLUDE,
@@ -204,7 +204,7 @@ export default class ListingRepository {
         : {}),
     };
 
-    const [items, total] = await this.db.$transaction([
+    const [items, total] = await Promise.all([
       this.db.gameListing.findMany({
         where,
         include: LISTING_INCLUDE,
@@ -322,7 +322,7 @@ export default class ListingRepository {
         : {}),
     };
 
-    const [items, total] = await this.db.$transaction([
+    const [items, total] = await Promise.all([
       this.db.tournamentListing.findMany({
         where,
         include: TOURNAMENT_INCLUDE,
@@ -353,7 +353,7 @@ export default class ListingRepository {
         : {}),
     };
 
-    const [items, total] = await this.db.$transaction([
+    const [items, total] = await Promise.all([
       this.db.tournamentListing.findMany({
         where,
         include: TOURNAMENT_INCLUDE,
@@ -477,7 +477,7 @@ export default class ListingRepository {
         : {}),
     };
 
-    const [rows, total] = await this.db.$transaction([
+    const [rows, total] = await Promise.all([
       this.db.user.findMany({
         where,
         select: {

@@ -94,7 +94,7 @@ export default class BugReportRepository {
   async listForUser(userId: string, query: BugReportQuery) {
     const where = { userId, ...this.filters(query) };
 
-    const [items, total] = await this.db.$transaction([
+    const [items, total] = await Promise.all([
       this.db.bugReport.findMany({
         where,
         include: BUG_REPORT_INCLUDE,
@@ -114,7 +114,7 @@ export default class BugReportRepository {
       ...this.filters(query),
     };
 
-    const [items, total] = await this.db.$transaction([
+    const [items, total] = await Promise.all([
       this.db.bugReport.findMany({
         where,
         include: BUG_REPORT_INCLUDE,
@@ -131,7 +131,7 @@ export default class BugReportRepository {
   async listForAdmin(query: BugReportQuery) {
     const where = this.filters(query);
 
-    const [items, total] = await this.db.$transaction([
+    const [items, total] = await Promise.all([
       this.db.bugReport.findMany({
         where,
         include: BUG_REPORT_INCLUDE,

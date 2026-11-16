@@ -38,26 +38,26 @@ const VARIANT_META: Record<
   { accent: string; glow: string; icon: keyof typeof Ionicons.glyphMap; label: string }
 > = {
   success: {
-    accent: Palette.tertiary,
-    glow: 'rgba(46, 125, 98, 0.28)',
+    accent: '#34D399',
+    glow: 'rgba(52, 211, 153, 0.35)',
     icon: 'checkmark-circle',
     label: 'Confirmed',
   },
   error: {
-    accent: Palette.danger,
-    glow: 'rgba(178, 58, 58, 0.28)',
+    accent: '#F87171',
+    glow: 'rgba(248, 113, 113, 0.35)',
     icon: 'alert-circle',
     label: 'Action Failed',
   },
   info: {
-    accent: Palette.primary,
-    glow: 'rgba(198, 79, 40, 0.28)',
+    accent: '#38BDF8',
+    glow: 'rgba(56, 189, 248, 0.35)',
     icon: 'information-circle',
     label: 'Transmission',
   },
   warning: {
-    accent: Palette.warning,
-    glow: 'rgba(138, 90, 8, 0.28)',
+    accent: '#FBBF24',
+    glow: 'rgba(251, 191, 36, 0.35)',
     icon: 'warning',
     label: 'Attention',
   },
@@ -159,9 +159,17 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
 
   const glassStyle = Platform.select({
     web: {
-      boxShadow: `0 16px 36px rgba(74, 48, 30, 0.16), 0 0 16px ${meta.glow}, inset 0 1px 1px rgba(255, 255, 255, 0.9)`,
+      backdropFilter: 'blur(16px) saturate(180%)',
+      WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+      boxShadow: `0 20px 40px rgba(0, 0, 0, 0.45), 0 0 20px ${meta.glow}, inset 0 1px 1px rgba(255, 255, 255, 0.35)`,
+    } as any,
+    default: {
+      shadowColor: meta.accent,
+      shadowOffset: { width: 0, height: 8 },
+      shadowOpacity: 0.35,
+      shadowRadius: 18,
+      elevation: 12,
     },
-    default: {},
   });
 
   return (
@@ -170,9 +178,7 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
       accessibilityRole="alert"
       style={[
         styles.toast,
-        glassToastShadow,
         glassStyle,
-        webBackdrop,
         {
           borderLeftColor: meta.accent,
           opacity: animation,
@@ -186,7 +192,15 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
           ],
         },
       ]}>
-      <View style={[styles.toastIcon, { backgroundColor: `${meta.accent}18` }]}>
+      <View
+        style={[
+          styles.toastIcon,
+          {
+            backgroundColor: `${meta.accent}22`,
+            borderColor: `${meta.accent}44`,
+            borderWidth: 1,
+          },
+        ]}>
         <Ionicons name={meta.icon} size={18} color={meta.accent} />
       </View>
 
@@ -201,7 +215,7 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
         hitSlop={8}
         onPress={() => onDismiss(toast.id)}
         style={({ pressed }) => [styles.toastClose, pressed && { opacity: 0.6 }]}>
-        <Ionicons name="close" size={16} color={Palette.textMuted} />
+        <Ionicons name="close" size={16} color="rgba(255, 255, 255, 0.75)" />
       </Pressable>
     </Animated.View>
   );
@@ -222,9 +236,9 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     borderRadius: Radius.lg,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.75)',
+    borderColor: 'rgba(255, 255, 255, 0.28)',
     borderLeftWidth: 3.5,
-    backgroundColor: 'rgba(252, 247, 240, 0.85)', // Translucent rgba surface
+    backgroundColor: 'rgba(22, 19, 16, 0.72)', // Frosted dark glass tint
     overflow: 'hidden',
   },
   toastIcon: {
@@ -236,22 +250,26 @@ const styles = StyleSheet.create({
   },
   toastCopy: {
     flex: 1,
-    gap: 2,
+    gap: 3,
     paddingTop: 1,
   },
   toastLabel: {
     ...Typography.labelTight,
     fontSize: 10,
-    letterSpacing: 0.8,
+    fontWeight: '700',
+    letterSpacing: 1.1,
+    textTransform: 'uppercase',
   },
   toastMessage: {
     fontFamily: Fonts.body,
     fontSize: 13,
+    fontWeight: '700',
     lineHeight: 19,
-    color: Palette.text,
+    color: '#FFFFFF',
+    letterSpacing: 0.2,
   },
   toastClose: {
-    padding: 4,
+    padding: 6,
     borderRadius: Radius.sm,
   },
 });

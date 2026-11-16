@@ -14,7 +14,7 @@ import {
 import BaseController from "./base.controller.js";
 import CategoryService from "../services/category.service.js";
 import Logger from "../utils/logger.js";
-import { authMiddleware } from "../middlewares/auth.middleware.js";
+import { authMiddleware, optionalAuthMiddleware } from "../middlewares/auth.middleware.js";
 import {
   categoryIdParamsSchema,
   createCategorySchema,
@@ -46,8 +46,8 @@ export default class CategoryController extends BaseController {
     }
   }
 
-  /** GET /api/v1/category - any signed-in user. */
-  @httpGet("/", authMiddleware(ALL_USER_ROLES))
+  /** GET /api/v1/category - accessible to guests and signed-in users. */
+  @httpGet("/", optionalAuthMiddleware())
   async list(_req: Request, res: Response) {
     try {
       const categories = await this.categoryService.listCategories();
@@ -59,7 +59,7 @@ export default class CategoryController extends BaseController {
   }
 
   /** GET /api/v1/category/:categoryId */
-  @httpGet("/:categoryId", authMiddleware(ALL_USER_ROLES))
+  @httpGet("/:categoryId", optionalAuthMiddleware())
   async get(req: Request, res: Response) {
     try {
       const { categoryId } = validateOrThrow(

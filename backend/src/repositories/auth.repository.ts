@@ -150,7 +150,7 @@ export default class AuthRepository {
       isDeleted: false,
     };
 
-    const [users, total] = await this.db.$transaction([
+    const [users, total] = await Promise.all([
       this.db.user.findMany({
         where,
         select: PUBLIC_USER_SELECT,
