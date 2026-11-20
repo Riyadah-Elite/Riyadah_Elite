@@ -7,7 +7,11 @@ import { z } from 'zod';
  * before a request leaves the device and to give each field an inline message.
  */
 export const loginSchema = z.object({
+<<<<<<< HEAD
   email: z.email({ error: 'Enter a valid email address.' }),
+=======
+  email: z.string().trim().min(2, { error: 'Enter your email or username.' }),
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   password: z.string().min(1, { error: 'Password is required.' }),
 });
 
@@ -24,6 +28,10 @@ export const registerSchema = z
       .min(8, { error: 'Use at least 8 characters.' })
       .max(72, { error: 'Use 72 characters or fewer.' }),
     confirmPassword: z.string().min(1, { error: 'Repeat your password.' }),
+<<<<<<< HEAD
+=======
+    role: z.enum(['USER', 'DEVELOPER', 'ORG']).optional(),
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   })
   .refine((values) => values.password === values.confirmPassword, {
     path: ['confirmPassword'],

@@ -20,6 +20,10 @@ import { useAuthModal } from '@/providers/auth-modal-provider';
 
 import { Button } from '../ui/button';
 import { StatusBadge } from '../ui/badge';
+<<<<<<< HEAD
+=======
+import { Tooltip } from '../ui/tooltip';
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 const HERO_STATS = [
   { value: '15', label: 'Rank tiers' },
@@ -136,6 +140,7 @@ export function Hero() {
           <View style={[styles.ctaRow, isMobile && styles.ctaRowMobile]}>
             {isAuthenticated ? (
               <>
+<<<<<<< HEAD
                 <Button
                   fullWidth={isMobile}
                   icon="arrow-forward"
@@ -167,6 +172,47 @@ export function Hero() {
                   size="lg"
                   variant="ghost"
                 />
+=======
+                <Tooltip content="Browse live tournament brackets and competitive arenas" position="top">
+                  <Button
+                    fullWidth={isMobile}
+                    icon="arrow-forward"
+                    label="Enter the ladder"
+                    onPress={() => router.push('/tournaments')}
+                    size="lg"
+                  />
+                </Tooltip>
+                <Tooltip content="Explore available game test flights and earn points" position="top">
+                  <Button
+                    fullWidth={isMobile}
+                    label="Testing programs"
+                    onPress={() => requireAuth('/game-testing')}
+                    size="lg"
+                    variant="ghost"
+                  />
+                </Tooltip>
+              </>
+            ) : (
+              <>
+                <Tooltip content="Register your operative account and choose your path" position="top">
+                  <Button
+                    fullWidth={isMobile}
+                    icon="arrow-forward"
+                    label="Claim your rank"
+                    onPress={() => openAuth('register')}
+                    size="lg"
+                  />
+                </Tooltip>
+                <Tooltip content="Sign in to your operative dossier" position="top">
+                  <Button
+                    fullWidth={isMobile}
+                    label="Sign in"
+                    onPress={() => openAuth('login')}
+                    size="lg"
+                    variant="ghost"
+                  />
+                </Tooltip>
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
               </>
             )}
           </View>

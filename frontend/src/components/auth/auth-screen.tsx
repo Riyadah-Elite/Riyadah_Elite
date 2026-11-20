@@ -182,14 +182,25 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 470,
     padding: Space.xl,
+<<<<<<< HEAD
     borderRadius: Radius.xl,
     backgroundColor: Palette.elevated,
+=======
+    borderRadius: Radius.clay,
+    backgroundColor: Palette.elevated,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.75)',
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     ...clayShadow,
     overflow: 'hidden',
   },
   cardMobile: {
     padding: Space.lg,
+<<<<<<< HEAD
     borderRadius: Radius.lg,
+=======
+    borderRadius: Radius.clay,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   foot: {
     flexDirection: 'row',

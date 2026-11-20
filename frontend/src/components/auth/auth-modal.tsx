@@ -183,9 +183,15 @@ const styles = StyleSheet.create({
   },
   panel: {
     flexDirection: 'row',
+<<<<<<< HEAD
     borderRadius: Radius.xxl,
     borderWidth: 1,
     borderColor: Palette.glassBorder,
+=======
+    borderRadius: Radius.clay,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.7)',
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     backgroundColor: Palette.elevated,
     overflow: 'hidden',
   },

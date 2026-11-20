@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { LinearGradient } from 'expo-linear-gradient';
 import { Pressable, StyleSheet, View, type ViewStyle } from 'react-native';
 
@@ -5,11 +6,38 @@ import {
   Palette,
   Radius,
   Space,
+=======
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import {
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+  type ViewStyle,
+} from 'react-native';
+
+import {
+  Fonts,
+  Palette,
+  Radius,
+  Space,
+  Typography,
+  clayModalShadow,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   clayShadow,
   neoShadow,
   webBackdrop,
 } from '@/constants/design';
 import { useHover } from '@/hooks/use-hover';
+<<<<<<< HEAD
+=======
+import { IconButton } from './icon-button';
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 interface ClayCardProps {
   children: React.ReactNode;
@@ -24,8 +52,13 @@ interface ClayCardProps {
 /**
  * The primary claymorphic surface.
  *
+<<<<<<< HEAD
  * Native cannot draw inset shadows, so the top highlight is a real 1px
  * gradient strip; on web the full inset/ambient plume is painted with CSS.
+=======
+ * Strict Claymorphism: Matte inflated surface, dual inner shadows
+ * (top-left highlight + bottom-right shade), and soft ambient outer elevation.
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
  */
 export function ClayCard({
   children,
@@ -40,16 +73,39 @@ export function ClayCard({
 
   const content = (
     <>
+<<<<<<< HEAD
       <LinearGradient
         colors={['rgba(255,255,255,0.55)', 'rgba(198,79,40,0.05)', 'rgba(255,255,255,0)']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.topEdge}
+=======
+      {/* Top-left light highlight for mobile + enhanced depth */}
+      <LinearGradient
+        colors={['rgba(255,255,255,0.85)', 'rgba(255,255,255,0.25)', 'rgba(255,255,255,0)']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.8, y: 0.8 }}
+        style={styles.topHighlight}
+        pointerEvents="none"
+      />
+
+      {/* Bottom-right subtle inner shade for mobile tactile inflation */}
+      <LinearGradient
+        colors={['rgba(136,104,74,0)', 'rgba(136,104,74,0.08)', 'rgba(136,104,74,0.14)']}
+        start={{ x: 0.2, y: 0.2 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.bottomShade}
+        pointerEvents="none"
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       />
 
       {glass ? (
         <LinearGradient
+<<<<<<< HEAD
           colors={['rgba(255,255,255,0.35)', 'rgba(255,255,255,0)', 'rgba(198,79,40,0.04)']}
+=======
+          colors={['rgba(255,255,255,0.40)', 'rgba(255,255,255,0.05)', 'rgba(198,79,40,0.04)']}
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={StyleSheet.absoluteFill}
@@ -85,6 +141,124 @@ export function ClayCard({
   return <View style={[styles.card, glass && styles.glassCard, clayShadow, style]}>{content}</View>;
 }
 
+<<<<<<< HEAD
+=======
+export interface ClayModalProps {
+  visible: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+  title?: string;
+  eyebrow?: string;
+  maxWidth?: number;
+  maxHeight?: number;
+  accessibilityLabel?: string;
+  showCloseButton?: boolean;
+}
+
+/**
+ * Strict Claymorphic Modal / Popup Wrapper.
+ *
+ * Laws satisfied:
+ * - 28px border-radius (Radius.clay = 28)
+ * - Matte inflated surface (Palette.elevated)
+ * - Dual inner shadows (top-left light highlight + bottom-right deep shade)
+ * - Soft outer drop shadow elevation
+ * - Seamless cross-platform support (Web CSS insets + React Native Mobile multi-gradient overlays)
+ */
+export function ClayModal({
+  visible,
+  onClose,
+  children,
+  title,
+  eyebrow,
+  maxWidth = 560,
+  maxHeight,
+  accessibilityLabel = 'Modal dialog',
+  showCloseButton = true,
+}: ClayModalProps) {
+  const { width, height } = useWindowDimensions();
+  const isMobile = width < 768;
+  const panelWidth = Math.min(width - (isMobile ? 32 : 64), maxWidth);
+  const panelMaxHeight = maxHeight ?? Math.min(height - (isMobile ? 48 : 96), 720);
+
+  return (
+    <Modal
+      animationType="fade"
+      onRequestClose={onClose}
+      transparent
+      visible={visible}
+      accessibilityLabel={accessibilityLabel}>
+      <View style={[styles.modalRoot, isMobile && styles.modalRootMobile]}>
+        {/* Scrim backdrop */}
+        <Pressable
+          accessibilityLabel="Close dialog backdrop"
+          onPress={onClose}
+          style={[StyleSheet.absoluteFill, styles.modalScrim, webBackdrop]}
+        />
+
+        {/* Strict Claymorphic Dialog Panel */}
+        <View
+          style={[
+            styles.modalPanel,
+            clayModalShadow,
+            {
+              width: panelWidth,
+              maxHeight: panelMaxHeight,
+            },
+          ]}>
+          {/* Top-left inner highlight gradient */}
+          <LinearGradient
+            colors={['rgba(255,255,255,0.92)', 'rgba(255,255,255,0.3)', 'rgba(255,255,255,0)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0.6, y: 0.6 }}
+            style={styles.modalTopHighlight}
+            pointerEvents="none"
+          />
+
+          {/* Bottom-right inner deep shade gradient */}
+          <LinearGradient
+            colors={['rgba(136,104,74,0)', 'rgba(136,104,74,0.08)', 'rgba(136,104,74,0.18)']}
+            start={{ x: 0.4, y: 0.4 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.modalBottomShade}
+            pointerEvents="none"
+          />
+
+          {/* Header */}
+          {(title || eyebrow || showCloseButton) && (
+            <View style={styles.modalHeader}>
+              <View style={styles.modalHeaderCopy}>
+                {eyebrow ? <Text style={styles.modalEyebrow}>{eyebrow}</Text> : null}
+                {title ? <Text style={styles.modalTitle}>{title}</Text> : null}
+              </View>
+
+              {showCloseButton ? (
+                <IconButton
+                  iconSize={16}
+                  label="Close dialog"
+                  name="close"
+                  onPress={onClose}
+                  size={36}
+                />
+              ) : null}
+            </View>
+          )}
+
+          {/* Body Content */}
+          <ScrollView
+            contentContainerStyle={styles.modalScrollContent}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+            style={styles.modalScrollView}>
+            {children}
+          </ScrollView>
+        </View>
+      </View>
+    </Modal>
+  );
+}
+
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 /**
  * Lighter surface for dense data rows and tables. The inset rim reads as part
  * of the panel rather than a floating card.
@@ -114,9 +288,15 @@ const panelShadow = neoShadow;
 const styles = StyleSheet.create({
   card: {
     backgroundColor: Palette.card,
+<<<<<<< HEAD
     borderRadius: Radius.xl,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.5)',
+=======
+    borderRadius: Radius.clay, // 28px strict Claymorphism
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.65)',
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     overflow: 'hidden',
   },
   glassCard: {
@@ -130,12 +310,33 @@ const styles = StyleSheet.create({
   pressed: {
     transform: [{ scale: 0.995 }],
   },
+<<<<<<< HEAD
   topEdge: {
+=======
+  topHighlight: {
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
+<<<<<<< HEAD
     height: 1,
+=======
+    height: 18,
+    borderTopLeftRadius: Radius.clay,
+    borderTopRightRadius: Radius.clay,
+    zIndex: 2,
+  },
+  bottomShade: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 24,
+    borderBottomLeftRadius: Radius.clay,
+    borderBottomRightRadius: Radius.clay,
+    zIndex: 2,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   padded: {
     padding: Space.lg,
@@ -154,4 +355,80 @@ const styles = StyleSheet.create({
     right: 0,
     height: 1,
   },
+<<<<<<< HEAD
+=======
+  // Modal styles
+  modalRoot: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: Space.lg,
+  },
+  modalRootMobile: {
+    padding: Space.sm,
+  },
+  modalScrim: {
+    backgroundColor: Palette.overlay,
+  },
+  modalPanel: {
+    backgroundColor: Palette.elevated, // Matte inflated surface
+    borderRadius: Radius.clay, // Exactly 28px border-radius
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.7)',
+    overflow: 'hidden',
+    position: 'relative',
+  },
+  modalTopHighlight: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: 32,
+    borderTopLeftRadius: Radius.clay,
+    borderTopRightRadius: Radius.clay,
+    zIndex: 1,
+  },
+  modalBottomShade: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 36,
+    borderBottomLeftRadius: Radius.clay,
+    borderBottomRightRadius: Radius.clay,
+    zIndex: 1,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: Space.lg,
+    paddingTop: Space.lg,
+    paddingBottom: Space.sm,
+    zIndex: 5,
+  },
+  modalHeaderCopy: {
+    flex: 1,
+    gap: 2,
+  },
+  modalEyebrow: {
+    ...Typography.labelTight,
+    color: Palette.primary,
+  },
+  modalTitle: {
+    ...Typography.title,
+    fontFamily: Fonts.display,
+    fontSize: 20,
+    color: Palette.text,
+  },
+  modalScrollView: {
+    flexGrow: 0,
+    zIndex: 3,
+  },
+  modalScrollContent: {
+    paddingHorizontal: Space.lg,
+    paddingBottom: Space.lg,
+    paddingTop: Space.xs,
+  },
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 });

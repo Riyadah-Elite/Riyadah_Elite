@@ -89,3 +89,40 @@ export const authMiddleware = (
     }
   };
 };
+
+export const optionalAuthMiddleware = () => {
+  return async (req: AuthenticatedRequest, _res: Response, next: NextFunction) => {
+    const authHeader = req.headers.authorization;
+    const token = authHeader?.startsWith("Bearer ")
+      ? authHeader.slice("Bearer ".length)
+      : req.cookies?.token;
+
+    if (!token) {
+      return next();
+    }
+
+    try {
+      const decoded = verifyToken(token);
+      const authRepository = container.get<AuthRepository>(TYPES.AuthRepository);
+      const [user, blacklistedToken] = await Promise.all([
+        authRepository.findUserForAuthorization(decoded.userId),
+        authRepository.isTokenBlacklisted(token),
+      ]);
+
+      if (
+        user &&
+        !user.isDeleted &&
+        !blacklistedToken &&
+        user.tokenVersion === decoded.tokenVersion &&
+        user.role === decoded.userRole
+      ) {
+        req.user = { userId: user.id, role: user.role };
+        setRequestUserId(user.id);
+      }
+    } catch {
+      // Optional authentication silently continues if token is invalid or expired
+    }
+
+    return next();
+  };
+};

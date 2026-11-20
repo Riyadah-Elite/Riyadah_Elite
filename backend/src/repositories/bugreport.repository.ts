@@ -94,7 +94,11 @@ export default class BugReportRepository {
   async listForUser(userId: string, query: BugReportQuery) {
     const where = { userId, ...this.filters(query) };
 
+<<<<<<< HEAD
     const [items, total] = await this.db.$transaction([
+=======
+    const [items, total] = await Promise.all([
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       this.db.bugReport.findMany({
         where,
         include: BUG_REPORT_INCLUDE,
@@ -114,7 +118,28 @@ export default class BugReportRepository {
       ...this.filters(query),
     };
 
+<<<<<<< HEAD
     const [items, total] = await this.db.$transaction([
+=======
+    const [items, total] = await Promise.all([
+      this.db.bugReport.findMany({
+        where,
+        include: BUG_REPORT_INCLUDE,
+        orderBy: { createdAt: "desc" },
+        skip: query.skip,
+        take: query.take,
+      }),
+      this.db.bugReport.count({ where }),
+    ]);
+
+    return { items, total };
+  }
+
+  async listForAdmin(query: BugReportQuery) {
+    const where = this.filters(query);
+
+    const [items, total] = await Promise.all([
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       this.db.bugReport.findMany({
         where,
         include: BUG_REPORT_INCLUDE,
@@ -142,6 +167,16 @@ export default class BugReportRepository {
     });
   }
 
+<<<<<<< HEAD
+=======
+  async findForAdmin(bugId: string) {
+    return await this.db.bugReport.findUnique({
+      where: { id: bugId },
+      include: BUG_REPORT_INCLUDE,
+    });
+  }
+
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   private filters(query: BugReportQuery) {
     return {
       ...(query.gameListingId

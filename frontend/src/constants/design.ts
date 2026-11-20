@@ -62,6 +62,10 @@ export const Radius = {
   lg: 14,
   xl: 18,
   xxl: 26,
+<<<<<<< HEAD
+=======
+  clay: 28,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   pill: 999,
 } as const;
 
@@ -239,11 +243,105 @@ export const neoShadowPressed = Platform.select<ViewStyle>({
   },
 });
 
+<<<<<<< HEAD
 /** Cards float above the canvas on a warm, wide plume of shadow. */
 export const clayShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
       '0 20px 40px rgba(108, 74, 48, 0.14), 0 4px 10px rgba(108, 74, 48, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.88)',
+=======
+/** Strict Neumorphic Button: Dual extruded outer shadows for standard buttons. */
+export const neoButtonShadow = Platform.select<ViewStyle>({
+  web: {
+    boxShadow:
+      '4px 4px 10px rgba(136, 104, 74, 0.20), -4px -4px 10px rgba(255, 255, 255, 0.88)',
+  },
+  default: {
+    shadowColor: '#7A5A3E',
+    shadowOffset: { width: 4, height: 5 },
+    shadowOpacity: 0.18,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+});
+
+export const neoButtonHoverShadow = Platform.select<ViewStyle>({
+  web: {
+    boxShadow:
+      '5px 5px 14px rgba(136, 104, 74, 0.26), -5px -5px 13px rgba(255, 255, 255, 0.95)',
+  },
+  default: {
+    shadowColor: '#7A5A3E',
+    shadowOffset: { width: 5, height: 6 },
+    shadowOpacity: 0.24,
+    shadowRadius: 10,
+    elevation: 7,
+  },
+});
+
+export const neoButtonPressedShadow = Platform.select<ViewStyle>({
+  web: {
+    boxShadow:
+      'inset 3px 3px 7px rgba(136, 104, 74, 0.26), inset -3px -3px 7px rgba(255, 255, 255, 0.82)',
+  },
+  default: {
+    shadowColor: '#7A5A3E',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
+});
+
+/** Strict Neumorphic Button: Dual outer shadows for Primary (Burnt Orange) buttons. */
+export const neoPrimaryShadow = Platform.select<ViewStyle>({
+  web: {
+    boxShadow:
+      '4px 4px 12px rgba(138, 47, 18, 0.35), -4px -4px 10px rgba(255, 255, 255, 0.85)',
+  },
+  default: {
+    shadowColor: '#8A2F12',
+    shadowOffset: { width: 4, height: 5 },
+    shadowOpacity: 0.26,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+});
+
+export const neoPrimaryHoverShadow = Platform.select<ViewStyle>({
+  web: {
+    boxShadow:
+      '5px 5px 16px rgba(138, 47, 18, 0.44), -5px -5px 12px rgba(255, 255, 255, 0.92)',
+  },
+  default: {
+    shadowColor: '#8A2F12',
+    shadowOffset: { width: 5, height: 6 },
+    shadowOpacity: 0.32,
+    shadowRadius: 10,
+    elevation: 8,
+  },
+});
+
+export const neoPrimaryPressedShadow = Platform.select<ViewStyle>({
+  web: {
+    boxShadow:
+      'inset 3px 3px 7px rgba(80, 24, 8, 0.50), inset -3px -3px 7px rgba(255, 140, 100, 0.28)',
+  },
+  default: {
+    shadowColor: '#8A2F12',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
+});
+
+/** Cards float above the canvas on a warm, wide plume of shadow with dual inner highlight/shade. */
+export const clayShadow = Platform.select<ViewStyle>({
+  web: {
+    boxShadow:
+      '0 20px 40px rgba(108, 74, 48, 0.14), 0 4px 10px rgba(108, 74, 48, 0.06), inset 2px 2px 4px rgba(255, 255, 255, 0.90), inset -3px -3px 6px rgba(136, 104, 74, 0.14)',
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   default: {
     shadowColor: '#6C4A30',
@@ -254,6 +352,7 @@ export const clayShadow = Platform.select<ViewStyle>({
   },
 });
 
+<<<<<<< HEAD
 /** Modals sit highest in the stack with an ink ambient bleed. */
 export const modalShadow = Platform.select<ViewStyle>({
   web: {
@@ -266,6 +365,41 @@ export const modalShadow = Platform.select<ViewStyle>({
     shadowOpacity: 0.5,
     shadowRadius: 40,
     elevation: 24,
+=======
+/**
+ * Strict Claymorphism for Popups & Modals:
+ * 28px border-radius, matte inflated surface, dual inner shadows
+ * (top-left light highlight + bottom-right deep shade) + soft outer drop shadow.
+ */
+export const modalShadow = Platform.select<ViewStyle>({
+  web: {
+    boxShadow:
+      '0 28px 60px rgba(74, 48, 30, 0.24), 0 8px 18px rgba(74, 48, 30, 0.12), inset 2px 2px 5px rgba(255, 255, 255, 0.92), inset -3px -3px 7px rgba(136, 104, 74, 0.18)',
+  },
+  default: {
+    shadowColor: '#4A2F1C',
+    shadowOffset: { width: 0, height: 20 },
+    shadowOpacity: 0.35,
+    shadowRadius: 32,
+    elevation: 20,
+  },
+});
+
+export const clayModalShadow = modalShadow;
+
+/** Strict Glassmorphism: Frosted floating toast elevation. */
+export const glassToastShadow = Platform.select<ViewStyle>({
+  web: {
+    boxShadow:
+      '0 16px 36px rgba(74, 48, 30, 0.18), 0 4px 10px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.85)',
+  },
+  default: {
+    shadowColor: '#4A2F1C',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.18,
+    shadowRadius: 16,
+    elevation: 10,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
 });
 
@@ -274,7 +408,12 @@ export const accentGlow = '0 0 18px rgba(198, 79, 40, 0.28)';
 
 export const webBackdrop = Platform.select<ViewStyle>({
   web: {
+<<<<<<< HEAD
     backdropFilter: 'blur(16px) saturate(150%)',
+=======
+    backdropFilter: 'blur(16px) saturate(180%)',
+    WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   } as ViewStyle,
   default: {},
 });

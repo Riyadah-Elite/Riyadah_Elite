@@ -219,5 +219,6 @@ export interface UpdateUserDetailsInput {
   username?: string;
   role?: UserRole;
   isNotificationAllowed?: boolean;
+  avatarId?: string | null;
   avatarUrl?: string;
 }

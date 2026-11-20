@@ -33,8 +33,13 @@ export default class BugReportController extends BaseController {
   @inject(TYPES.Logger)
   logger!: Logger;
 
+<<<<<<< HEAD
   /** POST /api/v1/bug/report - only enrolled USERs, during testing. */
   @httpPost("/report", authMiddleware(USER_ROLE.USER))
+=======
+  /** POST /api/v1/bug/report - enrolled USERs and ORGs, during testing. */
+  @httpPost("/report", authMiddleware([USER_ROLE.USER, USER_ROLE.ORG]))
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   async createReport(req: Request, res: Response) {
     try {
       const body = validateOrThrow(createBugReportSchema, req.body);
@@ -50,10 +55,17 @@ export default class BugReportController extends BaseController {
     }
   }
 
+<<<<<<< HEAD
   /** GET /api/v1/bug/report?page=1&limit=20 - USER own, DEVELOPER their games. */
   @httpGet(
     "/report",
     authMiddleware([USER_ROLE.USER, USER_ROLE.DEVELOPER]),
+=======
+  /** GET /api/v1/bug/report?page=1&limit=20 - USER own, DEVELOPER their games, ADMIN all. */
+  @httpGet(
+    "/report",
+    authMiddleware([USER_ROLE.USER, USER_ROLE.DEVELOPER, USER_ROLE.ADMIN]),
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async listReports(req: Request, res: Response) {
     try {
@@ -74,7 +86,11 @@ export default class BugReportController extends BaseController {
   /** GET /api/v1/bug/report/:bugId */
   @httpGet(
     "/report/:bugId",
+<<<<<<< HEAD
     authMiddleware([USER_ROLE.USER, USER_ROLE.DEVELOPER]),
+=======
+    authMiddleware([USER_ROLE.USER, USER_ROLE.DEVELOPER, USER_ROLE.ADMIN]),
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async getReport(req: Request, res: Response) {
     try {
@@ -92,10 +108,17 @@ export default class BugReportController extends BaseController {
     }
   }
 
+<<<<<<< HEAD
   /** PATCH /api/v1/bug/report/:bugId/status - DEVELOPER only. */
   @httpPatch(
     "/report/:bugId/status",
     authMiddleware(USER_ROLE.DEVELOPER),
+=======
+  /** PATCH /api/v1/bug/report/:bugId/status - DEVELOPER or ADMIN. */
+  @httpPatch(
+    "/report/:bugId/status",
+    authMiddleware([USER_ROLE.DEVELOPER, USER_ROLE.ADMIN]),
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async updateStatus(req: Request, res: Response) {
     try {
@@ -109,6 +132,10 @@ export default class BugReportController extends BaseController {
         req.user!.userId,
         bugId,
         status,
+<<<<<<< HEAD
+=======
+        req.user!.role,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       );
 
       return this.success(res, result, STATUS_CODE.OK);

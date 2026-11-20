@@ -58,7 +58,14 @@ export default class ListingService {
     this.logger.info("creating game listing", { ownerId });
 
     await this.assertCategory(input.categoryId);
-    await this.assertAmount(input.amountId);
+
+    let amountId = input.amountId;
+    if (!amountId && input.amount !== undefined && input.amount !== null && input.currency) {
+      const createdAmount = await this.listingRepository.createAmount(input.amount, input.currency);
+      amountId = createdAmount.id;
+    }
+
+    await this.assertAmount(amountId);
     await this.assertImage(input.imageId, ownerId);
     await this.assertAttachment(input.fileId, ownerId);
 
@@ -69,6 +76,10 @@ export default class ListingService {
 
     const listing = await this.listingRepository.createGameListing({
       ...input,
+<<<<<<< HEAD
+=======
+      amountId,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       status: this.resolveInitialStatus(input.scheduling, input.status),
       userId: ownerId,
     });
@@ -93,7 +104,13 @@ export default class ListingService {
     const { items, total } =
       role === USER_ROLE.DEVELOPER
         ? await this.listingRepository.listGameListings(requesterId, query)
+<<<<<<< HEAD
         : await this.listingRepository.listOpenGameListings(query);
+=======
+        : role === USER_ROLE.ADMIN
+          ? await this.listingRepository.listGameListingsForAdmin(query)
+          : await this.listingRepository.listOpenGameListings(query);
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
     return {
       items,
@@ -125,15 +142,29 @@ export default class ListingService {
     ownerId: string,
     listingId: string,
     input: UpdateGameListingInput,
+    role?: UserRole,
   ) {
-    const existing = await this.assertOwnedGameListing(ownerId, listingId);
+    const existing =
+      role === USER_ROLE.ADMIN
+        ? await this.assertGameListingExists(listingId)
+        : await this.assertOwnedGameListing(ownerId, listingId);
 
     if (input.categoryId !== undefined) {
       await this.assertCategory(input.categoryId);
     }
 
-    if (input.amountId) {
-      await this.assertAmount(input.amountId);
+    let amountId = input.amountId;
+    if (input.amount !== undefined && input.amount !== null && input.currency) {
+      const amt = await this.listingRepository.updateOrCreateAmount(
+        existing.amountId ?? input.amountId,
+        input.amount,
+        input.currency,
+      );
+      amountId = amt.id;
+    }
+
+    if (amountId) {
+      await this.assertAmount(amountId);
     }
 
     if (input.imageId) {
@@ -150,6 +181,12 @@ export default class ListingService {
     );
 
     const changes: UpdateGameListingInput = { ...input };
+<<<<<<< HEAD
+=======
+    if (amountId) {
+      changes.amountId = amountId;
+    }
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
     const scheduling =
       input.scheduling !== undefined ? input.scheduling : existing.scheduling;
@@ -168,8 +205,16 @@ export default class ListingService {
     return listing;
   }
 
-  async deleteGameListing(ownerId: string, listingId: string): Promise<void> {
-    await this.assertOwnedGameListing(ownerId, listingId);
+  async deleteGameListing(
+    ownerId: string,
+    listingId: string,
+    role?: UserRole,
+  ): Promise<void> {
+    if (role !== USER_ROLE.ADMIN) {
+      await this.assertOwnedGameListing(ownerId, listingId);
+    } else {
+      await this.assertGameListingExists(listingId);
+    }
 
     const dependents =
       await this.listingRepository.countGameListingDependents(listingId);
@@ -194,7 +239,14 @@ export default class ListingService {
     this.logger.info("creating tournament", { ownerId });
 
     await this.assertGameListingExists(input.gameListingId);
-    await this.assertAmount(input.amountId);
+
+    let amountId = input.amountId;
+    if (!amountId && input.amount !== undefined && input.amount !== null && input.currency) {
+      const createdAmount = await this.listingRepository.createAmount(input.amount, input.currency);
+      amountId = createdAmount.id;
+    }
+
+    await this.assertAmount(amountId);
     await this.assertImage(input.imageId, ownerId);
     await this.assertAttachment(input.fileId, ownerId);
 
@@ -205,6 +257,10 @@ export default class ListingService {
 
     const tournament = await this.listingRepository.createTournament({
       ...input,
+<<<<<<< HEAD
+=======
+      amountId,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       status: this.resolveInitialStatus(input.scheduling, input.status),
       userId: ownerId,
     });
@@ -263,15 +319,29 @@ export default class ListingService {
     ownerId: string,
     tournamentId: string,
     input: UpdateTournamentInput,
+    role?: UserRole,
   ) {
-    const existing = await this.assertOwnedTournament(ownerId, tournamentId);
+    const existing =
+      role === USER_ROLE.ADMIN
+        ? await this.assertTournamentExists(tournamentId)
+        : await this.assertOwnedTournament(ownerId, tournamentId);
 
     if (input.gameListingId !== undefined) {
       await this.assertGameListingExists(input.gameListingId);
     }
 
-    if (input.amountId) {
-      await this.assertAmount(input.amountId);
+    let amountId = input.amountId;
+    if (input.amount !== undefined && input.amount !== null && input.currency) {
+      const amt = await this.listingRepository.updateOrCreateAmount(
+        existing.amountId ?? input.amountId,
+        input.amount,
+        input.currency,
+      );
+      amountId = amt.id;
+    }
+
+    if (amountId) {
+      await this.assertAmount(amountId);
     }
 
     if (input.imageId) {
@@ -288,6 +358,12 @@ export default class ListingService {
     );
 
     const changes: UpdateTournamentInput = { ...input };
+<<<<<<< HEAD
+=======
+    if (amountId) {
+      changes.amountId = amountId;
+    }
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
     const scheduling =
       input.scheduling !== undefined ? input.scheduling : existing.scheduling;
@@ -306,8 +382,16 @@ export default class ListingService {
     return tournament;
   }
 
-  async deleteTournament(ownerId: string, tournamentId: string): Promise<void> {
-    await this.assertOwnedTournament(ownerId, tournamentId);
+  async deleteTournament(
+    ownerId: string,
+    tournamentId: string,
+    role?: UserRole,
+  ): Promise<void> {
+    if (role === USER_ROLE.ADMIN) {
+      await this.assertTournamentExists(tournamentId);
+    } else {
+      await this.assertOwnedTournament(ownerId, tournamentId);
+    }
 
     await this.listingRepository.deleteTournament(tournamentId);
 
@@ -380,14 +464,16 @@ export default class ListingService {
   }
 
   private async assertGameListingExists(listingId: string) {
-    const exists = await this.listingRepository.gameListingExists(listingId);
+    const listing = await this.listingRepository.findGameListing(listingId);
 
-    if (!exists) {
+    if (!listing) {
       throw new ApiError(
         TOURNAMENT_ERRORS.GAME_LISTING_NOT_FOUND,
         STATUS_CODE.NOT_FOUND,
       );
     }
+
+    return listing;
   }
 
   private async assertOwnedTournament(ownerId: string, tournamentId: string) {
@@ -395,6 +481,19 @@ export default class ListingService {
       tournamentId,
       ownerId,
     );
+
+    if (!tournament) {
+      throw new ApiError(
+        TOURNAMENT_ERRORS.NOT_FOUND,
+        STATUS_CODE.NOT_FOUND,
+      );
+    }
+
+    return tournament;
+  }
+
+  private async assertTournamentExists(tournamentId: string) {
+    const tournament = await this.listingRepository.findTournament(tournamentId);
 
     if (!tournament) {
       throw new ApiError(

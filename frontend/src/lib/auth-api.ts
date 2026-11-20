@@ -53,3 +53,60 @@ export async function markNotificationRead(notificationId: string): Promise<void
 export async function deleteNotificationRequest(notificationId: string): Promise<void> {
   await api.delete(`/api/v1/notification/${notificationId}`);
 }
+<<<<<<< HEAD
+=======
+
+export async function updateNotificationPreferenceRequest(
+  userId: string,
+  allowed: boolean,
+): Promise<ApiUser> {
+  const response = await api.patch<ApiEnvelope<ApiUser>>(`/api/v1/user/${userId}`, {
+    isNotificationAllowed: allowed,
+  });
+
+  return response.data.data;
+}
+
+export async function updateProfileRequest(
+  userId: string,
+  payload: { username?: string; avatarId?: string | null; isNotificationAllowed?: boolean },
+): Promise<ApiUser> {
+  const response = await api.patch<ApiEnvelope<ApiUser>>(`/api/v1/user/${userId}`, payload);
+  return response.data.data;
+}
+
+export async function fetchUsersListRequest(params?: {
+  page?: number;
+  limit?: number;
+  search?: string;
+  role?: string;
+}): Promise<{
+  users: Array<{
+    id: string;
+    username: string;
+    role: 'ADMIN' | 'USER' | 'ORG' | 'DEVELOPER';
+    avatarUrl: string | null;
+    createdAt: string;
+  }>;
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+  };
+}> {
+  const response = await api.get<ApiEnvelope<any>>('/api/v1/user', { params });
+  return response.data.data;
+}
+
+export async function softDeleteUserRequest(userId: string): Promise<void> {
+  await api.delete(`/api/v1/user/${userId}`);
+}
+
+export async function restoreUserRequest(userId: string): Promise<ApiUser> {
+  const response = await api.patch<ApiEnvelope<ApiUser>>(`/api/v1/user/restore/${userId}`);
+  return response.data.data;
+}
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a

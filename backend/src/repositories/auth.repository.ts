@@ -89,6 +89,20 @@ export default class AuthRepository {
     });
   }
 
+  async findByEmailOrUsername(identifier: string) {
+    const trimmed = identifier.trim();
+    return await this.db.user.findFirst({
+      where: {
+        OR: [
+          { email: trimmed.toLowerCase() },
+          { username: { equals: trimmed, mode: "insensitive" } },
+        ],
+      },
+      omit: { password: false },
+      include: { avatar: { select: { imageUrl: true } } },
+    });
+  }
+
   async findUserById(id: string) {
     return await this.db.user.findUnique({
       where: { id, isDeleted: false },
@@ -136,7 +150,7 @@ export default class AuthRepository {
       isDeleted: false,
     };
 
-    const [users, total] = await this.db.$transaction([
+    const [users, total] = await Promise.all([
       this.db.user.findMany({
         where,
         select: PUBLIC_USER_SELECT,
@@ -189,6 +203,7 @@ export default class AuthRepository {
       username?: string;
       role?: CreateUserInput["role"];
       isNotificationAllowed?: boolean;
+      avatarId?: string | null;
       testingStatus?: UpdateUserProgressInput["testingStatus"];
       testingPoints?: number;
       testingRank?: string | null;

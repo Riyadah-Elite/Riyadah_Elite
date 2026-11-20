@@ -25,6 +25,11 @@ interface TextFieldProps
     | 'onSubmitEditing'
     | 'inputMode'
     | 'autoCorrect'
+<<<<<<< HEAD
+=======
+    | 'multiline'
+    | 'numberOfLines'
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   > {
   label: string;
   value: string;

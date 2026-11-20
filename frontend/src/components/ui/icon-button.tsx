@@ -4,14 +4,24 @@ import { Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native'
 import {
   Palette,
   Radius,
+<<<<<<< HEAD
   Typography,
   neoShadow,
   neoShadowPressed,
+=======
+  neoButtonHoverShadow,
+  neoButtonPressedShadow,
+  neoButtonShadow,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   webBackdrop,
 } from '@/constants/design';
 import { useHover } from '@/hooks/use-hover';
 
+<<<<<<< HEAD
 interface IconButtonProps {
+=======
+export interface IconButtonProps {
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   name: keyof typeof Ionicons.glyphMap;
   onPress?: () => void;
   size?: number;
@@ -25,8 +35,16 @@ interface IconButtonProps {
 }
 
 /**
+<<<<<<< HEAD
  * Borderless neomorphic icon shell. The control reads as part of the warm
  * surface through paired light and shadow, not through a visible outline.
+=======
+ * Strict Neumorphic Icon Button.
+ *
+ * Laws satisfied:
+ * - Extruded dual outer shadows in default and hover states.
+ * - Inset pressed shadow state when pressed or active.
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
  */
 export function IconButton({
   name,
@@ -57,11 +75,30 @@ export function IconButton({
           width: size,
           height: size,
           borderRadius: round ? size / 2 : Radius.md,
+<<<<<<< HEAD
           backgroundColor: active ? Palette.primaryWash : Palette.surface,
         },
         pressed || active ? neoShadowPressed : neoShadow,
         pressed && styles.pressed,
         hovered && styles.hovered,
+=======
+          backgroundColor: active
+            ? Palette.primaryWash
+            : pressed
+              ? Palette.raised
+              : hovered
+                ? Palette.elevated
+                : Palette.surface,
+          borderColor: active ? Palette.primary : 'rgba(255,255,255,0.6)',
+        },
+        pressed || active
+          ? neoButtonPressedShadow
+          : hovered
+            ? neoButtonHoverShadow
+            : neoButtonShadow,
+        pressed && styles.pressed,
+        hovered && !pressed && styles.hovered,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         style,
       ]}>
       <Ionicons
@@ -83,6 +120,7 @@ const styles = StyleSheet.create({
   base: {
     alignItems: 'center',
     justifyContent: 'center',
+<<<<<<< HEAD
     overflow: 'visible',
   },
   pressed: {
@@ -90,6 +128,16 @@ const styles = StyleSheet.create({
   },
   hovered: {
     backgroundColor: Palette.elevated,
+=======
+    borderWidth: 1,
+    overflow: 'visible',
+  },
+  hovered: {
+    transform: [{ translateY: -1 }],
+  },
+  pressed: {
+    transform: [{ scale: 0.97 }, { translateY: 1 }],
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   badge: {
     position: 'absolute',
@@ -100,6 +148,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
     borderRadius: Radius.pill,
     backgroundColor: Palette.primary,
+<<<<<<< HEAD
     borderWidth: 2,
     borderColor: Palette.canvas,
     alignItems: 'center',
@@ -111,5 +160,16 @@ const styles = StyleSheet.create({
     lineHeight: 11,
     letterSpacing: 0,
     color: Palette.onPrimary,
+=======
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: Palette.elevated,
+  },
+  badgeText: {
+    color: Palette.onPrimary,
+    fontSize: 9,
+    fontWeight: '700',
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
 });

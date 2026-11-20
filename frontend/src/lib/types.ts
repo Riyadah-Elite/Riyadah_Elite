@@ -69,3 +69,185 @@ export interface LeaderboardEntry {
 export interface LeaderboardPage {
   items: LeaderboardEntry[];
 }
+<<<<<<< HEAD
+=======
+
+export interface TournamentAmount {
+  id: string;
+  amount: number;
+  currency: string;
+}
+
+export interface TournamentItem {
+  id: string;
+  tournamentName: string;
+  gameListingId: string;
+  userId?: string | null;
+  description?: string | null;
+  tournamentDate?: string | null;
+  tournamentTime?: string | null;
+  maxEntry: number;
+  minEntry: number;
+  teamSize: number;
+  status: 'active' | 'inactive';
+  tournamentUrl?: string | null;
+  registrationEndDate?: string | null;
+  scheduling?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  gameListing?: {
+    id: string;
+    gameName: string;
+  };
+  amount?: TournamentAmount | null;
+  image?: {
+    id: string;
+    imageUrl: string | null;
+  } | null;
+  attachment?: {
+    id: string;
+    imageUrl: string | null;
+    fileUrl: string | null;
+  } | null;
+}
+
+export interface TournamentPage {
+  items: TournamentItem[];
+  pagination: PaginationMeta;
+}
+
+export interface CreateTournamentPayload {
+  tournamentName: string;
+  gameListingId: string;
+  description?: string;
+  tournamentUrl?: string;
+  tournamentDate?: string;
+  teamSize?: number;
+  maxEntry?: number;
+  minEntry?: number;
+  amount?: number;
+  currency?: 'USD' | 'INR' | 'QAR' | 'SDG' | 'EUR';
+  imageId?: string | null;
+  fileId?: string | null;
+  registrationEndDate?: string;
+  status?: 'active' | 'inactive';
+}
+
+export interface GameOption {
+  id: string;
+  gameName: string;
+}
+
+export interface GameListingItem {
+  id: string;
+  gameName: string;
+  categoryId: string;
+  userId?: string | null;
+  description?: string | null;
+  bugsListing?: string | null;
+  guides?: string | null;
+  platform?: 'android' | 'web' | 'ios' | 'windows' | 'console' | 'linux' | 'macos' | null;
+  gameUrl?: string | null;
+  maxEntry?: number;
+  minEntry?: number;
+  status: 'active' | 'inactive';
+  registrationEndDate: string;
+  testingDeadline: string;
+  scheduling?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  category?: {
+    id: string;
+    categoryName: string;
+  };
+  user?: {
+    id: string;
+    username: string;
+  };
+  image?: {
+    id: string;
+    imageUrl: string | null;
+  } | null;
+}
+
+export interface GameListingPage {
+  items: GameListingItem[];
+  pagination: PaginationMeta;
+}
+
+export interface CreateGameListingPayload {
+  gameName: string;
+  categoryId: string;
+  description?: string;
+  bugsListing?: string;
+  guides?: string;
+  platform?: 'android' | 'web' | 'ios' | 'windows' | 'console' | 'linux' | 'macos';
+  gameUrl?: string;
+  registrationEndDate: string;
+  testingDeadline: string;
+  maxEntry?: number;
+  minEntry?: number;
+  amount?: number;
+  currency?: 'USD' | 'INR' | 'QAR' | 'SDG' | 'EUR';
+  imageId?: string | null;
+  fileId?: string | null;
+  status?: 'active' | 'inactive';
+}
+
+export type BugReportStatus = 'open' | 'inprogress' | 'resolved' | 'closed';
+
+export interface BugReportItem {
+  id: string;
+  userId: string;
+  gameListingId: string;
+  bugDescription: string;
+  status: BugReportStatus;
+  imageId?: string | null;
+  fileId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  user?: {
+    id: string;
+    username: string;
+    role: UserRole;
+  };
+  gameListing?: {
+    id: string;
+    gameName: string;
+    userId?: string | null;
+  };
+  image?: {
+    id: string;
+    imageUrl: string | null;
+  } | null;
+  attachment?: {
+    id: string;
+    fileUrl: string | null;
+  } | null;
+}
+
+export interface BugReportPage {
+  items: BugReportItem[];
+  pagination: PaginationMeta;
+}
+
+export interface CreateBugReportPayload {
+  gameListingId: string;
+  bugDescription: string;
+  imageId?: string | null;
+  fileId?: string | null;
+}
+
+export interface CategoryItem {
+  id: string;
+  categoryName: string;
+}
+
+export interface EnrolledGameItem {
+  id: string;
+  userId: string;
+  gameListingId: string;
+  createdAt: string;
+  gameListing?: GameListingItem;
+}
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a

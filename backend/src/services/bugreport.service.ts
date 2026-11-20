@@ -113,9 +113,17 @@ export default class BugReportService {
     await this.listingStatusService.syncStatuses();
 
     const { items, total } =
+<<<<<<< HEAD
       role === USER_ROLE.DEVELOPER
         ? await this.bugReportRepository.listForDeveloper(requesterId, query)
         : await this.bugReportRepository.listForUser(requesterId, query);
+=======
+      role === USER_ROLE.ADMIN
+        ? await this.bugReportRepository.listForAdmin(query)
+        : role === USER_ROLE.DEVELOPER
+          ? await this.bugReportRepository.listForDeveloper(requesterId, query)
+          : await this.bugReportRepository.listForUser(requesterId, query);
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
     return {
       items,
@@ -125,9 +133,17 @@ export default class BugReportService {
 
   async getReport(requesterId: string, role: UserRole, bugId: string) {
     const report =
+<<<<<<< HEAD
       role === USER_ROLE.DEVELOPER
         ? await this.bugReportRepository.findForDeveloper(bugId, requesterId)
         : await this.bugReportRepository.findForUser(bugId, requesterId);
+=======
+      role === USER_ROLE.ADMIN
+        ? await this.bugReportRepository.findForAdmin(bugId)
+        : role === USER_ROLE.DEVELOPER
+          ? await this.bugReportRepository.findForDeveloper(bugId, requesterId)
+          : await this.bugReportRepository.findForUser(bugId, requesterId);
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
     if (!report) {
       throw new ApiError(BUG_REPORT_ERRORS.NOT_FOUND, STATUS_CODE.NOT_FOUND);
@@ -137,11 +153,16 @@ export default class BugReportService {
   }
 
   /**
+<<<<<<< HEAD
    * A developer may move a bug report through its workflow. Points are
+=======
+   * A developer or admin may move a bug report through its workflow. Points are
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
    * recomputed from the number of resolved/closed reports, so updating the same
    * report twice cannot award the 100 points more than once.
    */
   async updateStatus(
+<<<<<<< HEAD
     developerId: string,
     bugId: string,
     status: BugStatus,
@@ -150,6 +171,17 @@ export default class BugReportService {
       bugId,
       developerId,
     );
+=======
+    userId: string,
+    bugId: string,
+    status: BugStatus,
+    role?: UserRole,
+  ) {
+    const report =
+      role === USER_ROLE.ADMIN
+        ? await this.bugReportRepository.findForAdmin(bugId)
+        : await this.bugReportRepository.findForDeveloper(bugId, userId);
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
     if (!report) {
       throw new ApiError(BUG_REPORT_ERRORS.NOT_FOUND, STATUS_CODE.NOT_FOUND);
@@ -191,7 +223,11 @@ export default class BugReportService {
 
     this.logger.info("bug report status updated", {
       bugReportId: bugId,
+<<<<<<< HEAD
       developerId,
+=======
+      userId,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       status,
     });
 

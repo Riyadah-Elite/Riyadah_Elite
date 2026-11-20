@@ -1,5 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
+<<<<<<< HEAD
 import { ActivityIndicator, Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
+=======
+import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 import {
   Fonts,
@@ -7,14 +11,27 @@ import {
   Radius,
   Space,
   Typography,
+<<<<<<< HEAD
   neoShadowPressed,
+=======
+  neoButtonHoverShadow,
+  neoButtonPressedShadow,
+  neoButtonShadow,
+  neoPrimaryHoverShadow,
+  neoPrimaryPressedShadow,
+  neoPrimaryShadow,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 } from '@/constants/design';
 import { useHover } from '@/hooks/use-hover';
 
 type Variant = 'lime' | 'violet' | 'ghost' | 'dark';
 type Size = 'sm' | 'md' | 'lg';
 
+<<<<<<< HEAD
 interface ButtonProps {
+=======
+export interface ButtonProps {
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   label: string;
   onPress?: () => void;
   variant?: Variant;
@@ -34,6 +51,17 @@ const SIZES: Record<Size, { paddingH: number; height: number; fontSize: number }
   lg: { paddingH: 24, height: 52, fontSize: 14 },
 };
 
+<<<<<<< HEAD
+=======
+/**
+ * Strict Neumorphic Button.
+ *
+ * Laws satisfied:
+ * - Extruded dual outer shadows in default & hover states.
+ * - Inset pressed shadow state when active/pressed.
+ * - Tactile elevation across Web and Native.
+ */
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 export function Button({
   label,
   onPress,
@@ -51,7 +79,11 @@ export function Button({
   const isDisabled = disabled || loading;
   const metrics = SIZES[size];
 
+<<<<<<< HEAD
   const paint = getPaint(variant, hovered, isDisabled);
+=======
+  const paint = getPaint(variant, isDisabled);
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
   return (
     <Pressable
@@ -66,6 +98,7 @@ export function Button({
         {
           minHeight: metrics.height,
           paddingHorizontal: metrics.paddingH,
+<<<<<<< HEAD
           backgroundColor: paint.background,
           borderColor: paint.border,
         },
@@ -75,6 +108,25 @@ export function Button({
         pressed && !isDisabled
           ? [styles.pressed, neoShadowPressed, { backgroundColor: paint.pressedBackground }]
           : null,
+=======
+          backgroundColor:
+            pressed && !isDisabled
+              ? paint.pressedBackground
+              : hovered && !isDisabled
+                ? paint.hoverBackground
+                : paint.background,
+          borderColor: paint.border,
+        },
+        fullWidth && styles.fullWidth,
+        // Neumorphic shadow states
+        isDisabled
+          ? null
+          : pressed
+            ? [styles.pressed, paint.pressedShadow]
+            : hovered
+              ? [styles.hovered, paint.hoverShadow]
+              : paint.defaultShadow,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         isDisabled && styles.disabled,
         style,
       ]}>
@@ -99,6 +151,7 @@ export function Button({
   );
 }
 
+<<<<<<< HEAD
 function getPaint(variant: Variant, hovered: boolean, disabled: boolean) {
   if (disabled) {
     return {
@@ -108,12 +161,26 @@ function getPaint(variant: Variant, hovered: boolean, disabled: boolean) {
       pressedBackground: Palette.surfaceDim,
       shadow: undefined,
       hoverShadow: undefined,
+=======
+function getPaint(variant: Variant, disabled: boolean) {
+  if (disabled) {
+    return {
+      background: Palette.surfaceDim,
+      hoverBackground: Palette.surfaceDim,
+      pressedBackground: Palette.surfaceDim,
+      border: Palette.border,
+      text: Palette.textFaint,
+      defaultShadow: null,
+      hoverShadow: null,
+      pressedShadow: null,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     };
   }
 
   switch (variant) {
     case 'violet':
       return {
+<<<<<<< HEAD
         background: hovered ? '#34281F' : Palette.text,
         border: hovered ? '#34281F' : Palette.text,
         text: Palette.onPrimary,
@@ -155,6 +222,121 @@ function getPaint(variant: Variant, hovered: boolean, disabled: boolean) {
           boxShadow:
             'inset 0 1px 0 rgba(255,255,255,0.24), 0 12px 26px rgba(198,79,40,0.28)',
         } as ViewStyle,
+=======
+        background: Palette.text,
+        hoverBackground: '#34281F',
+        pressedBackground: '#1A1410',
+        border: 'transparent',
+        text: Palette.onPrimary,
+        defaultShadow: Platform.select<ViewStyle>({
+          web: {
+            boxShadow:
+              '4px 4px 10px rgba(0, 0, 0, 0.32), -3px -3px 8px rgba(255, 255, 255, 0.22)',
+          },
+          default: {
+            shadowColor: '#000000',
+            shadowOffset: { width: 3, height: 4 },
+            shadowOpacity: 0.28,
+            shadowRadius: 6,
+            elevation: 5,
+          },
+        }),
+        hoverShadow: Platform.select<ViewStyle>({
+          web: {
+            boxShadow:
+              '5px 5px 14px rgba(0, 0, 0, 0.40), -4px -4px 11px rgba(255, 255, 255, 0.30)',
+          },
+          default: {
+            shadowColor: '#000000',
+            shadowOffset: { width: 4, height: 6 },
+            shadowOpacity: 0.34,
+            shadowRadius: 8,
+            elevation: 7,
+          },
+        }),
+        pressedShadow: Platform.select<ViewStyle>({
+          web: {
+            boxShadow:
+              'inset 3px 3px 7px rgba(0, 0, 0, 0.65), inset -3px -3px 7px rgba(255, 255, 255, 0.12)',
+          },
+          default: {
+            shadowColor: '#000000',
+            shadowOffset: { width: 0, height: 0 },
+            shadowOpacity: 0,
+            shadowRadius: 0,
+            elevation: 0,
+          },
+        }),
+      };
+
+    case 'ghost':
+      return {
+        background: 'transparent',
+        hoverBackground: Palette.primaryWash,
+        pressedBackground: Palette.primaryWashStrong,
+        border: Palette.borderStrong,
+        text: Palette.text,
+        defaultShadow: Platform.select<ViewStyle>({
+          web: {
+            boxShadow:
+              '2px 2px 6px rgba(136, 104, 74, 0.12), -2px -2px 6px rgba(255, 255, 255, 0.70)',
+          },
+          default: {
+            shadowColor: '#7A5A3E',
+            shadowOffset: { width: 2, height: 2 },
+            shadowOpacity: 0.10,
+            shadowRadius: 4,
+            elevation: 2,
+          },
+        }),
+        hoverShadow: Platform.select<ViewStyle>({
+          web: {
+            boxShadow:
+              '3px 3px 9px rgba(136, 104, 74, 0.18), -3px -3px 8px rgba(255, 255, 255, 0.85)',
+          },
+          default: {
+            shadowColor: '#7A5A3E',
+            shadowOffset: { width: 3, height: 3 },
+            shadowOpacity: 0.14,
+            shadowRadius: 6,
+            elevation: 4,
+          },
+        }),
+        pressedShadow: Platform.select<ViewStyle>({
+          web: {
+            boxShadow:
+              'inset 2px 2px 5px rgba(136, 104, 74, 0.20), inset -2px -2px 5px rgba(255, 255, 255, 0.75)',
+          },
+          default: {
+            elevation: 0,
+          },
+        }),
+      };
+
+    case 'dark':
+      return {
+        background: Palette.surfaceDim,
+        hoverBackground: Palette.elevated,
+        pressedBackground: Palette.raised,
+        border: 'rgba(255,255,255,0.4)',
+        text: Palette.text,
+        defaultShadow: neoButtonShadow,
+        hoverShadow: neoButtonHoverShadow,
+        pressedShadow: neoButtonPressedShadow,
+      };
+
+    case 'lime':
+    default:
+      return {
+        background: Palette.primary,
+        hoverBackground: Palette.primaryBright,
+        pressedBackground: Palette.primaryDeep,
+        border: 'rgba(255, 255, 255, 0.25)',
+        text: Palette.onPrimary,
+        defaultShadow: neoPrimaryShadow,
+        hoverShadow: neoPrimaryHoverShadow,
+        pressedShadow: neoPrimaryPressedShadow,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       };
   }
 }
@@ -178,8 +360,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: Space.sm,
   },
+<<<<<<< HEAD
   pressed: {
     transform: [{ scale: 0.985 }],
+=======
+  hovered: {
+    transform: [{ translateY: -1 }],
+  },
+  pressed: {
+    transform: [{ scale: 0.985 }, { translateY: 1 }],
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   disabled: {
     opacity: 0.6,

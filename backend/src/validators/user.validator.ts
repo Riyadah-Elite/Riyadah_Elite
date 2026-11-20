@@ -38,9 +38,9 @@ export const registerSchema = Joi.object({
   username: username.required(),
   email: email.required(),
   password: password.required(),
-  // Defaults to the least-privileged role; a client cannot self-assign ADMIN.
+  // Client can register as USER, DEVELOPER, or ORG; ADMIN is strictly script-seeded only.
   role: Joi.string()
-    .valid(...USER_ROLES)
+    .valid(USER_ROLE.USER, USER_ROLE.DEVELOPER, USER_ROLE.ORG)
     .default(USER_ROLE.USER),
 });
 
@@ -50,7 +50,7 @@ export const registerSchema = Joi.object({
  * out anyone whose password is already stored from before the policy changed.
  */
 export const loginSchema = Joi.object({
-  email: email.required(),
+  email: Joi.string().trim().min(2).max(100).required(),
   password: Joi.string().required(),
 });
 
@@ -128,4 +128,5 @@ export const updateUserDetailsSchema = Joi.object({
   username,
   role: Joi.string().valid(...USER_ROLES),
   isNotificationAllowed: Joi.boolean(),
+  avatarId: Joi.string().allow(null, ""),
 }).min(1);

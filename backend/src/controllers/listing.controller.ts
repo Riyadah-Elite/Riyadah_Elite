@@ -12,11 +12,11 @@ import {
 import { inject } from "inversify";
 import { Request, Response } from "express";
 import { TYPES } from "../config/types.js";
-import { STATUS_CODE, USER_ROLE } from "../constants/constants.js";
+import { ALL_USER_ROLES, STATUS_CODE, USER_ROLE } from "../constants/constants.js";
 import BaseController from "./base.controller.js";
 import ListingService from "../services/listing.service.js";
 import Logger from "../utils/logger.js";
-import { authMiddleware } from "../middlewares/auth.middleware.js";
+import { authMiddleware, optionalAuthMiddleware } from "../middlewares/auth.middleware.js";
 import { validateOrThrow } from "../validators/validate.js";
 import {
   createGameListingSchema,
@@ -49,11 +49,11 @@ export default class ListingController extends BaseController {
   logger!: Logger;
 
   // ===========================================================================
-  // GAME LISTING (DEVELOPER)
+  // GAME LISTING (DEVELOPER / ADMIN)
   // ===========================================================================
 
   /** POST /api/v1/listing */
-  @httpPost("/listing", authMiddleware(USER_ROLE.DEVELOPER))
+  @httpPost("/listing", authMiddleware([USER_ROLE.DEVELOPER, USER_ROLE.ADMIN]))
   async createListing(req: Request, res: Response) {
     try {
       const body = validateOrThrow(createGameListingSchema, req.body);
@@ -72,15 +72,24 @@ export default class ListingController extends BaseController {
   /** GET /api/v1/listing?page=1&limit=20 */
   @httpGet(
     "/listing",
+<<<<<<< HEAD
     authMiddleware([USER_ROLE.USER, USER_ROLE.DEVELOPER]),
+=======
+    optionalAuthMiddleware(),
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async listListings(req: Request, res: Response) {
     try {
       const query = validateOrThrow(listingQuerySchema, req.query);
 
       const result = await this.listingService.listGameListings(
+<<<<<<< HEAD
         req.user!.userId,
         req.user!.role,
+=======
+        req.user?.userId ?? "",
+        req.user?.role ?? USER_ROLE.USER,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         this.toListingQuery(query),
       );
 
@@ -93,7 +102,11 @@ export default class ListingController extends BaseController {
   /** GET /api/v1/listing/:listingId */
   @httpGet(
     "/listing/:listingId",
+<<<<<<< HEAD
     authMiddleware([USER_ROLE.USER, USER_ROLE.DEVELOPER]),
+=======
+    optionalAuthMiddleware(),
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async getListing(req: Request, res: Response) {
     try {
@@ -103,8 +116,13 @@ export default class ListingController extends BaseController {
       );
 
       const listing = await this.listingService.getGameListing(
+<<<<<<< HEAD
         req.user!.userId,
         req.user!.role,
+=======
+        req.user?.userId ?? "",
+        req.user?.role ?? USER_ROLE.USER,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         listingId,
       );
 
@@ -115,7 +133,7 @@ export default class ListingController extends BaseController {
   }
 
   /** PATCH /api/v1/listing/:listingId */
-  @httpPatch("/listing/:listingId", authMiddleware(USER_ROLE.DEVELOPER))
+  @httpPatch("/listing/:listingId", authMiddleware([USER_ROLE.DEVELOPER, USER_ROLE.ADMIN]))
   async updateListing(req: Request, res: Response) {
     try {
       const { listingId } = validateOrThrow(
@@ -128,6 +146,7 @@ export default class ListingController extends BaseController {
         req.user!.userId,
         listingId,
         body,
+        req.user!.role,
       );
 
       return this.success(res, { listing }, STATUS_CODE.OK);
@@ -137,7 +156,7 @@ export default class ListingController extends BaseController {
   }
 
   /** DELETE /api/v1/listing/:listingId */
-  @httpDelete("/listing/:listingId", authMiddleware(USER_ROLE.DEVELOPER))
+  @httpDelete("/listing/:listingId", authMiddleware([USER_ROLE.DEVELOPER, USER_ROLE.ADMIN]))
   async deleteListing(req: Request, res: Response) {
     try {
       const { listingId } = validateOrThrow(
@@ -148,6 +167,7 @@ export default class ListingController extends BaseController {
       await this.listingService.deleteGameListing(
         req.user!.userId,
         listingId,
+        req.user!.role,
       );
 
       return this.success(
@@ -165,7 +185,7 @@ export default class ListingController extends BaseController {
   // ===========================================================================
 
   /** POST /api/v1/tournament */
-  @httpPost("/tournament", authMiddleware(USER_ROLE.ORG))
+  @httpPost("/tournament", authMiddleware([USER_ROLE.ORG, USER_ROLE.ADMIN]))
   async createTournament(req: Request, res: Response) {
     try {
       const body = validateOrThrow(createTournamentSchema, req.body);
@@ -184,15 +204,24 @@ export default class ListingController extends BaseController {
   /** GET /api/v1/tournament?page=1&limit=20 */
   @httpGet(
     "/tournament",
+<<<<<<< HEAD
     authMiddleware([USER_ROLE.USER, USER_ROLE.ORG]),
+=======
+    optionalAuthMiddleware(),
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async listTournaments(req: Request, res: Response) {
     try {
       const query = validateOrThrow(tournamentQuerySchema, req.query);
 
       const result = await this.listingService.listTournaments(
+<<<<<<< HEAD
         req.user!.userId,
         req.user!.role,
+=======
+        req.user?.userId ?? "",
+        req.user?.role ?? USER_ROLE.USER,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         this.toTournamentQuery(query),
       );
 
@@ -205,7 +234,11 @@ export default class ListingController extends BaseController {
   /** GET /api/v1/tournament/:tournamentId */
   @httpGet(
     "/tournament/:tournamentId",
+<<<<<<< HEAD
     authMiddleware([USER_ROLE.USER, USER_ROLE.ORG]),
+=======
+    optionalAuthMiddleware(),
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async getTournament(req: Request, res: Response) {
     try {
@@ -215,8 +248,13 @@ export default class ListingController extends BaseController {
       );
 
       const tournament = await this.listingService.getTournament(
+<<<<<<< HEAD
         req.user!.userId,
         req.user!.role,
+=======
+        req.user?.userId ?? "",
+        req.user?.role ?? USER_ROLE.USER,
+>>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         tournamentId,
       );
 
@@ -227,7 +265,7 @@ export default class ListingController extends BaseController {
   }
 
   /** PATCH /api/v1/tournament/:tournamentId */
-  @httpPatch("/tournament/:tournamentId", authMiddleware(USER_ROLE.ORG))
+  @httpPatch("/tournament/:tournamentId", authMiddleware([USER_ROLE.ORG, USER_ROLE.ADMIN]))
   async updateTournament(req: Request, res: Response) {
     try {
       const { tournamentId } = validateOrThrow(
@@ -240,6 +278,7 @@ export default class ListingController extends BaseController {
         req.user!.userId,
         tournamentId,
         body,
+        req.user!.role,
       );
 
       return this.success(res, { tournament }, STATUS_CODE.OK);
@@ -249,7 +288,7 @@ export default class ListingController extends BaseController {
   }
 
   /** DELETE /api/v1/tournament/:tournamentId */
-  @httpDelete("/tournament/:tournamentId", authMiddleware(USER_ROLE.ORG))
+  @httpDelete("/tournament/:tournamentId", authMiddleware([USER_ROLE.ORG, USER_ROLE.ADMIN]))
   async deleteTournament(req: Request, res: Response) {
     try {
       const { tournamentId } = validateOrThrow(
@@ -260,6 +299,7 @@ export default class ListingController extends BaseController {
       await this.listingService.deleteTournament(
         req.user!.userId,
         tournamentId,
+        req.user!.role,
       );
 
       return this.success(
@@ -273,11 +313,11 @@ export default class ListingController extends BaseController {
   }
 
   // ===========================================================================
-  // USER TRACKING (ORG)
+  // USER TRACKING (DEVELOPER / ORG / ADMIN)
   // ===========================================================================
 
   /** GET /api/v1/org/users?page=1&limit=20 */
-  @httpGet("/org/users", authMiddleware(USER_ROLE.ORG))
+  @httpGet("/org/users", authMiddleware([USER_ROLE.DEVELOPER, USER_ROLE.ORG, USER_ROLE.ADMIN]))
   async trackUsers(req: Request, res: Response) {
     try {
       const query = validateOrThrow(userTrackingQuerySchema, req.query);

@@ -3,11 +3,12 @@
  */
 
 import Joi from "joi";
-import { PAGINATION } from "../constants/constants.js";
+import { CURRENCY, PAGINATION } from "../constants/constants.js";
 import { TESTING_STATUSES } from "../types/user.types.js";
 import { LISTING_STATUSES, PLATFORMS } from "../types/listing.types.js";
 
 const cuid = Joi.string().pattern(/^c[a-z0-9]{24}$/);
+const CURRENCIES = Object.values(CURRENCY);
 
 const gameListingFields = {
   gameName: Joi.string().trim().min(2).max(100).required(),
@@ -21,6 +22,8 @@ const gameListingFields = {
   gameUrl: Joi.string().uri().allow(null, ""),
   imageId: cuid.allow(null),
   amountId: cuid.allow(null),
+  amount: Joi.number().min(0).allow(null),
+  currency: Joi.string().valid(...CURRENCIES).allow(null),
   fileId: cuid.allow(null),
   maxEntry: Joi.number().min(0),
   minEntry: Joi.number().min(0),
@@ -50,6 +53,8 @@ const tournamentFields = {
   teamSize: Joi.number().integer().min(1),
   status: Joi.string().valid(...LISTING_STATUSES),
   amountId: cuid.allow(null),
+  amount: Joi.number().min(0).allow(null),
+  currency: Joi.string().valid(...CURRENCIES).allow(null),
   imageId: cuid.allow(null),
   tournamentUrl: Joi.string().uri().allow(null, ""),
   fileId: cuid.allow(null),
