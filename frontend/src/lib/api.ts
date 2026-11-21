@@ -61,7 +61,7 @@ export function getApiErrorMessage(error: unknown): string {
     }
 
     if (!axiosError.response) {
-      return 'Cannot reach the Riyadah servers. Make sure the API is running and try again.';
+      return 'Cannot reach the Play Point servers. Make sure the API is running and try again.';
     }
 
     if (status === 401) return 'Your session has expired. Please sign in again.';

@@ -36,7 +36,7 @@ export function Avatar({ name, uri, size = 40, ring = false, online = false }: A
         />
       ) : (
         <LinearGradient
-          colors={['#E06A3E', '#C64F28']}
+          colors={['#4D8DFF', '#1769FF']}
           start={{ x: 0.1, y: 0 }}
           end={{ x: 0.9, y: 1 }}
           style={[

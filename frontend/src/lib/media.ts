@@ -74,8 +74,6 @@ export async function pickAvatar(): Promise<PickedAvatar | null> {
   };
 }
 
-<<<<<<< HEAD
-=======
 /**
  * General purpose image picker (banner, screenshots, etc) without strict 1:1 aspect lock.
  */
@@ -159,16 +157,12 @@ export function createDefaultAvatar(label = 'OP'): PickedAvatar {
   };
 }
 
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 export interface RegistrationPayload {
   username: string;
   email: string;
   password: string;
   avatar: PickedAvatar;
-<<<<<<< HEAD
-=======
   role?: 'USER' | 'DEVELOPER' | 'ORG';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 }
 
 /**
@@ -183,13 +177,10 @@ export function buildRegistrationFormData(values: RegistrationPayload): FormData
   form.append('email', values.email.trim().toLowerCase());
   form.append('password', values.password);
 
-<<<<<<< HEAD
-=======
   if (values.role) {
     form.append('role', values.role);
   }
 
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   if (values.avatar.file) {
     form.append('avatar', values.avatar.file, values.avatar.fileName);
   } else {

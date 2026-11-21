@@ -72,24 +72,15 @@ export default class ListingController extends BaseController {
   /** GET /api/v1/listing?page=1&limit=20 */
   @httpGet(
     "/listing",
-<<<<<<< HEAD
-    authMiddleware([USER_ROLE.USER, USER_ROLE.DEVELOPER]),
-=======
     optionalAuthMiddleware(),
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async listListings(req: Request, res: Response) {
     try {
       const query = validateOrThrow(listingQuerySchema, req.query);
 
       const result = await this.listingService.listGameListings(
-<<<<<<< HEAD
-        req.user!.userId,
-        req.user!.role,
-=======
         req.user?.userId ?? "",
         req.user?.role ?? USER_ROLE.USER,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         this.toListingQuery(query),
       );
 
@@ -102,11 +93,7 @@ export default class ListingController extends BaseController {
   /** GET /api/v1/listing/:listingId */
   @httpGet(
     "/listing/:listingId",
-<<<<<<< HEAD
-    authMiddleware([USER_ROLE.USER, USER_ROLE.DEVELOPER]),
-=======
     optionalAuthMiddleware(),
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async getListing(req: Request, res: Response) {
     try {
@@ -116,13 +103,8 @@ export default class ListingController extends BaseController {
       );
 
       const listing = await this.listingService.getGameListing(
-<<<<<<< HEAD
-        req.user!.userId,
-        req.user!.role,
-=======
         req.user?.userId ?? "",
         req.user?.role ?? USER_ROLE.USER,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         listingId,
       );
 
@@ -204,24 +186,15 @@ export default class ListingController extends BaseController {
   /** GET /api/v1/tournament?page=1&limit=20 */
   @httpGet(
     "/tournament",
-<<<<<<< HEAD
-    authMiddleware([USER_ROLE.USER, USER_ROLE.ORG]),
-=======
     optionalAuthMiddleware(),
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async listTournaments(req: Request, res: Response) {
     try {
       const query = validateOrThrow(tournamentQuerySchema, req.query);
 
       const result = await this.listingService.listTournaments(
-<<<<<<< HEAD
-        req.user!.userId,
-        req.user!.role,
-=======
         req.user?.userId ?? "",
         req.user?.role ?? USER_ROLE.USER,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         this.toTournamentQuery(query),
       );
 
@@ -234,11 +207,7 @@ export default class ListingController extends BaseController {
   /** GET /api/v1/tournament/:tournamentId */
   @httpGet(
     "/tournament/:tournamentId",
-<<<<<<< HEAD
-    authMiddleware([USER_ROLE.USER, USER_ROLE.ORG]),
-=======
     optionalAuthMiddleware(),
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   )
   async getTournament(req: Request, res: Response) {
     try {
@@ -248,13 +217,8 @@ export default class ListingController extends BaseController {
       );
 
       const tournament = await this.listingService.getTournament(
-<<<<<<< HEAD
-        req.user!.userId,
-        req.user!.role,
-=======
         req.user?.userId ?? "",
         req.user?.role ?? USER_ROLE.USER,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         tournamentId,
       );
 

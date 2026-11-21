@@ -44,7 +44,7 @@ export function TopBar({ title, eyebrow }: TopBarProps) {
         ) : null}
 
         <View style={styles.titleGroup}>
-          <Text style={styles.eyebrow}>{eyebrow ?? 'Riyadah Elite'}</Text>
+          <Text style={styles.eyebrow}>{eyebrow ?? 'Play Point'}</Text>
           <Text numberOfLines={1} style={[styles.title, isMobile && styles.titleMobile]}>
             {title}
           </Text>

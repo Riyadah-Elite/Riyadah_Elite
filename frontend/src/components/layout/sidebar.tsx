@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { router, usePathname } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -30,6 +31,14 @@ export function Sidebar() {
   const rank = user?.testingRank ?? 'bronze 3';
   const progress = Math.min(100, Math.round((points / 1_500) * 100));
 
+  const isOrg = user?.role === 'ORG';
+  const visibleNavItems = useMemo(() => {
+    if (isOrg) {
+      return NAV_ITEMS.filter((item) => item.key === 'home' || item.key === 'tournaments');
+    }
+    return NAV_ITEMS;
+  }, [isOrg]);
+
   return (
     <View style={styles.root}>
       <View style={styles.brandRow}>
@@ -42,7 +51,7 @@ export function Sidebar() {
         contentContainerStyle={styles.nav}
         showsVerticalScrollIndicator={false}
         style={styles.navScroll}>
-        {NAV_ITEMS.map((item) => (
+        {visibleNavItems.map((item) => (
           <SidebarLink
             key={item.key}
             active={pathname === item.href}
@@ -94,7 +103,7 @@ export function Sidebar() {
           <Text style={styles.statusText}>All systems operational</Text>
         </View>
 
-        <Text style={styles.version}>RIYADAH ELITE · v1.0.0</Text>
+        <Text style={styles.version}>PLAY POINT · v1.0.0</Text>
       </View>
     </View>
   );
@@ -177,7 +186,7 @@ const styles = StyleSheet.create({
     backgroundColor: Palette.primaryWash,
   },
   linkHover: {
-    backgroundColor: 'rgba(36, 28, 22, 0.035)',
+    backgroundColor: 'rgba(23, 105, 255, 0.05)',
   },
   linkPressed: {
     opacity: 0.72,

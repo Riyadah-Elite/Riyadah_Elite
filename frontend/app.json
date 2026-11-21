@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Riyadah Elite",
-    "slug": "frontend",
+    "name": "Play Point",
+    "slug": "play-point",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -38,8 +38,8 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Riyadah Elite uses your photo library to set a profile avatar.",
-          "cameraPermission": "Riyadah Elite uses your camera to capture a profile avatar.",
+          "photosPermission": "Play Point uses your photo library to set a profile avatar.",
+          "cameraPermission": "Play Point uses your camera to capture a profile avatar.",
           "microphonePermission": false
         }
       ]

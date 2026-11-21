@@ -1,9 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-<<<<<<< HEAD
-import { useState } from 'react';
-import { ActivityIndicator, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-=======
 import { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
@@ -15,7 +11,6 @@ import {
   Text,
   View,
 } from 'react-native';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import {
@@ -24,14 +19,6 @@ import {
   Radius,
   Space,
   Typography,
-<<<<<<< HEAD
-  clayShadow,
-  webBackdrop,
-} from '@/constants/design';
-import { useResponsive } from '@/hooks/use-responsive';
-import { useHover } from '@/hooks/use-hover';
-import { formatNumber, tierColor, titleCase } from '@/lib/format';
-=======
   clayModalShadow,
   clayShadow,
   webBackdrop,
@@ -47,18 +34,14 @@ import {
 import { formatNumber, tierColor, titleCase } from '@/lib/format';
 import { pickAvatar, type PickedAvatar } from '@/lib/media';
 import { uploadScreenshotRequest } from '@/lib/telemetry-api';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 import { useAuth } from '@/providers/auth-provider';
 import { useToast } from '@/providers/toast-provider';
 
 import { Avatar } from '../ui/avatar';
-<<<<<<< HEAD
-=======
 import { Button } from '../ui/button';
 import { ClayModal } from '../ui/card';
 import { TextField } from '../ui/text-field';
 import { Tooltip } from '../ui/tooltip';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 export function ProfileMenu() {
   const [open, setOpen] = useState(false);
@@ -69,20 +52,6 @@ export function ProfileMenu() {
 
   return (
     <>
-<<<<<<< HEAD
-      <Pressable
-        {...hoverProps}
-        accessibilityLabel="Open profile menu"
-        accessibilityRole="button"
-        onPress={() => setOpen(true)}
-        style={({ pressed }) => [
-          styles.trigger,
-          hovered && styles.triggerHover,
-          pressed && { transform: [{ scale: 0.96 }] },
-        ]}>
-        <Avatar name={user.username} ring size={38} uri={user.avatarUrl} />
-      </Pressable>
-=======
       <Tooltip content={`Operative: ${user.username} (${user.role})`} position="bottom">
         <Pressable
           {...hoverProps}
@@ -97,7 +66,6 @@ export function ProfileMenu() {
           <Avatar name={user.username} ring size={38} uri={user.avatarUrl} />
         </Pressable>
       </Tooltip>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
       <ProfileModal onClose={() => setOpen(false)} visible={open} />
     </>
@@ -107,14 +75,6 @@ export function ProfileMenu() {
 function ProfileModal({ visible, onClose }: { visible: boolean; onClose: () => void }) {
   const insets = useSafeAreaInsets();
   const { isMobile } = useResponsive();
-<<<<<<< HEAD
-  const { user, logout } = useAuth();
-  const { showToast } = useToast();
-  const [signingOut, setSigningOut] = useState(false);
-
-  if (!user) return null;
-
-=======
   const { user, logout, refreshProfile } = useAuth();
   const { showToast } = useToast();
   const [signingOut, setSigningOut] = useState(false);
@@ -135,14 +95,11 @@ function ProfileModal({ visible, onClose }: { visible: boolean; onClose: () => v
   if (!user) return null;
 
   const isAdmin = user.role === 'ADMIN';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   const rank = user.testingRank ?? 'unranked';
   const points = user.testingPoints ?? 0;
   const color = tierColor(rank);
   const progress = Math.min(100, Math.round((points / 1_500) * 100));
 
-<<<<<<< HEAD
-=======
   async function handleSaveProfile() {
     if (!editUsername.trim()) {
       showToast({
@@ -191,7 +148,6 @@ function ProfileModal({ visible, onClose }: { visible: boolean; onClose: () => v
     }
   }
 
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   async function handleSignOut() {
     setSigningOut(true);
 
@@ -210,122 +166,6 @@ function ProfileModal({ visible, onClose }: { visible: boolean; onClose: () => v
   }
 
   return (
-<<<<<<< HEAD
-    <Modal animationType="fade" onRequestClose={onClose} transparent visible={visible}>
-      <View style={styles.modalRoot}>
-        <Pressable
-          accessibilityLabel="Close profile menu"
-          onPress={onClose}
-          style={[StyleSheet.absoluteFill, styles.scrim]}
-        />
-
-        <View
-          style={[
-            styles.panel,
-            clayShadow,
-            webBackdrop,
-            isMobile
-              ? { left: 12, right: 12, bottom: insets.bottom + 10 }
-              : { right: Space.lg, top: insets.top + 82, width: 312 },
-          ]}>
-          <View style={styles.identity}>
-            <Avatar name={user.username} online ring size={52} uri={user.avatarUrl} />
-            <View style={styles.identityCopy}>
-              <Text style={styles.username} numberOfLines={1}>
-                {user.username}
-              </Text>
-              <Text style={styles.email} numberOfLines={1}>
-                {user.email}
-              </Text>
-            </View>
-            <View style={styles.roleChip}>
-              <Text style={styles.roleText}>{user.role}</Text>
-            </View>
-          </View>
-
-          <View style={styles.rankCard}>
-            <View style={styles.rankTop}>
-              <View style={styles.rankLabelRow}>
-                <Ionicons name="shield-half" size={13} color={color} />
-                <Text style={styles.rankLabel}>Testing tier</Text>
-              </View>
-              <Text style={[styles.rankTitle, { color }]}>{titleCase(rank)}</Text>
-            </View>
-
-            <View style={styles.progressTrack}>
-              <View
-                style={[
-                  styles.progressFill,
-                  { width: `${Math.max(progress, 2)}%`, backgroundColor: color },
-                ]}
-              />
-            </View>
-
-            <View style={styles.rankBottom}>
-              <Text style={styles.points}>{formatNumber(points)} PTS</Text>
-              <Text style={styles.pointsCap}>1,500 CAP</Text>
-            </View>
-          </View>
-
-          <View style={styles.actions}>
-            <MenuAction
-              icon="person-outline"
-              label="Account settings"
-              onPress={() => {
-                onClose();
-                showToast({
-                  title: 'Account settings',
-                  message: 'Profile controls are coming online soon.',
-                  variant: 'info',
-                });
-              }}
-            />
-            <MenuAction
-              icon="notifications-outline"
-              label="Notification preferences"
-              onPress={() => {
-                onClose();
-                showToast({
-                  title: 'Notification preferences',
-                  message: 'Channel controls are being wired to the arena core.',
-                  variant: 'info',
-                });
-              }}
-            />
-            <MenuAction
-              icon="help-circle-outline"
-              label="Support channel"
-              onPress={() => {
-                onClose();
-                showToast({
-                  title: 'Support channel',
-                  message: 'A support operative will be available shortly.',
-                  variant: 'info',
-                });
-              }}
-            />
-          </View>
-
-          <Pressable
-            accessibilityRole="button"
-            disabled={signingOut}
-            onPress={() => void handleSignOut()}
-            style={({ pressed }) => [
-              styles.signOut,
-              pressed && { backgroundColor: 'rgba(178, 58, 58, 0.14)' },
-            ]}>
-            {signingOut ? (
-              <ActivityIndicator color={Palette.danger} size="small" />
-            ) : (
-              <Ionicons name="log-out-outline" size={16} color={Palette.danger} />
-            )}
-            <Text style={styles.signOutText}>Sign out</Text>
-            <Ionicons name="chevron-forward" size={13} color="rgba(178,58,58,0.55)" />
-          </Pressable>
-        </View>
-      </View>
-    </Modal>
-=======
     <>
       <Modal animationType="fade" onRequestClose={onClose} transparent visible={visible}>
         <View style={styles.modalRoot}>
@@ -821,7 +661,6 @@ function AdminOperativesModal({
         )}
       </View>
     </ClayModal>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   );
 }
 
@@ -829,18 +668,12 @@ function MenuAction({
   icon,
   label,
   onPress,
-<<<<<<< HEAD
-=======
   highlight = false,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 }: {
   icon: keyof typeof Ionicons.glyphMap;
   label: string;
   onPress: () => void;
-<<<<<<< HEAD
-=======
   highlight?: boolean;
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 }) {
   const { hovered, hoverProps } = useHover();
 
@@ -852,12 +685,6 @@ function MenuAction({
       style={({ pressed }) => [
         styles.action,
         hovered && styles.actionHover,
-<<<<<<< HEAD
-        pressed && { opacity: 0.75 },
-      ]}>
-      <Ionicons name={icon} size={16} color={hovered ? Palette.primaryBright : Palette.textMuted} />
-      <Text style={[styles.actionText, hovered && { color: Palette.text }]}>{label}</Text>
-=======
         highlight && styles.actionHighlight,
         pressed && { opacity: 0.75 },
       ]}>
@@ -874,7 +701,6 @@ function MenuAction({
         ]}>
         {label}
       </Text>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       <Ionicons name="chevron-forward" size={13} color={Palette.textFaint} />
     </Pressable>
   );
@@ -895,43 +721,20 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrim: {
-    backgroundColor: 'rgba(36, 28, 22, 0.34)',
+    backgroundColor: Palette.overlay,
   },
   panel: {
     position: 'absolute',
-<<<<<<< HEAD
-    borderRadius: Radius.xl,
-    borderWidth: 1,
-    borderColor: Palette.glassBorder,
-    backgroundColor: Palette.glassStrong,
-    overflow: 'hidden',
-    padding: Space.md,
-=======
     borderRadius: Radius.clay,
-    backgroundColor: 'rgba(255, 251, 246, 0.96)',
+    backgroundColor: 'rgba(255, 255, 255, 0.96)',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.95)',
     padding: Space.lg,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     gap: Space.md,
   },
   identity: {
     flexDirection: 'row',
     alignItems: 'center',
-<<<<<<< HEAD
-    gap: 10,
-    paddingBottom: Space.md,
-    borderBottomWidth: 1,
-    borderBottomColor: Palette.border,
-  },
-  identityCopy: {
-    flex: 1,
-    gap: 2,
-  },
-  username: {
-    fontFamily: Fonts.display,
-    fontSize: 16,
-=======
     gap: Space.sm,
   },
   identityCopy: {
@@ -941,7 +744,6 @@ const styles = StyleSheet.create({
   username: {
     fontFamily: Fonts.display,
     fontSize: 14,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     fontWeight: '700',
     color: Palette.text,
   },
@@ -952,27 +754,6 @@ const styles = StyleSheet.create({
   },
   roleChip: {
     paddingHorizontal: 8,
-<<<<<<< HEAD
-    paddingVertical: 4,
-    borderRadius: Radius.sm,
-    backgroundColor: Palette.primaryWash,
-  },
-  roleText: {
-    ...Typography.labelTight,
-    fontSize: 8,
-    color: Palette.primaryBright,
-  },
-  rankCard: {
-    borderRadius: Radius.lg,
-    backgroundColor: Palette.surfaceDim,
-    padding: 12,
-    gap: 10,
-  },
-  rankTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-=======
     paddingVertical: 3,
     borderRadius: Radius.pill,
     backgroundColor: Palette.surfaceDim,
@@ -993,34 +774,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   rankLabelRow: {
     flexDirection: 'row',
     alignItems: 'center',
-<<<<<<< HEAD
-    gap: 6,
-  },
-  rankLabel: {
-    ...Typography.labelTight,
-    color: Palette.textMuted,
-    fontSize: 9,
-  },
-  rankTitle: {
-    fontFamily: Fonts.display,
-    fontSize: 13,
-    fontWeight: '700',
-    letterSpacing: 0.2,
-  },
-  progressTrack: {
-    height: 4,
-    borderRadius: Radius.pill,
-    backgroundColor: Palette.surfaceDim,
-    overflow: 'hidden',
-  },
-  progressFill: {
-    height: 4,
-=======
     gap: 4,
   },
   rankLabel: {
@@ -1041,27 +798,10 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     height: '100%',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     borderRadius: Radius.pill,
   },
   rankBottom: {
     flexDirection: 'row',
-<<<<<<< HEAD
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  points: {
-    ...Typography.numericSm,
-    color: Palette.text,
-  },
-  pointsCap: {
-    ...Typography.labelTight,
-    fontSize: 8,
-    color: Palette.textFaint,
-  },
-  actions: {
-    gap: 2,
-=======
     justifyContent: 'space-between',
     alignItems: 'center',
   },
@@ -1081,20 +821,10 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: Palette.border,
     paddingTop: Space.xs,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   action: {
     flexDirection: 'row',
     alignItems: 'center',
-<<<<<<< HEAD
-    gap: 10,
-    paddingVertical: 9,
-    paddingHorizontal: 8,
-    borderRadius: Radius.md,
-  },
-  actionHover: {
-    backgroundColor: Palette.primaryWash,
-=======
     gap: Space.sm,
     paddingVertical: 9,
     paddingHorizontal: Space.xs,
@@ -1105,28 +835,16 @@ const styles = StyleSheet.create({
   },
   actionHighlight: {
     backgroundColor: `${Palette.primary}12`,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   actionText: {
     flex: 1,
     fontFamily: Fonts.body,
     fontSize: 12,
-<<<<<<< HEAD
-    fontWeight: '500',
-=======
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     color: Palette.textMuted,
   },
   signOut: {
     flexDirection: 'row',
     alignItems: 'center',
-<<<<<<< HEAD
-    gap: 8,
-    paddingVertical: 11,
-    paddingHorizontal: 10,
-    borderRadius: Radius.md,
-    backgroundColor: Palette.dangerWash,
-=======
     gap: Space.sm,
     paddingVertical: 9,
     paddingHorizontal: Space.xs,
@@ -1134,17 +852,11 @@ const styles = StyleSheet.create({
     borderTopColor: Palette.border,
     marginTop: Space.xs,
     borderRadius: Radius.md,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   signOutText: {
     flex: 1,
     fontFamily: Fonts.body,
     fontSize: 12,
-<<<<<<< HEAD
-    fontWeight: '600',
-    color: Palette.danger,
-    letterSpacing: 0.2,
-=======
     color: Palette.danger,
     fontWeight: '600',
   },
@@ -1311,6 +1023,5 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.body,
     fontSize: 11,
     color: Palette.textDim,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
 });

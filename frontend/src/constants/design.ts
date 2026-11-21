@@ -1,7 +1,7 @@
 import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 
 /**
- * Riyadah Elite design tokens.
+ * Play Point design tokens.
  *
  * "Arena Paper": warm porcelain surfaces, ink typography and a burnt-orange
  * signal. The palette is light-first so claymorphic cards, milky glass panels
@@ -9,51 +9,51 @@ import { Platform, type TextStyle, type ViewStyle } from 'react-native';
  * fighting a black canvas.
  */
 export const Palette = {
-  canvas: '#F4EAE0',
-  surface: '#FAF4EC',
-  surfaceDim: '#EFE2D3',
-  card: '#F8EFE4',
-  elevated: '#FFFBF6',
-  raised: '#F0E4D6',
-  border: '#E1CDB9',
-  borderStrong: '#C9B09A',
+  canvas: '#EAF4F9',
+  surface: '#F0F8FC',
+  surfaceDim: '#DCEEF5',
+  card: '#FFFFFF',
+  elevated: '#FFFFFF',
+  raised: '#E4F3FA',
+  border: '#C2E3F0',
+  borderStrong: '#1769FF',
 
-  primary: '#C64F28',
-  primaryBright: '#A83C19',
-  primaryDeep: '#8A2F12',
-  onPrimary: '#FFFDF9',
-  primaryWash: 'rgba(198, 79, 40, 0.10)',
-  primaryWashStrong: 'rgba(198, 79, 40, 0.18)',
-  primaryGlow: 'rgba(198, 79, 40, 0.24)',
+  primary: '#1769FF',
+  primaryBright: '#367EFF',
+  primaryDeep: '#0F53D1',
+  onPrimary: '#FFFFFF',
+  primaryWash: 'rgba(23, 105, 255, 0.10)',
+  primaryWashStrong: 'rgba(23, 105, 255, 0.18)',
+  primaryGlow: 'rgba(23, 105, 255, 0.28)',
 
-  secondary: '#D99A2B',
-  secondaryDim: '#C3871C',
-  onSecondary: '#241A13',
+  secondary: '#A6DCEF',
+  secondaryDim: '#8ECFE6',
+  onSecondary: '#0B2447',
 
-  tertiary: '#2E7D62',
-  tertiaryDeep: '#246350',
-  onTertiary: '#F2FBF7',
-  warning: '#8A5A08',
-  danger: '#B23A3A',
-  dangerWash: 'rgba(178, 58, 58, 0.10)',
+  tertiary: '#0E55DA',
+  tertiaryDeep: '#0B48A8',
+  onTertiary: '#FFFFFF',
+  warning: '#D97706',
+  danger: '#DC2626',
+  dangerWash: 'rgba(220, 38, 38, 0.10)',
 
-  text: '#241C16',
-  textMuted: '#6B5848',
-  textDim: '#715C4A',
-  textFaint: '#7A6452',
+  text: '#0B2447',
+  textMuted: '#3B577D',
+  textDim: '#4A6B94',
+  textFaint: '#6F8CAE',
 
-  glass: 'rgba(250, 244, 236, 0.74)',
-  glassStrong: 'rgba(252, 247, 241, 0.93)',
-  glassBorder: 'rgba(120, 88, 60, 0.14)',
-  glassHighlight: 'rgba(255, 255, 255, 0.65)',
-  overlay: 'rgba(36, 28, 22, 0.42)',
+  glass: 'rgba(255, 255, 255, 0.85)',
+  glassStrong: 'rgba(255, 255, 255, 0.95)',
+  glassBorder: 'rgba(166, 220, 239, 0.45)',
+  glassHighlight: 'rgba(255, 255, 255, 0.90)',
+  overlay: 'rgba(11, 36, 71, 0.55)',
   white: '#FFFFFF',
 
   bronze: '#96602F',
   silver: '#6F665C',
   gold: '#8A5F08',
-  platinum: '#2E6F69',
-  diamond: '#684B8E',
+  platinum: '#0F53D1',
+  diamond: '#1769FF',
 } as const;
 
 export const Radius = {
@@ -62,10 +62,7 @@ export const Radius = {
   lg: 14,
   xl: 18,
   xxl: 26,
-<<<<<<< HEAD
-=======
   clay: 28,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   pill: 999,
 } as const;
 
@@ -213,16 +210,16 @@ export const Typography = {
   } satisfies TextStyle,
 } as const;
 
-/** Soft top light + warm lower shadow: the neomorphic control shell. */
+/** Soft top light + arctic lower shadow: the neomorphic control shell. */
 export const neoShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      '4px 4px 10px rgba(136, 104, 74, 0.18), -5px -5px 12px rgba(255, 255, 255, 0.88)',
+      '4px 4px 10px rgba(11, 36, 71, 0.08), -5px -5px 12px rgba(255, 255, 255, 0.95)',
   },
   default: {
-    shadowColor: '#7A5A3E',
+    shadowColor: '#0B2447',
     shadowOffset: { width: 4, height: 5 },
-    shadowOpacity: 0.18,
+    shadowOpacity: 0.12,
     shadowRadius: 10,
     elevation: 6,
   },
@@ -232,10 +229,10 @@ export const neoShadow = Platform.select<ViewStyle>({
 export const neoShadowPressed = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      'inset 3px 3px 7px rgba(136, 104, 74, 0.22), inset -3px -3px 7px rgba(255, 255, 255, 0.82)',
+      'inset 3px 3px 7px rgba(11, 36, 71, 0.14), inset -3px -3px 7px rgba(255, 255, 255, 0.90)',
   },
   default: {
-    shadowColor: '#7A5A3E',
+    shadowColor: '#0B2447',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0,
     shadowRadius: 0,
@@ -243,23 +240,16 @@ export const neoShadowPressed = Platform.select<ViewStyle>({
   },
 });
 
-<<<<<<< HEAD
-/** Cards float above the canvas on a warm, wide plume of shadow. */
-export const clayShadow = Platform.select<ViewStyle>({
-  web: {
-    boxShadow:
-      '0 20px 40px rgba(108, 74, 48, 0.14), 0 4px 10px rgba(108, 74, 48, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.88)',
-=======
 /** Strict Neumorphic Button: Dual extruded outer shadows for standard buttons. */
 export const neoButtonShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      '4px 4px 10px rgba(136, 104, 74, 0.20), -4px -4px 10px rgba(255, 255, 255, 0.88)',
+      '4px 4px 10px rgba(11, 36, 71, 0.10), -4px -4px 10px rgba(255, 255, 255, 0.95)',
   },
   default: {
-    shadowColor: '#7A5A3E',
+    shadowColor: '#0B2447',
     shadowOffset: { width: 4, height: 5 },
-    shadowOpacity: 0.18,
+    shadowOpacity: 0.12,
     shadowRadius: 8,
     elevation: 5,
   },
@@ -268,12 +258,12 @@ export const neoButtonShadow = Platform.select<ViewStyle>({
 export const neoButtonHoverShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      '5px 5px 14px rgba(136, 104, 74, 0.26), -5px -5px 13px rgba(255, 255, 255, 0.95)',
+      '5px 5px 14px rgba(11, 36, 71, 0.15), -5px -5px 13px rgba(255, 255, 255, 0.98)',
   },
   default: {
-    shadowColor: '#7A5A3E',
+    shadowColor: '#0B2447',
     shadowOffset: { width: 5, height: 6 },
-    shadowOpacity: 0.24,
+    shadowOpacity: 0.16,
     shadowRadius: 10,
     elevation: 7,
   },
@@ -282,10 +272,10 @@ export const neoButtonHoverShadow = Platform.select<ViewStyle>({
 export const neoButtonPressedShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      'inset 3px 3px 7px rgba(136, 104, 74, 0.26), inset -3px -3px 7px rgba(255, 255, 255, 0.82)',
+      'inset 3px 3px 7px rgba(11, 36, 71, 0.18), inset -3px -3px 7px rgba(255, 255, 255, 0.90)',
   },
   default: {
-    shadowColor: '#7A5A3E',
+    shadowColor: '#0B2447',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0,
     shadowRadius: 0,
@@ -293,16 +283,16 @@ export const neoButtonPressedShadow = Platform.select<ViewStyle>({
   },
 });
 
-/** Strict Neumorphic Button: Dual outer shadows for Primary (Burnt Orange) buttons. */
+/** Strict Neumorphic Button: Dual outer shadows for Primary (Electric Blue) buttons. */
 export const neoPrimaryShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      '4px 4px 12px rgba(138, 47, 18, 0.35), -4px -4px 10px rgba(255, 255, 255, 0.85)',
+      '4px 4px 12px rgba(23, 105, 255, 0.35), -4px -4px 10px rgba(255, 255, 255, 0.85)',
   },
   default: {
-    shadowColor: '#8A2F12',
+    shadowColor: '#0F53D1',
     shadowOffset: { width: 4, height: 5 },
-    shadowOpacity: 0.26,
+    shadowOpacity: 0.28,
     shadowRadius: 8,
     elevation: 6,
   },
@@ -311,12 +301,12 @@ export const neoPrimaryShadow = Platform.select<ViewStyle>({
 export const neoPrimaryHoverShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      '5px 5px 16px rgba(138, 47, 18, 0.44), -5px -5px 12px rgba(255, 255, 255, 0.92)',
+      '5px 5px 16px rgba(23, 105, 255, 0.45), -5px -5px 12px rgba(255, 255, 255, 0.92)',
   },
   default: {
-    shadowColor: '#8A2F12',
+    shadowColor: '#0F53D1',
     shadowOffset: { width: 5, height: 6 },
-    shadowOpacity: 0.32,
+    shadowOpacity: 0.35,
     shadowRadius: 10,
     elevation: 8,
   },
@@ -325,10 +315,10 @@ export const neoPrimaryHoverShadow = Platform.select<ViewStyle>({
 export const neoPrimaryPressedShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      'inset 3px 3px 7px rgba(80, 24, 8, 0.50), inset -3px -3px 7px rgba(255, 140, 100, 0.28)',
+      'inset 3px 3px 7px rgba(15, 83, 209, 0.50), inset -3px -3px 7px rgba(166, 220, 239, 0.35)',
   },
   default: {
-    shadowColor: '#8A2F12',
+    shadowColor: '#0F53D1',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0,
     shadowRadius: 0,
@@ -336,36 +326,21 @@ export const neoPrimaryPressedShadow = Platform.select<ViewStyle>({
   },
 });
 
-/** Cards float above the canvas on a warm, wide plume of shadow with dual inner highlight/shade. */
+/** Cards float above the canvas on an ice plume of shadow with dual inner highlight/shade. */
 export const clayShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      '0 20px 40px rgba(108, 74, 48, 0.14), 0 4px 10px rgba(108, 74, 48, 0.06), inset 2px 2px 4px rgba(255, 255, 255, 0.90), inset -3px -3px 6px rgba(136, 104, 74, 0.14)',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
+      '0 20px 40px rgba(11, 36, 71, 0.08), 0 4px 10px rgba(11, 36, 71, 0.04), inset 2px 2px 4px rgba(255, 255, 255, 0.95), inset -3px -3px 6px rgba(166, 220, 239, 0.15)',
   },
   default: {
-    shadowColor: '#6C4A30',
+    shadowColor: '#0B2447',
     shadowOffset: { width: 0, height: 14 },
-    shadowOpacity: 0.16,
+    shadowOpacity: 0.10,
     shadowRadius: 24,
     elevation: 12,
   },
 });
 
-<<<<<<< HEAD
-/** Modals sit highest in the stack with an ink ambient bleed. */
-export const modalShadow = Platform.select<ViewStyle>({
-  web: {
-    boxShadow:
-      '0 32px 70px rgba(74, 48, 30, 0.28), 0 8px 20px rgba(74, 48, 30, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.9)',
-  },
-  default: {
-    shadowColor: '#4A2F1C',
-    shadowOffset: { width: 0, height: 24 },
-    shadowOpacity: 0.5,
-    shadowRadius: 40,
-    elevation: 24,
-=======
 /**
  * Strict Claymorphism for Popups & Modals:
  * 28px border-radius, matte inflated surface, dual inner shadows
@@ -374,12 +349,12 @@ export const modalShadow = Platform.select<ViewStyle>({
 export const modalShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      '0 28px 60px rgba(74, 48, 30, 0.24), 0 8px 18px rgba(74, 48, 30, 0.12), inset 2px 2px 5px rgba(255, 255, 255, 0.92), inset -3px -3px 7px rgba(136, 104, 74, 0.18)',
+      '0 28px 60px rgba(11, 36, 71, 0.18), 0 8px 18px rgba(11, 36, 71, 0.08), inset 2px 2px 5px rgba(255, 255, 255, 0.95), inset -3px -3px 7px rgba(166, 220, 239, 0.20)',
   },
   default: {
-    shadowColor: '#4A2F1C',
+    shadowColor: '#0B2447',
     shadowOffset: { width: 0, height: 20 },
-    shadowOpacity: 0.35,
+    shadowOpacity: 0.22,
     shadowRadius: 32,
     elevation: 20,
   },
@@ -391,29 +366,24 @@ export const clayModalShadow = modalShadow;
 export const glassToastShadow = Platform.select<ViewStyle>({
   web: {
     boxShadow:
-      '0 16px 36px rgba(74, 48, 30, 0.18), 0 4px 10px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.85)',
+      '0 16px 36px rgba(11, 36, 71, 0.12), 0 4px 10px rgba(0, 0, 0, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.90)',
   },
   default: {
-    shadowColor: '#4A2F1C',
+    shadowColor: '#0B2447',
     shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.18,
+    shadowOpacity: 0.12,
     shadowRadius: 16,
     elevation: 10,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
 });
 
 /** Focus/hover emission used on tournament and live-match surfaces. */
-export const accentGlow = '0 0 18px rgba(198, 79, 40, 0.28)';
+export const accentGlow = '0 0 18px rgba(23, 105, 255, 0.35)';
 
 export const webBackdrop = Platform.select<ViewStyle>({
   web: {
-<<<<<<< HEAD
-    backdropFilter: 'blur(16px) saturate(150%)',
-=======
     backdropFilter: 'blur(16px) saturate(180%)',
     WebkitBackdropFilter: 'blur(16px) saturate(180%)',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   } as ViewStyle,
   default: {},
 });

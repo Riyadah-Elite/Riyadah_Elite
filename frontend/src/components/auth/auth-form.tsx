@@ -4,38 +4,24 @@ import { router } from 'expo-router';
 import { useState } from 'react';
 import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 
-<<<<<<< HEAD
-import { Fonts, Palette, Radius, Space, Typography } from '@/constants/design';
-import { getApiErrorMessage } from '@/lib/api';
-import { pickAvatar, type PickedAvatar } from '@/lib/media';
-=======
 import { Fonts, Palette, Radius, Space, Typography, clayShadow, neoButtonHoverShadow, neoButtonPressedShadow, neoButtonShadow } from '@/constants/design';
 import { getApiErrorMessage } from '@/lib/api';
 import { pickAvatar, createDefaultAvatar, type PickedAvatar } from '@/lib/media';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 import {
   loginSchema,
   registerSchema,
   toFieldErrors,
   type FieldErrors,
 } from '@/lib/schemas';
-<<<<<<< HEAD
-=======
 import type { UserRole } from '@/lib/types';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 import { useAuth } from '@/providers/auth-provider';
 import { useAuthModal, type AuthMode } from '@/providers/auth-modal-provider';
 import { useToast } from '@/providers/toast-provider';
 
-<<<<<<< HEAD
-import { Button } from '../ui/button';
-import { TextField } from '../ui/text-field';
-=======
 import { StatusBadge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { TextField } from '../ui/text-field';
 import { Tooltip } from '../ui/tooltip';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 interface FormValues {
   username: string;
@@ -51,8 +37,6 @@ const EMPTY: FormValues = {
   confirmPassword: '',
 };
 
-<<<<<<< HEAD
-=======
 type SelectableRole = 'ORG' | 'DEVELOPER' | 'USER';
 
 interface RoleOption {
@@ -97,7 +81,6 @@ const ROLE_OPTIONS: RoleOption[] = [
   },
 ];
 
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 interface AuthFormProps {
   mode: AuthMode;
   onSwitch: (mode: AuthMode) => void;
@@ -105,11 +88,6 @@ interface AuthFormProps {
 }
 
 /**
-<<<<<<< HEAD
- * The single authentication form used by both surfaces: the web dialog and the
- * native route. Validation mirrors the server's Joi schema, but the API remains
- * the authority - server messages are surfaced in the banner and as a toast.
-=======
  * 2-Step Authentication Form.
  *
  * Laws satisfied:
@@ -118,18 +96,14 @@ interface AuthFormProps {
  * - Step 2: Complete profile registration bound to chosen role with Neumorphic Back and
  *   Create Account buttons.
  * - Glassmorphic toasts on all mutations and validation errors.
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
  */
 export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
   const { login, register } = useAuth();
   const { finishAuth } = useAuthModal();
   const { showToast } = useToast();
 
-<<<<<<< HEAD
-=======
   const [step, setStep] = useState<1 | 2>(1);
   const [selectedRole, setSelectedRole] = useState<SelectableRole>('ORG');
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   const [values, setValues] = useState<FormValues>(EMPTY);
   const [errors, setErrors] = useState<FieldErrors<keyof FormValues>>({});
   const [avatar, setAvatar] = useState<PickedAvatar | null>(null);
@@ -154,9 +128,6 @@ export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
       const picked = await pickAvatar();
       if (picked) setAvatar(picked);
     } catch (error) {
-<<<<<<< HEAD
-      setAvatarError(getApiErrorMessage(error));
-=======
       const msg = getApiErrorMessage(error);
       setAvatarError(msg);
       showToast({
@@ -164,7 +135,6 @@ export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
         message: msg,
         variant: 'error',
       });
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     } finally {
       setPicking(false);
     }
@@ -179,17 +149,6 @@ export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
     const result = schema.safeParse(
       mode === 'login'
         ? { email: values.email, password: values.password }
-<<<<<<< HEAD
-        : values,
-    );
-
-    if (!result.success) {
-      setErrors(toFieldErrors<keyof FormValues>(result.error.issues));
-      return;
-    }
-
-    const chosenAvatar = avatar;
-=======
         : { ...values, role: selectedRole },
     );
 
@@ -211,7 +170,6 @@ export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
       chosenAvatar = createDefaultAvatar(values.username || 'OP');
       setAvatar(chosenAvatar);
     }
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
     setSubmitting(true);
 
@@ -219,42 +177,21 @@ export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
       if (mode === 'login') {
         await login(values.email, values.password);
       } else {
-<<<<<<< HEAD
-        if (!chosenAvatar) {
-          setAvatarError('A profile image is required to enlist.');
-          setSubmitting(false);
-          return;
-        }
-
-=======
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         await register({
           username: values.username,
           email: values.email,
           password: values.password,
-<<<<<<< HEAD
-          avatar: chosenAvatar,
-=======
           avatar: chosenAvatar!,
           role: selectedRole,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         });
       }
 
       showToast({
-<<<<<<< HEAD
-        title: mode === 'login' ? 'Session restored' : 'Operative enlisted',
-        message:
-          mode === 'login'
-            ? 'Welcome back to the arena. Your ladder is live.'
-            : 'Your account is ready. The ladder is now open to you.',
-=======
         title: mode === 'login' ? 'Session Restored' : 'Operative Enlisted',
         message:
           mode === 'login'
             ? 'Welcome back to the arena. Your telemetry ladder is live.'
             : `Account deployed with role: ${selectedRole}. The arena is open.`,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         variant: 'success',
       });
 
@@ -278,182 +215,6 @@ export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
     }
   }
 
-<<<<<<< HEAD
-  return (
-    <View style={[styles.root, compact && styles.rootCompact]}>
-      <View style={styles.heading}>
-        <View style={styles.eyebrowRow}>
-          <View style={styles.marker} />
-          <Text style={styles.eyebrow}>
-            {mode === 'login' ? 'Session access' : 'New operative'}
-          </Text>
-        </View>
-
-        <Text style={styles.title}>
-          {mode === 'login' ? 'Welcome back' : 'Create your account'}
-        </Text>
-
-        <Text style={styles.subtitle}>
-          {mode === 'login'
-            ? 'Sign in to restore your rank, notifications and tournament access.'
-            : 'Create one account for testing points, rank history and tournament brackets.'}
-        </Text>
-      </View>
-
-      {formError ? (
-        <View accessibilityRole="alert" style={styles.banner}>
-          <Ionicons name="alert-circle" size={15} color={Palette.danger} />
-          <Text style={styles.bannerText}>{formError}</Text>
-        </View>
-      ) : null}
-
-      <View style={styles.fields}>
-        {mode === 'register' ? (
-          <View style={styles.avatarBlock}>
-            <View style={styles.avatarPreview}>
-              {avatar ? (
-                <Image
-                  accessibilityLabel="Selected avatar preview"
-                  contentFit="cover"
-                  source={{ uri: avatar.uri }}
-                  style={styles.avatarImage}
-                  transition={160}
-                />
-              ) : (
-                <Ionicons name="person-outline" size={24} color={Palette.textDim} />
-              )}
-            </View>
-
-            <View style={styles.avatarCopy}>
-              <Text style={styles.avatarTitle}>Profile image</Text>
-              <Text style={styles.avatarHint}>JPG or PNG · max 5 MB · required</Text>
-
-              <Pressable
-                accessibilityRole="button"
-                disabled={picking}
-                onPress={() => void chooseAvatar()}
-                style={({ pressed }) => [
-                  styles.avatarButton,
-                  pressed && { opacity: 0.75 },
-                  picking && { opacity: 0.6 },
-                ]}>
-                {picking ? (
-                  <ActivityIndicator color={Palette.primaryBright} size="small" />
-                ) : (
-                  <Ionicons name="image-outline" size={14} color={Palette.primaryBright} />
-                )}
-                <Text style={styles.avatarButtonText}>
-                  {avatar ? 'Replace image' : 'Choose image'}
-                </Text>
-              </Pressable>
-            </View>
-
-            {avatarError ? (
-              <View style={styles.avatarError}>
-                <Ionicons name="alert-circle" size={11} color={Palette.danger} />
-                <Text style={styles.avatarErrorText}>{avatarError}</Text>
-              </View>
-            ) : null}
-          </View>
-        ) : null}
-
-        {mode === 'register' ? (
-          <TextField
-            autoCapitalize="none"
-            autoComplete="username"
-            error={errors.username}
-            icon="person-outline"
-            label="Username"
-            onChangeText={(value) => update('username', value)}
-            placeholder="nightfall"
-            returnKeyType="next"
-            textContentType="username"
-            value={values.username}
-          />
-        ) : null}
-
-        <TextField
-          autoCapitalize="none"
-          autoComplete="email"
-          error={errors.email}
-          icon="mail-outline"
-          inputMode="email"
-          keyboardType="email-address"
-          label="Email"
-          onChangeText={(value) => update('email', value)}
-          placeholder="operative@riyadah.gg"
-          returnKeyType="next"
-          textContentType="emailAddress"
-          value={values.email}
-        />
-
-        <TextField
-          autoCapitalize="none"
-          autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
-          error={errors.password}
-          hint={mode === 'register' ? '8+ characters' : undefined}
-          icon="lock-closed-outline"
-          label="Password"
-          onChangeText={(value) => update('password', value)}
-          onSubmitEditing={mode === 'login' ? () => void handleSubmit() : undefined}
-          placeholder={mode === 'login' ? 'Your password' : 'Create a password'}
-          returnKeyType={mode === 'login' ? 'go' : 'next'}
-          secure
-          textContentType={mode === 'login' ? 'password' : 'newPassword'}
-          value={values.password}
-        />
-
-        {mode === 'register' ? (
-          <TextField
-            autoCapitalize="none"
-            autoComplete="new-password"
-            error={errors.confirmPassword}
-            icon="shield-checkmark-outline"
-            label="Confirm password"
-            onChangeText={(value) => update('confirmPassword', value)}
-            onSubmitEditing={() => void handleSubmit()}
-            placeholder="Repeat your password"
-            returnKeyType="go"
-            secure
-            textContentType="newPassword"
-            value={values.confirmPassword}
-          />
-        ) : null}
-      </View>
-
-      <Button
-        fullWidth
-        icon={mode === 'login' ? 'log-in-outline' : 'arrow-forward'}
-        label={mode === 'login' ? 'Sign in' : 'Create account'}
-        loading={submitting}
-        onPress={() => void handleSubmit()}
-        size="lg"
-      />
-
-      {mode === 'register' ? (
-        <Text style={styles.legal}>
-          By enlisting you accept the arena rulebook and fair-play policy. Your session is secured
-          with an HttpOnly token.
-        </Text>
-      ) : null}
-
-      <View style={styles.switchRow}>
-        <Text style={styles.switchCopy}>
-          {mode === 'login' ? 'No account yet?' : 'Already enlisted?'}
-        </Text>
-
-        <Pressable
-          accessibilityRole="link"
-          hitSlop={6}
-          onPress={() => onSwitch(mode === 'login' ? 'register' : 'login')}>
-          {({ pressed }) => (
-            <Text style={[styles.switchLink, pressed && { opacity: 0.7 }]}>
-              {mode === 'login' ? 'Create one' : 'Sign in'}
-            </Text>
-          )}
-        </Pressable>
-      </View>
-=======
   const selectedMeta = ROLE_OPTIONS.find((r) => r.role === selectedRole)!;
 
   return (
@@ -671,7 +432,7 @@ export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
               keyboardType={mode === 'login' ? 'default' : 'email-address'}
               label={mode === 'login' ? 'Email or Username' : 'Email'}
               onChangeText={(value) => update('email', value)}
-              placeholder={mode === 'login' ? 'operative@riyadah.gg or Admin' : 'operative@riyadah.gg'}
+              placeholder={mode === 'login' ? 'operative@playpoint.gg or Admin' : 'operative@playpoint.gg'}
               returnKeyType="next"
               textContentType={mode === 'login' ? 'username' : 'emailAddress'}
               value={values.email}
@@ -797,7 +558,6 @@ export function AuthForm({ mode, onSwitch, compact = false }: AuthFormProps) {
           </View>
         </View>
       )}
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     </View>
   );
 }
@@ -809,16 +569,11 @@ const styles = StyleSheet.create({
   rootCompact: {
     gap: 14,
   },
-<<<<<<< HEAD
-  heading: {
-    gap: 7,
-=======
   stepContainer: {
     gap: Space.md,
   },
   heading: {
     gap: 6,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   eyebrowRow: {
     flexDirection: 'row',
@@ -828,69 +583,11 @@ const styles = StyleSheet.create({
   marker: {
     width: 6,
     height: 6,
-<<<<<<< HEAD
-    borderRadius: 2,
-=======
     borderRadius: Radius.pill,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     backgroundColor: Palette.primary,
   },
   eyebrow: {
     ...Typography.labelTight,
-<<<<<<< HEAD
-    fontSize: 9,
-    color: Palette.textMuted,
-    letterSpacing: 1.5,
-  },
-  title: {
-    fontFamily: Fonts.display,
-    fontSize: 26,
-    lineHeight: 32,
-    fontWeight: '700',
-    letterSpacing: -0.7,
-    color: Palette.text,
-  },
-  subtitle: {
-    ...Typography.body,
-    color: Palette.textDim,
-    lineHeight: 20,
-  },
-  banner: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: 8,
-    paddingHorizontal: 11,
-    paddingVertical: 9,
-    borderRadius: Radius.md,
-    borderWidth: 1,
-    borderColor: 'rgba(178, 58, 58, 0.24)',
-    backgroundColor: Palette.dangerWash,
-  },
-  bannerText: {
-    flex: 1,
-    fontFamily: Fonts.body,
-    fontSize: 11,
-    lineHeight: 17,
-    color: Palette.danger,
-  },
-  fields: {
-    gap: 13,
-  },
-  avatarBlock: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    gap: 12,
-    padding: 12,
-    borderRadius: Radius.lg,
-    backgroundColor: Palette.surfaceDim,
-  },
-  avatarPreview: {
-    width: 54,
-    height: 54,
-    borderRadius: Radius.md,
-    backgroundColor: Palette.card,
-=======
     color: Palette.primary,
   },
   title: {
@@ -941,7 +638,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       web: {
         boxShadow:
-          '0 6px 14px rgba(108, 74, 48, 0.08), inset 1px 1px 2px rgba(255, 255, 255, 0.85), inset -2px -2px 4px rgba(136, 104, 74, 0.1)',
+          '0 6px 14px rgba(11, 36, 71, 0.06), inset 1px 1px 2px rgba(255, 255, 255, 0.90), inset -2px -2px 4px rgba(166, 220, 239, 0.12)',
       },
       default: {
         elevation: 2,
@@ -950,7 +647,7 @@ const styles = StyleSheet.create({
   },
   roleCardFeatured: {
     borderColor: `${Palette.secondary}66`,
-    backgroundColor: '#FAF5EE',
+    backgroundColor: Palette.surfaceDim,
   },
   roleCardSelected: {
     borderColor: Palette.primary,
@@ -958,7 +655,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       web: {
         boxShadow:
-          '0 10px 22px rgba(198, 79, 40, 0.16), inset 2px 2px 4px rgba(255, 255, 255, 0.95), inset -2px -2px 5px rgba(198, 79, 40, 0.14)',
+          '0 10px 22px rgba(23, 105, 255, 0.20), inset 2px 2px 4px rgba(255, 255, 255, 0.95), inset -2px -2px 5px rgba(23, 105, 255, 0.12)',
       },
       default: {
         elevation: 4,
@@ -1062,25 +759,11 @@ const styles = StyleSheet.create({
     backgroundColor: Palette.surfaceDim,
     borderWidth: 1.5,
     borderColor: Palette.borderStrong,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
   },
   avatarImage: {
-<<<<<<< HEAD
-    width: 54,
-    height: 54,
-  },
-  avatarCopy: {
-    flex: 1,
-    minWidth: 150,
-    gap: 2,
-  },
-  avatarTitle: {
-    fontFamily: Fonts.display,
-    fontSize: 12,
-=======
     width: '100%',
     height: '100%',
   },
@@ -1092,17 +775,12 @@ const styles = StyleSheet.create({
   avatarTitle: {
     fontFamily: Fonts.display,
     fontSize: 13,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     fontWeight: '600',
     color: Palette.text,
   },
   avatarHint: {
     fontFamily: Fonts.body,
-<<<<<<< HEAD
-    fontSize: 9,
-=======
     fontSize: 11,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     color: Palette.textFaint,
   },
   avatarButton: {
@@ -1110,38 +788,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 6,
     alignSelf: 'flex-start',
-<<<<<<< HEAD
-    marginTop: 5,
-    paddingHorizontal: 9,
-    paddingVertical: 5,
-=======
     paddingVertical: 4,
     paddingHorizontal: 8,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     borderRadius: Radius.sm,
     backgroundColor: Palette.primaryWash,
   },
   avatarButtonText: {
     fontFamily: Fonts.body,
-<<<<<<< HEAD
-    fontSize: 10,
-=======
     fontSize: 12,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     fontWeight: '600',
     color: Palette.primaryBright,
   },
   avatarError: {
     flexDirection: 'row',
     alignItems: 'center',
-<<<<<<< HEAD
-    gap: 5,
-    width: '100%',
-  },
-  avatarErrorText: {
-    fontFamily: Fonts.body,
-    fontSize: 10,
-=======
     gap: 4,
     width: '100%',
     paddingLeft: Space.xs,
@@ -1149,18 +809,12 @@ const styles = StyleSheet.create({
   avatarErrorText: {
     fontFamily: Fonts.body,
     fontSize: 11,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     color: Palette.danger,
   },
   legal: {
     fontFamily: Fonts.body,
-<<<<<<< HEAD
-    fontSize: 9,
-    lineHeight: 14,
-=======
     fontSize: 11,
     lineHeight: 16,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     color: Palette.textFaint,
     textAlign: 'center',
   },
@@ -1168,20 +822,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-<<<<<<< HEAD
-    gap: 5,
-  },
-  switchCopy: {
-    fontFamily: Fonts.body,
-    fontSize: 11,
-    color: Palette.textDim,
-  },
-  switchLink: {
-    fontFamily: Fonts.body,
-    fontSize: 11,
-    fontWeight: '700',
-    color: Palette.primary,
-=======
     gap: 6,
     paddingTop: Space.xs,
   },
@@ -1205,6 +845,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '700',
     color: Palette.primaryBright,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
 });

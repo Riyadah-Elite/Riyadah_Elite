@@ -111,5 +111,44 @@ export default class JoinListingController extends BaseController {
       return this.handleError(res, error);
     }
   }
+
+  /** GET /api/v1/joinlisting/game/:listingId/users */
+  @httpGet(
+    "/game/:listingId/users",
+    authMiddleware([USER_ROLE.DEVELOPER, USER_ROLE.ADMIN]),
+  )
+  async listGameTesters(req: Request, res: Response) {
+    try {
+      const { listingId } = validateOrThrow(
+        joinGameListingParamsSchema,
+        req.params,
+      );
+
+      const testers = await this.joinListingService.listGameTesters(listingId);
+      return this.success(res, { testers }, STATUS_CODE.OK);
+    } catch (error) {
+      return this.handleError(res, error);
+    }
+  }
+
+  /** GET /api/v1/joinlisting/tournament/:tournamentId/users */
+  @httpGet(
+    "/tournament/:tournamentId/users",
+    authMiddleware([USER_ROLE.ORG, USER_ROLE.ADMIN]),
+  )
+  async listTournamentParticipants(req: Request, res: Response) {
+    try {
+      const { tournamentId } = validateOrThrow(
+        joinTournamentParamsSchema,
+        req.params,
+      );
+
+      const participants =
+        await this.joinListingService.listTournamentParticipants(tournamentId);
+      return this.success(res, { participants }, STATUS_CODE.OK);
+    } catch (error) {
+      return this.handleError(res, error);
+    }
+  }
   
 }

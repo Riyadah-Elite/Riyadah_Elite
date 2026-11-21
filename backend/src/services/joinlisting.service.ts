@@ -220,4 +220,14 @@ export default class JoinListingService {
 
     return await this.joinListingRepository.listUserEnrollments(userId);
   }
+
+  async listGameTesters(gameListingId: string) {
+    this.logger.info("listing game testers", { gameListingId });
+    return await this.joinListingRepository.findGameTesters(gameListingId);
+  }
+
+  async listTournamentParticipants(tournamentListingId: string) {
+    this.logger.info("listing tournament participants", { tournamentListingId });
+    return await this.joinListingRepository.findTournamentParticipants(tournamentListingId);
+  }
 }

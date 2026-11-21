@@ -147,5 +147,63 @@ export default class JoinListingRepository {
       ORDER BY "joinedAt" DESC
     `;
   }
+
+  async findGameTesters(gameListingId: string) {
+    const joins = await this.db.joinListing.findMany({
+      where: { gameListingId },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            email: true,
+            testingStatus: true,
+            testingRank: true,
+            testingPoints: true,
+            createdAt: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+    return joins.map((j) => ({
+      joinId: j.id,
+      joinedAt: j.createdAt,
+      id: j.user.id,
+      username: j.user.username,
+      email: j.user.email,
+      testingStatus: j.user.testingStatus,
+      testingRank: j.user.testingRank,
+      testingPoints: j.user.testingPoints,
+    }));
+  }
+
+  async findTournamentParticipants(tournamentListingId: string) {
+    const joins = await this.db.joinListing.findMany({
+      where: { tournamentListingId },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            email: true,
+            tournamentStatus: true,
+            testingPoints: true,
+            createdAt: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+    return joins.map((j) => ({
+      joinId: j.id,
+      joinedAt: j.createdAt,
+      id: j.user.id,
+      username: j.user.username,
+      email: j.user.email,
+      tournamentStatus: j.user.tournamentStatus,
+      testingPoints: j.user.testingPoints,
+    }));
+  }
   
 }

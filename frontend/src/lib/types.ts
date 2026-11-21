@@ -69,8 +69,6 @@ export interface LeaderboardEntry {
 export interface LeaderboardPage {
   items: LeaderboardEntry[];
 }
-<<<<<<< HEAD
-=======
 
 export interface TournamentAmount {
   id: string;
@@ -109,6 +107,9 @@ export interface TournamentItem {
     imageUrl: string | null;
     fileUrl: string | null;
   } | null;
+  _count?: {
+    joinListings?: number;
+  };
 }
 
 export interface TournamentPage {
@@ -168,6 +169,31 @@ export interface GameListingItem {
     id: string;
     imageUrl: string | null;
   } | null;
+  _count?: {
+    joinListings?: number;
+    bugReports?: number;
+  };
+}
+
+export interface TesterEnrollmentItem {
+  joinId: string;
+  joinedAt: string;
+  id: string;
+  username: string;
+  email?: string;
+  testingStatus?: string | null;
+  testingRank?: string | null;
+  testingPoints?: number | null;
+}
+
+export interface TournamentParticipantItem {
+  joinId: string;
+  joinedAt: string;
+  id: string;
+  username: string;
+  email?: string;
+  tournamentStatus?: string | null;
+  testingPoints?: number | null;
 }
 
 export interface GameListingPage {
@@ -250,4 +276,3 @@ export interface EnrolledGameItem {
   createdAt: string;
   gameListing?: GameListingItem;
 }
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a

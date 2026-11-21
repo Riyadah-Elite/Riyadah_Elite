@@ -5,6 +5,7 @@ import type {
   GameListingPage,
   TournamentItem,
   TournamentPage,
+  TournamentParticipantItem,
 } from './types';
 
 export interface TournamentQueryParams {
@@ -72,5 +73,14 @@ export async function getGamesForTournamentRequest(): Promise<GameListingPage> {
   });
 
   return response.data.data;
+}
+
+export async function getTournamentParticipantsRequest(
+  tournamentId: string,
+): Promise<TournamentParticipantItem[]> {
+  const response = await api.get<ApiEnvelope<{ participants: TournamentParticipantItem[] }>>(
+    `/api/v1/joinlisting/tournament/${tournamentId}/users`,
+  );
+  return response.data.data?.participants ?? [];
 }
 

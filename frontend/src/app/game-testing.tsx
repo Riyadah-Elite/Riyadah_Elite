@@ -1,46 +1,23 @@
 import { Ionicons } from '@expo/vector-icons';
-<<<<<<< HEAD
-import { StyleSheet, Text, View } from 'react-native';
-=======
 import { Image } from 'expo-image';
+import { router } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   Linking,
   Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 import { AppShell } from '@/components/layout/app-shell';
 import { AuthGate } from '@/components/layout/auth-gate';
 import { SectionHeading } from '@/components/landing/section-heading';
 import { StatusBadge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-<<<<<<< HEAD
-import { ClayCard, Panel } from '@/components/ui/card';
-import { Fonts, Palette, Radius, Space, Typography } from '@/constants/design';
-import { useResponsive } from '@/hooks/use-responsive';
-import { formatNumber, tierColor, titleCase } from '@/lib/format';
-import { useAuth } from '@/providers/auth-provider';
-import { useToast } from '@/providers/toast-provider';
-
-const STATUS_META = {
-  pending: { label: 'Pending', accent: Palette.warning, icon: 'hourglass-outline' as const },
-  inprogress: { label: 'In progress', accent: Palette.primaryBright, icon: 'pulse' as const },
-  completed: { label: 'Completed', accent: Palette.tertiary, icon: 'checkmark-done' as const },
-  failure: { label: 'Failure', accent: Palette.danger, icon: 'close-circle-outline' as const },
-} as const;
-
-const PIPELINE = [
-  { key: 'pending', copy: 'A build is assigned and waiting for your first session.' },
-  { key: 'inprogress', copy: 'Telemetry collection is active while you exercise the listed flows.' },
-  { key: 'completed', copy: 'Findings are reviewed, then testing points are credited to your tier.' },
-  { key: 'failure', copy: 'A blocked build is recorded with the reason attached to your profile.' },
-=======
 import { ClayCard, ClayModal, Panel } from '@/components/ui/card';
 import { TextField } from '@/components/ui/text-field';
 import { Tooltip } from '@/components/ui/tooltip';
@@ -52,15 +29,24 @@ import {
   createCategoryRequest,
   createGameListingRequest,
   deleteGameListingRequest,
+  fetchBugReportsRequest,
   fetchCategoriesRequest,
   fetchGameListingsRequest,
+  fetchGameTestersRequest,
   fetchTrackedUsersRequest,
   fetchUserEnrollmentsRequest,
   joinGameListingRequest,
+  updateBugReportStatusRequest,
   updateGameListingRequest,
   uploadScreenshotRequest,
 } from '@/lib/telemetry-api';
-import type { CategoryItem, GameListingItem } from '@/lib/types';
+import type {
+  BugReportItem,
+  BugReportStatus,
+  CategoryItem,
+  GameListingItem,
+  TesterEnrollmentItem,
+} from '@/lib/types';
 import { useAuth } from '@/providers/auth-provider';
 import { useAuthModal } from '@/providers/auth-modal-provider';
 import { useToast } from '@/providers/toast-provider';
@@ -74,24 +60,30 @@ const PLATFORMS_LIST = [
   'linux',
   'macos',
   'console',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 ] as const;
 
 export default function GameTestingScreen() {
   const { isMobile } = useResponsive();
   const { user } = useAuth();
-<<<<<<< HEAD
-  const { showToast } = useToast();
-
-  const status = user?.testingStatus ?? null;
-  const meta = status ? STATUS_META[status] : null;
-=======
   const { openAuth } = useAuthModal();
   const { showToast } = useToast();
 
   const role = user?.role ?? 'USER';
   const isDev = role === 'DEVELOPER';
   const isAdmin = role === 'ADMIN';
+  const isOrg = role === 'ORG';
+
+  // Guard: ORG users are strictly restricted from game testing
+  useEffect(() => {
+    if (isOrg) {
+      showToast({
+        title: 'Access Restricted',
+        message: 'Tournament Organizations cannot access Game Testing. Redirected to Tournaments.',
+        variant: 'warning',
+      });
+      router.replace('/tournaments');
+    }
+  }, [isOrg, showToast]);
 
   // Listings & Categories state
   const [loading, setLoading] = useState(true);
@@ -145,6 +137,15 @@ export default function GameTestingScreen() {
   const [trackedTesters, setTrackedTesters] = useState<any[]>([]);
   const [trackingLoading, setTrackingLoading] = useState(false);
 
+  // DEVELOPER: Comprehensive Game Detail Modal (Enrolled Testers + Bug Reports Telemetry)
+  const [detailGame, setDetailGame] = useState<GameListingItem | null>(null);
+  const [detailLoading, setDetailLoading] = useState(false);
+  const [detailTesters, setDetailTesters] = useState<TesterEnrollmentItem[]>([]);
+  const [detailReports, setDetailReports] = useState<BugReportItem[]>([]);
+  const [detailActiveTab, setDetailActiveTab] = useState<'bugs' | 'testers'>('bugs');
+  const [detailTriagingId, setDetailTriagingId] = useState<string | null>(null);
+  const [detailStatusFilter, setDetailStatusFilter] = useState<BugReportStatus | 'all'>('all');
+
   // ADMIN: Category creation bar state
   const [newCategoryName, setNewCategoryName] = useState('');
   const [creatingCategory, setCreatingCategory] = useState(false);
@@ -154,162 +155,16 @@ export default function GameTestingScreen() {
   const [actionLoading, setActionLoading] = useState(false);
 
   // Ladder stats (for USER)
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   const rank = user?.testingRank ?? 'unranked';
   const points = user?.testingPoints ?? 0;
   const accent = tierColor(rank);
   const progress = Math.min(100, Math.round((points / 1_500) * 100));
 
-<<<<<<< HEAD
-  return (
-    <AppShell eyebrow="Telemetry programmes" title="Game Testing">
-      <AuthGate
-        copy="Testing programmes are assigned to enlisted operatives. Sign in to see your build, status and credited points."
-        icon="game-controller"
-        title="Programmes are session-gated">
-        <View style={styles.page}>
-          <SectionHeading
-            action={<StatusBadge dot color={Palette.primaryBright} label="Telemetry ready" />}
-            description="Play assigned builds, record anomalies and convert verified findings into ladder points."
-            eyebrow="Testing floor"
-            title="Telemetry programmes"
-          />
-
-          <View style={[styles.row, isMobile && styles.rowMobile]}>
-            <ClayCard glass style={styles.assignment} padded={false}>
-              <View style={styles.cardBody}>
-                <View style={styles.cardTop}>
-                  <Text style={styles.cardEyebrow}>Current assignment</Text>
-                  {meta ? (
-                    <StatusBadge color={meta.accent} icon={meta.icon} label={meta.label} />
-                  ) : (
-                    <StatusBadge color={Palette.textDim} label="Unassigned" />
-                  )}
-                </View>
-
-                <View style={[styles.assignmentIcon, meta ? { backgroundColor: `${meta.accent}14` } : null]}>
-                  <Ionicons
-                    name={meta?.icon ?? 'flask-outline'}
-                    size={22}
-                    color={meta?.accent ?? Palette.textDim}
-                  />
-                </View>
-
-                <Text style={styles.assignmentTitle}>
-                  {status ? titleCase(meta?.label ?? status) : 'No active build'}
-                </Text>
-                <Text style={styles.assignmentCopy}>
-                  {status
-                    ? 'Your programme state is synced from the arena core. Open the build brief when the assignment channel goes live.'
-                    : 'No build has been assigned yet. Programmes appear here as soon as a steward attaches one to your account.'}
-                </Text>
-
-                <Button
-                  fullWidth
-                  label="Open build brief"
-                  onPress={() =>
-                    showToast({
-                      title: 'Build brief',
-                      message: 'Assignment channels are being wired into the testing floor.',
-                      variant: 'info',
-                    })
-                  }
-                  size="sm"
-                  variant="dark"
-                />
-              </View>
-            </ClayCard>
-
-            <ClayCard style={styles.scoring} padded={false}>
-              <View style={styles.cardBody}>
-                <Text style={styles.cardEyebrow}>Ladder output</Text>
-
-                <View style={styles.scoreRow}>
-                  <Text style={[styles.scoreValue, { color: accent }]}>{formatNumber(points)}</Text>
-                  <Text style={styles.scoreCap}>/ 1,500</Text>
-                </View>
-
-                <Text style={[styles.scoreRank, { color: accent }]}>{titleCase(rank)}</Text>
-
-                <View style={styles.track}>
-                  <View
-                    style={[
-                      styles.fill,
-                      { width: `${Math.max(progress, 2)}%`, backgroundColor: accent },
-                    ]}
-                  />
-                </View>
-
-                <View style={styles.scoreMeta}>
-                  <Text style={styles.scoreMetaText}>15 tiers · 100 pts each</Text>
-                  <Text style={styles.scoreMetaText}>{progress}%</Text>
-                </View>
-
-                <View style={styles.scoreRule} />
-
-                <View style={styles.scoreNote}>
-                  <Ionicons name="information-circle-outline" size={13} color={Palette.textDim} />
-                  <Text style={styles.scoreNoteText}>
-                    Points are credited only after a completed programme is reviewed.
-                  </Text>
-                </View>
-              </View>
-            </ClayCard>
-          </View>
-
-          <Panel padded={false}>
-            <View style={styles.panelHeader}>
-              <View>
-                <Text style={styles.panelTitle}>Assigned builds</Text>
-                <Text style={styles.panelSubtitle}>Programmes attached to your operative profile</Text>
-              </View>
-              <Text style={styles.panelCount}>0 ACTIVE</Text>
-            </View>
-
-            <View style={styles.empty}>
-              <View style={styles.emptyIcon}>
-                <Ionicons name="flask-outline" size={22} color={Palette.textDim} />
-              </View>
-              <Text style={styles.emptyTitle}>No build attached</Text>
-              <Text style={styles.emptyCopy}>
-                Builds are assigned by the testing stewards. Nothing is simulated here - this list
-                stays empty until a real programme is attached.
-              </Text>
-            </View>
-          </Panel>
-
-          <ClayCard padded={false}>
-            <View style={styles.pipeline}>
-              <View style={styles.pipelineHead}>
-                <Text style={styles.cardEyebrow}>Programme lifecycle</Text>
-                <Text style={styles.pipelineMeta}>4 STATES</Text>
-              </View>
-
-              <View style={[styles.pipelineGrid, isMobile && styles.pipelineGridMobile]}>
-                {PIPELINE.map((step, index) => {
-                  const stepMeta = STATUS_META[step.key];
-
-                  return (
-                    <View key={step.key} style={styles.step}>
-                      <View style={styles.stepTop}>
-                        <View
-                          style={[
-                            styles.stepDot,
-                            {
-                              backgroundColor: `${stepMeta.accent}1f`,
-                              borderColor: `${stepMeta.accent}55`,
-                            },
-                          ]}>
-                          <Ionicons name={stepMeta.icon} size={14} color={stepMeta.accent} />
-                        </View>
-                        <Text style={styles.stepIndex}>{String(index + 1).padStart(2, '0')}</Text>
-                      </View>
-
-                      <Text style={styles.stepTitle}>{stepMeta.label}</Text>
-                      <Text style={styles.stepCopy}>{step.copy}</Text>
-                    </View>
-=======
   const loadData = useCallback(async () => {
+    if (isOrg) {
+      setLoading(false);
+      return;
+    }
     try {
       setLoading(true);
       const [listingsRes, categoriesRes, enrollmentsRes] = await Promise.all([
@@ -573,6 +428,52 @@ export default function GameTestingScreen() {
     }
   }
 
+  // Open Comprehensive Game Detail View (DEVELOPER)
+  async function handleOpenGameDetail(game: GameListingItem) {
+    setDetailGame(game);
+    setDetailActiveTab('bugs');
+    setDetailLoading(true);
+    try {
+      const [reportsRes, testersRes] = await Promise.all([
+        fetchBugReportsRequest({ gameListingId: game.id, limit: 50 }).catch(() => ({ items: [] })),
+        fetchGameTestersRequest(game.id).catch(() => []),
+      ]);
+      setDetailReports(reportsRes.items || []);
+      setDetailTesters(testersRes || []);
+    } catch (err) {
+      showToast({
+        title: 'Telemetry Sync Failed',
+        message: err instanceof Error ? err.message : 'Could not fetch game build details.',
+        variant: 'error',
+      });
+    } finally {
+      setDetailLoading(false);
+    }
+  }
+
+  async function handleDetailTriageStatus(bugId: string, newStatus: BugReportStatus) {
+    try {
+      setDetailTriagingId(bugId);
+      const res = await updateBugReportStatusRequest(bugId, newStatus);
+      setDetailReports((prev) =>
+        prev.map((r) => (r.id === bugId ? { ...r, status: res.bugReport.status } : r)),
+      );
+      showToast({
+        title: 'Triage Updated',
+        message: `Bug status updated to ${newStatus.toUpperCase()}`,
+        variant: 'success',
+      });
+    } catch (err) {
+      showToast({
+        title: 'Triage Failed',
+        message: err instanceof Error ? err.message : 'Could not update bug status.',
+        variant: 'error',
+      });
+    } finally {
+      setDetailTriagingId(null);
+    }
+  }
+
   // Delete Listing (DEVELOPER / ADMIN)
   async function handleDeleteListing() {
     if (!deletingListing) return;
@@ -595,6 +496,10 @@ export default function GameTestingScreen() {
     } finally {
       setActionLoading(false);
     }
+  }
+
+  if (isOrg) {
+    return null;
   }
 
   return (
@@ -849,7 +754,9 @@ export default function GameTestingScreen() {
                       <ClayCard key={game.id} style={styles.gameCard} padded={false}>
                         <View style={styles.gameCardContent}>
                           <View style={styles.gameHeader}>
-                            <View style={styles.gameMeta}>
+                            <Pressable
+                              onPress={() => void handleOpenGameDetail(game)}
+                              style={styles.gameMeta}>
                               <Text style={styles.gameTitle}>{game.gameName}</Text>
                               <View style={styles.gameTags}>
                                 <StatusBadge
@@ -859,24 +766,32 @@ export default function GameTestingScreen() {
                                 {game.platform && (
                                   <StatusBadge color={Palette.primary} label={game.platform.toUpperCase()} />
                                 )}
+                                <StatusBadge
+                                  color={Palette.secondary}
+                                  label={`Testers: ${game._count?.joinListings ?? 0}`}
+                                />
+                                <StatusBadge
+                                  color={Palette.warning}
+                                  label={`Bugs: ${game._count?.bugReports ?? 0}`}
+                                />
                               </View>
-                            </View>
+                            </Pressable>
 
                             <View style={styles.actionsGroup}>
+                              <Tooltip content="Inspect enrolled operatives & submitted bug telemetry" position="top">
+                                <Button
+                                  icon="analytics-outline"
+                                  label="Telemetry & Bugs"
+                                  onPress={() => void handleOpenGameDetail(game)}
+                                  size="sm"
+                                  variant="lime"
+                                />
+                              </Tooltip>
                               <Tooltip content="Edit game flight parameters and rulebook" position="top">
                                 <Button
                                   icon="pencil-outline"
                                   label="Edit"
                                   onPress={() => handleOpenEditListing(game)}
-                                  size="sm"
-                                  variant="dark"
-                                />
-                              </Tooltip>
-                              <Tooltip content="Inspect operatives currently enrolled in this build" position="left">
-                                <Button
-                                  icon="people-outline"
-                                  label="Enrolled Testers"
-                                  onPress={() => void handleOpenTesterTracking(game)}
                                   size="sm"
                                   variant="dark"
                                 />
@@ -1239,6 +1154,259 @@ export default function GameTestingScreen() {
           )}
         </View>
 
+      {/* CLAYMORPHIC MODAL: Comprehensive Developer Game Detail View */}
+      <ClayModal
+        eyebrow="Developer Build Telemetry"
+        maxWidth={840}
+        onClose={() => setDetailGame(null)}
+        title={`${detailGame?.gameName ?? ''} — Telemetry & Triage Deck`}
+        visible={Boolean(detailGame)}>
+        <View style={styles.detailModalBody}>
+          {/* Summary metrics header */}
+          <View style={styles.detailStatsRow}>
+            <View style={styles.detailStatBox}>
+              <Ionicons name="people" size={18} color={Palette.primary} />
+              <Text style={styles.detailStatValue}>{detailTesters.length}</Text>
+              <Text style={styles.detailStatLabel}>Enrolled Operatives</Text>
+            </View>
+            <View style={styles.detailStatBox}>
+              <Ionicons name="bug" size={18} color={Palette.warning} />
+              <Text style={styles.detailStatValue}>{detailReports.length}</Text>
+              <Text style={styles.detailStatLabel}>Total Bug Reports</Text>
+            </View>
+            <View style={styles.detailStatBox}>
+              <Ionicons name="alert-circle" size={18} color={Palette.warning} />
+              <Text style={styles.detailStatValue}>
+                {detailReports.filter((r) => r.status === 'open').length}
+              </Text>
+              <Text style={styles.detailStatLabel}>Open / Intake</Text>
+            </View>
+            <View style={styles.detailStatBox}>
+              <Ionicons name="checkmark-done" size={18} color={Palette.tertiary} />
+              <Text style={styles.detailStatValue}>
+                {detailReports.filter((r) => r.status === 'resolved' || r.status === 'closed').length}
+              </Text>
+              <Text style={styles.detailStatLabel}>Resolved / Closed</Text>
+            </View>
+          </View>
+
+          {/* Tab switcher: Bugs vs Testers */}
+          <View style={styles.detailTabRow}>
+            <Pressable
+              onPress={() => setDetailActiveTab('bugs')}
+              style={[styles.detailTabBtn, detailActiveTab === 'bugs' && styles.detailTabBtnActive]}>
+              <Ionicons
+                name="bug-outline"
+                size={16}
+                color={detailActiveTab === 'bugs' ? Palette.primary : Palette.textDim}
+              />
+              <Text
+                style={[
+                  styles.detailTabText,
+                  detailActiveTab === 'bugs' && styles.detailTabTextActive,
+                ]}>
+                Bug Reports ({detailReports.length})
+              </Text>
+            </Pressable>
+
+            <Pressable
+              onPress={() => setDetailActiveTab('testers')}
+              style={[styles.detailTabBtn, detailActiveTab === 'testers' && styles.detailTabBtnActive]}>
+              <Ionicons
+                name="people-outline"
+                size={16}
+                color={detailActiveTab === 'testers' ? Palette.primary : Palette.textDim}
+              />
+              <Text
+                style={[
+                  styles.detailTabText,
+                  detailActiveTab === 'testers' && styles.detailTabTextActive,
+                ]}>
+                Enrolled Operatives ({detailTesters.length})
+              </Text>
+            </Pressable>
+          </View>
+
+          {detailLoading ? (
+            <View style={styles.centered}>
+              <ActivityIndicator color={Palette.primary} size="large" />
+              <Text style={styles.loadingText}>Syncing flight telemetry...</Text>
+            </View>
+          ) : detailActiveTab === 'bugs' ? (
+            <View style={{ gap: Space.md }}>
+              {/* Status Filter Chips */}
+              <View style={styles.detailFilterRow}>
+                {(['all', 'open', 'inprogress', 'resolved', 'closed'] as const).map((st) => {
+                  const active = detailStatusFilter === st;
+                  const count =
+                    st === 'all'
+                      ? detailReports.length
+                      : detailReports.filter((r) => r.status === st).length;
+                  return (
+                    <Pressable
+                      key={st}
+                      onPress={() => setDetailStatusFilter(st)}
+                      style={[styles.choiceChip, active && styles.choiceChipActive]}>
+                      <Text
+                        style={[
+                          styles.choiceChipText,
+                          active && styles.choiceChipTextActive,
+                        ]}>
+                        {st.toUpperCase()} ({count})
+                      </Text>
+                    </Pressable>
+                  );
+                })}
+              </View>
+
+              {detailReports.filter(
+                (r) => detailStatusFilter === 'all' || r.status === detailStatusFilter,
+              ).length === 0 ? (
+                <View style={styles.detailEmpty}>
+                  <Ionicons name="shield-checkmark-outline" size={32} color={Palette.tertiary} />
+                  <Text style={styles.detailEmptyText}>No bug reports under this status filter.</Text>
+                </View>
+              ) : (
+                <View style={{ gap: Space.sm, maxHeight: 380 }}>
+                  <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
+                    <View style={{ gap: Space.sm, paddingRight: 4 }}>
+                      {detailReports
+                        .filter(
+                          (r) => detailStatusFilter === 'all' || r.status === detailStatusFilter,
+                        )
+                        .map((bug) => {
+                          const isTriaging = detailTriagingId === bug.id;
+                          return (
+                            <ClayCard key={bug.id} style={styles.detailBugCard} padded={false}>
+                              <View style={styles.detailBugContent}>
+                                <View style={styles.detailBugHead}>
+                                  <View
+                                    style={{
+                                      flexDirection: 'row',
+                                      alignItems: 'center',
+                                      gap: Space.xs,
+                                    }}>
+                                    <Ionicons
+                                      name="person-circle-outline"
+                                      size={16}
+                                      color={Palette.primary}
+                                    />
+                                    <Text style={styles.detailBugUser}>
+                                      @{bug.user?.username ?? 'operative'}
+                                    </Text>
+                                    <Text style={styles.detailBugDate}>
+                                      · {new Date(bug.createdAt).toLocaleDateString()}
+                                    </Text>
+                                  </View>
+                                  <StatusBadge
+                                    color={
+                                      bug.status === 'resolved'
+                                        ? Palette.tertiary
+                                        : bug.status === 'inprogress'
+                                          ? Palette.primary
+                                          : bug.status === 'open'
+                                            ? Palette.warning
+                                            : Palette.textDim
+                                    }
+                                    label={bug.status.toUpperCase()}
+                                  />
+                                </View>
+
+                                <Text style={styles.detailBugDesc}>{bug.bugDescription}</Text>
+
+                                {bug.imageId && (
+                                  <View style={styles.detailEvidenceRow}>
+                                    <View style={styles.detailEvidenceChip}>
+                                      <Ionicons
+                                        name="image-outline"
+                                        size={14}
+                                        color={Palette.primaryBright}
+                                      />
+                                      <Text style={styles.detailEvidenceText}>
+                                        Screenshot Evidence Attached
+                                      </Text>
+                                    </View>
+                                  </View>
+                                )}
+
+                                {/* Triage action buttons */}
+                                <View style={styles.detailTriageBar}>
+                                  <Text style={styles.detailTriageLabel}>Triage Status:</Text>
+                                  <View style={{ flexDirection: 'row', gap: 6, flexWrap: 'wrap' }}>
+                                    {(['open', 'inprogress', 'resolved', 'closed'] as const).map(
+                                      (st) => (
+                                        <Button
+                                          key={st}
+                                          disabled={isTriaging || bug.status === st}
+                                          label={
+                                            st === 'inprogress' ? 'In Progress' : titleCase(st)
+                                          }
+                                          onPress={() => void handleDetailTriageStatus(bug.id, st)}
+                                          size="sm"
+                                          variant={bug.status === st ? 'lime' : 'dark'}
+                                        />
+                                      ),
+                                    )}
+                                  </View>
+                                </View>
+                              </View>
+                            </ClayCard>
+                          );
+                        })}
+                    </View>
+                  </ScrollView>
+                </View>
+              )}
+            </View>
+          ) : (
+            <View style={{ gap: Space.md }}>
+              {detailTesters.length === 0 ? (
+                <View style={styles.detailEmpty}>
+                  <Ionicons name="people-outline" size={32} color={Palette.textDim} />
+                  <Text style={styles.detailEmptyText}>
+                    No operatives have enrolled in this flight yet.
+                  </Text>
+                </View>
+              ) : (
+                <View style={{ maxHeight: 380 }}>
+                  <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false}>
+                    <View style={{ gap: Space.xs, paddingRight: 4 }}>
+                      {detailTesters.map((t) => (
+                        <View key={t.joinId || t.id} style={styles.detailTesterRow}>
+                          <View style={styles.testerAvatar}>
+                            <Ionicons name="person" size={14} color={Palette.primary} />
+                          </View>
+                          <View style={{ flex: 1, gap: 2 }}>
+                            <Text style={styles.testerName}>@{t.username}</Text>
+                            <Text style={styles.testerStatus}>
+                              Enrolled: {new Date(t.joinedAt).toLocaleDateString()} · Rank:{' '}
+                              {t.testingRank || 'Unranked'}
+                            </Text>
+                          </View>
+                          <StatusBadge
+                            color={Palette.primary}
+                            label={`${t.testingPoints ?? 0} PTS`}
+                          />
+                        </View>
+                      ))}
+                    </View>
+                  </ScrollView>
+                </View>
+              )}
+            </View>
+          )}
+
+          <View style={{ marginTop: Space.sm, alignItems: 'flex-end' }}>
+            <Button
+              label="Close Deck"
+              onPress={() => setDetailGame(null)}
+              size="md"
+              variant="dark"
+            />
+          </View>
+        </View>
+      </ClayModal>
+
       {/* CLAYMORPHIC MODAL: Enrolled Testers Tracking (DEVELOPER) */}
       <ClayModal
         eyebrow="Roster Telemetry"
@@ -1400,16 +1568,10 @@ export default function GameTestingScreen() {
                         {curr}
                       </Text>
                     </Pressable>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
                   );
                 })}
               </View>
             </View>
-<<<<<<< HEAD
-          </ClayCard>
-        </View>
-      </AuthGate>
-=======
           </View>
 
           <TextField
@@ -1519,70 +1681,12 @@ export default function GameTestingScreen() {
           </View>
         </View>
       </ClayModal>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     </AppShell>
   );
 }
 
 const styles = StyleSheet.create({
   page: {
-<<<<<<< HEAD
-    gap: Space.xl,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    gap: Space.md,
-  },
-  rowMobile: {
-    flexDirection: 'column',
-  },
-  assignment: {
-    flex: 1.1,
-  },
-  scoring: {
-    flex: 1,
-  },
-  cardBody: {
-    padding: Space.lg,
-    gap: 8,
-    flex: 1,
-  },
-  cardTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: Space.sm,
-    marginBottom: 4,
-  },
-  cardEyebrow: {
-    ...Typography.labelTight,
-    fontSize: 9,
-    color: Palette.textMuted,
-    letterSpacing: 1.3,
-  },
-  assignmentIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: Radius.pill,
-    backgroundColor: 'rgba(198, 79, 40, 0.08)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 2,
-  },
-  assignmentTitle: {
-    fontFamily: Fonts.display,
-    fontSize: 19,
-    fontWeight: '700',
-    letterSpacing: -0.4,
-    color: Palette.text,
-  },
-  assignmentCopy: {
-    ...Typography.bodySm,
-    color: Palette.textDim,
-    lineHeight: 19,
-    flex: 1,
-=======
     paddingHorizontal: Space.lg,
     paddingVertical: Space.xl,
     gap: Space.xl,
@@ -1715,43 +1819,10 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 1.2,
     color: Palette.textDim,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   scoreRow: {
     flexDirection: 'row',
     alignItems: 'baseline',
-<<<<<<< HEAD
-    gap: 6,
-  },
-  scoreValue: {
-    fontFamily: Fonts.display,
-    fontSize: 38,
-    lineHeight: 42,
-    fontWeight: '800',
-    letterSpacing: -1.4,
-  },
-  scoreCap: {
-    ...Typography.numericSm,
-    color: Palette.textFaint,
-    fontSize: 11,
-  },
-  scoreRank: {
-    fontFamily: Fonts.display,
-    fontSize: 12,
-    fontWeight: '700',
-    letterSpacing: 0.2,
-    textTransform: 'capitalize',
-  },
-  track: {
-    height: 4,
-    borderRadius: Radius.pill,
-    backgroundColor: Palette.surfaceDim,
-    overflow: 'hidden',
-    marginTop: 4,
-  },
-  fill: {
-    height: 4,
-=======
     gap: Space.xs,
   },
   scoreValue: {
@@ -1772,51 +1843,10 @@ const styles = StyleSheet.create({
   },
   fill: {
     height: '100%',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     borderRadius: Radius.pill,
   },
   scoreMeta: {
     flexDirection: 'row',
-<<<<<<< HEAD
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  scoreMetaText: {
-    fontFamily: Fonts.body,
-    fontSize: 9,
-    color: Palette.textFaint,
-  },
-  scoreRule: {
-    height: 1,
-    backgroundColor: Palette.border,
-    marginTop: 6,
-  },
-  scoreNote: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: 6,
-  },
-  scoreNoteText: {
-    ...Typography.bodySm,
-    color: Palette.textFaint,
-    lineHeight: 17,
-    flex: 1,
-  },
-  panelHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: Space.md,
-    padding: Space.md,
-    borderBottomWidth: 1,
-    borderBottomColor: Palette.border,
-    backgroundColor: Palette.surfaceDim,
-  },
-  panelTitle: {
-    fontFamily: Fonts.display,
-    fontSize: 14,
-    fontWeight: '600',
-=======
     justifyContent: 'space-between',
     alignItems: 'center',
   },
@@ -1839,107 +1869,10 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.display,
     fontSize: 18,
     fontWeight: '700',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     color: Palette.text,
   },
   panelSubtitle: {
     fontFamily: Fonts.body,
-<<<<<<< HEAD
-    fontSize: 10,
-    color: Palette.textFaint,
-    marginTop: 1,
-  },
-  panelCount: {
-    ...Typography.labelTight,
-    fontSize: 8,
-    color: Palette.textFaint,
-    letterSpacing: 1.2,
-  },
-  empty: {
-    alignItems: 'center',
-    gap: 8,
-    paddingVertical: Space.xl,
-    paddingHorizontal: Space.lg,
-  },
-  emptyIcon: {
-    width: 46,
-    height: 46,
-    borderRadius: Radius.pill,
-    backgroundColor: Palette.surfaceDim,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 2,
-  },
-  emptyTitle: {
-    fontFamily: Fonts.display,
-    fontSize: 14,
-    fontWeight: '600',
-    color: Palette.textMuted,
-  },
-  emptyCopy: {
-    ...Typography.bodySm,
-    color: Palette.textFaint,
-    textAlign: 'center',
-    maxWidth: 430,
-  },
-  pipeline: {
-    padding: Space.lg,
-    gap: Space.md,
-  },
-  pipelineHead: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  pipelineMeta: {
-    ...Typography.labelTight,
-    fontSize: 8,
-    color: Palette.textFaint,
-    letterSpacing: 1.1,
-  },
-  pipelineGrid: {
-    flexDirection: 'row',
-    gap: Space.md,
-  },
-  pipelineGridMobile: {
-    flexDirection: 'column',
-    gap: Space.lg,
-  },
-  step: {
-    flex: 1,
-    gap: 5,
-  },
-  stepTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 5,
-  },
-  stepDot: {
-    width: 32,
-    height: 32,
-    borderRadius: Radius.pill,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  stepIndex: {
-    ...Typography.labelTight,
-    fontSize: 8,
-    color: Palette.textFaint,
-    letterSpacing: 1.2,
-  },
-  stepTitle: {
-    fontFamily: Fonts.display,
-    fontSize: 13,
-    fontWeight: '600',
-    color: Palette.text,
-  },
-  stepCopy: {
-    ...Typography.bodySm,
-    color: Palette.textDim,
-    lineHeight: 18,
-  },
-=======
     fontSize: 12,
     color: Palette.textDim,
     marginTop: 2,
@@ -2183,5 +2116,152 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: Palette.textDim,
   },
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
+  detailModalBody: {
+    gap: Space.md,
+  },
+  detailStatsRow: {
+    flexDirection: 'row',
+    gap: Space.sm,
+    flexWrap: 'wrap',
+  },
+  detailStatBox: {
+    flex: 1,
+    minWidth: 140,
+    padding: Space.md,
+    borderRadius: Radius.md,
+    backgroundColor: Palette.surfaceDim,
+    borderWidth: 1,
+    borderColor: Palette.border,
+    alignItems: 'center',
+    gap: 4,
+  },
+  detailStatValue: {
+    fontFamily: Fonts.display,
+    fontSize: 20,
+    fontWeight: '700',
+    color: Palette.text,
+  },
+  detailStatLabel: {
+    fontFamily: Fonts.body,
+    fontSize: 10,
+    color: Palette.textDim,
+    textAlign: 'center',
+  },
+  detailTabRow: {
+    flexDirection: 'row',
+    gap: Space.xs,
+    borderBottomWidth: 1,
+    borderBottomColor: Palette.border,
+    paddingBottom: Space.xs,
+  },
+  detailTabBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Space.xs,
+    paddingHorizontal: Space.md,
+    paddingVertical: Space.sm,
+    borderRadius: Radius.sm,
+  },
+  detailTabBtnActive: {
+    backgroundColor: `${Palette.primary}18`,
+  },
+  detailTabText: {
+    fontFamily: Fonts.body,
+    fontSize: 12,
+    color: Palette.textDim,
+  },
+  detailTabTextActive: {
+    color: Palette.primary,
+    fontWeight: '700',
+  },
+  detailFilterRow: {
+    flexDirection: 'row',
+    gap: 6,
+    flexWrap: 'wrap',
+  },
+  detailEmpty: {
+    padding: Space.xl,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: Space.sm,
+  },
+  detailEmptyText: {
+    fontFamily: Fonts.body,
+    fontSize: 12,
+    color: Palette.textDim,
+  },
+  detailBugCard: {
+    backgroundColor: Palette.surfaceDim,
+  },
+  detailBugContent: {
+    padding: Space.md,
+    gap: Space.xs,
+  },
+  detailBugHead: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  detailBugUser: {
+    fontFamily: Fonts.display,
+    fontSize: 12,
+    fontWeight: '700',
+    color: Palette.text,
+  },
+  detailBugDate: {
+    fontFamily: Fonts.body,
+    fontSize: 11,
+    color: Palette.textDim,
+  },
+  detailBugDesc: {
+    fontFamily: Fonts.body,
+    fontSize: 12,
+    color: Palette.text,
+    lineHeight: 18,
+  },
+  detailEvidenceRow: {
+    marginTop: 2,
+  },
+  detailEvidenceChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: Radius.pill,
+    backgroundColor: `${Palette.primary}15`,
+    alignSelf: 'flex-start',
+  },
+  detailEvidenceText: {
+    fontFamily: Fonts.body,
+    fontSize: 10,
+    color: Palette.primaryBright,
+  },
+  detailTriageBar: {
+    marginTop: Space.xs,
+    paddingTop: Space.xs,
+    borderTopWidth: 1,
+    borderTopColor: Palette.border,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    gap: Space.xs,
+  },
+  detailTriageLabel: {
+    fontFamily: Fonts.body,
+    fontSize: 11,
+    color: Palette.textDim,
+    fontWeight: '600',
+  },
+  detailTesterRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Space.sm,
+    padding: Space.sm,
+    borderRadius: Radius.sm,
+    backgroundColor: Palette.surfaceDim,
+    borderWidth: 1,
+    borderColor: Palette.border,
+  },
 });

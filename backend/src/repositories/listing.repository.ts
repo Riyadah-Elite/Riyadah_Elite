@@ -22,6 +22,7 @@ const LISTING_INCLUDE = {
   amount: true,
   image: { select: { id: true, imageUrl: true } },
   attachment: { select: { id: true, imageUrl: true, fileUrl: true } },
+  _count: { select: { joinListings: true, bugReports: true } },
 } as const;
 
 const TOURNAMENT_INCLUDE = {
@@ -29,6 +30,7 @@ const TOURNAMENT_INCLUDE = {
   amount: true,
   image: { select: { id: true, imageUrl: true } },
   attachment: { select: { id: true, imageUrl: true, fileUrl: true } },
+  _count: { select: { joinListings: true } },
 } as const;
 
 @injectable()
@@ -218,34 +220,6 @@ export default class ListingRepository {
     return { items, total };
   }
 
-  /**
-   * Listings a USER may browse: only open (active) ones. Unlike the owner view
-   * this is not scoped to a single developer.
-   */
-  async listOpenGameListings(query: GameListingQuery) {
-    const where = {
-      status: "active" as const,
-      ...(query.platform ? { platform: query.platform } : {}),
-      ...(query.categoryId ? { categoryId: query.categoryId } : {}),
-      ...(query.search
-        ? { gameName: { contains: query.search, mode: "insensitive" as const } }
-        : {}),
-    };
-
-    const [items, total] = await this.db.$transaction([
-      this.db.gameListing.findMany({
-        where,
-        include: LISTING_INCLUDE,
-        orderBy: { createdAt: "desc" },
-        skip: query.skip,
-        take: query.take,
-      }),
-      this.db.gameListing.count({ where }),
-    ]);
-
-    return { items, total };
-  }
-
   async updateGameListing(id: string, data: UpdateGameListingInput) {
     return await this.db.gameListing.update({
       where: { id },
@@ -272,7 +246,7 @@ export default class ListingRepository {
   }
 
   async countGameListingDependents(id: string) {
-    const [tournaments, bugReports] = await this.db.$transaction([
+    const [tournaments, bugReports] = await Promise.all([
       this.db.tournamentListing.count({ where: { gameListingId: id } }),
       this.db.bugReport.count({ where: { gameListingId: id } }),
     ]);
@@ -395,37 +369,6 @@ export default class ListingRepository {
     return { items, total };
   }
 
-  /** Open tournaments a USER may browse. */
-  async listOpenTournaments(query: TournamentQuery) {
-    const where = {
-      status: "active" as const,
-      ...(query.gameListingId
-        ? { gameListingId: query.gameListingId }
-        : {}),
-      ...(query.search
-        ? {
-            tournamentName: {
-              contains: query.search,
-              mode: "insensitive" as const,
-            },
-          }
-        : {}),
-    };
-
-    const [items, total] = await this.db.$transaction([
-      this.db.tournamentListing.findMany({
-        where,
-        include: TOURNAMENT_INCLUDE,
-        orderBy: { createdAt: "desc" },
-        skip: query.skip,
-        take: query.take,
-      }),
-      this.db.tournamentListing.count({ where }),
-    ]);
-
-    return { items, total };
-  }
-
   async updateTournament(id: string, data: UpdateTournamentInput) {
     return await this.db.tournamentListing.update({
       where: { id },
@@ -471,11 +414,7 @@ export default class ListingRepository {
    * It is intentionally idempotent, so it can run on every relevant request.
    */
   async syncListingStatuses(now: Date) {
-<<<<<<< HEAD
-    const [openedGames, openedTournaments] = await this.db.$transaction([
-=======
     const [openedGames, openedTournaments] = await Promise.all([
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       this.db.gameListing.updateMany({
         where: {
           scheduling: { lte: now },
@@ -497,11 +436,7 @@ export default class ListingRepository {
       }),
     ]);
 
-<<<<<<< HEAD
-    const [closedGames, closedTournaments] = await this.db.$transaction([
-=======
     const [closedGames, closedTournaments] = await Promise.all([
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       this.db.gameListing.updateMany({
         where: { testingDeadline: { lte: now }, status: "active" },
         data: { status: "inactive" },

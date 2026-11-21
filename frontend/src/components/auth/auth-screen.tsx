@@ -86,7 +86,7 @@ export function AuthScreen({ mode }: AuthScreenProps) {
             />
 
             <LinearGradient
-              colors={['rgba(36,28,22,0.14)', 'rgba(198,79,40,0.05)', 'rgba(36,28,22,0.40)']}
+              colors={['rgba(11,36,71,0.14)', 'rgba(23,105,255,0.06)', 'rgba(11,36,71,0.40)']}
               end={{ x: 0.5, y: 1 }}
               locations={[0, 0.55, 1]}
               start={{ x: 0.5, y: 0.15 }}
@@ -135,14 +135,14 @@ const styles = StyleSheet.create({
     height: 460,
     top: -220,
     right: -140,
-    backgroundColor: 'rgba(198, 79, 40, 0.10)',
+    backgroundColor: 'rgba(23, 105, 255, 0.12)',
   },
   orbGold: {
     width: 340,
     height: 340,
     bottom: -160,
     left: -140,
-    backgroundColor: 'rgba(217, 154, 43, 0.08)',
+    backgroundColor: 'rgba(166, 220, 239, 0.20)',
   },
   safe: {
     flex: 1,
@@ -182,25 +182,16 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 470,
     padding: Space.xl,
-<<<<<<< HEAD
-    borderRadius: Radius.xl,
-    backgroundColor: Palette.elevated,
-=======
     borderRadius: Radius.clay,
     backgroundColor: Palette.elevated,
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.75)',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     ...clayShadow,
     overflow: 'hidden',
   },
   cardMobile: {
     padding: Space.lg,
-<<<<<<< HEAD
-    borderRadius: Radius.lg,
-=======
     borderRadius: Radius.clay,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   foot: {
     flexDirection: 'row',

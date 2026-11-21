@@ -55,7 +55,7 @@ export function AuthModalHost() {
             },
           ]}>
           <LinearGradient
-            colors={['rgba(255,255,255,0.5)', 'rgba(198,79,40,0.06)', 'rgba(255,255,255,0)']}
+            colors={['rgba(255,255,255,0.5)', 'rgba(23,105,255,0.08)', 'rgba(255,255,255,0)']}
             end={{ x: 1, y: 1 }}
             pointerEvents="none"
             start={{ x: 0, y: 0 }}
@@ -125,7 +125,7 @@ function BrandPane({ mode }: { mode: AuthMode }) {
       <View style={styles.brandInner}>
         <View style={styles.brandRow}>
           <Logo showWordmark={false} size="sm" />
-          <Text style={styles.brandName}>RIYADAH ELITE</Text>
+          <Text style={styles.brandName}>PLAY POINT</Text>
         </View>
 
         <StatusBadge color={Palette.secondary} dot label="Season 04 · Ladder open" />
@@ -183,15 +183,9 @@ const styles = StyleSheet.create({
   },
   panel: {
     flexDirection: 'row',
-<<<<<<< HEAD
-    borderRadius: Radius.xxl,
-    borderWidth: 1,
-    borderColor: Palette.glassBorder,
-=======
     borderRadius: Radius.clay,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.7)',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     backgroundColor: Palette.elevated,
     overflow: 'hidden',
   },

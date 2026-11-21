@@ -13,13 +13,10 @@ import ListingRepository from "../repositories/listing.repository.js";
  * which keeps scheduled openings and ended test phases correct without
  * requiring a background worker.
  */
-<<<<<<< HEAD
-=======
 let globalLastSyncTimestamp = 0;
 let globalInFlightSync: Promise<void> | null = null;
 const THROTTLE_MS = 60 * 1000;
 
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 @injectable()
 export default class ListingStatusService {
   @inject(TYPES.ListingRepository)
@@ -28,21 +25,6 @@ export default class ListingStatusService {
   @inject(TYPES.Logger)
   logger!: Logger;
 
-<<<<<<< HEAD
-  async syncStatuses(): Promise<void> {
-    const result = await this.listingRepository.syncListingStatuses(
-      new Date(),
-    );
-
-    if (
-      result.openedGames > 0 ||
-      result.openedTournaments > 0 ||
-      result.closedGames > 0 ||
-      result.closedTournaments > 0
-    ) {
-      this.logger.info("listing statuses synced", result);
-    }
-=======
   async syncStatuses(force = false): Promise<void> {
     const now = Date.now();
     if (!force && now - globalLastSyncTimestamp < THROTTLE_MS) {
@@ -79,7 +61,6 @@ export default class ListingStatusService {
     })();
 
     return globalInFlightSync;
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   }
   
 }

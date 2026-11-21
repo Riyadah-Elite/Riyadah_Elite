@@ -1,11 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-<<<<<<< HEAD
-import { Animated, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-import { Fonts, Palette, Radius, Space, Typography, webBackdrop } from '@/constants/design';
-=======
 import { Animated, Platform, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -18,7 +12,6 @@ import {
   glassToastShadow,
   webBackdrop,
 } from '@/constants/design';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 export type ToastVariant = 'success' | 'error' | 'info' | 'warning';
 
@@ -42,14 +35,6 @@ const ToastContext = createContext<ToastContextValue | null>(null);
 
 const VARIANT_META: Record<
   ToastVariant,
-<<<<<<< HEAD
-  { accent: string; icon: keyof typeof Ionicons.glyphMap; label: string }
-> = {
-  success: { accent: Palette.tertiary, icon: 'checkmark-circle', label: 'Confirmed' },
-  error: { accent: Palette.danger, icon: 'alert-circle', label: 'Action failed' },
-  info: { accent: Palette.primary, icon: 'radio', label: 'Transmission' },
-  warning: { accent: Palette.warning, icon: 'warning', label: 'Attention' },
-=======
   { accent: string; glow: string; icon: keyof typeof Ionicons.glyphMap; label: string }
 > = {
   success: {
@@ -76,7 +61,6 @@ const VARIANT_META: Record<
     icon: 'warning',
     label: 'Attention',
   },
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 };
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
@@ -139,11 +123,7 @@ function ToastHost({
         styles.host,
         isCompact
           ? { left: Space.md, right: Space.md, top: insets.top + Space.sm }
-<<<<<<< HEAD
-          : { right: Space.lg, top: insets.top + Space.lg, width: 380 },
-=======
           : { right: Space.lg, top: insets.top + Space.lg, width: 390 },
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       ]}>
       {toasts.map((toast) => (
         <ToastCard key={toast.id} toast={toast} onDismiss={onDismiss} />
@@ -152,8 +132,6 @@ function ToastHost({
   );
 }
 
-<<<<<<< HEAD
-=======
 /**
  * Strict Glassmorphic Toast Card.
  *
@@ -162,7 +140,6 @@ function ToastHost({
  * - Translucent rgba surface.
  * - 1px glowing semi-transparent border with variant accent glow.
  */
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: number) => void }) {
   const meta = VARIANT_META[toast.variant];
   const [animation] = useState(() => new Animated.Value(0));
@@ -180,8 +157,6 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
     return () => clearTimeout(timer);
   }, [animation, onDismiss, toast.id]);
 
-<<<<<<< HEAD
-=======
   const glassStyle = Platform.select({
     web: {
       backdropFilter: 'blur(16px) saturate(180%)',
@@ -197,18 +172,13 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
     },
   });
 
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   return (
     <Animated.View
       accessibilityLiveRegion="polite"
       accessibilityRole="alert"
       style={[
         styles.toast,
-<<<<<<< HEAD
-        webBackdrop,
-=======
         glassStyle,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         {
           borderLeftColor: meta.accent,
           opacity: animation,
@@ -222,10 +192,6 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
           ],
         },
       ]}>
-<<<<<<< HEAD
-      <View style={[styles.toastIcon, { backgroundColor: `${meta.accent}14` }]}>
-        <Ionicons name={meta.icon} size={16} color={meta.accent} />
-=======
       <View
         style={[
           styles.toastIcon,
@@ -236,7 +202,6 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
           },
         ]}>
         <Ionicons name={meta.icon} size={18} color={meta.accent} />
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       </View>
 
       <View style={styles.toastCopy}>
@@ -250,11 +215,7 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
         hitSlop={8}
         onPress={() => onDismiss(toast.id)}
         style={({ pressed }) => [styles.toastClose, pressed && { opacity: 0.6 }]}>
-<<<<<<< HEAD
-        <Ionicons name="close" size={16} color={Palette.textMuted} />
-=======
         <Ionicons name="close" size={16} color="rgba(255, 255, 255, 0.75)" />
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       </Pressable>
     </Animated.View>
   );
@@ -263,27 +224,13 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
 const styles = StyleSheet.create({
   host: {
     position: 'absolute',
-<<<<<<< HEAD
-    zIndex: 4000,
-=======
     zIndex: 9999,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     gap: Space.sm,
   },
   toast: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     gap: Space.sm,
-<<<<<<< HEAD
-    paddingVertical: 12,
-    paddingLeft: 12,
-    paddingRight: 8,
-    borderRadius: Radius.lg,
-    borderWidth: 1,
-    borderColor: Palette.glassBorder,
-    borderLeftWidth: 3,
-    backgroundColor: Palette.glassStrong,
-=======
     paddingVertical: 14,
     paddingLeft: 14,
     paddingRight: 10,
@@ -292,7 +239,6 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.28)',
     borderLeftWidth: 3.5,
     backgroundColor: 'rgba(22, 19, 16, 0.72)', // Frosted dark glass tint
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     overflow: 'hidden',
   },
   toastIcon: {
@@ -304,35 +250,19 @@ const styles = StyleSheet.create({
   },
   toastCopy: {
     flex: 1,
-<<<<<<< HEAD
-    gap: 2,
-=======
     gap: 3,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     paddingTop: 1,
   },
   toastLabel: {
     ...Typography.labelTight,
-<<<<<<< HEAD
-    color: Palette.textMuted,
-    fontSize: 9,
-=======
     fontSize: 10,
     fontWeight: '700',
     letterSpacing: 1.1,
     textTransform: 'uppercase',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   toastMessage: {
     fontFamily: Fonts.body,
     fontSize: 13,
-<<<<<<< HEAD
-    lineHeight: 19,
-    color: Palette.text,
-  },
-  toastClose: {
-    padding: 4,
-=======
     fontWeight: '700',
     lineHeight: 19,
     color: '#FFFFFF',
@@ -340,7 +270,6 @@ const styles = StyleSheet.create({
   },
   toastClose: {
     padding: 6,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     borderRadius: Radius.sm,
   },
 });

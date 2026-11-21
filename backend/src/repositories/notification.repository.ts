@@ -43,11 +43,7 @@ export default class NotificationRepository {
   async listForUser(userId: string, query: NotificationQuery) {
     const where = { userId };
 
-<<<<<<< HEAD
-    const [items, total, unreadCount] = await this.db.$transaction([
-=======
     const [items, total, unreadCount] = await Promise.all([
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       this.db.notification.findMany({
         where,
         orderBy: { createdAt: "desc" },

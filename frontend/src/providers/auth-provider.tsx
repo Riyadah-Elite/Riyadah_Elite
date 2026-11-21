@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { Platform } from 'react-native';
-
-import { ApiRequestError, toApiRequestError } from '@/lib/api';
-import { loginRequest, logoutRequest, profileRequest, registerRequest } from '@/lib/auth-api';
-import type { RegistrationPayload } from '@/lib/media';
-import { clearStoredToken, getStoredToken, setStoredToken } from '@/lib/token-store';
-import type { ApiUser } from '@/lib/types';
-=======
 import { Ionicons } from '@expo/vector-icons';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
@@ -27,7 +17,6 @@ import type { ApiUser } from '@/lib/types';
 import { useToast } from './toast-provider';
 import { Button } from '../components/ui/button';
 import { ClayModal } from '../components/ui/card';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 type AuthStatus = 'loading' | 'authenticated' | 'anonymous';
 
@@ -44,10 +33,6 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-<<<<<<< HEAD
-  const [user, setUser] = useState<ApiUser | null>(null);
-  const [status, setStatus] = useState<AuthStatus>('loading');
-=======
   const { showToast } = useToast();
 
   const [user, setUser] = useState<ApiUser | null>(null);
@@ -55,7 +40,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [showNotificationPrompt, setShowNotificationPrompt] = useState(false);
   const [pendingUserId, setPendingUserId] = useState<string | null>(null);
   const [updatingNotification, setUpdatingNotification] = useState(false);
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
   /** Single place that turns a profile response into session state. */
   const adoptSession = useCallback((nextUser: ApiUser) => {
@@ -82,10 +66,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return null;
       }
 
-<<<<<<< HEAD
-      // Axios errors are converted here rather than in every caller.
-=======
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       const normalised = toApiRequestError(error);
 
       if (normalised.status === 401 || normalised.status === 403) {
@@ -101,16 +81,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     async function bootstrap() {
       try {
-<<<<<<< HEAD
-        // Web may already hold an HttpOnly cookie, so it always probes.
-        const token = Platform.OS === 'web' ? null : await getStoredToken();
-
-        if (Platform.OS !== 'web' && !token) {
-=======
         const token = await getStoredToken();
 
         if (!token && Platform.OS !== 'web') {
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
           if (!cancelled) setStatus('anonymous');
           return;
         }
@@ -123,10 +96,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const normalised = toApiRequestError(error);
 
         if (Platform.OS !== 'web' && normalised.status === null) {
-<<<<<<< HEAD
-          // Network is down: keep the keychain token so the next launch retries.
-=======
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
           setStatus('anonymous');
           return;
         }
@@ -144,39 +113,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   }, [adoptSession]);
 
-<<<<<<< HEAD
-  const login = useCallback(async (email: string, password: string) => {
-    const response = await loginRequest(email, password);
-
-    // The login payload is the raw database row; profile is the canonical,
-    // flattened shape (avatarUrl, derived rank) every screen expects.
-    await setStoredToken(response.token);
-
-    try {
-      return adoptSession(await profileRequest());
-    } catch (error) {
-      await clearStoredToken();
-      setUser(null);
-      setStatus('anonymous');
-      throw toApiRequestError(error);
-    }
-  }, [adoptSession]);
-
-  const register = useCallback(async (payload: RegistrationPayload) => {
-    const response = await registerRequest(payload);
-
-    await setStoredToken(response.token);
-
-    try {
-      return adoptSession(await profileRequest());
-    } catch (error) {
-      await clearStoredToken();
-      setUser(null);
-      setStatus('anonymous');
-      throw toApiRequestError(error);
-    }
-  }, [adoptSession]);
-=======
   const login = useCallback(
     async (email: string, password: string) => {
       const response = await loginRequest(email, password);
@@ -226,24 +162,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     },
     [adoptSession],
   );
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
   const logout = useCallback(async () => {
     try {
       await logoutRequest();
     } catch {
-<<<<<<< HEAD
-      // Always end the local session, even if the server already forgot it.
-=======
       // Always end local session
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     } finally {
       await clearSession();
     }
   }, [clearSession]);
 
-<<<<<<< HEAD
-=======
   async function handleTurnOnNotifications() {
     if (!pendingUserId) return;
 
@@ -275,7 +204,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setPendingUserId(null);
   }
 
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   const value = useMemo<AuthContextValue>(
     () => ({
       user,
@@ -289,9 +217,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     [login, logout, refreshProfile, register, status, user],
   );
 
-<<<<<<< HEAD
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-=======
   return (
     <AuthContext.Provider value={value}>
       {children}
@@ -346,7 +271,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       </ClayModal>
     </AuthContext.Provider>
   );
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 }
 
 export function useAuth(): AuthContextValue {
@@ -358,8 +282,6 @@ export function useAuth(): AuthContextValue {
 
   return context;
 }
-<<<<<<< HEAD
-=======
 
 const styles = StyleSheet.create({
   promptRoot: {
@@ -409,4 +331,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a

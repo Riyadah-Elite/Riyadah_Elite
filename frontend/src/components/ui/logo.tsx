@@ -36,20 +36,20 @@ export function Logo({
             },
           ]}>
           <LinearGradient
-            colors={['#E47448', '#C64F28', '#9A3515']}
+            colors={['#4D8DFF', '#1769FF', '#0F53D1']}
             start={{ x: 0.1, y: 0 }}
             end={{ x: 0.95, y: 1 }}
             style={StyleSheet.absoluteFill}
           />
           <View style={styles.markInner} />
-          <Text style={[styles.markLetter, { fontSize: mark * 0.5 }]}>R</Text>
+          <Text style={[styles.markLetter, { fontSize: mark * 0.5 }]}>P</Text>
         </View>
       ) : null}
 
       {showWordmark ? (
         <View style={styles.wordmark}>
-          <Text style={[styles.brand, { fontSize: TITLE_SIZE[size] }]}>RIYADAH</Text>
-          <Text style={styles.elite}>ELITE</Text>
+          <Text style={[styles.brand, { fontSize: TITLE_SIZE[size] }]}>PLAY</Text>
+          <Text style={styles.elite}>POINT</Text>
         </View>
       ) : null}
     </View>
@@ -58,7 +58,7 @@ export function Logo({
   if (onPress) {
     return (
       <Pressable
-        accessibilityLabel="Riyadah Elite home"
+        accessibilityLabel="Play Point home"
         accessibilityRole="link"
         onPress={onPress}
         style={({ pressed }) => pressed && styles.pressed}>

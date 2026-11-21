@@ -76,10 +76,7 @@ export default class ListingService {
 
     const listing = await this.listingRepository.createGameListing({
       ...input,
-<<<<<<< HEAD
-=======
       amountId,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       status: this.resolveInitialStatus(input.scheduling, input.status),
       userId: ownerId,
     });
@@ -104,13 +101,9 @@ export default class ListingService {
     const { items, total } =
       role === USER_ROLE.DEVELOPER
         ? await this.listingRepository.listGameListings(requesterId, query)
-<<<<<<< HEAD
-        : await this.listingRepository.listOpenGameListings(query);
-=======
         : role === USER_ROLE.ADMIN
           ? await this.listingRepository.listGameListingsForAdmin(query)
           : await this.listingRepository.listOpenGameListings(query);
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
     return {
       items,
@@ -181,12 +174,9 @@ export default class ListingService {
     );
 
     const changes: UpdateGameListingInput = { ...input };
-<<<<<<< HEAD
-=======
     if (amountId) {
       changes.amountId = amountId;
     }
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
     const scheduling =
       input.scheduling !== undefined ? input.scheduling : existing.scheduling;
@@ -257,10 +247,7 @@ export default class ListingService {
 
     const tournament = await this.listingRepository.createTournament({
       ...input,
-<<<<<<< HEAD
-=======
       amountId,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       status: this.resolveInitialStatus(input.scheduling, input.status),
       userId: ownerId,
     });
@@ -358,12 +345,9 @@ export default class ListingService {
     );
 
     const changes: UpdateTournamentInput = { ...input };
-<<<<<<< HEAD
-=======
     if (amountId) {
       changes.amountId = amountId;
     }
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
     const scheduling =
       input.scheduling !== undefined ? input.scheduling : existing.scheduling;

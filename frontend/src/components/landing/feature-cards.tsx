@@ -9,10 +9,7 @@ import { useAuthModal } from '@/providers/auth-modal-provider';
 
 import { ClayCard } from '../ui/card';
 import { Chip } from '../ui/badge';
-<<<<<<< HEAD
-=======
 import { Tooltip } from '../ui/tooltip';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 import { SectionHeading } from './section-heading';
 
 interface Feature {
@@ -89,58 +86,6 @@ function FeatureCard({ feature, onPress }: { feature: Feature; onPress: () => vo
   const { isMobile } = useResponsive();
 
   return (
-<<<<<<< HEAD
-    <ClayCard
-      accessibilityLabel={`Open ${feature.title}`}
-      interactive
-      onPress={onPress}
-      padded={false}
-      style={styles.card}>
-      <View style={[styles.media, isMobile && styles.mediaMobile]}>
-        <Image
-          accessibilityLabel={`${feature.title} artwork`}
-          contentFit="cover"
-          source={feature.image}
-          style={StyleSheet.absoluteFill}
-          transition={220}
-        />
-
-        <View style={styles.mediaTop}>
-          <View style={styles.tag}>
-            <Ionicons name={feature.icon} size={11} color={Palette.onPrimary} />
-            <Text style={styles.tagText}>{feature.eyebrow}</Text>
-          </View>
-
-          <Text style={styles.index}>{feature.index}</Text>
-        </View>
-      </View>
-
-      <View style={styles.body}>
-        <View style={styles.titleRow}>
-          <Text style={[styles.title, isMobile && styles.titleMobile]}>{feature.title}</Text>
-
-          <View style={[styles.arrow, { borderColor: `${feature.accent}33` }]}>
-            <Ionicons name="arrow-forward" size={16} color={feature.accent} />
-          </View>
-        </View>
-
-        <Text style={styles.description}>{feature.description}</Text>
-
-        <View style={styles.footer}>
-          <View style={styles.tags}>
-            {feature.tags.map((tag) => (
-              <Chip key={tag} label={tag} />
-            ))}
-          </View>
-
-          <View style={styles.actionRow}>
-            <Text style={[styles.action, { color: feature.accent }]}>{feature.action}</Text>
-            <View style={[styles.actionRule, { backgroundColor: feature.accent }]} />
-          </View>
-        </View>
-      </View>
-    </ClayCard>
-=======
     <Tooltip content={`Enter the ${feature.title} arena`} position="top" style={{ flex: 1 }}>
       <ClayCard
         accessibilityLabel={`Open ${feature.title}`}
@@ -193,7 +138,6 @@ function FeatureCard({ feature, onPress }: { feature: Feature; onPress: () => vo
         </View>
       </ClayCard>
     </Tooltip>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   );
 }
 

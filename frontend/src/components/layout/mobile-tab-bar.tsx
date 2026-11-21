@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { router, usePathname } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -6,10 +7,20 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NAV_ITEMS } from '@/constants/navigation';
 import { Fonts, Layout, Palette, Space, webBackdrop } from '@/constants/design';
 import { useHover } from '@/hooks/use-hover';
+import { useAuth } from '@/providers/auth-provider';
 
 export function MobileTabBar() {
   const pathname = usePathname();
   const insets = useSafeAreaInsets();
+  const { user } = useAuth();
+
+  const isOrg = user?.role === 'ORG';
+  const visibleNavItems = useMemo(() => {
+    if (isOrg) {
+      return NAV_ITEMS.filter((item) => item.key === 'home' || item.key === 'tournaments');
+    }
+    return NAV_ITEMS;
+  }, [isOrg]);
 
   return (
     <View
@@ -19,7 +30,7 @@ export function MobileTabBar() {
         { paddingBottom: Math.max(insets.bottom, 8) },
       ]}>
       <View style={styles.row}>
-        {NAV_ITEMS.map((item) => (
+        {visibleNavItems.map((item) => (
           <TabItem
             key={item.key}
             active={pathname === item.href}

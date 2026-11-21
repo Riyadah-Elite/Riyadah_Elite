@@ -1,9 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-<<<<<<< HEAD
-import { ActivityIndicator, Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
-=======
 import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 import {
   Fonts,
@@ -11,27 +7,19 @@ import {
   Radius,
   Space,
   Typography,
-<<<<<<< HEAD
-  neoShadowPressed,
-=======
   neoButtonHoverShadow,
   neoButtonPressedShadow,
   neoButtonShadow,
   neoPrimaryHoverShadow,
   neoPrimaryPressedShadow,
   neoPrimaryShadow,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 } from '@/constants/design';
 import { useHover } from '@/hooks/use-hover';
 
 type Variant = 'lime' | 'violet' | 'ghost' | 'dark';
 type Size = 'sm' | 'md' | 'lg';
 
-<<<<<<< HEAD
-interface ButtonProps {
-=======
 export interface ButtonProps {
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   label: string;
   onPress?: () => void;
   variant?: Variant;
@@ -51,8 +39,6 @@ const SIZES: Record<Size, { paddingH: number; height: number; fontSize: number }
   lg: { paddingH: 24, height: 52, fontSize: 14 },
 };
 
-<<<<<<< HEAD
-=======
 /**
  * Strict Neumorphic Button.
  *
@@ -61,7 +47,6 @@ const SIZES: Record<Size, { paddingH: number; height: number; fontSize: number }
  * - Inset pressed shadow state when active/pressed.
  * - Tactile elevation across Web and Native.
  */
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 export function Button({
   label,
   onPress,
@@ -79,11 +64,7 @@ export function Button({
   const isDisabled = disabled || loading;
   const metrics = SIZES[size];
 
-<<<<<<< HEAD
-  const paint = getPaint(variant, hovered, isDisabled);
-=======
   const paint = getPaint(variant, isDisabled);
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
   return (
     <Pressable
@@ -98,17 +79,6 @@ export function Button({
         {
           minHeight: metrics.height,
           paddingHorizontal: metrics.paddingH,
-<<<<<<< HEAD
-          backgroundColor: paint.background,
-          borderColor: paint.border,
-        },
-        paint.shadow ? ({ boxShadow: paint.shadow } as ViewStyle) : null,
-        fullWidth && styles.fullWidth,
-        hovered && !isDisabled ? paint.hoverShadow : null,
-        pressed && !isDisabled
-          ? [styles.pressed, neoShadowPressed, { backgroundColor: paint.pressedBackground }]
-          : null,
-=======
           backgroundColor:
             pressed && !isDisabled
               ? paint.pressedBackground
@@ -126,7 +96,6 @@ export function Button({
             : hovered
               ? [styles.hovered, paint.hoverShadow]
               : paint.defaultShadow,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         isDisabled && styles.disabled,
         style,
       ]}>
@@ -151,17 +120,6 @@ export function Button({
   );
 }
 
-<<<<<<< HEAD
-function getPaint(variant: Variant, hovered: boolean, disabled: boolean) {
-  if (disabled) {
-    return {
-      background: Palette.surfaceDim,
-      border: Palette.border,
-      text: Palette.textFaint,
-      pressedBackground: Palette.surfaceDim,
-      shadow: undefined,
-      hoverShadow: undefined,
-=======
 function getPaint(variant: Variant, disabled: boolean) {
   if (disabled) {
     return {
@@ -173,56 +131,12 @@ function getPaint(variant: Variant, disabled: boolean) {
       defaultShadow: null,
       hoverShadow: null,
       pressedShadow: null,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     };
   }
 
   switch (variant) {
     case 'violet':
       return {
-<<<<<<< HEAD
-        background: hovered ? '#34281F' : Palette.text,
-        border: hovered ? '#34281F' : Palette.text,
-        text: Palette.onPrimary,
-        pressedBackground: '#1A1410',
-        shadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 8px 18px rgba(36, 28, 22, 0.18)',
-        hoverShadow: {
-          boxShadow:
-            'inset 0 1px 0 rgba(255,255,255,0.14), 0 10px 22px rgba(36,28,22,0.22)',
-        },
-      };
-    case 'ghost':
-      return {
-        background: hovered ? Palette.primaryWash : 'transparent',
-        border: hovered ? Palette.primary : Palette.borderStrong,
-        text: hovered ? Palette.primaryBright : Palette.text,
-        pressedBackground: Palette.primaryWashStrong,
-        shadow: undefined,
-        hoverShadow: undefined,
-      };
-    case 'dark':
-      return {
-        background: hovered ? Palette.elevated : Palette.surfaceDim,
-        border: hovered ? Palette.borderStrong : 'transparent',
-        text: Palette.text,
-        pressedBackground: Palette.raised,
-        shadow: 'inset 0 1px 0 rgba(255,255,255,0.55), 0 4px 10px rgba(108,74,48,0.08)',
-        hoverShadow: undefined,
-      };
-    case 'lime':
-    default:
-      return {
-        background: hovered ? Palette.primaryBright : Palette.primary,
-        border: hovered ? Palette.primaryBright : Palette.primary,
-        text: Palette.onPrimary,
-        pressedBackground: Palette.primaryDeep,
-        shadow:
-          'inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 10px 22px rgba(198, 79, 40, 0.22)',
-        hoverShadow: {
-          boxShadow:
-            'inset 0 1px 0 rgba(255,255,255,0.24), 0 12px 26px rgba(198,79,40,0.28)',
-        } as ViewStyle,
-=======
         background: Palette.text,
         hoverBackground: '#34281F',
         pressedBackground: '#1A1410',
@@ -279,12 +193,12 @@ function getPaint(variant: Variant, disabled: boolean) {
         defaultShadow: Platform.select<ViewStyle>({
           web: {
             boxShadow:
-              '2px 2px 6px rgba(136, 104, 74, 0.12), -2px -2px 6px rgba(255, 255, 255, 0.70)',
+              '2px 2px 6px rgba(11, 36, 71, 0.06), -2px -2px 6px rgba(255, 255, 255, 0.70)',
           },
           default: {
-            shadowColor: '#7A5A3E',
+            shadowColor: '#0B2447',
             shadowOffset: { width: 2, height: 2 },
-            shadowOpacity: 0.10,
+            shadowOpacity: 0.08,
             shadowRadius: 4,
             elevation: 2,
           },
@@ -292,12 +206,12 @@ function getPaint(variant: Variant, disabled: boolean) {
         hoverShadow: Platform.select<ViewStyle>({
           web: {
             boxShadow:
-              '3px 3px 9px rgba(136, 104, 74, 0.18), -3px -3px 8px rgba(255, 255, 255, 0.85)',
+              '3px 3px 9px rgba(11, 36, 71, 0.12), -3px -3px 8px rgba(255, 255, 255, 0.85)',
           },
           default: {
-            shadowColor: '#7A5A3E',
+            shadowColor: '#0B2447',
             shadowOffset: { width: 3, height: 3 },
-            shadowOpacity: 0.14,
+            shadowOpacity: 0.12,
             shadowRadius: 6,
             elevation: 4,
           },
@@ -305,7 +219,7 @@ function getPaint(variant: Variant, disabled: boolean) {
         pressedShadow: Platform.select<ViewStyle>({
           web: {
             boxShadow:
-              'inset 2px 2px 5px rgba(136, 104, 74, 0.20), inset -2px -2px 5px rgba(255, 255, 255, 0.75)',
+              'inset 2px 2px 5px rgba(11, 36, 71, 0.14), inset -2px -2px 5px rgba(255, 255, 255, 0.75)',
           },
           default: {
             elevation: 0,
@@ -336,7 +250,6 @@ function getPaint(variant: Variant, disabled: boolean) {
         defaultShadow: neoPrimaryShadow,
         hoverShadow: neoPrimaryHoverShadow,
         pressedShadow: neoPrimaryPressedShadow,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       };
   }
 }
@@ -360,16 +273,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: Space.sm,
   },
-<<<<<<< HEAD
-  pressed: {
-    transform: [{ scale: 0.985 }],
-=======
   hovered: {
     transform: [{ translateY: -1 }],
   },
   pressed: {
     transform: [{ scale: 0.985 }, { translateY: 1 }],
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   disabled: {
     opacity: 0.6,

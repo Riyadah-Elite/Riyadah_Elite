@@ -1,119 +1,4 @@
 import { Ionicons } from '@expo/vector-icons';
-<<<<<<< HEAD
-import { StyleSheet, Text, View } from 'react-native';
-
-import { AppShell } from '@/components/layout/app-shell';
-import { AuthGate } from '@/components/layout/auth-gate';
-import { SectionHeading } from '@/components/landing/section-heading';
-import { StatusBadge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { ClayCard, Panel } from '@/components/ui/card';
-import { Fonts, Palette, Radius, Space, Typography } from '@/constants/design';
-import { useResponsive } from '@/hooks/use-responsive';
-import { formatNumber, tierColor, titleCase } from '@/lib/format';
-import { useAuth } from '@/providers/auth-provider';
-import { useToast } from '@/providers/toast-provider';
-
-const PROTOCOL = [
-  {
-    icon: 'person-add-outline' as const,
-    title: 'Enlist',
-    copy: 'Your ladder position is read from verified testing points before seeding.',
-  },
-  {
-    icon: 'git-branch-outline' as const,
-    title: 'Seed',
-    copy: 'Brackets lock once the field is full. Every round follows the same rulebook.',
-  },
-  {
-    icon: 'trophy-outline' as const,
-    title: 'Compete',
-    copy: 'Series results are recorded against your operative profile and ladder standing.',
-  },
-];
-
-export default function TournamentsScreen() {
-  const { isMobile } = useResponsive();
-  const { user } = useAuth();
-  const { showToast } = useToast();
-
-  const rank = user?.testingRank ?? 'unranked';
-  const points = user?.testingPoints ?? 0;
-  const accent = tierColor(rank);
-  const progress = Math.min(100, Math.round((points / 1_500) * 100));
-
-  return (
-    <AppShell eyebrow="Bracket operations" title="Tournaments">
-      <AuthGate
-        copy="Tournament brackets are reserved for enlisted operatives. Sign in to see your seeding, queue status and match history."
-        icon="trophy"
-        title="Brackets are session-gated">
-        <View style={styles.page}>
-          <SectionHeading
-            action={<StatusBadge dot color={Palette.tertiary} label="Ladder online" />}
-            description="Governed brackets seeded from verified ladder position. One rulebook, from the opening round to the final."
-            eyebrow="Season 04"
-            title="Bracket operations"
-          />
-
-          <View style={[styles.row, isMobile && styles.rowMobile]}>
-            <ClayCard style={styles.standing} padded={false}>
-              <View style={styles.cardBody}>
-                <View style={styles.cardTop}>
-                  <Text style={styles.cardEyebrow}>Your standing</Text>
-                  <View style={[styles.tierChip, { borderColor: `${accent}55`, backgroundColor: `${accent}14` }]}>
-                    <Ionicons name="shield-half" size={12} color={accent} />
-                    <Text style={[styles.tierText, { color: accent }]}>{titleCase(rank)}</Text>
-                  </View>
-                </View>
-
-                <Text style={styles.points}>{formatNumber(points)}</Text>
-                <Text style={styles.pointsLabel}>TESTING POINTS</Text>
-
-                <View style={styles.track}>
-                  <View
-                    style={[
-                      styles.fill,
-                      { width: `${Math.max(progress, 2)}%`, backgroundColor: accent },
-                    ]}
-                  />
-                </View>
-
-                <View style={styles.progressMeta}>
-                  <Text style={styles.progressText}>{progress}% to the 1,500 cap</Text>
-                  <Text style={styles.progressText}>{titleCase(user?.tournamentStatus ?? 'not queued')}</Text>
-                </View>
-              </View>
-            </ClayCard>
-
-            <ClayCard glass style={styles.queue} padded={false}>
-              <View style={styles.cardBody}>
-                <View style={styles.cardTop}>
-                  <Text style={styles.cardEyebrow}>Queue status</Text>
-                  <StatusBadge color={Palette.warning} label="Standby" />
-                </View>
-
-                <View style={styles.queueIcon}>
-                  <Ionicons name="hourglass-outline" size={22} color={Palette.warning} />
-                </View>
-
-                <Text style={styles.queueTitle}>No bracket is open</Text>
-                <Text style={styles.queueCopy}>
-                  The next season window has not been announced. Your seeding is calculated
-                  automatically when a bracket opens.
-                </Text>
-
-                <Button
-                  fullWidth
-                  label="Check queue position"
-                  onPress={() =>
-                    showToast({
-                      title: 'Queue channel',
-                      message: 'Bracket announcements land in your transmissions feed.',
-                      variant: 'info',
-                    })
-                  }
-=======
 import { Image } from 'expo-image';
 import * as Linking from 'expo-linking';
 import { useCallback, useEffect, useState } from 'react';
@@ -151,6 +36,7 @@ import {
   createTournamentRequest,
   deleteTournamentRequest,
   getGamesForTournamentRequest,
+  getTournamentParticipantsRequest,
   getTournamentsRequest,
   joinTournamentRequest,
   updateTournamentRequest,
@@ -159,6 +45,7 @@ import type {
   CreateTournamentPayload,
   GameOption,
   TournamentItem,
+  TournamentParticipantItem,
 } from '@/lib/types';
 import { useAuth } from '@/providers/auth-provider';
 import { useAuthModal } from '@/providers/auth-modal-provider';
@@ -206,6 +93,11 @@ export default function TournamentsScreen() {
   // Delete confirmation modal state
   const [deletingItem, setDeletingItem] = useState<TournamentItem | null>(null);
   const [deleting, setDeleting] = useState(false);
+
+  // ORG / ADMIN: Roster / Participants Modal state
+  const [inspectingItem, setInspectingItem] = useState<TournamentItem | null>(null);
+  const [participants, setParticipants] = useState<TournamentParticipantItem[]>([]);
+  const [loadingParticipants, setLoadingParticipants] = useState(false);
 
   const role = user?.role ?? 'USER';
   const isOrg = role === 'ORG';
@@ -351,6 +243,19 @@ export default function TournamentsScreen() {
         message: getApiErrorMessage(err),
         variant: 'error',
       });
+    }
+  }
+
+  async function handleOpenParticipants(item: TournamentItem) {
+    setInspectingItem(item);
+    setLoadingParticipants(true);
+    try {
+      const data = await getTournamentParticipantsRequest(item.id);
+      setParticipants(data);
+    } catch {
+      setParticipants([]);
+    } finally {
+      setLoadingParticipants(false);
     }
   }
 
@@ -723,6 +628,23 @@ export default function TournamentsScreen() {
                   const isEnrolled = enrolledIds.has(item.id);
                   const isSolo = item.teamSize === 1;
 
+                  const isUpcoming = Boolean(item.scheduling && new Date(item.scheduling).getTime() > Date.now());
+                  const isCompleted = Boolean(item.registrationEndDate && new Date(item.registrationEndDate).getTime() < Date.now());
+                  const liveStatusLabel = item.status !== 'active'
+                    ? 'Inactive'
+                    : isUpcoming
+                      ? 'Upcoming'
+                      : isCompleted
+                        ? 'Completed'
+                        : 'Active';
+                  const liveStatusColor = item.status !== 'active'
+                    ? Palette.warning
+                    : isUpcoming
+                      ? Palette.primary
+                      : isCompleted
+                        ? Palette.textDim
+                        : Palette.tertiary;
+
                   return (
                     <ClayCard key={item.id} style={styles.itemCard} padded={false}>
                       <View style={styles.itemInner}>
@@ -736,12 +658,15 @@ export default function TournamentsScreen() {
 
                           <View style={styles.badgesRow}>
                             <StatusBadge
-                              color={item.status === 'active' ? Palette.tertiary : Palette.warning}
+                              color={liveStatusColor}
                               dot
-                              label={item.status === 'active' ? 'Active' : 'Inactive'}
+                              label={liveStatusLabel}
                             />
                             <StatusBadge color={Palette.primary} label={isSolo ? '1v1 Solo' : `${item.teamSize}v${item.teamSize} Squad`} />
-                            <StatusBadge color={Palette.secondary} label={`Cap: ${item.maxEntry}`} />
+                            <StatusBadge
+                              color={Palette.secondary}
+                              label={`Enrolled: ${item._count?.joinListings ?? 0} / ${item.maxEntry}`}
+                            />
                           </View>
                         </View>
 
@@ -773,6 +698,14 @@ export default function TournamentsScreen() {
                           {isOrg && (
                             <View style={styles.actionRow}>
                               <Button
+                                icon="people-outline"
+                                iconPosition="left"
+                                label={`Roster (${item._count?.joinListings ?? 0})`}
+                                onPress={() => void handleOpenParticipants(item)}
+                                size="sm"
+                                variant="lime"
+                              />
+                              <Button
                                 icon="pencil-outline"
                                 iconPosition="left"
                                 label="Edit"
@@ -794,6 +727,14 @@ export default function TournamentsScreen() {
                           {/* Role 2: ADMIN Controls */}
                           {isAdmin && (
                             <View style={styles.actionRow}>
+                              <Button
+                                icon="people-outline"
+                                iconPosition="left"
+                                label={`Roster (${item._count?.joinListings ?? 0})`}
+                                onPress={() => void handleOpenParticipants(item)}
+                                size="sm"
+                                variant="lime"
+                              />
                               <Button
                                 icon={item.status === 'active' ? 'close-circle-outline' : 'checkmark-circle-outline'}
                                 iconPosition="left"
@@ -860,60 +801,10 @@ export default function TournamentsScreen() {
                   disabled={page >= totalPages}
                   label="Next"
                   onPress={() => void loadTournaments(page + 1, search)}
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
                   size="sm"
                   variant="dark"
                 />
               </View>
-<<<<<<< HEAD
-            </ClayCard>
-          </View>
-
-          <Panel padded={false}>
-            <View style={styles.panelHeader}>
-              <View>
-                <Text style={styles.panelTitle}>Open brackets</Text>
-                <Text style={styles.panelSubtitle}>Live and upcoming tournament rooms</Text>
-              </View>
-              <Text style={styles.panelCount}>0 ACTIVE</Text>
-            </View>
-
-            <View style={styles.empty}>
-              <View style={styles.emptyIcon}>
-                <Ionicons name="git-branch-outline" size={22} color={Palette.textDim} />
-              </View>
-              <Text style={styles.emptyTitle}>The bracket feed is clear</Text>
-              <Text style={styles.emptyCopy}>
-                When a tournament opens, its room appears here with seeding, schedule and prizing.
-                Nothing is simulated.
-              </Text>
-            </View>
-          </Panel>
-
-          <ClayCard glass padded={false}>
-            <View style={styles.protocol}>
-              <View style={styles.protocolHead}>
-                <Text style={styles.cardEyebrow}>Match protocol</Text>
-                <Text style={styles.protocolMeta}>3 STAGES</Text>
-              </View>
-
-              <View style={[styles.protocolGrid, isMobile && styles.protocolGridMobile]}>
-                {PROTOCOL.map((step, index) => (
-                  <View key={step.title} style={styles.protocolStep}>
-                    <View style={styles.protocolIcon}>
-                      <Ionicons name={step.icon} size={16} color={Palette.primary} />
-                    </View>
-                    <Text style={styles.protocolIndex}>STAGE {String(index + 1).padStart(2, '0')}</Text>
-                    <Text style={styles.protocolTitle}>{step.title}</Text>
-                    <Text style={styles.protocolCopy}>{step.copy}</Text>
-                  </View>
-                ))}
-              </View>
-            </View>
-          </ClayCard>
-        </View>
-      </AuthGate>
-=======
             )}
           </Panel>
         </View>
@@ -1112,207 +1003,80 @@ export default function TournamentsScreen() {
           </View>
         </View>
       </ClayModal>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
+
+      {/* CLAYMORPHIC MODAL: Enrolled Tournament Roster / Participants (ORG & ADMIN) */}
+      <ClayModal
+        eyebrow="Bracket Roster"
+        maxWidth={640}
+        onClose={() => setInspectingItem(null)}
+        title={`Roster — ${inspectingItem?.tournamentName ?? ''}`}
+        visible={Boolean(inspectingItem)}>
+        <View style={{ gap: Space.md }}>
+          <View style={styles.rosterStatsRow}>
+            <View style={styles.rosterStatBox}>
+              <Text style={styles.rosterStatValue}>{participants.length}</Text>
+              <Text style={styles.rosterStatLabel}>Registered Players</Text>
+            </View>
+            <View style={styles.rosterStatBox}>
+              <Text style={styles.rosterStatValue}>{inspectingItem?.maxEntry ?? 16}</Text>
+              <Text style={styles.rosterStatLabel}>Max Bracket Capacity</Text>
+            </View>
+          </View>
+
+          {loadingParticipants ? (
+            <View style={{ padding: Space.xl, alignItems: 'center', gap: Space.sm }}>
+              <ActivityIndicator color={Palette.primary} size="large" />
+              <Text style={{ fontFamily: Fonts.body, fontSize: 12, color: Palette.textDim }}>
+                Syncing roster registrations...
+              </Text>
+            </View>
+          ) : participants.length === 0 ? (
+            <View style={{ padding: Space.xl, alignItems: 'center', gap: Space.sm }}>
+              <Ionicons name="people-outline" size={32} color={Palette.textDim} />
+              <Text style={{ fontFamily: Fonts.body, fontSize: 13, color: Palette.textDim }}>
+                No operatives have registered for this tournament bracket yet.
+              </Text>
+            </View>
+          ) : (
+            <ScrollView style={{ maxHeight: 340 }} showsVerticalScrollIndicator={false}>
+              <View style={{ gap: Space.xs, paddingRight: 4 }}>
+                {participants.map((p) => (
+                  <View key={p.joinId || p.id} style={styles.rosterItem}>
+                    <View style={styles.rosterAvatar}>
+                      <Ionicons name="person" size={14} color={Palette.primary} />
+                    </View>
+                    <View style={{ flex: 1, gap: 2 }}>
+                      <Text style={styles.rosterUsername}>@{p.username}</Text>
+                      <Text style={styles.rosterDate}>
+                        Registered: {new Date(p.joinedAt).toLocaleDateString()}
+                      </Text>
+                    </View>
+                    <StatusBadge
+                      color={Palette.primary}
+                      label={`${p.testingPoints ?? 0} PTS`}
+                    />
+                  </View>
+                ))}
+              </View>
+            </ScrollView>
+          )}
+
+          <View style={{ alignItems: 'flex-end', marginTop: Space.sm }}>
+            <Button
+              label="Close"
+              onPress={() => setInspectingItem(null)}
+              size="md"
+              variant="dark"
+            />
+          </View>
+        </View>
+      </ClayModal>
     </AppShell>
   );
 }
 
 const styles = StyleSheet.create({
   page: {
-<<<<<<< HEAD
-    gap: Space.xl,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    gap: Space.md,
-  },
-  rowMobile: {
-    flexDirection: 'column',
-  },
-  standing: {
-    flex: 1.1,
-  },
-  queue: {
-    flex: 1,
-  },
-  cardBody: {
-    padding: Space.lg,
-    gap: 8,
-    flex: 1,
-  },
-  cardTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: Space.sm,
-    marginBottom: 4,
-  },
-  cardEyebrow: {
-    ...Typography.labelTight,
-    fontSize: 9,
-    color: Palette.textMuted,
-    letterSpacing: 1.3,
-  },
-  tierChip: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: Radius.sm,
-    borderWidth: 1,
-  },
-  tierText: {
-    ...Typography.labelTight,
-    fontSize: 8,
-    letterSpacing: 0.8,
-  },
-  points: {
-    fontFamily: Fonts.display,
-    fontSize: 42,
-    lineHeight: 46,
-    fontWeight: '800',
-    letterSpacing: -1.6,
-    color: Palette.text,
-  },
-  pointsLabel: {
-    ...Typography.labelTight,
-    fontSize: 8,
-    color: Palette.textFaint,
-    letterSpacing: 1.4,
-    marginBottom: 6,
-  },
-  track: {
-    height: 4,
-    borderRadius: Radius.pill,
-    backgroundColor: Palette.surfaceDim,
-    overflow: 'hidden',
-  },
-  fill: {
-    height: 4,
-    borderRadius: Radius.pill,
-  },
-  progressMeta: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: Space.sm,
-  },
-  progressText: {
-    fontFamily: Fonts.body,
-    fontSize: 9,
-    color: Palette.textFaint,
-    textTransform: 'capitalize',
-  },
-  queueIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: Radius.pill,
-    backgroundColor: 'rgba(185, 119, 14, 0.10)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 2,
-  },
-  queueTitle: {
-    fontFamily: Fonts.display,
-    fontSize: 18,
-    fontWeight: '700',
-    letterSpacing: -0.4,
-    color: Palette.text,
-  },
-  queueCopy: {
-    ...Typography.bodySm,
-    color: Palette.textDim,
-    lineHeight: 19,
-    flex: 1,
-  },
-  panelHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: Space.md,
-    padding: Space.md,
-    borderBottomWidth: 1,
-    borderBottomColor: Palette.border,
-    backgroundColor: Palette.surfaceDim,
-  },
-  panelTitle: {
-    fontFamily: Fonts.display,
-    fontSize: 14,
-    fontWeight: '600',
-    color: Palette.text,
-  },
-  panelSubtitle: {
-    fontFamily: Fonts.body,
-    fontSize: 10,
-    color: Palette.textFaint,
-    marginTop: 1,
-  },
-  panelCount: {
-    ...Typography.labelTight,
-    fontSize: 8,
-    color: Palette.textFaint,
-    letterSpacing: 1.2,
-  },
-  empty: {
-    alignItems: 'center',
-    gap: 8,
-    paddingVertical: Space.xl,
-    paddingHorizontal: Space.lg,
-  },
-  emptyIcon: {
-    width: 46,
-    height: 46,
-    borderRadius: Radius.pill,
-    backgroundColor: Palette.surfaceDim,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 2,
-  },
-  emptyTitle: {
-    fontFamily: Fonts.display,
-    fontSize: 14,
-    fontWeight: '600',
-    color: Palette.textMuted,
-  },
-  emptyCopy: {
-    ...Typography.bodySm,
-    color: Palette.textFaint,
-    textAlign: 'center',
-    maxWidth: 420,
-  },
-  protocol: {
-    padding: Space.lg,
-    gap: Space.md,
-  },
-  protocolHead: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  protocolMeta: {
-    ...Typography.labelTight,
-    fontSize: 8,
-    color: Palette.textFaint,
-    letterSpacing: 1.1,
-  },
-  protocolGrid: {
-    flexDirection: 'row',
-    gap: Space.md,
-  },
-  protocolGridMobile: {
-    flexDirection: 'column',
-    gap: Space.lg,
-  },
-  protocolStep: {
-    flex: 1,
-    gap: 5,
-  },
-  protocolIcon: {
-    width: 34,
-    height: 34,
-=======
     gap: Space.lg,
   },
   formCard: {
@@ -1331,31 +1095,10 @@ const styles = StyleSheet.create({
   formHeaderIcon: {
     width: 36,
     height: 36,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     borderRadius: Radius.pill,
     backgroundColor: Palette.primaryWash,
     alignItems: 'center',
     justifyContent: 'center',
-<<<<<<< HEAD
-    marginBottom: 4,
-  },
-  protocolIndex: {
-    ...Typography.labelTight,
-    fontSize: 7,
-    color: Palette.textFaint,
-    letterSpacing: 1.2,
-  },
-  protocolTitle: {
-    fontFamily: Fonts.display,
-    fontSize: 14,
-    fontWeight: '600',
-    color: Palette.text,
-  },
-  protocolCopy: {
-    ...Typography.bodySm,
-    color: Palette.textDim,
-    lineHeight: 18,
-=======
   },
   formTitle: {
     fontFamily: Fonts.display,
@@ -1659,6 +1402,59 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.body,
     fontSize: 10,
     color: Palette.textDim,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
+  },
+  rosterStatsRow: {
+    flexDirection: 'row',
+    gap: Space.sm,
+  },
+  rosterStatBox: {
+    flex: 1,
+    padding: Space.md,
+    borderRadius: Radius.md,
+    backgroundColor: Palette.surfaceDim,
+    borderWidth: 1,
+    borderColor: Palette.border,
+    alignItems: 'center',
+    gap: 4,
+  },
+  rosterStatValue: {
+    fontFamily: Fonts.display,
+    fontSize: 22,
+    fontWeight: '700',
+    color: Palette.text,
+  },
+  rosterStatLabel: {
+    fontFamily: Fonts.body,
+    fontSize: 11,
+    color: Palette.textDim,
+  },
+  rosterItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Space.sm,
+    padding: Space.sm,
+    borderRadius: Radius.sm,
+    backgroundColor: Palette.surfaceDim,
+    borderWidth: 1,
+    borderColor: Palette.border,
+  },
+  rosterAvatar: {
+    width: 28,
+    height: 28,
+    borderRadius: Radius.pill,
+    backgroundColor: `${Palette.primary}15`,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  rosterUsername: {
+    fontFamily: Fonts.display,
+    fontSize: 12,
+    fontWeight: '700',
+    color: Palette.text,
+  },
+  rosterDate: {
+    fontFamily: Fonts.body,
+    fontSize: 10,
+    color: Palette.textDim,
   },
 });

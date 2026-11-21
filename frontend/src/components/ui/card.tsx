@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { LinearGradient } from 'expo-linear-gradient';
-import { Pressable, StyleSheet, View, type ViewStyle } from 'react-native';
-
-import {
-  Palette,
-  Radius,
-  Space,
-=======
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
@@ -28,16 +19,12 @@ import {
   Space,
   Typography,
   clayModalShadow,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   clayShadow,
   neoShadow,
   webBackdrop,
 } from '@/constants/design';
 import { useHover } from '@/hooks/use-hover';
-<<<<<<< HEAD
-=======
 import { IconButton } from './icon-button';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 interface ClayCardProps {
   children: React.ReactNode;
@@ -52,13 +39,8 @@ interface ClayCardProps {
 /**
  * The primary claymorphic surface.
  *
-<<<<<<< HEAD
- * Native cannot draw inset shadows, so the top highlight is a real 1px
- * gradient strip; on web the full inset/ambient plume is painted with CSS.
-=======
  * Strict Claymorphism: Matte inflated surface, dual inner shadows
  * (top-left highlight + bottom-right shade), and soft ambient outer elevation.
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
  */
 export function ClayCard({
   children,
@@ -73,13 +55,6 @@ export function ClayCard({
 
   const content = (
     <>
-<<<<<<< HEAD
-      <LinearGradient
-        colors={['rgba(255,255,255,0.55)', 'rgba(198,79,40,0.05)', 'rgba(255,255,255,0)']}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={styles.topEdge}
-=======
       {/* Top-left light highlight for mobile + enhanced depth */}
       <LinearGradient
         colors={['rgba(255,255,255,0.85)', 'rgba(255,255,255,0.25)', 'rgba(255,255,255,0)']}
@@ -91,21 +66,16 @@ export function ClayCard({
 
       {/* Bottom-right subtle inner shade for mobile tactile inflation */}
       <LinearGradient
-        colors={['rgba(136,104,74,0)', 'rgba(136,104,74,0.08)', 'rgba(136,104,74,0.14)']}
+        colors={['rgba(11,36,71,0)', 'rgba(23,105,255,0.04)', 'rgba(15,83,209,0.08)']}
         start={{ x: 0.2, y: 0.2 }}
         end={{ x: 1, y: 1 }}
         style={styles.bottomShade}
         pointerEvents="none"
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
       />
 
       {glass ? (
         <LinearGradient
-<<<<<<< HEAD
-          colors={['rgba(255,255,255,0.35)', 'rgba(255,255,255,0)', 'rgba(198,79,40,0.04)']}
-=======
-          colors={['rgba(255,255,255,0.40)', 'rgba(255,255,255,0.05)', 'rgba(198,79,40,0.04)']}
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
+          colors={['rgba(255,255,255,0.60)', 'rgba(255,255,255,0.10)', 'rgba(23,105,255,0.05)']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={StyleSheet.absoluteFill}
@@ -141,8 +111,6 @@ export function ClayCard({
   return <View style={[styles.card, glass && styles.glassCard, clayShadow, style]}>{content}</View>;
 }
 
-<<<<<<< HEAD
-=======
 export interface ClayModalProps {
   visible: boolean;
   onClose: () => void;
@@ -217,7 +185,7 @@ export function ClayModal({
 
           {/* Bottom-right inner deep shade gradient */}
           <LinearGradient
-            colors={['rgba(136,104,74,0)', 'rgba(136,104,74,0.08)', 'rgba(136,104,74,0.18)']}
+            colors={['rgba(11,36,71,0)', 'rgba(15,83,209,0.06)', 'rgba(11,36,71,0.14)']}
             start={{ x: 0.4, y: 0.4 }}
             end={{ x: 1, y: 1 }}
             style={styles.modalBottomShade}
@@ -258,7 +226,6 @@ export function ClayModal({
   );
 }
 
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 /**
  * Lighter surface for dense data rows and tables. The inset rim reads as part
  * of the panel rather than a floating card.
@@ -288,15 +255,9 @@ const panelShadow = neoShadow;
 const styles = StyleSheet.create({
   card: {
     backgroundColor: Palette.card,
-<<<<<<< HEAD
-    borderRadius: Radius.xl,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.5)',
-=======
     borderRadius: Radius.clay, // 28px strict Claymorphism
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.65)',
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     overflow: 'hidden',
   },
   glassCard: {
@@ -310,18 +271,11 @@ const styles = StyleSheet.create({
   pressed: {
     transform: [{ scale: 0.995 }],
   },
-<<<<<<< HEAD
-  topEdge: {
-=======
   topHighlight: {
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-<<<<<<< HEAD
-    height: 1,
-=======
     height: 18,
     borderTopLeftRadius: Radius.clay,
     borderTopRightRadius: Radius.clay,
@@ -336,7 +290,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: Radius.clay,
     borderBottomRightRadius: Radius.clay,
     zIndex: 2,
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   },
   padded: {
     padding: Space.lg,
@@ -355,8 +308,6 @@ const styles = StyleSheet.create({
     right: 0,
     height: 1,
   },
-<<<<<<< HEAD
-=======
   // Modal styles
   modalRoot: {
     flex: 1,
@@ -430,5 +381,4 @@ const styles = StyleSheet.create({
     paddingBottom: Space.lg,
     paddingTop: Space.xs,
   },
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 });

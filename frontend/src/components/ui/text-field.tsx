@@ -25,11 +25,8 @@ interface TextFieldProps
     | 'onSubmitEditing'
     | 'inputMode'
     | 'autoCorrect'
-<<<<<<< HEAD
-=======
     | 'multiline'
     | 'numberOfLines'
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
   > {
   label: string;
   value: string;
@@ -62,10 +59,10 @@ export function TextField({
     Platform.OS === 'web'
       ? ({
           boxShadow: error
-            ? 'inset 2px 2px 5px rgba(136,104,74,0.16), inset -2px -2px 5px rgba(255,255,255,0.85), 0 0 0 3px rgba(178,58,58,0.12)'
+            ? 'inset 2px 2px 5px rgba(11,36,71,0.08), inset -2px -2px 5px rgba(255,255,255,0.90), 0 0 0 3px rgba(220,38,38,0.14)'
             : focused
-              ? 'inset 2px 2px 5px rgba(136,104,74,0.16), inset -2px -2px 5px rgba(255,255,255,0.85), 0 0 0 3px rgba(198,79,40,0.12)'
-              : 'inset 2px 2px 5px rgba(136,104,74,0.18), inset -2px -2px 5px rgba(255,255,255,0.85)',
+              ? 'inset 2px 2px 5px rgba(11,36,71,0.08), inset -2px -2px 5px rgba(255,255,255,0.90), 0 0 0 3px rgba(23,105,255,0.16)'
+              : 'inset 2px 2px 5px rgba(11,36,71,0.08), inset -2px -2px 5px rgba(255,255,255,0.90)',
         } as ViewStyle)
       : {};
 

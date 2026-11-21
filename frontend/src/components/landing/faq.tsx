@@ -14,9 +14,9 @@ import { SectionHeading } from './section-heading';
 
 const FAQ_ITEMS = [
   {
-    question: 'What is Riyadah Elite?',
+    question: 'What is Play Point?',
     answer:
-      'A competitive arena built around two disciplines: governed tournament brackets and telemetry-driven game testing. Both feed the same rank ladder, so every verified result moves your standing.',
+      'Play Point is the unified gaming, game-testing, and esports tournament platform. Discover games, test builds, report bugs, and compete in tournaments under a single rank ladder.',
   },
   {
     question: 'How does the testing ladder work?',

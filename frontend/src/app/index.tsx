@@ -12,7 +12,7 @@ export default function LandingScreen() {
   const { isMobile } = useResponsive();
 
   return (
-    <AppShell eyebrow="Riyadah Elite" title="Home">
+    <AppShell eyebrow="Play Point" title="Home">
       <View style={styles.page}>
         <Hero />
 

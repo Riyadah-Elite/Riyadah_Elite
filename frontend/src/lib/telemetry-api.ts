@@ -9,6 +9,7 @@ import type {
   CreateGameListingPayload,
   GameListingItem,
   GameListingPage,
+  TesterEnrollmentItem,
 } from './types';
 
 export async function fetchCategoriesRequest(): Promise<CategoryItem[]> {
@@ -31,6 +32,13 @@ export async function fetchTrackedUsersRequest(params?: {
 }): Promise<any> {
   const { data } = await api.get<ApiEnvelope<any>>('/api/v1/org/users', { params });
   return data.data;
+}
+
+export async function fetchGameTestersRequest(listingId: string): Promise<TesterEnrollmentItem[]> {
+  const { data } = await api.get<ApiEnvelope<{ testers: TesterEnrollmentItem[] }>>(
+    `/api/v1/joinlisting/game/${listingId}/users`,
+  );
+  return data.data?.testers ?? [];
 }
 
 export async function fetchGameListingsRequest(params?: {

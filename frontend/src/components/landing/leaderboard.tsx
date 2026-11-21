@@ -16,10 +16,7 @@ import { StatusBadge } from '../ui/badge';
 import { Avatar } from '../ui/avatar';
 import { Button } from '../ui/button';
 import { Panel } from '../ui/card';
-<<<<<<< HEAD
-=======
 import { Tooltip } from '../ui/tooltip';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 import { SectionHeading } from './section-heading';
 
 const DESKTOP_LIMIT = 8;
@@ -69,15 +66,6 @@ export function Leaderboard() {
         action={
           <>
             <StatusBadge dot label="Live ladder" />
-<<<<<<< HEAD
-            <Button
-              icon="arrow-forward"
-              label="Full ladder"
-              onPress={() => requireAuth('/tournaments')}
-              size="sm"
-              variant="ghost"
-            />
-=======
             <Tooltip content="Explore full tournament roster and competitive brackets" position="bottom">
               <Button
                 icon="arrow-forward"
@@ -87,7 +75,6 @@ export function Leaderboard() {
                 variant="ghost"
               />
             </Tooltip>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
           </>
         }
         description="The public scoreboard is generated from testing points. Fifteen tiers, a 1,500-point ceiling and no hidden placements."
@@ -118,16 +105,6 @@ export function Leaderboard() {
             </View>
             <Text style={styles.stateTitle}>Ladder offline</Text>
             <Text style={styles.stateCopy}>{error}</Text>
-<<<<<<< HEAD
-            <Button
-              icon="refresh"
-              iconPosition="left"
-              label="Retry"
-              onPress={retry}
-              size="sm"
-              variant="dark"
-            />
-=======
             <Tooltip content="Reconnect to telemetry ladder server" position="top">
               <Button
                 icon="refresh"
@@ -138,7 +115,6 @@ export function Leaderboard() {
                 variant="dark"
               />
             </Tooltip>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
           </View>
         ) : items.length === 0 ? (
           <View style={styles.state}>
@@ -149,13 +125,6 @@ export function Leaderboard() {
             <Text style={styles.stateCopy}>
               The ladder is waiting for its first ranked player. Claim a tier and take the top slot.
             </Text>
-<<<<<<< HEAD
-            <Button
-              label="Claim your rank"
-              onPress={() => requireAuth('/game-testing')}
-              size="sm"
-            />
-=======
             <Tooltip content="Enroll in active game tests to earn first placement" position="top">
               <Button
                 label="Claim your rank"
@@ -163,7 +132,6 @@ export function Leaderboard() {
                 size="sm"
               />
             </Tooltip>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
           </View>
         ) : (
           items.map((entry) => (
@@ -180,15 +148,9 @@ export function Leaderboard() {
         <View style={styles.tableFoot}>
           <View style={styles.footNote}>
             <Ionicons name="shield-checkmark-outline" size={12} color={Palette.tertiary} />
-<<<<<<< HEAD
-            <Text style={styles.footText}>Rankings derive from verified testing telemetry</Text>
-          </View>
-          <Text style={styles.footMeta}>TOP {isMobile ? MOBILE_LIMIT : DESKTOP_LIMIT} · SEASON 04</Text>
-=======
             <Text style={styles.footText}>Live telemetry synced from verified bug reports & testing ladder</Text>
           </View>
           <Text style={styles.footMeta}>TOP 8 · SEASON 04</Text>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
         </View>
       </Panel>
     </View>

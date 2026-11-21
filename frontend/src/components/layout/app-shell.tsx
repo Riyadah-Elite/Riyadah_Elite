@@ -120,21 +120,21 @@ const styles = StyleSheet.create({
     height: 420,
     top: -180,
     right: -80,
-    backgroundColor: 'rgba(198, 79, 40, 0.10)',
+    backgroundColor: 'rgba(23, 105, 255, 0.12)',
   },
   orbGold: {
     width: 320,
     height: 320,
     top: 520,
     left: -140,
-    backgroundColor: 'rgba(217, 154, 43, 0.09)',
+    backgroundColor: 'rgba(166, 220, 239, 0.22)',
   },
   orbMint: {
     width: 380,
     height: 380,
     bottom: 120,
     right: -160,
-    backgroundColor: 'rgba(46, 125, 98, 0.06)',
+    backgroundColor: 'rgba(23, 105, 255, 0.06)',
   },
   gridLine: {
     position: 'absolute',
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: '50%',
     width: 1,
-    backgroundColor: 'rgba(120, 88, 60, 0.05)',
+    backgroundColor: 'rgba(23, 105, 255, 0.04)',
   },
 });
 
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
 export function SectionDivider() {
   return (
     <LinearGradient
-      colors={['rgba(225, 205, 185, 0)', 'rgba(201, 176, 154, 0.7)', 'rgba(225, 205, 185, 0)']}
+      colors={['rgba(166, 220, 239, 0)', 'rgba(23, 105, 255, 0.35)', 'rgba(166, 220, 239, 0)']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
       style={dividerStyles.rule}

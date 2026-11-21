@@ -53,8 +53,6 @@ export async function markNotificationRead(notificationId: string): Promise<void
 export async function deleteNotificationRequest(notificationId: string): Promise<void> {
   await api.delete(`/api/v1/notification/${notificationId}`);
 }
-<<<<<<< HEAD
-=======
 
 export async function updateNotificationPreferenceRequest(
   userId: string,
@@ -109,4 +107,3 @@ export async function restoreUserRequest(userId: string): Promise<ApiUser> {
   const response = await api.patch<ApiEnvelope<ApiUser>>(`/api/v1/user/restore/${userId}`);
   return response.data.data;
 }
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a

@@ -20,10 +20,7 @@ import { useAuthModal } from '@/providers/auth-modal-provider';
 
 import { Button } from '../ui/button';
 import { StatusBadge } from '../ui/badge';
-<<<<<<< HEAD
-=======
 import { Tooltip } from '../ui/tooltip';
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
 
 const HERO_STATS = [
   { value: '15', label: 'Rank tiers' },
@@ -66,7 +63,7 @@ export function Hero() {
 
       {isMobile ? (
         <LinearGradient
-          colors={['rgba(248,239,228,0)', 'rgba(248,239,228,0.55)', Palette.card]}
+          colors={['rgba(255,255,255,0)', 'rgba(240,248,252,0.65)', Palette.card]}
           end={{ x: 0.5, y: 1 }}
           start={{ x: 0.5, y: 0.2 }}
           style={styles.mobileMediaFade}
@@ -75,9 +72,9 @@ export function Hero() {
         <>
           <LinearGradient
             colors={[
-              'rgba(248,239,228,0.985)',
-              'rgba(248,239,228,0.90)',
-              'rgba(248,239,228,0.08)',
+              'rgba(255,255,255,0.985)',
+              'rgba(240,248,252,0.92)',
+              'rgba(240,248,252,0.12)',
             ]}
             end={{ x: 1, y: 0.5 }}
             locations={[0, 0.42, 0.74]}
@@ -85,7 +82,7 @@ export function Hero() {
             style={StyleSheet.absoluteFill}
           />
           <LinearGradient
-            colors={['rgba(248,239,228,0)', 'rgba(248,239,228,0.06)', 'rgba(248,239,228,0.55)']}
+            colors={['rgba(255,255,255,0)', 'rgba(240,248,252,0.10)', 'rgba(228,243,250,0.65)']}
             end={{ x: 0.5, y: 1 }}
             locations={[0, 0.6, 1]}
             start={{ x: 0.5, y: 0.1 }}
@@ -140,39 +137,6 @@ export function Hero() {
           <View style={[styles.ctaRow, isMobile && styles.ctaRowMobile]}>
             {isAuthenticated ? (
               <>
-<<<<<<< HEAD
-                <Button
-                  fullWidth={isMobile}
-                  icon="arrow-forward"
-                  label="Enter the ladder"
-                  onPress={() => router.push('/tournaments')}
-                  size="lg"
-                />
-                <Button
-                  fullWidth={isMobile}
-                  label="Testing programs"
-                  onPress={() => requireAuth('/game-testing')}
-                  size="lg"
-                  variant="ghost"
-                />
-              </>
-            ) : (
-              <>
-                <Button
-                  fullWidth={isMobile}
-                  icon="arrow-forward"
-                  label="Claim your rank"
-                  onPress={() => openAuth('register')}
-                  size="lg"
-                />
-                <Button
-                  fullWidth={isMobile}
-                  label="Sign in"
-                  onPress={() => openAuth('login')}
-                  size="lg"
-                  variant="ghost"
-                />
-=======
                 <Tooltip content="Browse live tournament brackets and competitive arenas" position="top">
                   <Button
                     fullWidth={isMobile}
@@ -212,7 +176,6 @@ export function Hero() {
                     variant="ghost"
                   />
                 </Tooltip>
->>>>>>> 1a0e5c52cf95ca3d4c2ce6da3cc81ed569fd147a
               </>
             )}
           </View>
@@ -323,7 +286,7 @@ const styles = StyleSheet.create({
     height: 26,
     borderTopWidth: 1,
     borderLeftWidth: 1,
-    borderColor: 'rgba(198, 79, 40, 0.4)',
+    borderColor: 'rgba(23, 105, 255, 0.5)',
   },
   cornerBottomRight: {
     position: 'absolute',
@@ -333,7 +296,7 @@ const styles = StyleSheet.create({
     height: 26,
     borderBottomWidth: 1,
     borderRightWidth: 1,
-    borderColor: 'rgba(46, 125, 98, 0.45)',
+    borderColor: 'rgba(166, 220, 239, 0.6)',
   },
   inner: {
     flex: 1,

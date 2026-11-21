@@ -51,7 +51,7 @@ const GROUPS: FooterGroup[] = [
   {
     title: 'Company',
     links: [
-      { label: 'About Riyadah' },
+      { label: 'About Play Point' },
       { label: 'Press kit' },
       { label: 'Contact' },
       { label: 'Careers' },
@@ -107,7 +107,7 @@ function DesktopFooter() {
       </View>
 
       <View style={styles.bottomBar}>
-        <Text style={styles.copyright}>© 2026 Riyadah Elite. All rights reserved.</Text>
+        <Text style={styles.copyright}>© 2026 Play Point. All rights reserved.</Text>
 
         <View style={styles.legalRow}>
           <Text style={styles.legalLink}>Privacy</Text>
@@ -117,7 +117,7 @@ function DesktopFooter() {
           <Text style={styles.legalLink}>Cookies</Text>
         </View>
 
-        <Text style={styles.coreTag}>RIYADAH CORE · v1.0.0</Text>
+        <Text style={styles.coreTag}>PLAY POINT CORE · v1.0.0</Text>
       </View>
     </View>
   );
@@ -163,7 +163,7 @@ function MobileFooter() {
           <PulseDot color={Palette.tertiary} size={5} />
           <Text style={styles.statusText}>All systems operational</Text>
         </View>
-        <Text style={styles.copyright}>© 2026 Riyadah Elite</Text>
+        <Text style={styles.copyright}>© 2026 Play Point</Text>
       </View>
     </View>
   );
